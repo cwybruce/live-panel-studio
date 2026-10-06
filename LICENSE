@@ -29,7 +29,8 @@ and source materials are not granted under this MIT license.
 
 The bundled font files and renamed subsets in assets/fonts/ remain under the
 SIL Open Font License 1.1, with their original copyright and license notices.
-Any local examples/business-infographic/ reference-video recreation retains
-the original author's rights in its reference design, layout and wording; the
-reference video and that local example are excluded from the new public demo
-package. See THIRD_PARTY_NOTICES.md for sources and scope.
+Reference-video recreations in media/recreations/ retain the original author's
+rights in their reference design, layout and wording. The public files are
+videos rendered by this project; the original reference video and reference
+frames are excluded. See THIRD_PARTY_NOTICES.md and media/catalog.json for
+sources and scope.

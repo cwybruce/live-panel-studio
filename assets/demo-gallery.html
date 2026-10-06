@@ -31,6 +31,7 @@ iframe{display:block;width:100%;height:100%;border:0}
 ul{padding-left:17px;margin:10px 0 0;color:var(--muted);font-size:11px;line-height:1.9}.downloads{display:flex;flex-wrap:wrap;gap:7px}.downloads a{font-size:11px;display:inline-flex;background:transparent}.note{font-size:11px;color:#8f897c;line-height:1.8;margin:12px 0 0}
 .bottom{max-width:1480px;margin:0 auto;padding:0 28px 24px;color:#817b6e;font-size:10px;line-height:1.8}.bottom a{padding:0;border:0;background:none;color:#a9b799}kbd{border:1px solid #4f493b;padding:1px 4px;border-radius:3px}.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0)}
 .export-panel{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:14px 0 0}.export-panel label{font-size:11px;color:var(--muted)}.export-panel select{max-width:230px;font-size:11px}.export-status{font-size:11px;line-height:1.8;color:var(--muted);margin-top:8px;min-height:20px}.export-download{font-size:11px;display:inline-flex;margin-top:8px}
+.local-export-help{border-top:1px solid var(--border);margin-top:15px;padding-top:10px;font-size:11px;line-height:1.9;color:var(--muted)}.local-export-help p{margin:0 0 7px}.local-export-help summary{cursor:pointer;color:var(--fg)}.local-export-help ol{padding-left:18px;margin:9px 0}.local-export-help a{padding:0;border:0;background:none;color:var(--accent)}.local-export-help code{font-family:"LP Mono",monospace;font-size:10px;overflow-wrap:anywhere}.local-export-help button{font-size:11px;padding:5px 8px;margin-bottom:8px}
 :root[data-theme="light-pastel"] button,:root[data-theme="light-pastel"] a,:root[data-theme="light-pastel"] select{background:#faf6ed;border-color:var(--border)}
 :root[data-theme="light-pastel"] button:hover,:root[data-theme="light-pastel"] a:hover{background:#e8e0d1;border-color:#9d8d74}
 :root[data-theme="light-pastel"] header,:root[data-theme="light-pastel"] .stage{border-color:#d8cebb}
@@ -54,16 +55,16 @@ h2{font-family:"LP Serif",serif}.brand,output{font-family:"LP Mono",monospace}
 <div class="stage"><iframe id="scene" title="能力示例动画"></iframe><div id="loading" class="loading" role="status">正在加载示例…</div></div>
 <div class="controls"><button id="play" disabled>加载中</button><button id="replay" disabled>重播</button><label class="sr" for="scrub">动画进度</label><input id="scrub" type="range" min="0" max="12" step="0.01" value="0" disabled><output id="clock">00.00 / 12.00 s</output><select id="speed" aria-label="播放速度"><option value="0.5">0.5×</option><option value="1" selected>1×</option><option value="2">2×</option></select></div>
 <div id="checkpoints" class="checkpoints"></div>
-<div class="details"><div class="detail"><h3>这个示例展示了什么</h3><div class="chips" id="capabilities"></div><ul id="learn"></ul></div><div class="detail"><h3>保留、修改与分享</h3><div class="downloads"><a id="beforeLink" target="_blank" hidden>旧版对照 ↗</a><a id="videoLink" download>下载本主题成片</a><a id="configLink" download>下载 JSON 配置</a><a id="docLink" target="_blank">示例说明</a></div><div class="export-panel"><label for="exportView">导出范围</label><select id="exportView" aria-label="导出范围"><option value="full">整个 Demo</option></select><button id="exportButton" disabled>导出当前方案</button></div><div id="exportStatus" class="export-status" role="status" aria-live="polite">选择整段或一个功能块，按当前主题与角色生成视频。</div><a id="exportDownload" class="export-download" download hidden>下载导出的视频</a><p class="note">本主题成片使用默认角色。导出当前方案会按所选角色生成 12 秒视频，功能块保留完整过程。</p></div></div>
+<div class="details"><div class="detail"><h3>这个示例展示了什么</h3><div class="chips" id="capabilities"></div><ul id="learn"></ul></div><div class="detail"><h3>保留、修改与分享</h3><div class="downloads"><a id="beforeLink" target="_blank" hidden>旧版对照 ↗</a><a id="watchVideoLink" target="_blank" hidden>观看本主题成片 ↗</a><a id="videoLink" download>下载本主题成片</a><a id="configLink" download>下载 JSON 配置</a><a id="docLink" target="_blank">示例说明</a></div><div id="exportPanel" class="export-panel" hidden><label for="exportView">导出范围</label><select id="exportView" aria-label="导出范围"><option value="full">整个 Demo</option></select><button id="exportButton" disabled>导出当前方案</button></div><div id="exportStatus" class="export-status" role="status" aria-live="polite">在线页面支持播放与下载成片；按角色或分区生成视频需要本地导出服务。</div><a id="exportDownload" class="export-download" download hidden>下载导出的视频</a><div id="localExportHelp" class="local-export-help"><p>下载的主题成片使用默认角色。在本机运行项目后，可按所选主题与角色导出整个 Demo 或单独的功能块。</p><button id="exportRetry" hidden>重新检查本地服务</button><details><summary>在本机导出：运行说明</summary><ol><li><a href="https://github.com/cwybruce/live-panel-studio" target="_blank" rel="noreferrer">下载或克隆项目</a>，按项目 README 准备 Python、Chrome 或 Edge 与 FFmpeg。Windows 使用 <code>requirements-windows.txt</code> 安装所需依赖。</li><li>在项目根目录运行 <code>python scripts/preview_server.py --port 8779</code>；Windows 也可以双击 <code>examples/capability-demos/启动预览.ps1</code>。</li><li>打开 <a href="http://127.0.0.1:8779/index.html" target="_blank" rel="noreferrer">本地体验馆 ↗</a>，选择主题、角色与导出范围，再点击“导出当前方案”。</li></ol></details></div><p class="note">每段成片为 12 秒。功能块导出保留完整过程。</p></div></div>
 </section></main><div class="bottom">操作：<kbd>空格</kbd> 播放 / 暂停，<kbd>←</kbd> <kbd>→</kbd> 前后跳转 1 秒；也可以点击关键时刻按钮。<br>基于 <a href="https://github.com/ythx-101/live-panel-skill" target="_blank" rel="noreferrer">live-panel-skill</a>，保留原项目 MIT 许可与致谢。此集合采用原创场景与模拟数字。</div>
 <script>
 const DEMOS=/*DEMO_MANIFEST*/;
 const $=id=>document.getElementById(id),frame=$('scene'),slider=$('scrub');
 let selected=null,t=0,playing=true,ready=false,last=0,loadSerial=0;
-let exportBusy=false,exportJob=null;
+let exportBusy=false,exportJob=null,exportService='checking',healthCheckSerial=0;
 window.__ready=false;window.__galleryError='';
 function safeLink(id,url){$(id).href=url}
-function enable(on){['play','replay','scrub'].forEach(id=>$(id).disabled=!on);$('exportButton').disabled=!on||exportBusy}
+function enable(on){['play','replay','scrub'].forEach(id=>$(id).disabled=!on);$('exportButton').disabled=!on||exportBusy||exportService!=='local'}
 function paint(){if(ready){frame.contentWindow.seek(t);window.__galleryError=frame.contentWindow.__error||''}slider.value=t;$('clock').textContent=t.toFixed(2).padStart(5,'0')+' / '+selected.duration.toFixed(2)+' s';$('play').textContent=ready?(playing?'暂停':'播放'):'加载中'}
 function jump(value){if(!ready)return;t=Math.max(0,Math.min(selected.duration,Number(value)));playing=false;paint()}
 window.jumpDemo=jump;
@@ -71,8 +72,8 @@ function sceneUrl(){return selected.id+'/'+(selected.themeSwitch===false?'live.h
 function paintTheme(){
  const theme=$('theme').value;document.documentElement.dataset.theme=theme;
  document.querySelectorAll('.demo-card img').forEach(img=>{img.hidden=false;img.src=img.parentElement.dataset.id+'/'+(theme==='light-pastel'?'poster-light.png':'poster.png')});
- const file=selected.videos&&selected.videos[theme]||'demo.mp4';safeLink('videoLink',selected.id+'/'+file);
- $('videoLink').hidden=!(selected.videoReady&&theme==='terminal-dark'||selected.lightVideoReady&&theme==='light-pastel');
+ const file=selected.videos&&selected.videos[theme]||'demo.mp4';safeLink('videoLink',selected.id+'/'+file);safeLink('watchVideoLink',selected.id+'/'+file);
+ const hasVideo=selected.videoReady&&theme==='terminal-dark'||selected.lightVideoReady&&theme==='light-pastel';$('videoLink').hidden=!hasVideo;$('watchVideoLink').hidden=!hasVideo;
 }
 function loadScene(){
  paintTheme();
@@ -107,29 +108,47 @@ $('theme').onchange=loadScene;$('avatar').onchange=()=>{if(ready)frame.contentWi
 $('view').onchange=()=>{const v=selected.focusViews[Number($('view').value)-1],w=selected.width,h=selected.height;frame.style.transform=v?'scale('+(v.zoom||2.8)+') translate('+((w/2-v.x)/w*100)+'%, '+((h/2-v.y)/h*100)+'%)':''};
 document.addEventListener('keydown',e=>{if(!ready||(e.target instanceof Element&&e.target.matches('input,select,button,a,textarea')))return;if(e.code==='Space'){e.preventDefault();playing=!playing;paint()}else if(e.code==='ArrowLeft'||e.code==='ArrowRight'){e.preventDefault();jump(t+(e.code==='ArrowLeft'?-1:1))}});
 window.galleryState=()=>({id:selected.id,time:t,playing,ready,theme:$('theme').value,avatar:$('avatar').value});
-window.exportState=()=>({busy:exportBusy,job:exportJob});
-function finishExport(){exportBusy=false;$('exportButton').textContent='导出当前方案';$('exportButton').disabled=!ready}
+window.exportState=()=>({busy:exportBusy,job:exportJob,service:exportService});
+function isLocalPreview(){return location.protocol==='http:'&&['127.0.0.1','localhost','[::1]'].includes(location.hostname)}
+function setExportService(service,message){exportService=service;$('exportPanel').hidden=service!=='local';$('localExportHelp').hidden=service==='local';$('exportRetry').hidden=!isLocalPreview();$('exportRetry').disabled=service==='checking';$('exportButton').disabled=!ready||exportBusy||service!=='local';if(message&&!exportBusy)$('exportStatus').textContent=message}
+async function checkExportService(){
+ const serial=++healthCheckSerial;
+ if(!isLocalPreview()){setExportService('static','在线页面支持播放与下载成片；按角色或分区生成视频，请运行下方本地导出服务。');return false}
+ setExportService('checking','正在检查本地导出服务…');
+ const controller=new AbortController(),timeout=setTimeout(()=>controller.abort(),3000);
+ try{
+  const response=await fetch('/api/health',{cache:'no-store',signal:controller.signal});
+  const service=response.ok?await response.json():null;
+  if(serial!==healthCheckSerial)return exportService==='local';
+  const available=!!(service&&service.service==='live-panel-preview'&&service.exports===true);
+  setExportService(available?'local':'static',available?'选择整段或一个功能块，按当前主题与角色生成视频。':'当前服务器支持预览；视频生成需要下方说明中的本地导出服务。');return available;
+ }catch(e){if(serial===healthCheckSerial)setExportService('static','未连接到本地导出服务。现有成片仍可观看和下载；请按下方说明启动服务。');return false}
+ finally{clearTimeout(timeout)}
+}
+$('exportRetry').onclick=checkExportService;
+function finishExport(){exportBusy=false;$('exportButton').textContent='导出当前方案';$('exportButton').disabled=!ready||exportService!=='local'}
+function failExport(error){let message=error.message;if(error instanceof TypeError){setExportService('static');message='本地导出服务连接已断开，请按下方说明重新启动服务。'}$('exportStatus').textContent=message;finishExport()}
 $('exportButton').onclick=async()=>{
- if(!ready||exportBusy)return;
+ if(!ready||exportBusy||exportService!=='local')return;
  const choice={scene:selected.id,theme:$('theme').value,avatar:$('avatar').value,view:$('exportView').value};
  const label=selected.title+' · '+$('theme').selectedOptions[0].textContent+' · '+$('exportView').selectedOptions[0].textContent;
  exportBusy=true;exportJob=null;$('exportButton').disabled=true;$('exportButton').textContent='正在导出…';$('exportDownload').hidden=true;
  $('exportStatus').textContent='准备导出：'+label;
  try{
   const response=await fetch('/api/exports',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(choice)});
-  if(!response.ok){let detail='';try{detail=(await response.json()).error||''}catch(e){}throw new Error(response.status===404||response.status===501?'导出需要本地预览服务，请双击“启动预览.ps1”后重试。':detail||'无法创建导出任务。')}
+  if(!response.ok){let detail='';try{detail=(await response.json()).error||''}catch(e){}if(response.status===404||response.status===501)setExportService('static');throw new Error(response.status===404||response.status===501?'本地导出接口不可用，请按下方说明启动服务。':detail||'无法创建导出任务。')}
   exportJob=await response.json();
   async function poll(){try{
    const statusResponse=await fetch('/api/exports/'+encodeURIComponent(exportJob.id),{cache:'no-store'});
-   if(!statusResponse.ok)throw new Error('无法读取导出进度，请稍后重试。');
+   if(!statusResponse.ok){if(statusResponse.status===501||statusResponse.status===404&&!(statusResponse.headers.get('Content-Type')||'').includes('application/json'))setExportService('static');throw new Error('无法读取导出进度，请检查本地预览服务后重试。')}
    exportJob=await statusResponse.json();
    if(exportJob.status==='complete'){safeLink('exportDownload',exportJob.url);$('exportDownload').download=exportJob.filename||'live-panel.mp4';$('exportDownload').hidden=false;$('exportStatus').textContent='已完成：'+label;finishExport();return}
    if(exportJob.status==='failed')throw new Error(exportJob.error||'导出失败，请重试。');
    $('exportStatus').textContent=(exportJob.status==='queued'?'等待导出：':'正在生成：')+label+(Number.isFinite(exportJob.progress)?' · '+Math.round(exportJob.progress)+'%':'');setTimeout(poll,1000);
-  }catch(e){$('exportStatus').textContent=e.message;finishExport()}}
+  }catch(e){failExport(e)}}
   poll();
- }catch(e){$('exportStatus').textContent=e.message;finishExport()}
+ }catch(e){failExport(e)}
 };
 function loop(now){if(ready&&playing&&last)t=(t+(now-last)/1000*Number($('speed').value))%selected.duration;last=now;if(selected)paint();requestAnimationFrame(loop)}
-window.selectDemo(DEMOS.some(d=>d.id===location.hash.slice(1))?location.hash.slice(1):DEMOS[0].id);requestAnimationFrame(loop);
+window.selectDemo(DEMOS.some(d=>d.id===location.hash.slice(1))?location.hash.slice(1):DEMOS[0].id);requestAnimationFrame(loop);checkExportService();
 </script></body></html>

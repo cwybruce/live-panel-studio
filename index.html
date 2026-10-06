@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="zh-CN" data-theme="terminal-dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="Live Panel Studio：把架构、流程与知识讲解做成可交互的动画。观看 8 个 Demo、参考画面复刻和功能块导出案例，下载网页与 MP4。">
+  <meta name="theme-color" content="#11110f">
+  <title>Live Panel Studio · 让流程可见</title>
+  <link rel="stylesheet" href="assets/showcase.css">
+  <script defer src="assets/showcase.js"></script>
+</head>
+<body>
+  <a class="skip-link" href="#demos">跳到示例</a>
+  <header class="site-header wrap">
+    <a class="brand" href="#top" aria-label="Live Panel Studio 首页"><span class="brand-mark" aria-hidden="true">lp<span>·</span></span><span>LIVE PANEL<span class="brand-sub">STUDIO</span></span></a>
+    <nav class="main-nav" aria-label="主导航"><a href="#demos">示例</a><a href="#recreations">复刻</a><a href="#exports">导出</a><a href="https://github.com/cwybruce/live-panel-studio" target="_blank" rel="noopener noreferrer">GitHub ↗</a></nav>
+    <div class="theme-switch" role="group" aria-label="页面与 Demo 主题"><button type="button" data-theme-choice="terminal-dark" aria-pressed="true">暖黑</button><button type="button" data-theme-choice="light-pastel" aria-pressed="false">暖纸</button></div>
+  </header>
+
+  <main id="top">
+    <section class="hero wrap" aria-labelledby="hero-title">
+      <div class="hero-copy">
+        <p class="eyebrow"><span class="status-dot" aria-hidden="true"></span> OPEN SOURCE · JSON TO MOTION</p>
+        <h1 id="hero-title">让流程可见。<br><span>让讲解动起来。</span></h1>
+        <p class="hero-lead">架构、协作、知识与业务，一张面板说清楚。<br>把过程写成配置，带走会动的网页与视频。</p>
+        <div class="hero-actions"><a class="button primary" href="#demos">看一段动画 <span aria-hidden="true">↓</span></a><a class="button secondary" href="examples/capability-demos/index.html">进入交互体验馆 <span aria-hidden="true">↗</span></a></div>
+      </div>
+      <div class="process-panel" aria-label="从配置到视频的过程">
+        <div class="panel-kicker"><span>ONE CONFIG. THREE WAYS.</span><span class="tiny-dot" aria-hidden="true"></span></div>
+        <div class="process-source"><span class="mono">01 / CONFIG</span><strong>把你的过程，写下来</strong><span class="code-fragment">{ scene, theme, timeline }</span></div>
+        <div class="process-path" aria-hidden="true"><i></i><i></i><i></i><span>seek(t)</span></div>
+        <div class="process-outputs"><div><span class="mono">LIVE HTML</span><strong>交互</strong><p>播放 · 拖动 · 切换</p></div><div><span class="mono">MP4 VIDEO</span><strong>成片</strong><p>整段 · 单块 · 分享</p></div></div>
+        <div class="panel-footer"><span>同一时间线，同一段动画。</span><span class="mono">12s / 30fps</span></div>
+      </div>
+    </section>
+
+    <div class="collection-strip wrap"><div><strong>08</strong><span>原创能力示例</span></div><div><strong>02</strong><span>深浅主题</span></div><div><strong>39</strong><span>可单独导出的功能块</span></div><p>无需滚动录屏。<br>由配置逐帧生成。</p></div>
+
+    <section id="demos" class="showcase-section wrap" aria-labelledby="demos-title">
+      <div class="section-heading"><div><p class="eyebrow">01 / THE COLLECTION</p><h2 id="demos-title">八种场景，各有动法。</h2></div><p>点击视频即可播放。切换暖黑 / 暖纸，<br>观看另一套成片；进入体验馆可操作时间线与角色。</p></div>
+      <div id="demo-grid" class="demo-grid" aria-live="polite"><p class="loading-message">正在读取示例…</p></div>
+      <p class="section-note"><span class="status-dot" aria-hidden="true"></span> 预设时间线 · 模拟数据。未连接真实 Agent、数据库或业务系统。</p>
+    </section>
+
+    <section id="recreations" class="showcase-section wrap" aria-labelledby="recreations-title">
+      <div class="section-heading"><div><p class="eyebrow">02 / FROM A REFERENCE</p><h2 id="recreations-title">从参考画面，到重新实现。</h2></div><p>项目初期的成片：重画图形、编排运动，<br>用同一套引擎复现画面里的节奏。</p></div>
+      <div id="recreation-grid" class="recreation-grid"><p class="loading-message">正在读取复刻成片…</p></div>
+      <p class="section-note provenance-note">参考画面的设计权利归原作者；原始参考视频未公开。业务数据仅用于视觉演示，更多来源见 <a href="https://github.com/cwybruce/live-panel-studio/blob/main/THIRD_PARTY_NOTICES.md" target="_blank" rel="noopener noreferrer">第三方说明 ↗</a>。</p>
+    </section>
+
+    <section id="exports" class="showcase-section wrap" aria-labelledby="exports-title">
+      <div class="section-heading"><div><p class="eyebrow">03 / EVERY BLOCK CAN MOVE</p><h2 id="exports-title">整段讲清楚，单块也能带走。</h2></div><p>选择场景与范围，直接观看已导出的案例。<br>功能块保留文字、内部动画和边缘光效。</p></div>
+      <div class="export-workspace">
+        <div class="export-sidebar"><div class="export-sidebar-head"><span class="mono">EXPORT LIBRARY</span><span id="export-count" class="small-badge">正在读取</span></div><label for="export-scene">场景<select id="export-scene" disabled><option>正在读取案例…</option></select></label><label for="export-case">范围与版本<select id="export-case" disabled><option>正在读取案例…</option></select></label><div id="export-quick-links" class="quick-picks" aria-label="精选案例"></div><div class="export-details"><h3 id="export-title">查看导出案例</h3><p id="export-summary">包含全部功能块，以及不同角色的整段与区域示例。</p><dl><div><dt>范围</dt><dd id="export-view">—</dd></div><div><dt>主题 / 角色</dt><dd id="export-variant">—</dd></div><div><dt>画幅</dt><dd id="export-dimensions">—</dd></div><div><dt>成片</dt><dd id="export-timing">—</dd></div></dl><a id="export-download" class="button secondary" hidden download>下载这段 MP4 <span aria-hidden="true">↓</span></a></div></div>
+        <div class="export-stage"><div class="stage-label"><span id="export-stage-label" class="mono">READY TO PLAY</span><span>原生成片</span></div><video id="export-video" controls playsinline preload="none" aria-label="导出案例视频"></video><p id="export-error" class="media-error" role="status" hidden></p></div>
+      </div>
+      <p class="section-note">这里展示已生成的文件。切换页面主题不会改变复刻与导出案例各自的原始主题。</p>
+    </section>
+
+    <section class="make-section wrap" aria-labelledby="make-title"><div><p class="eyebrow">04 / MAKE IT YOURS</p><h2 id="make-title">下一张面板，写你的故事。</h2><p>这个站点支持播放、互动预览和下载。要按自己的配置生成新 MP4，<br>安装本地 Python 预览服务，选择主题、角色与整段 / 功能块范围。</p><a class="button primary" href="https://github.com/cwybruce/live-panel-studio#快速开始" target="_blank" rel="noopener noreferrer">本地安装与使用 <span aria-hidden="true">↗</span></a></div><div class="make-code"><span class="mono">LOCAL STUDIO / PYTHON 3.11+</span><code>python -m pip install -r requirements-windows.txt<br>python scripts/make_capability_demos.py<br>python scripts/preview_server.py --port 8779</code><span>系统 Chrome / Edge · FFmpeg · 本地导出</span></div></section>
+  </main>
+
+  <footer class="site-footer wrap"><div><strong>LIVE PANEL STUDIO</strong><p>基于 <a href="https://github.com/ythx-101/live-panel-skill" target="_blank" rel="noopener noreferrer">live-panel-skill</a> 扩展 · 代码 MIT · 字体 OFL</p></div><div class="footer-links"><a href="https://x.com/sycbruce" target="_blank" rel="noopener noreferrer">X / @sycbruce ↗</a><a href="https://github.com/cwybruce/live-panel-studio" target="_blank" rel="noopener noreferrer">GitHub ↗</a><a href="#top">回到顶部 ↑</a></div></footer>
+  <div id="page-status" class="sr-only" role="status" aria-live="polite"></div>
+  <noscript><p class="noscript-note">启用 JavaScript 可在首页播放并选择案例，也可以直接进入 <a href="examples/capability-demos/index.html">交互体验馆</a> 或查看 <a href="https://github.com/cwybruce/live-panel-studio">项目仓库</a>。</p></noscript>
+</body>
+</html>

@@ -6,6 +6,10 @@
 
 维护与交流：**[@sycbruce · X](https://x.com/sycbruce)** · [提交问题](https://github.com/cwybruce/live-panel-studio/issues)
 
+**[在线体验与视频库](https://cwybruce.github.io/live-panel-studio/)** · [交互体验馆](https://cwybruce.github.io/live-panel-studio/examples/capability-demos/index.html) · [功能块导出案例](https://cwybruce.github.io/live-panel-studio/#exports)
+
+网页可直接播放 8 个 Demo 的深浅主题成片、初期复刻与蜘蛛更新视频，并浏览 39 个功能块成片及 3 个浅色机器人导出案例。支持播放、拖动进度和 MP4 下载；生成新方案请运行下方本地服务。
+
 | 暖黑主题 | 暖纸主题 |
 | --- | --- |
 | ![RAG 证据讲解：暖黑主题](examples/capability-demos/rag-explainer/poster.png) | ![RAG 证据讲解：暖纸主题](examples/capability-demos/rag-explainer/poster-light.png) |
@@ -118,6 +122,14 @@ python scripts/verify_demo_exports.py
 - `examples/airbnb/` 使用 [Latent.Space 访谈](https://www.latent.space/p/airbnb) 中 Airbnb 管理者自述的数据；跳动的计数用于演示。
 - Noto Serif SC、Noto Sans SC 与 IBM Plex Mono 字体采用 **SIL OFL 1.1**，随仓库保留许可与更名子集说明。
 
-MIT 许可覆盖代码，不将上述第三方视觉设计、文字、数据或字体重新授权为 MIT。来源及许可边界详见 [`THIRD_PARTY_NOTICES.md`](THIRD_PARTY_NOTICES.md) 与 [`LICENSE`](LICENSE)。用户提供的参考原视频及本地商业信息图复刻不作为新增公开示例打包。
+MIT 许可覆盖代码，不将上述第三方视觉设计、文字、数据或字体重新授权为 MIT。来源及许可边界详见 [`THIRD_PARTY_NOTICES.md`](THIRD_PARTY_NOTICES.md) 与 [`LICENSE`](LICENSE)。用户提供的参考原视频和参考帧不公开；视频库中的“复刻演示”为本项目生成的成片，保留参考设计的原作者权利，并与八个原创场景分列。
+
+## 静态网站与视频库维护
+
+仓库根目录的 `index.html`、`assets/showcase.css` 和 `assets/showcase.js` 构成静态首页。八个 Demo 读取 `examples/capability-demos/manifest.json`，复刻与导出案例读取 [`media/catalog.json`](media/catalog.json)。视频均为仓库内真实 MP4，不依赖外部播放器；默认不预加载整段视频，播放一个视频时会暂停其他视频。
+
+本站使用 GitHub Pages 的 `main` 分支根目录发布，并以 `.nojekyll` 保留静态文件。设置步骤见 [GitHub 官方文档](https://docs.github.com/en/pages/getting-started-with-github-pages/configuring-a-publishing-source-for-your-github-pages-site)。更新首页、案例清单或媒体后推送到 `main` 即可重新部署。
+
+`media/exports/` 中 39 个浅色蜘蛛功能块由对应完整成片裁剪，另有 3 个通过渲染器按浅色机器人配置逐帧生成的全段 / 主流程 / 重排区域案例。两种生成方式在视频库明确标注。网站播放和下载已有成片，交互体验馆可调主题、角色与时间线；静态 Pages 不运行 Python 渲染器，生成新 MP4 需本地服务。
 
 欢迎提交 Issue、改进场景或贡献组件。项目交流与联系方式：**[X / @sycbruce](https://x.com/sycbruce)**。
