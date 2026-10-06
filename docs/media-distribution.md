@@ -1,8 +1,12 @@
 # 媒体分发与迁移 / Media distribution and migration
 
-源码中的配置、SVG / JavaScript、独立 HTML、GIF 和海报继续由 Git 管理；预制 MP4 使用固定版本 [media-v1 Release](https://github.com/cwybruce/motion-diagram-studio/releases/tag/media-v1) 的 `motion-diagram-studio-media-v1.zip` 分发。默认源码检出不包含 MP4。迁移保留现有本地视频文件，不重写 Git 历史，因此完整克隆仍可能下载历史提交中的视频；新用户推荐 `git clone --depth 1`。
+源码中的配置、SVG / JavaScript、独立 HTML、GIF 和海报继续由 Git 管理；预制 MP4 使用固定版本 [media-v2 Release](https://github.com/cwybruce/motion-diagram-studio/releases/tag/media-v2) 的 `motion-diagram-studio-media-v2.zip` 分发。默认源码检出不包含 MP4。迁移保留现有本地视频文件，不重写 Git 历史，因此完整克隆仍可能下载历史提交中的视频；新用户推荐 `git clone --depth 1`。
 
-Git continues to track configurations, SVG / JavaScript, standalone HTML, GIFs and posters. Pre-rendered MP4s are distributed in `motion-diagram-studio-media-v1.zip` from the fixed [media-v1 Release](https://github.com/cwybruce/motion-diagram-studio/releases/tag/media-v1). The default source checkout excludes MP4s. Migration preserves existing local videos and Git history; a complete clone can still download historical video blobs. New users should use `git clone --depth 1`.
+Git continues to track configurations, SVG / JavaScript, standalone HTML, GIFs and posters. Pre-rendered MP4s are distributed in `motion-diagram-studio-media-v2.zip` from the fixed [media-v2 Release](https://github.com/cwybruce/motion-diagram-studio/releases/tag/media-v2). The default source checkout excludes MP4s. Migration preserves existing local videos and Git history; a complete clone can still download historical video blobs. New users should use `git clone --depth 1`.
+
+旧 [media-v1 Release](https://github.com/cwybruce/motion-diagram-studio/releases/tag/media-v1) 的附件保持不可变，仍可配合其对应版本的源码与清单恢复；当前源码与 Pages 固定使用 `media-v2`，不能将旧 ZIP 与新清单混用。
+
+The earlier [media-v1 Release](https://github.com/cwybruce/motion-diagram-studio/releases/tag/media-v1) remains immutable and usable with its matching source version and manifest. Current source and Pages pin `media-v2`; do not mix the earlier ZIP with the current manifest.
 
 ## 清单与范围 / Manifest and scope
 
@@ -15,9 +19,9 @@ Git continues to track configurations, SVG / JavaScript, standalone HTML, GIFs a
 | `demos` | 八个 Demo × 四套配色，共 32 段完整视频。 / Eight demos × four palettes: 32 complete videos. |
 | `all` | 全部 80 段：32 段 Demo、4 段保留示例、2 段复刻、39 段功能块与3段机器人导出。 / All 80 videos: 32 demo videos, four retained examples, two recreations, 39 block videos and three robot exports. |
 
-两个集合都恢复随包的许可与来源说明快照到 `media/release-notices/media-v1/`。当前只有一个完整 ZIP；`demos` 控制本地恢复范围，首次网络下载仍获取整个 ZIP。视频原有的参考设计权利边界不因迁移而改变，详见 [`THIRD_PARTY_NOTICES.md`](../THIRD_PARTY_NOTICES.md)。
+两个集合都恢复随包的许可与来源说明快照到 `media/release-notices/media-v2/`。当前版本只有一个完整 ZIP；`demos` 控制本地恢复范围，首次网络下载仍获取整个 ZIP。视频原有的参考设计权利边界不因迁移而改变，详见 [`THIRD_PARTY_NOTICES.md`](../THIRD_PARTY_NOTICES.md)。
 
-Both sets restore bundled license and provenance snapshots to `media/release-notices/media-v1/`. There is one complete ZIP: `demos` controls local restoration scope, while the initial network transfer still retrieves the full ZIP. Migration does not change rights to referenced visual designs; see [`THIRD_PARTY_NOTICES.md`](../THIRD_PARTY_NOTICES.md).
+Both sets restore bundled license and provenance snapshots to `media/release-notices/media-v2/`. The current version has one complete ZIP: `demos` controls local restoration scope, while the initial network transfer still retrieves the full ZIP. Migration does not change rights to referenced visual designs; see [`THIRD_PARTY_NOTICES.md`](../THIRD_PARTY_NOTICES.md).
 
 ## 本地使用 / Local use
 
@@ -53,7 +57,7 @@ python scripts/media_assets.py check --set all --dest ./out/restored-media
 离线使用时，先在有网络的机器下载对应的 Release ZIP，并带上匹配的源码与清单；之后指定本地附件： / For offline use, first download the matching Release ZIP on an online machine and transfer it with the matching source checkout and manifest. Then supply the local attachment:
 
 ```powershell
-python scripts/media_assets.py download --set all --bundle ./downloads/motion-diagram-studio-media-v1.zip --dest ./out/offline-media
+python scripts/media_assets.py download --set all --bundle ./downloads/motion-diagram-studio-media-v2.zip --dest ./out/offline-media
 python scripts/media_assets.py check --set all --dest ./out/offline-media
 ```
 
@@ -86,28 +90,28 @@ Set the Pages publishing source to **GitHub Actions**. The [workflow](../.github
 
 ```powershell
 python scripts/media_assets.py download --set all
-python scripts/media_assets.py pack --tag media-v2
+python scripts/media_assets.py pack --tag media-v3
 ```
 
 需要另加新片时，使用显式路径；文件需已存在，`--include` 可重复： / Add new videos with explicit existing paths; `--include` can be repeated:
 
 ```powershell
-python scripts/media_assets.py pack --tag media-v2 --include examples/my-demo/demo.mp4
+python scripts/media_assets.py pack --tag media-v3 --include examples/my-demo/demo.mp4
 ```
 
-打包器合并旧清单中的视频路径、仍由 Git 管理的 MP4 和显式 `--include`，不递归扫描用户导出目录。旧片缺失时先恢复，不将缺片的新 ZIP 当作完整版本；已经公开的 tag 不可重用。新版本 ZIP 命名为 `motion-diagram-studio-media-v2.zip`，许可快照随新 tag 保存到对应目录。
+打包器合并旧清单中的视频路径、仍由 Git 管理的 MP4 和显式 `--include`，不递归扫描用户导出目录。旧片缺失时先恢复，不将缺片的新 ZIP 当作完整版本；已经公开的 tag 不可重用。下一版本示例 ZIP 命名为 `motion-diagram-studio-media-v3.zip`，许可快照随新 tag 保存到对应目录。
 
-Packaging combines video paths from the previous manifest, still-tracked MP4s and explicit `--include` additions, without recursively scanning user export directories. Restore missing previous videos first; a ZIP with missing originals is not a complete new version. Published tags cannot be reused. The new archive is named `motion-diagram-studio-media-v2.zip`, with license snapshots under the corresponding new-tag directory.
+Packaging combines video paths from the previous manifest, still-tracked MP4s and explicit `--include` additions, without recursively scanning user export directories. Restore missing previous videos first; a ZIP with missing originals is not a complete new version. Published tags cannot be reused. The next-version example archive is named `motion-diagram-studio-media-v3.zip`, with license snapshots under the corresponding new-tag directory.
 
-1. 在新的不可变 tag 与 ZIP 附件名称下打包更新后的媒体，并保留许可和来源说明；**不覆盖已发布的 `media-v1` 附件**。 / Package updated media under a new immutable tag and ZIP attachment name, preserving license and provenance notices. **Do not overwrite published `media-v1` attachments.**
+1. 在新的不可变 tag 与 ZIP 附件名称下打包更新后的媒体，并保留许可和来源说明；**不覆盖已发布的 `media-v1`、`media-v2` 附件**。 / Package updated media under a new immutable tag and ZIP attachment name, preserving license and provenance notices. **Do not overwrite published `media-v1` or `media-v2` attachments.**
 2. 核查打包生成的清单，使 tag、附件 URL、ZIP 哈希和每个文件的哈希一致；上传并发布 Release。 / Review the generated manifest so the tag, attachment URL, ZIP hash and per-file hashes agree; upload and publish the Release.
 3. 生成的新清单初始为 `published: false`，网络恢复会拒绝下载。先通过公开 Release 页在浏览器中下载刚上传的 ZIP，再用下方 `--bundle` 命令在空目录恢复并校验；通过后才将主清单标记为 `published: true`。 / A newly generated manifest starts with `published: false`, which blocks network restoration. Download the uploaded ZIP in a browser from the public Release page, then restore and verify it in an empty directory using `--bundle` below. Mark the main manifest `published: true` only after verification passes.
 4. 最后提交源码 / 清单 / 工作流并部署 Pages，核查既有视频 URL、README 动态预览链接与本地恢复命令。 / Commit the source / manifest / workflow and deploy Pages last, then verify existing video URLs, animated README links and local restoration commands.
 
 ```powershell
-# Use the ZIP downloaded from the public media-v2 Release, not the local pack output.
-python scripts/media_assets.py download --set all --bundle ./downloads/motion-diagram-studio-media-v2.zip --dest ./out/verify-media-v2
-python scripts/media_assets.py check --set all --dest ./out/verify-media-v2
+# Use the ZIP downloaded from the public media-v3 Release, not the local pack output.
+python scripts/media_assets.py download --set all --bundle ./downloads/motion-diagram-studio-media-v3.zip --dest ./out/verify-media-v3
+python scripts/media_assets.py check --set all --dest ./out/verify-media-v3
 ```
 
 首次迁移也遵循“先发布并验证附件、再部署引用它的站点”的顺序。固定附件与匹配清单需一同保留，后续版本不修改旧 URL 的字节内容。 / The initial migration follows the same order: publish and verify the attachment before deploying the site that references it. Preserve pinned attachments with their matching manifests; later versions must not change bytes served by earlier URLs.

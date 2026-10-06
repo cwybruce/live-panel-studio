@@ -1,13 +1,16 @@
 {
   "version": 1,
   "repository": "cwybruce/motion-diagram-studio",
-  "releaseTag": "media-v1",
+  "releaseTag": "media-v2",
   "published": true,
+  "publishedTags": [
+    "media-v1"
+  ],
   "bundle": {
-    "filename": "motion-diagram-studio-media-v1.zip",
-    "url": "https://github.com/cwybruce/motion-diagram-studio/releases/download/media-v1/motion-diagram-studio-media-v1.zip",
-    "size": 54685108,
-    "sha256": "e9078cd676f5b62ea2fa11afea3518fdf4064783952e2df10c831e0fb19c4e63"
+    "filename": "motion-diagram-studio-media-v2.zip",
+    "url": "https://github.com/cwybruce/motion-diagram-studio/releases/download/media-v2/motion-diagram-studio-media-v2.zip",
+    "size": 56588425,
+    "sha256": "abc69bf17c427f4eed97b820670d601856dd3e8d342294691e1a01a5f5cce9fe"
   },
   "assets": [
     {
@@ -28,225 +31,225 @@
       "path": "examples/capability-demos/agent-team/demo-light.mp4",
       "type": "video",
       "set": "demos",
-      "size": 736430,
-      "sha256": "0b150bc81bc4202871e30053d0e3203193bdff92e56700f80415bb29e67a6742"
+      "size": 778071,
+      "sha256": "8ff697f0f58cf24c7c1fed6aa3c79b5519f43a9b41dadf5c79de0dfe2f732d62"
     },
     {
       "path": "examples/capability-demos/agent-team/demo-pastel.mp4",
       "type": "video",
       "set": "demos",
-      "size": 806525,
-      "sha256": "dda410ee5a4a9441c65a4eccfdfe428a60909964ed9dfb118fd3afff3004f7e5"
+      "size": 832861,
+      "sha256": "52d45a2504a58ec210db15bdf42c44d3844bb0b66ef0d7ec11e4eb67497f9f21"
     },
     {
       "path": "examples/capability-demos/agent-team/demo-terminal.mp4",
       "type": "video",
       "set": "demos",
-      "size": 813321,
-      "sha256": "3741a7d1a55c63ece0883df46c6cdb8b01c756ebad9d555a01be6839a34177e1"
+      "size": 826761,
+      "sha256": "7838eddebb58a91c16a90296d2acc89960b3682dfe2e11cf2146f2d7db175e94"
     },
     {
       "path": "examples/capability-demos/agent-team/demo.mp4",
       "type": "video",
       "set": "demos",
-      "size": 814996,
-      "sha256": "fdce06899614c3196cbacfb6129535d5e08565797604871dc39b8cfd3254ac63"
+      "size": 833616,
+      "sha256": "bae5fba40d36e20718b6e7d970056666555a7a502ea8c7d2bad5c6286937a15f"
     },
     {
       "path": "examples/capability-demos/avatar-themes/demo-light.mp4",
       "type": "video",
       "set": "demos",
-      "size": 853639,
-      "sha256": "fd9c954fe10e29fbf45702309840041355e5ed79f25e5b83c883acfd31c0eb72"
+      "size": 934503,
+      "sha256": "800146903b244ec1c69905210cd35b5b919c00f9aeb92244b5555e5b3ebff7ac"
     },
     {
       "path": "examples/capability-demos/avatar-themes/demo-pastel.mp4",
       "type": "video",
       "set": "demos",
-      "size": 958596,
-      "sha256": "1731f15a0e0f5f1590e80a25dbc53ac064fc16d14ae63faba0ee9cccc3e9ec0e"
+      "size": 1064531,
+      "sha256": "5cc035ef789448b328c8bc63727109e0f8f5f0a9b6583c790ecdd1c7348077c5"
     },
     {
       "path": "examples/capability-demos/avatar-themes/demo-terminal.mp4",
       "type": "video",
       "set": "demos",
-      "size": 966653,
-      "sha256": "429a8a89a5c7e65f93604d0f0830cac13c4079acc10e6fe9ce1fab5969c0d9d0"
+      "size": 1047768,
+      "sha256": "94310b23da73ed4af2e89b1f5936b10bf80098476dc20e6d1f9bdabae9aeafa4"
     },
     {
       "path": "examples/capability-demos/avatar-themes/demo.mp4",
       "type": "video",
       "set": "demos",
-      "size": 927741,
-      "sha256": "d2a2e9151f05b91de34ab120170a9cc5e18245759665dda940df538598493daf"
+      "size": 1030116,
+      "sha256": "7f7b0c33c22e3a8fc5f768cfa884bbe12a6517a47585dea0d4d4b2eb429d76d5"
     },
     {
       "path": "examples/capability-demos/business-workflow/demo-light.mp4",
       "type": "video",
       "set": "demos",
-      "size": 742933,
-      "sha256": "cff7567e72acb3a0ecb6129f7e757ea289a4c17395fdd4898dfcb6580c783d29"
+      "size": 783452,
+      "sha256": "4968dcd1757053bba5845347cb2cc80e17a20b9238f8a2b9b9cf6cacadf90f41"
     },
     {
       "path": "examples/capability-demos/business-workflow/demo-pastel.mp4",
       "type": "video",
       "set": "demos",
-      "size": 819904,
-      "sha256": "7535380d0655f468c39bd1cb5bbbe8d0c7e517293bfea4c746cdec5c07ae94b2"
+      "size": 834944,
+      "sha256": "6df3d7d148d24206c62ff7c00c1987b7df06d46ba79d77d972927a4b6729a7a6"
     },
     {
       "path": "examples/capability-demos/business-workflow/demo-terminal.mp4",
       "type": "video",
       "set": "demos",
-      "size": 824325,
-      "sha256": "0d95664a15a864a71a59865fca684b82cee2381c1388c2cec08d4fb559d39585"
+      "size": 852768,
+      "sha256": "77b9c341d5b8dd1b96d99bd126a11c73babbe6b0b7ee852a55d0406ea64397ad"
     },
     {
       "path": "examples/capability-demos/business-workflow/demo.mp4",
       "type": "video",
       "set": "demos",
-      "size": 830996,
-      "sha256": "b2ed557160bcf258fedaa74cee7a19d7ddb78e65bd0bc2944b71e081cbc208b5"
+      "size": 838631,
+      "sha256": "09fc5fc4bc80dbbefb9b573973c0426745683d14ecdbf513aa3a90abeafc1e4c"
     },
     {
       "path": "examples/capability-demos/component-lab/demo-light.mp4",
       "type": "video",
       "set": "demos",
-      "size": 904816,
-      "sha256": "ea27e3248d4e7eda5f9899ef0e613aacb139a517bbb864ddc6e8aabd84c0e1e1"
+      "size": 985537,
+      "sha256": "97583bc331e5e64cff98ee87f012fa5bdbb801a728d834a69f5d9cb7547ca20c"
     },
     {
       "path": "examples/capability-demos/component-lab/demo-pastel.mp4",
       "type": "video",
       "set": "demos",
-      "size": 999086,
-      "sha256": "81d67bcaf8d1e81dcf3d7582dba17a5c4fe1338acdb7825061c8973531da5148"
+      "size": 1022930,
+      "sha256": "917dd8e970b33ae3301749639a438c1d38cf722acf924569ca829d0d6328c9d7"
     },
     {
       "path": "examples/capability-demos/component-lab/demo-terminal.mp4",
       "type": "video",
       "set": "demos",
-      "size": 1013431,
-      "sha256": "43589b1ffa8349491c06730ed21dea12265a95f676b35e8f6bb99f7efef07e15"
+      "size": 1048372,
+      "sha256": "3737d2407d48dd2e54405e4fddb62cd90df6ffa6d09b9e279ac5353a1333592d"
     },
     {
       "path": "examples/capability-demos/component-lab/demo.mp4",
       "type": "video",
       "set": "demos",
-      "size": 1035003,
-      "sha256": "4a2cdc782f96f0d168fcdc45691211ae3b978357d9952230d0c3c105ceb0198d"
+      "size": 1053634,
+      "sha256": "25da2ae2394b3896f9a598d97b46927b6ae65bafe69fff2e3f308779c2475887"
     },
     {
       "path": "examples/capability-demos/incident-replay/demo-light.mp4",
       "type": "video",
       "set": "demos",
-      "size": 645509,
-      "sha256": "5ed895783155ffee93266d105512ee7839926ab32fd4228ae50757c7ba133240"
+      "size": 676712,
+      "sha256": "b1de7303b92a0c31f3f4dd7ce3a17d8ab026e1568f38f28114cbb71a4bac8edf"
     },
     {
       "path": "examples/capability-demos/incident-replay/demo-pastel.mp4",
       "type": "video",
       "set": "demos",
-      "size": 692399,
-      "sha256": "104a44567abd314305202a776e4ea94b0435e55f82f223b47c008f1c9ae747e5"
+      "size": 731358,
+      "sha256": "effc6d2d04a401cfe4a1ddc91563ca08ac61dc15ec7515c0dd21861da9c7dbb9"
     },
     {
       "path": "examples/capability-demos/incident-replay/demo-terminal.mp4",
       "type": "video",
       "set": "demos",
-      "size": 702577,
-      "sha256": "7204e862d7cdce22e9ff584451feb970df88695f89b7649aed508bb385e8be58"
+      "size": 728062,
+      "sha256": "3103e78f8153e3b81f5674d374b48a44c77f888bc8b2be3245b7a06fe6638810"
     },
     {
       "path": "examples/capability-demos/incident-replay/demo.mp4",
       "type": "video",
       "set": "demos",
-      "size": 691653,
-      "sha256": "49a6748ddff8c685d9368055cada8829e76e9cb524ec07f4a47947018913f742"
+      "size": 714099,
+      "sha256": "174231eb7454381c83a85a74ea5c98930cae6913768819e62806e57e7eacaefe"
     },
     {
       "path": "examples/capability-demos/knowledge-card/demo-light.mp4",
       "type": "video",
       "set": "demos",
-      "size": 636009,
-      "sha256": "1df3958ad66c805e54bc48e999955f8009e1daf27d4f1784f832fc78cef2112c"
+      "size": 651107,
+      "sha256": "6cfc3cd8fbe2eb9c9354fe6a23ece65c0b6f122c8539620e43d4e6fa14084973"
     },
     {
       "path": "examples/capability-demos/knowledge-card/demo-pastel.mp4",
       "type": "video",
       "set": "demos",
-      "size": 690185,
-      "sha256": "ecdceaa7021d2373055cc03d93220ad9510e865dcd84f61c2dd9e62a688dff69"
+      "size": 698936,
+      "sha256": "886f24417d1ac3a93fd6fe04ad4303ac2859b6ad2d8fc931ffe07e81a64d2f35"
     },
     {
       "path": "examples/capability-demos/knowledge-card/demo-terminal.mp4",
       "type": "video",
       "set": "demos",
-      "size": 699691,
-      "sha256": "137735ed9deb98510a46b159b87f00f1d54718756e326cf2017c58d6f2c99b6c"
+      "size": 711511,
+      "sha256": "f13031f9320716eecbdd291d4dc656113596d4c95e9be32e278cf0ca74b0e81a"
     },
     {
       "path": "examples/capability-demos/knowledge-card/demo.mp4",
       "type": "video",
       "set": "demos",
-      "size": 698356,
-      "sha256": "4bc8346bc637a9298c1e57e0584ef51454f6af93fbe811f63c79427abf702b55"
+      "size": 704947,
+      "sha256": "abf70568c805b4c63aefcae661d11095a9f8284906502e8b8accc45a090e3e18"
     },
     {
       "path": "examples/capability-demos/product-request/demo-light.mp4",
       "type": "video",
       "set": "demos",
-      "size": 764022,
-      "sha256": "0fb4dea5ba2a46e0b19b6a0b7df66c8f4e71fccc61c0f397e79b97d7bbdd8662"
+      "size": 810423,
+      "sha256": "455f5614d9d5ed20a86db83dc9d05a098d3b0149ce775b9a03d255370a7a36ed"
     },
     {
       "path": "examples/capability-demos/product-request/demo-pastel.mp4",
       "type": "video",
       "set": "demos",
-      "size": 824630,
-      "sha256": "5a7fe835b7a4431c43ba0ce5dbfb107d89c1bd2358096dae66f5cb27695f55cb"
+      "size": 875146,
+      "sha256": "94edb4d595dffa17f4f16d96c166ce62ab7220578daf1806b05bdb26fd6f4b76"
     },
     {
       "path": "examples/capability-demos/product-request/demo-terminal.mp4",
       "type": "video",
       "set": "demos",
-      "size": 844775,
-      "sha256": "37ac590d8281e43788eaf93eb0a75ca9ac105632830f2d31ae7efd23802af8cf"
+      "size": 882900,
+      "sha256": "58fcbb70e66fed687d20a470cbeae3d2fa42579bc9edfd0d7b0060f3229bd738"
     },
     {
       "path": "examples/capability-demos/product-request/demo.mp4",
       "type": "video",
       "set": "demos",
-      "size": 845308,
-      "sha256": "3f01f4b586b19bd211dc838c786a6e35b62c5a186f59303b7e6fb4ac8063296a"
+      "size": 874694,
+      "sha256": "a56b362a5d4b655b3b49c71386540ba8fd80b44ef811a975db102e28fcc478ed"
     },
     {
       "path": "examples/capability-demos/rag-explainer/demo-light.mp4",
       "type": "video",
       "set": "demos",
-      "size": 706300,
-      "sha256": "c70b0522305518cd411246fa64ffe663be9d03120a15074c2ea8639b21e783a8"
+      "size": 775018,
+      "sha256": "2bceca0066bd4154deb0ce288485b405d6e51fd840999ce00994c35edc3bd59a"
     },
     {
       "path": "examples/capability-demos/rag-explainer/demo-pastel.mp4",
       "type": "video",
       "set": "demos",
-      "size": 768056,
-      "sha256": "bcce59b87f8e335c6f974b7e5d6f1501f776a152f33d7cc02b226bf26f7a9edb"
+      "size": 828307,
+      "sha256": "d31fa0f34a10cb6e1b535f4519876e02c5ea605e3b42fdb2c08772f10512f8ff"
     },
     {
       "path": "examples/capability-demos/rag-explainer/demo-terminal.mp4",
       "type": "video",
       "set": "demos",
-      "size": 780346,
-      "sha256": "f0d1d5adc09ef3f17e9eb518505d2446f270166f0e2e7c0bee7d3d5e6b4800f8"
+      "size": 842669,
+      "sha256": "df884b8d1a549664fbaffe9080ce1f6a90c7160a4523eb690234ea79e1b7536d"
     },
     {
       "path": "examples/capability-demos/rag-explainer/demo.mp4",
       "type": "video",
       "set": "demos",
-      "size": 777561,
-      "sha256": "df19140d7a90cbce168e77c612fd9d15c0e58d6359bee3f99b82217ea2035425"
+      "size": 837857,
+      "sha256": "128f3cfca6d67a452c1504e1ca8299aa8e6c2d1333e959c9cb057099b616f54a"
     },
     {
       "path": "examples/codex-agents/codex-agents.mp4",
@@ -266,295 +269,295 @@
       "path": "media/exports/agent-team/agentEditorial-decompose.mp4",
       "type": "video",
       "set": "all",
-      "size": 98401,
-      "sha256": "fc1ea4827863a5ed09abaeebb3b0c068e863bcc59d4a345c0f110aa328c46652"
+      "size": 86344,
+      "sha256": "09ce1b70d0ec48473c43415f1b1d9e56ec2540985b081fc030d13082d3f37ddf"
     },
     {
       "path": "media/exports/agent-team/agentEditorial-event-replay.mp4",
       "type": "video",
       "set": "all",
-      "size": 94092,
-      "sha256": "2189288b1d2fb0ad1c2a6a5598c880f64d7df3b4261d2eefe44db4f6316c0f95"
+      "size": 96920,
+      "sha256": "ec1185066784c07868f84419fa4bade8fdc6b40083a99e3875beb6313e3bce79"
     },
     {
       "path": "media/exports/agent-team/agentEditorial-handoff-package.mp4",
       "type": "video",
       "set": "all",
-      "size": 89746,
-      "sha256": "0f35b8631c0eb3205640d17913882358050b3e178fafc57654c64df45b1da317"
+      "size": 101404,
+      "sha256": "b98b8692d0a7f92717a58ec39b58b4e54ab708656e54f66bf9804e27ee199665"
     },
     {
       "path": "media/exports/agent-team/agentEditorial-hero.mp4",
       "type": "video",
       "set": "all",
-      "size": 416830,
-      "sha256": "a70b2c35d06845fc587af7dd0bd366f040763fdadf41cd2edcb4628df161c538"
+      "size": 455096,
+      "sha256": "cf0522f4db9d8a7e4f6ac70b3f2e34d4eed9685192dfb43ac3a5c6555367b525"
     },
     {
       "path": "media/exports/agent-team/agentEditorial-time-lanes.mp4",
       "type": "video",
       "set": "all",
-      "size": 95508,
-      "sha256": "0dc36d7eb025f17ca51817de18cfb86eed3510cb7a57c7b8b4526e7bf54122c9"
+      "size": 112490,
+      "sha256": "4e95cd42edc90d06f74d37f55fc8e5e5689d6398dd563cb4a86d08f452e3cb9e"
     },
     {
       "path": "media/exports/avatar-themes/avatar-hero.mp4",
       "type": "video",
       "set": "all",
-      "size": 639617,
-      "sha256": "c0bbe49b7fc81c45c96d9d9d13937e19e05293b79c915b998a2a7aaa2b8c93d2"
+      "size": 696278,
+      "sha256": "2168c6dfd66aa147cc40f7ba31f772285369503f3ed6543d0b5262625ec4ef78"
     },
     {
       "path": "media/exports/avatar-themes/component-01-appearance.mp4",
       "type": "video",
       "set": "all",
-      "size": 74109,
-      "sha256": "04fc36b155bf96189aa1f3de86230ffb995bb4004c3797fc2b60e75914528dea"
+      "size": 79068,
+      "sha256": "5372be43f44b2c510e4e36c911034df0790efe11035c48dfb851d7c79570fa73"
     },
     {
       "path": "media/exports/avatar-themes/component-02-attention.mp4",
       "type": "video",
       "set": "all",
-      "size": 72961,
-      "sha256": "68c758c0991b7ab70ec42eecfddd0a2609219dba25ff4d2bfc15e2be9a8251c1"
+      "size": 74119,
+      "sha256": "75111d7ec477b291642e94fff110bd56cdaf4546d94ccc4b02f3b1d9395f4568"
     },
     {
       "path": "media/exports/avatar-themes/component-03-timeline.mp4",
       "type": "video",
       "set": "all",
-      "size": 120243,
-      "sha256": "42d8fffbe49ebdd95a5518059f501d84e5ee66cde209e3a8c1928fd033f445d1"
+      "size": 128993,
+      "sha256": "830fe341324a6222314533405b358a71f27c310005146fb49789581c24868e26"
     },
     {
       "path": "media/exports/business-workflow/story-assign.mp4",
       "type": "video",
       "set": "all",
-      "size": 86078,
-      "sha256": "29b97f5ba067e1103e5003f9318ffdd73a2e774e53e76b07b57a78be41c04edc"
+      "size": 89697,
+      "sha256": "6fde1fa0822f0b5fecb78b760a8b777b8342b0a33040355979516e37d59729df"
     },
     {
       "path": "media/exports/business-workflow/story-complete.mp4",
       "type": "video",
       "set": "all",
-      "size": 98672,
-      "sha256": "a0056a3da9fb3752e5f5e176451b2b1c86ecabde458887ab6e299efe4d53307e"
+      "size": 104503,
+      "sha256": "05dc77b3d5a084fa6ffa786c74a42dc81585cd2dda27963990e4d91ad2c498f1"
     },
     {
       "path": "media/exports/business-workflow/story-retry.mp4",
       "type": "video",
       "set": "all",
-      "size": 79429,
-      "sha256": "b418fb81d4333bdf086265e74b3e2f07601e9258938273a5ef152d5010ebee6d"
+      "size": 83208,
+      "sha256": "56c0475bfaf39b9f8fa96cfad5741171e361205462436e27b77387689f2c8e3b"
     },
     {
       "path": "media/exports/business-workflow/story-review.mp4",
       "type": "video",
       "set": "all",
-      "size": 79137,
-      "sha256": "18a7f4ab7bc7d27c1e336629f9a20149bc6174387b478cc94911fa9a17e5d016"
+      "size": 77387,
+      "sha256": "48e1754f0ca3a815bf14e76ce8c02e2187eadc02eabc58a024b414698b1dce25"
     },
     {
       "path": "media/exports/business-workflow/workflow-hero.mp4",
       "type": "video",
       "set": "all",
-      "size": 487968,
-      "sha256": "90cfb4b93a1f2499b36df0a622d9ea2bfc74f70ab82f308f6db2c56bfc551aec"
+      "size": 519723,
+      "sha256": "5dcefa6e50fe31df002cc8b790326f565ce2bcf484623bd8b2f3c2bc6549143c"
     },
     {
       "path": "media/exports/component-lab/component-02-converge.mp4",
       "type": "video",
       "set": "all",
-      "size": 228860,
-      "sha256": "feec8dc2b783d14aaa7d6f052cc9f8dd5179d89240735b8d38b95eaa71ff6d58"
+      "size": 252792,
+      "sha256": "dec727680179ffc9e48956631e01ca0c11903a712fa5bdc7dbf629289fabed21"
     },
     {
       "path": "media/exports/component-lab/component-03-proportion.mp4",
       "type": "video",
       "set": "all",
-      "size": 158069,
-      "sha256": "d5b53608017e688c059455ed7a282e4a45de289dbcf2eb26475e3775992a14e2"
+      "size": 180325,
+      "sha256": "06d7afe2a0814d52a8dff1cde9761cf5748663a25a37f2ef4a2beff12a7f40d5"
     },
     {
       "path": "media/exports/component-lab/component-04-reveal.mp4",
       "type": "video",
       "set": "all",
-      "size": 127837,
-      "sha256": "577dc4cbf020d3ff6148e3cc35be803d7d8f574ad92add5766ebeecbe903ea0f"
+      "size": 148355,
+      "sha256": "5d67bbeb54bafe181b27a2b7a6749521c08e531e36f19fb7d0bbe9c20f4f496b"
     },
     {
       "path": "media/exports/component-lab/component-05-distribute.mp4",
       "type": "video",
       "set": "all",
-      "size": 194991,
-      "sha256": "db0e2735e51f606d04f91fadd9090f7b3d46ec311314fa63165531784e2f6ecb"
+      "size": 216451,
+      "sha256": "eec2738d09bf246a1f53926a81af16029e21f352b1a88e7b4ffe41d06b025575"
     },
     {
       "path": "media/exports/component-lab/component-06-progress.mp4",
       "type": "video",
       "set": "all",
-      "size": 163283,
-      "sha256": "63bd55f8d801a1282e48a625908efef8f7ce899604f79e758a54071ffb32e91f"
+      "size": 180473,
+      "sha256": "14ea421824a87afa5cf11d8e226d0da22129e2ccbe5343f0b0c92d3e9641fa10"
     },
     {
       "path": "media/exports/component-lab/lab-hero.mp4",
       "type": "video",
       "set": "all",
-      "size": 172148,
-      "sha256": "46a55f05e9ddb01ccc8faee73f7bc9615cf9aa134bb1f76de501b8ee1acfa0bf"
+      "size": 171434,
+      "sha256": "5f435ee8b6259794565aa0a69324e0c49ae1706da989e10109beda4dae7cba2a"
     },
     {
       "path": "media/exports/incident-replay/incidentEditorial-hero.mp4",
       "type": "video",
       "set": "all",
-      "size": 387164,
-      "sha256": "2bbaafefd7f14105143b8305d475d01edd3d0bed1e5a067969ed260e81b86819"
+      "size": 406651,
+      "sha256": "e11b12885c9d3d1b6538b4297f3d0b4942b8369606878315604eb0d2b6cb1e7d"
     },
     {
       "path": "media/exports/incident-replay/incidentEditorial-metric-replay.mp4",
       "type": "video",
       "set": "all",
-      "size": 118572,
-      "sha256": "76ca3f4389596ca578b14a29d526ee81405d23d6bf384495547c0ea603c11374"
+      "size": 129099,
+      "sha256": "21fb87c1255d637bbe8350ce86dade70dde181c96a2c43cfc38f0101eea3165a"
     },
     {
       "path": "media/exports/incident-replay/incidentEditorial-recovery-checks.mp4",
       "type": "video",
       "set": "all",
-      "size": 80146,
-      "sha256": "647c2f5ee54e52209368b999e4ecfc1532bf4c1a9d3406c627ec27e50d123139"
+      "size": 84189,
+      "sha256": "0628c6a302ac7ab438602fd53f6ce7ff9aa62e825a24472b66f8b7e8360b46a4"
     },
     {
       "path": "media/exports/incident-replay/incidentEditorial-threshold-relation.mp4",
       "type": "video",
       "set": "all",
-      "size": 86823,
-      "sha256": "6dd68243f3d88cf18eac1162ed7dcfb4ba8f755fe6d80ff9ec9441e7ca0c94af"
+      "size": 91664,
+      "sha256": "ac1842995ec5f75945545531bd06c537a305e907ed699d0e43c6dd83a733679c"
     },
     {
       "path": "media/exports/knowledge-card/knowledge-hero.mp4",
       "type": "video",
       "set": "all",
-      "size": 338922,
-      "sha256": "c73f64994cd5f21e78141f4b9e33e50e1d3829966a9ba766c44d44fe1aa3e614"
+      "size": 366172,
+      "sha256": "ad60e4d93e7fa09d2e22dc14026821bf58f03de3c1c0b1261d9c9c873ca21cac"
     },
     {
       "path": "media/exports/knowledge-card/story-check.mp4",
       "type": "video",
       "set": "all",
-      "size": 79930,
-      "sha256": "842f4b1a51b722519d0fc8161da2b5f6e70cbd40f2a2555a42c5abfd1a8627f7"
+      "size": 82696,
+      "sha256": "236c9d00a6695d02bf7fc2380be2660a5bf8197b29cc30bcd29dc3d2e4af18cf"
     },
     {
       "path": "media/exports/knowledge-card/story-input.mp4",
       "type": "video",
       "set": "all",
-      "size": 77349,
-      "sha256": "791bb9c3e5073493e4e1c953414fce5cdc9591e84e20126f9f66e9d4deb53d28"
+      "size": 83967,
+      "sha256": "d764ae5db180bbd31ba7383f224d07b12b88c9865cfe4543ac40e88a953bfa41"
     },
     {
       "path": "media/exports/knowledge-card/story-process.mp4",
       "type": "video",
       "set": "all",
-      "size": 110238,
-      "sha256": "3c88bd39d8ea374772f4ac6b6097e33c8516c36d9b3f5c8e3a9a9f75c6103aa7"
+      "size": 109764,
+      "sha256": "71b8c52969b7cce0419680730f2a23cb73ddb639df6da0747deb4419c81355cf"
     },
     {
       "path": "media/exports/knowledge-card/story-recap.mp4",
       "type": "video",
       "set": "all",
-      "size": 85158,
-      "sha256": "4db3be076e9451105bfb1977a4fc3b07495227c5cf6f19d50280f4b9c5a64090"
+      "size": 82269,
+      "sha256": "d8cc58ba1479be2af3ad48d5098e487b23ed40ba28a2e7000c00debd5b81fdef"
     },
     {
       "path": "media/exports/product-request/requestEditorial-hero.mp4",
       "type": "video",
       "set": "all",
-      "size": 477927,
-      "sha256": "84680b13cbc9e63e28d25e65d529fd0362b2eb4c1ce217f17688e71775e4d95b"
+      "size": 518109,
+      "sha256": "bf4abb0e1bca9c5886592f408c1ca44f0d7351e3102a485600d43e1cc19f7cb6"
     },
     {
       "path": "media/exports/product-request/requestEditorial-illustrative-counter.mp4",
       "type": "video",
       "set": "all",
-      "size": 136236,
-      "sha256": "91833bff693e0f331743aaab13000e5a563aeda99edbff8766914ef565f9a331"
+      "size": 150092,
+      "sha256": "e2e1cd5648b854c2be9e9845c13f9678a551948bd1b428cafb6f8886d1174cf2"
     },
     {
       "path": "media/exports/product-request/requestEditorial-key-value.mp4",
       "type": "video",
       "set": "all",
-      "size": 68878,
-      "sha256": "9105c308586118c9ba045dd342723a8660e8b4fcfb7391e7399594f9c5df02d3"
+      "size": 74124,
+      "sha256": "70689d8bfd77af439d133820ca5ea2389805ae174d666666371b13ae82ad65d4"
     },
     {
       "path": "media/exports/product-request/requestEditorial-merge-the-branches.mp4",
       "type": "video",
       "set": "all",
-      "size": 78986,
-      "sha256": "c0c7998e9fe1cee0ca408a2de4bb9d6457387c8e1158015ba59b84b881d6879d"
+      "size": 82028,
+      "sha256": "55d22fc6e82ef21cdb43b12f53badcd521f403514abf6382f23aad199b9bab3a"
     },
     {
       "path": "media/exports/product-request/requestEditorial-source-of-truth.mp4",
       "type": "video",
       "set": "all",
-      "size": 78259,
-      "sha256": "9ab744c2c3647be3cfd8ff2a1fca5dad231b569a0aa794c7e96fafb27000d51c"
+      "size": 78746,
+      "sha256": "6a426bc9bbc2ac6cdebaf968fee81a9e56d91b70fd24f0089d86ad02090ece83"
     },
     {
       "path": "media/exports/rag-explainer/rag-abstain.mp4",
       "type": "video",
       "set": "all",
-      "size": 78901,
-      "sha256": "8cec650a7b3fedc392e2ab82d52900e6952a9abbfc4317997193b2a7db353def"
+      "size": 87324,
+      "sha256": "eb41fdb11de4e634058c67e54ab5607f8de271f80082b928851296b7402e3568"
     },
     {
       "path": "media/exports/rag-explainer/rag-ground.mp4",
       "type": "video",
       "set": "all",
-      "size": 88381,
-      "sha256": "6777f7810aeef59728b07f9d679408d083b507ec798984e89dc154cf7c11a4a4"
+      "size": 94861,
+      "sha256": "13517c5ab843402f38500992da32fcf5bd0ce9f6609f25e4aa1c11bdc09ab66b"
     },
     {
       "path": "media/exports/rag-explainer/rag-hero.mp4",
       "type": "video",
       "set": "all",
-      "size": 470804,
-      "sha256": "bb14fb16f070f509255e18bfa5d691c2f439d673cce5007d93cbe13e4c627b6d"
+      "size": 516825,
+      "sha256": "04443ba6a8b46f2b56e4ca784e30ae23373958fad8da555e55a4230a7b5062e2"
     },
     {
       "path": "media/exports/rag-explainer/rag-rerank.mp4",
       "type": "video",
       "set": "all",
-      "size": 74402,
-      "sha256": "f3b506ac3ce2f6943ac30b48f924797b9c43c515ac7d8a75f6a82ffea04d659e"
+      "size": 80054,
+      "sha256": "43ed70100a795f419b62af15c4597ba693137fe1808560874c1b890785c8ca4b"
     },
     {
       "path": "media/exports/rag-explainer/rag-retrieve.mp4",
       "type": "video",
       "set": "all",
-      "size": 80253,
-      "sha256": "b8b2fd085dacca36d9e0461f7c313ea8f22a0bcd61c820f1189236056280c00a"
+      "size": 87036,
+      "sha256": "68842507f8eb824716553aa8d41283c8602e21fa1bd072ea631c587d7b7e1674"
     },
     {
       "path": "media/exports/robot/rag-full-light-drone.mp4",
       "type": "video",
       "set": "all",
-      "size": 615680,
-      "sha256": "f6ccdcc737ef146c6aeee1b12874853c8afac6908e700bd033701f89ce1afd1b"
+      "size": 691099,
+      "sha256": "2cdb496aa005ffd2175b3da8cdc8b078cb6e0c65b277299ac2f6e450793c1904"
     },
     {
       "path": "media/exports/robot/rag-hero-light-drone.mp4",
       "type": "video",
       "set": "all",
-      "size": 355249,
-      "sha256": "9c4c0cc3eda4ed906f41863d1c8af3a6ea79efd8783fff90336b9d8e319ece93"
+      "size": 396736,
+      "sha256": "21e5b2bb4048ae56f708321025c17f49b10e65ef4eb1680ec35640760887b8fc"
     },
     {
       "path": "media/exports/robot/rag-rerank-light-drone.mp4",
       "type": "video",
       "set": "all",
-      "size": 73685,
-      "sha256": "9aaf97dd10a02428d4b23b92ebb38219d4495be7ee38b6c2278d9701c6893748"
+      "size": 78205,
+      "sha256": "435e5cf032faa5f2803bf98b0a5deafedec6ce48c18416afc53c6e9edb1bd50b"
     },
     {
       "path": "media/recreations/first-recreation.mp4",
@@ -571,21 +574,21 @@
       "sha256": "92c7bd7c758f64b23515bfeed03215d553a3b03f2b223c6031c9a023fb06d6fb"
     },
     {
-      "path": "media/release-notices/media-v1/LICENSE",
+      "path": "media/release-notices/media-v2/LICENSE",
       "type": "metadata",
       "set": "all",
       "size": 1080,
       "sha256": "d9a271454ec62391b2b304fba4c45068887fd7ef1a872dca544c6938ef7fef2b"
     },
     {
-      "path": "media/release-notices/media-v1/README.md",
+      "path": "media/release-notices/media-v2/README.md",
       "type": "metadata",
       "set": "all",
       "size": 428,
       "sha256": "8c693647c0cfe4fc146a63d70e2ebd1a8bad0a838275a2f74989d6f29a34b96b"
     },
     {
-      "path": "media/release-notices/media-v1/THIRD_PARTY_NOTICES.md",
+      "path": "media/release-notices/media-v2/THIRD_PARTY_NOTICES.md",
       "type": "metadata",
       "set": "all",
       "size": 5648,

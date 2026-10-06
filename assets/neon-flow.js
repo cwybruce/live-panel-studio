@@ -18,7 +18,7 @@ function installNeonFlow(options){
   var filter=node('filter',{id:filterId,filterUnits:'userSpaceOnUse',x:box.x-12,y:box.y-12,width:box.width+24,height:box.height+24,'color-interpolation-filters':'sRGB'},defs);
   node('feGaussianBlur',{stdDeviation:light?1.7:2.5},filter);
   var layer=node('g',{'data-neon-layer':source.getAttribute('data-neon-border'),'pointer-events':'none','aria-hidden':'true'},source.parentNode);
-  function outline(extra){var attrs={fill:'none',stroke:color,'stroke-linecap':'round','stroke-width':1.25};
+  function outline(extra){var attrs={fill:'none',stroke:color,'stroke-linecap':'round','stroke-width':light?1.2:1.5};
    ['x','y','width','height','rx','ry','transform'].forEach(function(k){if(source.hasAttribute(k))attrs[k]=source.getAttribute(k)});
    return node('rect',Object.assign(attrs,extra),layer)}
   var halo=outline({'data-neon-halo':'1','stroke-width':5,filter:'url(#'+filterId+')',opacity:light?.1:.3,'stroke-dasharray':tail+' '+(length-tail)});
@@ -34,7 +34,7 @@ function installNeonFlow(options){
   tracks.forEach(function(track){
    var u=wrap(t/track.period+track.phase,1),position=u*track.length;
    var active=track.hero||track.source.getAttribute('stroke')!==track.baseStroke;
-   var strength=(active?.94:.65)*(.94+.06*Math.sin(u*Math.PI*2));
+   var strength=(active?1:.82)*(.96+.04*Math.sin(u*Math.PI*2));
    track.layer.setAttribute('opacity',(intensity*strength).toFixed(4));
    track.halo.setAttribute('stroke-dashoffset',(-(position-track.tail)).toFixed(4));
    track.segments.forEach(function(segment,j){segment.setAttribute('stroke-dashoffset',(-(position-(j+1)*track.piece)).toFixed(4))});

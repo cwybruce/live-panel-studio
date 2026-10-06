@@ -235,7 +235,8 @@ def main():
             assert br.eval('Array.from(document.getElementById("scene").contentDocument.querySelectorAll("[data-avatar=spider]")).every(n=>n.style.display==="none")')
             state = wait_gallery(br, 'document.getElementById("theme").value="light-pastel";document.getElementById("theme").dispatchEvent(new Event("change"))')
             assert state['time'] == 4.5 and not state['playing']
-            assert br.eval('document.getElementById("scene").contentDocument.documentElement.style.getPropertyValue("--c-bg")') == '#f1eee5'
+            expected_light_bg = lp.load_config(OUT / 'avatar-themes' / 'config-light.json')['theme']['colors']['bg']
+            assert br.eval('document.getElementById("scene").contentDocument.documentElement.style.getPropertyValue("--c-bg")') == expected_light_bg
             assert br.eval('document.documentElement.dataset.theme') == 'light-pastel'
             assert br.eval('document.getElementById("videoLink").getAttribute("href")') == 'avatar-themes/demo-light.mp4'
             (OUT / 'gallery-light-preview.png').write_bytes(br.shot())

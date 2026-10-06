@@ -3,7 +3,7 @@
 
   const THEMES = ['terminal-dark', 'light-pastel', 'terminal-classic', 'pastel-classic'];
   const THEME_NAMES = {'terminal-dark': '暖黑', 'light-pastel': '暖纸', 'terminal-classic': '经典终端', 'pastel-classic': '经典粉彩'};
-  const THEME_COLORS = {'terminal-dark': '#11110f', 'light-pastel': '#f2efe6', 'terminal-classic': '#14171c', 'pastel-classic': '#fcfcfb'};
+  const THEME_COLORS = {'terminal-dark': '#191713', 'light-pastel': '#faf7f0', 'terminal-classic': '#191f27', 'pastel-classic': '#ffffff'};
   const THEME_KEY = 'motion-diagram-studio-showcase-theme';
   const LEGACY_THEME_KEY = 'live-panel-studio-showcase-theme';
   const $ = (id) => document.getElementById(id);

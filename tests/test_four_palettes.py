@@ -17,13 +17,26 @@ import make_capability_demos as demos
 
 
 class FourPaletteConfigTests(unittest.TestCase):
+    def test_text_colors_remain_readable_on_all_palette_surfaces(self):
+        def luminance(color):
+            rgb = [int(color[i:i+2], 16) / 255 for i in (1, 3, 5)]
+            linear = [v / 12.92 if v <= .04045 else ((v + .055) / 1.055) ** 2.4 for v in rgb]
+            return sum(v * w for v, w in zip(linear, (.2126, .7152, .0722)))
+
+        for theme, colors in demos.EDITORIAL_PALETTES.items():
+            for role in ('fg', 'dim', 'amber', 'cyan', 'pink', 'mint', 'red', 'bl'):
+                for surface in ('bg', 'panel', 'surface'):
+                    with self.subTest(theme=theme, role=role, surface=surface):
+                        a, b = sorted((luminance(colors[role]), luminance(colors[surface])))
+                        self.assertGreaterEqual((b + .05) / (a + .05), 7 if role == 'fg' else 4.5)
+
     def test_variants_preserve_scene_timing_geometry_and_source(self):
         original = lp.load_config(ed.DEMO_ROOT / 'rag-explainer/config.json')
         before = copy.deepcopy(original)
-        expected = {'terminal-dark': ('terminal-dark', '#12110f'),
-                    'light-pastel': ('light-pastel', '#f1eee5'),
-                    'terminal-classic': ('terminal-dark', '#14171c'),
-                    'pastel-classic': ('light-pastel', '#fcfcfb')}
+        expected = {'terminal-dark': ('terminal-dark', '#191713'),
+                    'light-pastel': ('light-pastel', '#faf7f0'),
+                    'terminal-classic': ('terminal-dark', '#191f27'),
+                    'pastel-classic': ('light-pastel', '#ffffff')}
         self.assertEqual(set(expected), set(ed.THEMES))
         for theme, (preset, background) in expected.items():
             with self.subTest(theme=theme):
@@ -96,8 +109,42 @@ class FourPaletteBrowserTests(unittest.TestCase):
         path.write_text(json.dumps(config, ensure_ascii=False), encoding='utf-8')
         lp.build_page(path, page)
         self.browser.open(page.as_uri() + '?manual')
-        self.browser.seek(t)
+        if t is not None:
+            self.browser.seek(t)
         return self.browser
+
+    def test_warm_palette_repeated_seek_preserves_original_color_roles(self):
+        br = self.scene('component-lab', 'terminal-dark', t=None)
+        palette = demos.EDITORIAL_PALETTES['terminal-dark']
+        leader = '''document.querySelector('[data-component="seats"] > g[transform="translate(300 13) scale(0.65)"]')'''
+        self.assertEqual(br.eval(leader + '.getAttribute("stroke")'), palette['bg'])
+        first = br.shot()
+        for time in (0, 9.25, 0):
+            br.seek(time)
+            self.assertEqual(br.eval(leader + '.getAttribute("stroke")'), palette['bg'])
+        self.assertEqual(first, br.shot())
+
+        # Animated attributes are rewritten by draw callbacks before recoloring.
+        ticket = '''document.querySelector('[data-component="kanban"] > g > rect')'''
+        for time, role in ((0, 'dim'), (3.25, 'amber'), (6.25, 'blue'), (9.25, 'mint')):
+            br.seek(time)
+            self.assertEqual(br.eval(ticket + '.getAttribute("stroke")'), palette[role])
+
+        # A new node and a new authored token must not inherit stale mapping.
+        br.eval('''(()=>{
+            const root=document.querySelector('[data-component="seats"]');
+            const node=document.createElementNS('http://www.w3.org/2000/svg','circle');
+            node.id='palette-regression-node';node.setAttribute('fill','#211a13');
+            root.appendChild(node);
+        })()''')
+        for time in (0, 0, 9.25, 0):
+            br.seek(time)
+            self.assertEqual(br.eval('document.getElementById("palette-regression-node").getAttribute("fill")'), palette['bg'])
+        br.eval('document.getElementById("palette-regression-node").setAttribute("fill", "#53b9c5")')
+        br.seek(0)
+        self.assertEqual(br.eval('document.getElementById("palette-regression-node").getAttribute("fill")'), palette['cyan'])
+        br.seek(0)
+        self.assertEqual(br.eval('document.getElementById("palette-regression-node").getAttribute("fill")'), palette['cyan'])
 
     def test_classic_dark_and_light_recolor_components_and_keep_replay(self):
         for theme in ('terminal-classic', 'pastel-classic'):

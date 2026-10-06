@@ -1,20 +1,72 @@
 /* Four palettes share the same authored geometry and semantic color roles.
- * Warm defaults remain stable; component recoloring runs after draw callbacks. */
+ * Palette IDs remain stable; component recoloring runs after draw callbacks. */
 function editorialPalette(e){
  var globalTheme=cfg.theme||{},localTheme=e&&e.theme||{},variant=localTheme.variant||localTheme.preset||globalTheme.variant||globalTheme.preset||'terminal-dark';
  var light=variant==='light-pastel'||variant==='pastel-classic',classic=variant==='terminal-classic'||variant==='pastel-classic';
  var palettes={
-  'terminal-dark':{bg:'#12110f',panel:'#191713',surface:'#171511',line:'#3c352c',fg:'#eee9df',dim:'#9f9587',amber:'#dfb96d',cyan:'#64bed0',pink:'#e776af',mint:'#88c4a2',red:'#d77768',blue:'#609dd0'},
-  'light-pastel':{bg:'#f1eee5',panel:'#faf6ed',surface:'#e9e4d9',line:'#b2a797',fg:'#302d27',dim:'#746b5e',amber:'#9b6f28',cyan:'#317e89',pink:'#aa587e',mint:'#507e5f',red:'#ad554c',blue:'#4d6e9a'},
-  'terminal-classic':{bg:'#14171c',panel:'#1b2028',surface:'#191d24',line:'#4a5367',fg:'#e4e8f0',dim:'#8d97ac',amber:'#e3c07a',cyan:'#86e1e6',pink:'#b9a2f2',mint:'#7fdba8',red:'#f46d70',blue:'#8fb4f6'},
-  'pastel-classic':{bg:'#fcfcfb',panel:'#ffffff',surface:'#f5f5f4',line:'#c9ccd1',fg:'#23272e',dim:'#69727e',amber:'#d9731a',cyan:'#25877e',pink:'#7d4fb0',mint:'#4f8e34',red:'#d24a4a',blue:'#3a6fc8'}
- };
+  "terminal-dark": {
+    "bg": "#191713",
+    "panel": "#25221b",
+    "surface": "#211e18",
+    "line": "#958871",
+    "fg": "#fff5e6",
+    "dim": "#d0c1aa",
+    "amber": "#f3cf88",
+    "cyan": "#8de1ee",
+    "pink": "#ff9bcc",
+    "mint": "#a7e6bd",
+    "red": "#ff9a88",
+    "blue": "#aacff7"
+  },
+  "light-pastel": {
+    "bg": "#faf7f0",
+    "panel": "#fffdf8",
+    "surface": "#f2ecdf",
+    "line": "#978a76",
+    "fg": "#24211c",
+    "dim": "#62584a",
+    "amber": "#885412",
+    "cyan": "#216674",
+    "pink": "#943768",
+    "mint": "#326743",
+    "red": "#a1382b",
+    "blue": "#2f568d"
+  },
+  "terminal-classic": {
+    "bg": "#191f27",
+    "panel": "#222a35",
+    "surface": "#1e2630",
+    "line": "#8395ad",
+    "fg": "#f6f8ff",
+    "dim": "#c0cbd9",
+    "amber": "#f2ca80",
+    "cyan": "#80dfef",
+    "pink": "#c7acff",
+    "mint": "#89e7b4",
+    "red": "#ff786f",
+    "blue": "#9bbeff"
+  },
+  "pastel-classic": {
+    "bg": "#ffffff",
+    "panel": "#ffffff",
+    "surface": "#f1f4f8",
+    "line": "#8996a8",
+    "fg": "#18212f",
+    "dim": "#526174",
+    "amber": "#9f4800",
+    "cyan": "#146f70",
+    "pink": "#723d9d",
+    "mint": "#326b25",
+    "red": "#b72b36",
+    "blue": "#275bac"
+  }
+};
  var C=Object.assign({},palettes[variant]||palettes[light?'light-pastel':'terminal-dark']);
  [globalTheme.colors||{},localTheme.colors||{}].forEach(function(colors){
   ['bg','panel','surface','line','fg','dim'].forEach(function(k){if(colors[k])C[k]=colors[k]});
   [['amber','ye'],['cyan','cy'],['pink','pi'],['mint','gr'],['red','rd'],['blue','bl']].forEach(function(k){if(colors[k[0]]||colors[k[1]])C[k[0]]=colors[k[0]]||colors[k[1]]});
  });
- C.light=light;C.variant=variant;C.recolor=light||classic;
+ C.light=light;C.variant=variant;C.recolor=true;
  C.tint=function(color,paper){
   function rgb(s){var m=/^#([0-9a-f]{6})$/i.exec(s||'');return m?[0,2,4].map(function(i){return parseInt(m[1].slice(i,i+2),16)}):null}
   var a=rgb(color),b=rgb(C.panel);if(!a||!b)return color;
@@ -44,7 +96,7 @@ function editorialPalette(e){
   var key=String(color||'').toLowerCase();
   if(primary[key])return C[primary[key]];
   if(!C.recolor)return color;
-  if(classic&&!light&&(key==='#161718'||key==='#142125'||key==='#211a13'))return C.bg;
+  if(!light&&(key==='#161718'||key==='#142125'||key==='#211a13'))return C.bg;
   if(classic&&(key==='#d68865'||key==='#9d9acc'))return C[key==='#d68865'?'red':'pink'];
   if(classic&&key==='#e0efe4')return light?C.tint(C.mint,.92):C.tint(C.mint,.65);
   if(classic&&key==='#203b3b')return C.tint(C.cyan,.82);
@@ -67,12 +119,17 @@ boot=function(c){
  var C=editorialPalette(author);if(!C.recolor)return;
  var kinds=['orb','seats','donut','ghostSeats','ribbons','kanban','drone'];
  var scopes=Array.from(ST.querySelectorAll('svg[data-component]')).filter(function(svg){return kinds.indexOf(svg.getAttribute('data-component'))>=0});
+ // Reuse the authored token when a previous mapping is still on the node.
+ // Draw callbacks can write a new token; newly inserted nodes start uncached.
+ var sourceTokens=new WeakMap();
  COMPONENTS.push(function(){
   scopes.forEach(function(svg){
    svg.querySelectorAll('[fill],[stroke],[stop-color]').forEach(function(n){
-    ['fill','stroke','stop-color'].forEach(function(attr){if(!n.hasAttribute(attr))return;var original=n.getAttribute(attr),mapped=C.shade(original);
+    var saved=sourceTokens.get(n);if(!saved){saved={};sourceTokens.set(n,saved)}
+    ['fill','stroke','stop-color'].forEach(function(attr){if(!n.hasAttribute(attr))return;var current=n.getAttribute(attr),last=saved[attr],original=last&&current===last.mapped?last.source:current,mapped=C.shade(original);
      if(attr==='stop-color'&&original==='#e84a9c')mapped=C.tint(C.pink,C.light?.6:.12);
-     if(mapped!==original)n.setAttribute(attr,mapped);
+     saved[attr]={source:original,mapped:mapped};
+     if(mapped!==current)n.setAttribute(attr,mapped);
     });
    });
    if(C.light)svg.querySelectorAll('feGaussianBlur').forEach(function(n){if(Number(n.getAttribute('stdDeviation'))>2)n.setAttribute('stdDeviation','1.5')});

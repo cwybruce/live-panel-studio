@@ -14,7 +14,7 @@
 
 网页可直接播放 8 个 Demo 的四套配色成片、初期复刻与蜘蛛更新视频，并浏览 39 个功能块成片及 3 个浅色机器人导出案例。支持播放、拖动进度和 MP4 下载；生成新方案请运行下方本地服务。
 
-默认源码检出包含配置、HTML、GIF 和海报，**不含预制 MP4**；视频通过固定版本 [media-v1 Release](https://github.com/cwybruce/motion-diagram-studio/releases/tag/media-v1) 下载。在线网站在部署时恢复媒体，现有播放与下载链接保持不变；本地使用可按下方命令恢复成片。详见 [媒体分发与迁移说明](docs/media-distribution.md)。
+默认源码检出包含配置、HTML、GIF 和海报，**不含预制 MP4**；视频通过固定版本 [media-v2 Release](https://github.com/cwybruce/motion-diagram-studio/releases/tag/media-v2) 下载。在线网站在部署时恢复媒体，现有播放与下载链接保持不变；本地使用可按下方命令恢复成片。旧 `media-v1` 仍保留，可配合对应版本的源码与清单使用。详见 [媒体分发与迁移说明](docs/media-distribution.md)。
 
 ## 动态 Demo
 
@@ -44,6 +44,8 @@ Demo 中的事件、指标、日志和数据均为**预设模拟**，没有连�
 ## 四套配色
 
 暖黑与暖纸延续本项目现有风格；经典终端与经典粉彩分别沿用上游 Codex Agent 图和 AI Agent 架构图的配色方向，并应用到八个原创场景。
+
+本次优化提高文字与语义色的对比度，非当前节点的正文持续清晰，功能块保留彩色边框；动态状态通过流动光点和外环强调。
 
 | 配色 | 主题 ID | 风格与在线体验 |
 | --- | --- | --- |
@@ -236,11 +238,11 @@ MIT 许可覆盖代码，不将上述第三方视觉设计、文字、数据或�
 
 仓库根目录的 `index.html`、`assets/showcase.css` 和 `assets/showcase.js` 构成静态首页。八个 Demo 读取 `examples/capability-demos/manifest.json`，复刻与导出案例读取 [`media/catalog.json`](media/catalog.json)。视频是部署产物中的真实 MP4，恢复原相对路径后与网页同源播放，使用浏览器原生播放器；默认不预加载整段视频，播放一个视频时会暂停其他视频。
 
-GitHub Pages 使用 **GitHub Actions 构建产物部署**：工作流检出源码，从固定 `media-v1` Release 下载 ZIP，校验并恢复 MP4，再上传完整静态网站。Pages 发布来源应选择 **GitHub Actions**。首页或清单更新推送到 `main` 后由工作流部署；不能直接把不含 MP4 的源码目录作为完整视频站点发布。[媒体分发说明](docs/media-distribution.md)列出本地恢复、离线使用与发布顺序。
+GitHub Pages 使用 **GitHub Actions 构建产物部署**：工作流检出源码，从固定 `media-v2` Release 下载 ZIP，校验并恢复 MP4，再上传完整静态网站。Pages 发布来源应选择 **GitHub Actions**。首页或清单更新推送到 `main` 后由工作流部署；不能直接把不含 MP4 的源码目录作为完整视频站点发布。[媒体分发说明](docs/media-distribution.md)列出本地恢复、离线使用与发布顺序。
 
-README 使用从实际成片生成的 GIF 节选展示动画，并链接到完整 MP4。GIF 和海报继续随 Git 保存，MP4 在 Release 分发。重新生成 GIF 前先运行 `python scripts/media_assets.py download --set all` 恢复视频，再运行 `python scripts/make_readme_previews.py`；需要 FFmpeg。更新预制媒体应发布新的不可变 tag / 附件 URL，并更新清单中的 SHA-256；不覆盖 `media-v1` 已发布附件。
+README 使用从实际成片生成的 GIF 节选展示动画，并链接到完整 MP4。GIF 和海报继续随 Git 保存，MP4 在 Release 分发。重新生成 GIF 前先运行 `python scripts/media_assets.py download --set all` 恢复视频，再运行 `python scripts/make_readme_previews.py`；需要 FFmpeg。更新预制媒体应发布新的不可变 tag / 附件 URL，并更新清单中的 SHA-256；不覆盖 `media-v1`、`media-v2` 已发布附件。
 
-维护者恢复现有媒体后可用 `python scripts/media_assets.py pack --tag media-v2` 打包新版本；新片通过 `--include examples/my-demo/demo.mp4` 显式加入，该路径需已存在。打包合并旧清单、仍由 Git 管理的 MP4 和显式加入的文件，不自动扫描用户导出目录；公开版本的 tag 禁止重用。完整发布顺序见 [媒体分发说明](docs/media-distribution.md)。
+维护者恢复现有媒体后可用 `python scripts/media_assets.py pack --tag media-v3` 打包下一版本；新片通过 `--include examples/my-demo/demo.mp4` 显式加入，该路径需已存在。打包合并旧清单、仍由 Git 管理的 MP4 和显式加入的文件，不自动扫描用户导出目录；公开版本的 tag 禁止重用。完整发布顺序见 [媒体分发说明](docs/media-distribution.md)。
 
 `media/exports/` 中 39 个浅色蜘蛛功能块由对应完整成片裁剪，另有 3 个通过渲染器按浅色机器人配置逐帧生成的全段 / 主流程 / 重排区域案例。两种生成方式在视频库明确标注。网站播放和下载已有成片，交互体验馆可调主题、角色与时间线；静态 Pages 不运行 Python 渲染器，生成新 MP4 需本地服务。
 

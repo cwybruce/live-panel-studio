@@ -315,10 +315,10 @@ class PublishedInventoryTests(unittest.TestCase):
         videos = [a for a in inventory['assets'] if a['type'] == 'video']
         self.assertEqual(len(videos), 80)
         self.assertEqual(sum(a['set'] == 'demos' for a in videos), 32)
-        self.assertEqual(sum(a['size'] for a in videos), 54663078)
+        self.assertEqual(sum(a['size'] for a in videos), 56566395)
         self.assertFalse(any('national-day-promo' in a['path'] for a in videos))
         self.assertEqual(inventory['bundle']['url'],
-                         'https://github.com/cwybruce/motion-diagram-studio/releases/download/media-v1/motion-diagram-studio-media-v1.zip')
+                         'https://github.com/cwybruce/motion-diagram-studio/releases/download/media-v2/motion-diagram-studio-media-v2.zip')
         for asset in videos:
             path = ROOT / asset['path']
             if path.is_file():  # fresh source checkouts intentionally do not contain MP4s

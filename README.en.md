@@ -14,7 +14,7 @@ Maintainer and contact: **[@sycbruce on X](https://x.com/sycbruce)** · [Report 
 
 The website plays all eight demos in four color schemes, the initial recreation and the spider update. It also presents 39 block videos and three light-theme robot export examples. Playback, seeking and MP4 downloads work online; run the local service below to render a new configuration. The demos and gallery currently use Chinese; this README is available in both languages.
 
-The default source checkout includes configurations, HTML, GIFs and posters, **without pre-rendered MP4s**. Videos are distributed through the fixed [media-v1 Release](https://github.com/cwybruce/motion-diagram-studio/releases/tag/media-v1). The website restores media during deployment, preserving existing playback and download links. Restore local videos with the commands below; see the [media distribution and migration guide](docs/media-distribution.md).
+The default source checkout includes configurations, HTML, GIFs and posters, **without pre-rendered MP4s**. Videos are distributed through the fixed [media-v2 Release](https://github.com/cwybruce/motion-diagram-studio/releases/tag/media-v2). The website restores media during deployment, preserving existing playback and download links. Restore local videos with the commands below. The earlier `media-v1` remains available for its matching source version and manifest; see the [media distribution and migration guide](docs/media-distribution.md).
 
 ## Animated demos
 
@@ -44,6 +44,8 @@ All demo events, metrics, logs and data are **scripted simulations**. They do no
 ## Four color schemes
 
 Warm Ink and Warm Paper preserve this project's existing visual style. Classic Terminal and Classic Pastel follow the color directions of the upstream Codex Agent diagram and AI Agent architecture diagram, respectively, and apply them to all eight original scenes.
+
+This visual update increases text and semantic-color contrast, keeps inactive-node text readable and preserves colored block borders. Moving light particles and outer rings emphasize the current state.
 
 | Scheme | Theme ID | Style and live preview |
 | --- | --- | --- |
@@ -236,11 +238,11 @@ The MIT License covers the code; it does not relicense these third-party visual 
 
 The repository's root `index.html`, `assets/showcase.css` and `assets/showcase.js` form the static homepage. The eight demos use `examples/capability-demos/manifest.json`; recreations and export examples use [`media/catalog.json`](media/catalog.json). Actual MP4s live in the deployment artifact, restored to their original relative paths and played from the same origin with the browser's native player. Full videos are not preloaded by default, and starting one pauses other videos.
 
-GitHub Pages uses a **GitHub Actions deployment artifact**: the workflow checks out source, downloads ZIPs from the fixed `media-v1` Release, verifies and restores MP4s, then uploads the complete static site. Set the Pages publishing source to **GitHub Actions**. Homepage or catalog changes pushed to `main` are deployed by the workflow. A source directory without restored MP4s is insufficient for the complete video site. The [media distribution guide](docs/media-distribution.md) documents local restoration, offline use and publication order.
+GitHub Pages uses a **GitHub Actions deployment artifact**: the workflow checks out source, downloads ZIPs from the fixed `media-v2` Release, verifies and restores MP4s, then uploads the complete static site. Set the Pages publishing source to **GitHub Actions**. Homepage or catalog changes pushed to `main` are deployed by the workflow. A source directory without restored MP4s is insufficient for the complete video site. The [media distribution guide](docs/media-distribution.md) documents local restoration, offline use and publication order.
 
-The README shows GIF excerpts generated from rendered videos and links to complete MP4s. GIFs and posters stay in Git; MP4s are distributed through Releases. Before regenerating GIFs, restore videos with `python scripts/media_assets.py download --set all`, then run `python scripts/make_readme_previews.py`; FFmpeg is required. Updated pre-rendered media requires a new immutable tag / attachment URL and manifest SHA-256 values. Do not overwrite published `media-v1` attachments.
+The README shows GIF excerpts generated from rendered videos and links to complete MP4s. GIFs and posters stay in Git; MP4s are distributed through Releases. Before regenerating GIFs, restore videos with `python scripts/media_assets.py download --set all`, then run `python scripts/make_readme_previews.py`; FFmpeg is required. Updated pre-rendered media requires a new immutable tag / attachment URL and manifest SHA-256 values. Do not overwrite published `media-v1` or `media-v2` attachments.
 
-After restoring existing media, maintainers can package a new version with `python scripts/media_assets.py pack --tag media-v2`. Add a new video explicitly with `--include examples/my-demo/demo.mp4`; that file must exist. Packaging combines the previous manifest, still-tracked MP4s and explicit additions without scanning user export directories. Published tags must not be reused. See the [media distribution guide](docs/media-distribution.md) for publication order.
+After restoring existing media, maintainers can package the next version with `python scripts/media_assets.py pack --tag media-v3`. Add a new video explicitly with `--include examples/my-demo/demo.mp4`; that file must exist. Packaging combines the previous manifest, still-tracked MP4s and explicit additions without scanning user export directories. Published tags must not be reused. See the [media distribution guide](docs/media-distribution.md) for publication order.
 
 The 39 light-theme spider block videos in `media/exports/` are cropped from their corresponding complete videos. Three additional examples—complete demo, main flow and reranking region—are rendered frame by frame with the light-theme robot configuration. The video library labels both methods. The website plays and downloads existing videos; the interactive gallery lets you adjust themes, avatars and the timeline. Static Pages does not run the Python renderer, so new MP4s require the local service.
 

@@ -14,10 +14,10 @@ from verify_capability_demos import editorial_layout, wait_gallery
 from media_assets import published_paths
 
 OUT = lp.ROOT / 'examples/capability-demos'
-BACKGROUNDS = {'terminal-dark': 'rgb(18, 17, 15)',
-               'light-pastel': 'rgb(241, 238, 229)',
-               'terminal-classic': 'rgb(20, 23, 28)',
-               'pastel-classic': 'rgb(252, 252, 251)'}
+BACKGROUNDS = {'terminal-dark': 'rgb(25, 23, 19)',
+               'light-pastel': 'rgb(250, 247, 240)',
+               'terminal-classic': 'rgb(25, 31, 39)',
+               'pastel-classic': 'rgb(255, 255, 255)'}
 
 
 class QuietHandler(SimpleHTTPRequestHandler):
@@ -87,7 +87,11 @@ class FourPaletteBrowserTests(unittest.TestCase):
     def test_homepage_has_four_real_media_sets_and_mobile_fits(self):
         br = self.br
         # The showcase is a static site and has no scene readiness flag.
-        br.cmd('Page.navigate', {'url': f'http://127.0.0.1:{self.server.server_port}/index.html?theme=pastel-classic'})
+        url = f'http://127.0.0.1:{self.server.server_port}/index.html?theme=pastel-classic'
+        if br._pw:
+            br._page.goto(url, wait_until='load')
+        else:
+            br.cmd('Page.navigate', {'url': url})
         br.eval('''(async()=>{const end=performance.now()+10000;
             while(document.querySelectorAll('[data-scene]').length!==8){
                 if(performance.now()>end)throw new Error('showcase readiness timeout');

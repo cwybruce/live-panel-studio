@@ -69,7 +69,7 @@ class LightThemeTests(unittest.TestCase):
                 self.assertTrue(demo['themeSwitch'])
                 cfg = lp.load_config(OUT / demo['id'] / 'config-light.json')
                 self.assertEqual(cfg['theme']['preset'], 'light-pastel')
-                self.assertEqual(cfg['theme']['colors']['bg'], '#f1eee5')
+                self.assertEqual(cfg['theme']['colors']['bg'], '#faf7f0')
                 br = self.scene(demo['id'])
                 measured = br.eval('''(()=>{''' + COLOR_JS + '''
                     const stage=document.getElementById('stage');
@@ -88,9 +88,9 @@ class LightThemeTests(unittest.TestCase):
                         layers:stage.querySelectorAll('[data-neon-layer]').length
                     };
                 })()''')
-                self.assertEqual(measured['body'], 'rgb(241, 238, 229)')
-                self.assertEqual(measured['stage'], 'rgb(241, 238, 229)')
-                self.assertEqual(measured['backdrop'], 'rgb(241, 238, 229)')
+                self.assertEqual(measured['body'], 'rgb(250, 247, 240)')
+                self.assertEqual(measured['stage'], 'rgb(250, 247, 240)')
+                self.assertEqual(measured['backdrop'], 'rgb(250, 247, 240)')
                 self.assertEqual(len(measured['panels']), COUNTS[demo['id']])
                 self.assertEqual(measured['layers'], COUNTS[demo['id']])
                 for panel in measured['panels']:
