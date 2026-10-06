@@ -37,7 +37,8 @@
       "dots": "#b2a797",
       "line2": "#b2a797",
       "bl": "#317e89"
-    }
+    },
+    "variant": "light-pastel"
   },
   "machines": {
     "guide": {

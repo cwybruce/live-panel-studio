@@ -37,7 +37,8 @@
       "dots": "#52483c",
       "line2": "#3c352c",
       "bl": "#64bed0"
-    }
+    },
+    "variant": "terminal-dark"
   },
   "machines": {
     "guide": {

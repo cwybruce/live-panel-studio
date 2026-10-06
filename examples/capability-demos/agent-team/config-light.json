@@ -39,7 +39,8 @@
       "red": "#ad554c",
       "surface": "#faf6ed",
       "pi": "#aa587e"
-    }
+    },
+    "variant": "light-pastel"
   },
   "clock": {
     "start": "09:00:00",

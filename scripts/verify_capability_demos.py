@@ -12,6 +12,7 @@ import livepanel as lp
 from check_frames import pixel_diff, TOL_PIXELS
 
 OUT = lp.ROOT / 'examples/capability-demos'
+EXPECTED_THEMES = {'terminal-dark', 'light-pastel', 'terminal-classic', 'pastel-classic'}
 
 
 class QuietHandler(SimpleHTTPRequestHandler):
@@ -92,6 +93,8 @@ def main():
     ap.add_argument('--skip-video', action='store_true', help='for a preliminary layout pass before rendering')
     args = ap.parse_args()
     manifest = json.loads((OUT / 'manifest.json').read_text(encoding='utf-8'))
+    for demo in manifest:
+        assert set(demo['themeVariants']) == EXPECTED_THEMES, demo['id']
     chrome = lp.find_exe(None, lp.CHROME_NAMES, 'Chrome')
     result = {'checkedAt': datetime.now(timezone.utc).isoformat(), 'browser': chrome,
               'simulatedData': True, 'scenes': [], 'gallery': {}, 'videos': []}
@@ -100,11 +103,15 @@ def main():
     with lp.Chrome(chrome, 960, 640) as br:
         for demo in manifest:
             dest = OUT / demo['id']
-            configs = [dest / 'config.json']
+            variants = [('default', {'config': 'config.json', 'page': 'live.html', 'poster': 'poster.png'})]
             if demo.get('themeSwitch', True):
-                configs += [dest / 'config-dark.json', dest / 'config-light.json']
-            for config_path in configs:
+                variants += list(demo['themeVariants'].items())
+            default_record = None
+            for theme, files in variants:
+                config_path = dest / files['config']
                 cfg = lp.load_config(config_path)
+                if theme != 'default':
+                    assert cfg['theme']['variant'] == theme, (demo['id'], theme)
                 w, h, _, _ = lp.canvas(cfg)
                 br.cmd('Emulation.setDeviceMetricsOverride', {'width': w, 'height': h,
                        'deviceScaleFactor': 1, 'mobile': False})
@@ -113,7 +120,7 @@ def main():
                     element_types.add('flow')
                 machine_types.update(m['type'] for m in cfg.get('machines', {}).values())
                 suffix = config_path.stem.replace('config', '')
-                br.open((dest / ('live' + suffix + '.html')).as_uri() + '?manual')
+                br.open((dest / files['page']).as_uri() + '?manual')
                 problems = set()
                 for i in range(61):
                     br.seek(12 * i / 61)
@@ -130,7 +137,7 @@ def main():
                 same = br.shot()
                 count, delta = pixel_diff(br, first, same)
                 movement, _ = pixel_diff(br, first, other)
-                record = {'id': demo['id'], 'variant': config_path.stem, 'samples': 61,
+                record = {'id': demo['id'], 'variant': config_path.stem, 'theme': theme, 'samples': 61,
                           'layoutProblems': sorted(problems), 'replayDifferentPixels': count,
                           'maxReplayChannelDelta': delta, 'animationDifferentPixels': movement}
                 if demo.get('visualStyle') == 'editorial':
@@ -154,10 +161,9 @@ def main():
                                       'moves': True, 'twelveSecondPositionLoop': True}
                     br.seek(t)
                 result['scenes'].append(record)
-                if not suffix:
-                    (dest / 'poster.png').write_bytes(first)
-                elif suffix == '-light':
-                    (dest / 'poster-light.png').write_bytes(first)
+                (dest / files['poster']).write_bytes(first)
+                if theme == 'default':
+                    default_record = record
                 if problems or count > TOL_PIXELS or movement <= TOL_PIXELS:
                     errors.append(record)
                 print(f"{demo['id']}{suffix}: layout={len(problems)} replay={count} motion={movement}", flush=True)
@@ -167,7 +173,7 @@ def main():
             for checkpoint in demo['checkpoints']:
                 br.seek(checkpoint['time'])
                 snapshots.append({'time': checkpoint['time'], 'text': br.eval('document.getElementById("stage").textContent')})
-            result['scenes'][-1]['checkpointText'] = snapshots
+            default_record['checkpointText'] = snapshots
             if demo['id'] == 'product-request':
                 assert '缓存命中' in snapshots[0]['text'] and '缓存未命中' in snapshots[1]['text']
             if demo['id'] == 'incident-replay':
@@ -189,22 +195,32 @@ def main():
         with lp.Chrome(chrome, 1440, 1120) as br:
             br.open(f'http://127.0.0.1:{server.server_port}/index.html')
             assert br.eval('document.querySelectorAll(".demo-card").length') == 8
+            theme_options = br.eval('Array.from(document.getElementById("theme").options).map(n=>n.value)')
+            assert set(theme_options) == EXPECTED_THEMES
+            checked_theme_scenes = []
             for demo in manifest:
                 wait_gallery(br, 'window.selectDemo(' + json.dumps(demo['id']) + ')')
                 br.eval('window.jumpDemo(6.5)')
-                state = br.eval('window.galleryState()')
-                assert state['time'] == 6.5 and not state['playing']
-                assert br.eval('document.getElementById("scene").contentWindow.__error||""') == ''
-                theme = state['theme']
-                assert br.eval('document.getElementById("videoLink").getAttribute("href")') == demo['id'] + '/' + demo['videos'][theme]
+                for theme, files in demo['themeVariants'].items():
+                    state = wait_gallery(br, 'document.getElementById("theme").value=' + json.dumps(theme) + ';document.getElementById("theme").dispatchEvent(new Event("change"))')
+                    assert state['time'] == 6.5 and not state['playing']
+                    assert state['theme'] == theme
+                    assert br.eval('document.getElementById("scene").contentWindow.__error||""') == ''
+                    assert br.eval('document.documentElement.dataset.theme') == theme
+                    assert br.eval('document.getElementById("videoLink").getAttribute("href")') == demo['id'] + '/' + files['video']
+                    assert br.eval('document.getElementById("watchVideoLink").getAttribute("href")') == demo['id'] + '/' + files['video']
+                    assert br.eval('document.getElementById("htmlLink").getAttribute("href")') == demo['id'] + '/' + files['page']
+                    assert br.eval('document.getElementById("configLink").getAttribute("href")') == demo['id'] + '/' + files['config']
+                    expected_bg = lp.load_config(OUT / demo['id'] / files['config'])['theme']['colors']['bg']
+                    assert br.eval('document.getElementById("scene").contentDocument.documentElement.style.getPropertyValue("--c-bg")') == expected_bg
+                    assert br.eval('getComputedStyle(document.getElementById("videoLink")).display') == ('flex' if files['videoReady'] else 'none')
+                    checked_theme_scenes.append({'id': demo['id'], 'theme': theme})
                 assert br.eval('document.getElementById("exportView").options.length') == 1 + len(demo['exportViews'])
                 assert br.eval('document.querySelectorAll("#checkpoints button").length') == len(demo['checkpoints'])
                 expected_theme = 'none' if demo.get('themeSwitch', True) is False else 'flex'
                 assert br.eval('getComputedStyle(document.getElementById("themeLabel")).display') == expected_theme
                 has_actor = br.eval('document.getElementById("scene").contentDocument.querySelectorAll("[data-avatar=spider]").length>0')
                 assert br.eval('getComputedStyle(document.getElementById("avatarLabel")).display') == ('flex' if has_actor else 'none')
-                video_ready = demo['lightVideoReady'] if theme == 'light-pastel' else demo['videoReady']
-                assert br.eval('getComputedStyle(document.getElementById("videoLink")).display') == ('flex' if video_ready else 'none')
                 assert br.eval('document.querySelector(".workspace").dataset.shape') == ('portrait' if demo['width'] < demo['height'] else 'landscape')
                 assert br.eval('getComputedStyle(document.getElementById("beforeLink")).display') == ('flex' if demo.get('beforePage') else 'none')
             wait_gallery(br, 'window.selectDemo("component-lab")')
@@ -224,6 +240,11 @@ def main():
             assert br.eval('document.getElementById("videoLink").getAttribute("href")') == 'avatar-themes/demo-light.mp4'
             (OUT / 'gallery-light-preview.png').write_bytes(br.shot())
             assert br.eval('Array.from(document.getElementById("scene").contentDocument.querySelectorAll("[data-avatar=spider]")).every(n=>n.style.display==="none")')
+            avatar_demo = next(d for d in manifest if d['id'] == 'avatar-themes')
+            for theme in avatar_demo['themeVariants']:
+                state = wait_gallery(br, 'document.getElementById("theme").value=' + json.dumps(theme) + ';document.getElementById("theme").dispatchEvent(new Event("change"))')
+                assert state['time'] == 4.5 and not state['playing'] and state['avatar'] == 'drone'
+                assert br.eval('Array.from(document.getElementById("scene").contentDocument.querySelectorAll("[data-avatar=spider]")).every(n=>n.style.display==="none")')
             br.eval('document.getElementById("replay").click()')
             assert br.eval('window.galleryState().playing')
             br.eval('document.getElementById("play").click()')
@@ -242,7 +263,8 @@ def main():
                                  'unusedControlsHidden': True, 'sixComponentCloseups': True,
                                  'keyboardSeek': True, 'mixedCanvasRatios': True,
                                  'beforeComparisonLink': bool(manifest[0].get('beforePage'))}
-            result['gallery']['themeCount'] = 2
+            result['gallery']['themeCount'] = len(theme_options)
+            result['gallery']['checkedThemeScenes'] = checked_theme_scenes
             result['gallery']['exportBlockCount'] = sum(len(d['exportViews']) for d in manifest)
     finally:
         server.shutdown()
@@ -251,11 +273,12 @@ def main():
     if not args.skip_video:
         ffprobe = lp.find_exe(None, ['ffprobe'], 'ffprobe')
         ffmpeg = lp.find_exe(None, ['ffmpeg'], 'ffmpeg')
-        for demo, theme, filename in [(d, theme, file) for d in manifest for theme, file in d['videos'].items()]:
-            file = OUT / demo['id'] / filename
+        for demo, theme, files in [(d, theme, files) for d in manifest for theme, files in d['themeVariants'].items()]:
+            file = OUT / demo['id'] / files['video']
+            assert files['videoReady'] and file.is_file(), (demo['id'], theme)
             data = json.loads(subprocess.check_output([ffprobe, '-v', 'error', '-show_streams', '-show_format', '-of', 'json', str(file)]))
             video = next(s for s in data['streams'] if s['codec_type'] == 'video')
-            cfg = lp.load_config(OUT / demo['id'] / 'config.json')
+            cfg = lp.load_config(OUT / demo['id'] / files['config'])
             w, h, duration, fps = lp.canvas(cfg)
             assert (video['codec_name'], video['width'], video['height'], video['r_frame_rate'], int(video['nb_frames'])) == ('h264', w, h, f'{fps}/1', round(fps*duration))
             assert abs(float(data['format']['duration']) - 12) < .1

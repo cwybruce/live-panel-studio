@@ -1,14 +1,16 @@
 # Live Panel Studio
 
+**中文** · [English](README.en.md)
+
 把架构、流程与知识讲解做成可交互、可导出的视频面板。
 
-**Live Panel Studio turns JSON configurations into animated diagrams, interactive web pages and MP4 videos.** Built on [live-panel-skill](https://github.com/ythx-101/live-panel-skill), with eight Chinese demos, dark/light themes, animated avatars and individual block exports.
+基于 [live-panel-skill](https://github.com/ythx-101/live-panel-skill)，将 JSON 配置变成动态示意图、交互网页与 MP4 视频，提供八个原创中文 Demo、四套配色、动态角色与功能块独立导出。
 
 维护与交流：**[@sycbruce · X](https://x.com/sycbruce)** · [提交问题](https://github.com/cwybruce/live-panel-studio/issues)
 
 **[在线体验与视频库](https://cwybruce.github.io/live-panel-studio/)** · [交互体验馆](https://cwybruce.github.io/live-panel-studio/examples/capability-demos/index.html) · [功能块导出案例](https://cwybruce.github.io/live-panel-studio/#exports)
 
-网页可直接播放 8 个 Demo 的深浅主题成片、初期复刻与蜘蛛更新视频，并浏览 39 个功能块成片及 3 个浅色机器人导出案例。支持播放、拖动进度和 MP4 下载；生成新方案请运行下方本地服务。
+网页可直接播放 8 个 Demo 的四套配色成片、初期复刻与蜘蛛更新视频，并浏览 39 个功能块成片及 3 个浅色机器人导出案例。支持播放、拖动进度和 MP4 下载；生成新方案请运行下方本地服务。
 
 ## 动态 Demo
 
@@ -19,16 +21,34 @@
 | [![RAG 证据讲解：暖黑动态预览](assets/readme/rag-explainer-dark.gif)](https://cwybruce.github.io/live-panel-studio/examples/capability-demos/rag-explainer/demo.mp4) | [![RAG 证据讲解：暖纸动态预览](assets/readme/rag-explainer-light.gif)](https://cwybruce.github.io/live-panel-studio/examples/capability-demos/rag-explainer/demo-light.mp4) |
 | [▶ 完整 MP4 · 12 秒](https://cwybruce.github.io/live-panel-studio/examples/capability-demos/rag-explainer/demo.mp4) | [▶ 完整 MP4 · 12 秒](https://cwybruce.github.io/live-panel-studio/examples/capability-demos/rag-explainer/demo-light.mp4) |
 
+| RAG 证据讲解 · 经典终端 | RAG 证据讲解 · 经典粉彩 |
+| --- | --- |
+| [![RAG 证据讲解：经典终端动态预览](assets/readme/rag-explainer-terminal.gif)](https://cwybruce.github.io/live-panel-studio/examples/capability-demos/rag-explainer/demo-terminal.mp4) | [![RAG 证据讲解：经典粉彩动态预览](assets/readme/rag-explainer-pastel.gif)](https://cwybruce.github.io/live-panel-studio/examples/capability-demos/rag-explainer/demo-pastel.mp4) |
+| [▶ 完整 MP4 · 12 秒](https://cwybruce.github.io/live-panel-studio/examples/capability-demos/rag-explainer/demo-terminal.mp4) | [▶ 完整 MP4 · 12 秒](https://cwybruce.github.io/live-panel-studio/examples/capability-demos/rag-explainer/demo-pastel.mp4) |
+
 ## 能做什么
 
 - **8 个原创中文 Demo**：RAG 证据讲解、多 Agent 交接、请求与缓存、知识卡、工单流转、故障恢复、矢量组件、角色导航。
-- **深浅两套主题**：984 × 1280 竖屏排版，内嵌中文字体，每个功能块有流动的霓虹边缘、拖尾与局部泛光。
+- **四套配色方案**：暖黑、暖纸、经典终端、经典粉彩，均使用 984 × 1280 竖屏排版与内嵌中文字体；每个功能块有流动的霓虹边缘、拖尾与局部泛光。
 - **交互播放**：暂停、重播、时间轴拖动、关键时刻跳转、0.5 / 1 / 2 倍速；含角色的场景支持蜘蛛与机器人切换。
 - **独立 MP4 导出**：每个 Demo 可整段导出，也可单独导出内部功能块，共 **39 个命名区域**。导出按当前主题、角色与范围生成新文件。
 - **确定性回放**：动画由 `window.seek(t)` 驱动，浏览器预览和逐帧渲染使用同一时间线。
 - **可修改的 JSON 和 SVG**：配置文本、数据、配色与时间线，扩展组件或重新设计场景。
 
 Demo 中的事件、指标、日志和数据均为**预设模拟**，没有连接真实 Agent、数据库或业务服务。默认成片为 **12 秒、30 fps、H.264 MP4，附带静音 AAC 音轨**。
+
+## 四套配色
+
+暖黑与暖纸延续本项目现有风格；经典终端与经典粉彩分别沿用上游 Codex Agent 图和 AI Agent 架构图的配色方向，并应用到八个原创场景。
+
+| 配色 | 主题 ID | 风格与在线体验 |
+| --- | --- | --- |
+| 暖黑 | `terminal-dark` | 暖黑底、金橙色强调；[打开 RAG](https://cwybruce.github.io/live-panel-studio/examples/capability-demos/index.html?theme=terminal-dark#rag-explainer) |
+| 暖纸 | `light-pastel` | 米白纸底、柔和暖色；[打开 RAG](https://cwybruce.github.io/live-panel-studio/examples/capability-demos/index.html?theme=light-pastel#rag-explainer) |
+| 经典终端 | `terminal-classic` | 冷灰黑底、青 / 蓝 / 绿 / 紫强调；[打开 RAG](https://cwybruce.github.io/live-panel-studio/examples/capability-demos/index.html?theme=terminal-classic#rag-explainer) |
+| 经典粉彩 | `pastel-classic` | 白底、蓝 / 黄 / 橙 / 紫 / 红色分区；[打开 RAG](https://cwybruce.github.io/live-panel-studio/examples/capability-demos/index.html?theme=pastel-classic#rag-explainer) |
+
+主题与角色可以分别选择，整段和功能块导出都使用当前选择的配色。新增配色不改变现有主题 ID 或旧成片文件名。
 
 ## 快速开始
 
@@ -58,14 +78,14 @@ python scripts/preview_server.py --port 8779
 
 | Demo | 场景 | 完整视频 |
 | --- | --- | --- |
-| [RAG 证据讲解](examples/capability-demos/rag-explainer/README.md) | 检索、评分、重排、引用与回答流向 | [暖黑](https://cwybruce.github.io/live-panel-studio/examples/capability-demos/rag-explainer/demo.mp4) · [暖纸](https://cwybruce.github.io/live-panel-studio/examples/capability-demos/rag-explainer/demo-light.mp4) |
-| [多 Agent 任务交接](examples/capability-demos/agent-team/README.md) | 任务树、时间泳道、交接包与状态切换 | [暖黑](https://cwybruce.github.io/live-panel-studio/examples/capability-demos/agent-team/demo.mp4) · [暖纸](https://cwybruce.github.io/live-panel-studio/examples/capability-demos/agent-team/demo-light.mp4) |
-| [请求与缓存分支](examples/capability-demos/product-request/README.md) | 请求路径、缓存命中、回源与合流 | [暖黑](https://cwybruce.github.io/live-panel-studio/examples/capability-demos/product-request/demo.mp4) · [暖纸](https://cwybruce.github.io/live-panel-studio/examples/capability-demos/product-request/demo-light.mp4) |
-| [短视频知识卡](examples/capability-demos/knowledge-card/README.md) | 章节轮播、出处核对与回顾图谱 | [暖黑](https://cwybruce.github.io/live-panel-studio/examples/capability-demos/knowledge-card/demo.mp4) · [暖纸](https://cwybruce.github.io/live-panel-studio/examples/capability-demos/knowledge-card/demo-light.mp4) |
-| [业务工单流转](examples/capability-demos/business-workflow/README.md) | 四站看板、问题分流、复核与重试 | [暖黑](https://cwybruce.github.io/live-panel-studio/examples/capability-demos/business-workflow/demo.mp4) · [暖纸](https://cwybruce.github.io/live-panel-studio/examples/capability-demos/business-workflow/demo-light.mp4) |
-| [故障与恢复回放](examples/capability-demos/incident-replay/README.md) | 余量曲线、阈值、异常路径与恢复检查 | [暖黑](https://cwybruce.github.io/live-panel-studio/examples/capability-demos/incident-replay/demo.mp4) · [暖纸](https://cwybruce.github.io/live-panel-studio/examples/capability-demos/incident-replay/demo-light.mp4) |
-| [矢量组件实验室](examples/capability-demos/component-lab/README.md) | 光球、座位、圆环、流带、看板与人物组件 | [暖黑](https://cwybruce.github.io/live-panel-studio/examples/capability-demos/component-lab/demo.mp4) · [暖纸](https://cwybruce.github.io/live-panel-studio/examples/capability-demos/component-lab/demo-light.mp4) |
-| [角色导航与主题](examples/capability-demos/avatar-themes/README.md) | 蜘蛛 / 机器人、路径移动、目标框与关键词提示 | [暖黑](https://cwybruce.github.io/live-panel-studio/examples/capability-demos/avatar-themes/demo.mp4) · [暖纸](https://cwybruce.github.io/live-panel-studio/examples/capability-demos/avatar-themes/demo-light.mp4) |
+| [RAG 证据讲解](examples/capability-demos/rag-explainer/README.md) | 检索、评分、重排、引用与回答流向 | [暖黑](https://cwybruce.github.io/live-panel-studio/examples/capability-demos/rag-explainer/demo.mp4) · [暖纸](https://cwybruce.github.io/live-panel-studio/examples/capability-demos/rag-explainer/demo-light.mp4) · [经典终端](https://cwybruce.github.io/live-panel-studio/examples/capability-demos/rag-explainer/demo-terminal.mp4) · [经典粉彩](https://cwybruce.github.io/live-panel-studio/examples/capability-demos/rag-explainer/demo-pastel.mp4) |
+| [多 Agent 任务交接](examples/capability-demos/agent-team/README.md) | 任务树、时间泳道、交接包与状态切换 | [暖黑](https://cwybruce.github.io/live-panel-studio/examples/capability-demos/agent-team/demo.mp4) · [暖纸](https://cwybruce.github.io/live-panel-studio/examples/capability-demos/agent-team/demo-light.mp4) · [经典终端](https://cwybruce.github.io/live-panel-studio/examples/capability-demos/agent-team/demo-terminal.mp4) · [经典粉彩](https://cwybruce.github.io/live-panel-studio/examples/capability-demos/agent-team/demo-pastel.mp4) |
+| [请求与缓存分支](examples/capability-demos/product-request/README.md) | 请求路径、缓存命中、回源与合流 | [暖黑](https://cwybruce.github.io/live-panel-studio/examples/capability-demos/product-request/demo.mp4) · [暖纸](https://cwybruce.github.io/live-panel-studio/examples/capability-demos/product-request/demo-light.mp4) · [经典终端](https://cwybruce.github.io/live-panel-studio/examples/capability-demos/product-request/demo-terminal.mp4) · [经典粉彩](https://cwybruce.github.io/live-panel-studio/examples/capability-demos/product-request/demo-pastel.mp4) |
+| [短视频知识卡](examples/capability-demos/knowledge-card/README.md) | 章节轮播、出处核对与回顾图谱 | [暖黑](https://cwybruce.github.io/live-panel-studio/examples/capability-demos/knowledge-card/demo.mp4) · [暖纸](https://cwybruce.github.io/live-panel-studio/examples/capability-demos/knowledge-card/demo-light.mp4) · [经典终端](https://cwybruce.github.io/live-panel-studio/examples/capability-demos/knowledge-card/demo-terminal.mp4) · [经典粉彩](https://cwybruce.github.io/live-panel-studio/examples/capability-demos/knowledge-card/demo-pastel.mp4) |
+| [业务工单流转](examples/capability-demos/business-workflow/README.md) | 四站看板、问题分流、复核与重试 | [暖黑](https://cwybruce.github.io/live-panel-studio/examples/capability-demos/business-workflow/demo.mp4) · [暖纸](https://cwybruce.github.io/live-panel-studio/examples/capability-demos/business-workflow/demo-light.mp4) · [经典终端](https://cwybruce.github.io/live-panel-studio/examples/capability-demos/business-workflow/demo-terminal.mp4) · [经典粉彩](https://cwybruce.github.io/live-panel-studio/examples/capability-demos/business-workflow/demo-pastel.mp4) |
+| [故障与恢复回放](examples/capability-demos/incident-replay/README.md) | 余量曲线、阈值、异常路径与恢复检查 | [暖黑](https://cwybruce.github.io/live-panel-studio/examples/capability-demos/incident-replay/demo.mp4) · [暖纸](https://cwybruce.github.io/live-panel-studio/examples/capability-demos/incident-replay/demo-light.mp4) · [经典终端](https://cwybruce.github.io/live-panel-studio/examples/capability-demos/incident-replay/demo-terminal.mp4) · [经典粉彩](https://cwybruce.github.io/live-panel-studio/examples/capability-demos/incident-replay/demo-pastel.mp4) |
+| [矢量组件实验室](examples/capability-demos/component-lab/README.md) | 光球、座位、圆环、流带、看板与人物组件 | [暖黑](https://cwybruce.github.io/live-panel-studio/examples/capability-demos/component-lab/demo.mp4) · [暖纸](https://cwybruce.github.io/live-panel-studio/examples/capability-demos/component-lab/demo-light.mp4) · [经典终端](https://cwybruce.github.io/live-panel-studio/examples/capability-demos/component-lab/demo-terminal.mp4) · [经典粉彩](https://cwybruce.github.io/live-panel-studio/examples/capability-demos/component-lab/demo-pastel.mp4) |
+| [角色导航与主题](examples/capability-demos/avatar-themes/README.md) | 蜘蛛 / 机器人、路径移动、目标框与关键词提示 | [暖黑](https://cwybruce.github.io/live-panel-studio/examples/capability-demos/avatar-themes/demo.mp4) · [暖纸](https://cwybruce.github.io/live-panel-studio/examples/capability-demos/avatar-themes/demo-light.mp4) · [经典终端](https://cwybruce.github.io/live-panel-studio/examples/capability-demos/avatar-themes/demo-terminal.mp4) · [经典粉彩](https://cwybruce.github.io/live-panel-studio/examples/capability-demos/avatar-themes/demo-pastel.mp4) |
 
 <details>
 <summary>展开其余 7 个 Demo 的动态预览</summary>
@@ -134,13 +154,15 @@ RAG 重排证据区域，暖纸主题、机器人配置。点击预览观看完�
 
 [▶ 完整分区 MP4](https://cwybruce.github.io/live-panel-studio/media/exports/robot/rag-rerank-light-drone.mp4) · [浏览全部 39 个功能块与导出案例](https://cwybruce.github.io/live-panel-studio/#exports)
 
-每个目录包含配置 JSON、独立 HTML、深浅主题 MP4、预览图和说明。完整体验说明见 [能力体验馆](examples/capability-demos/README.md)。
+每个目录包含四套配色的配置 JSON、独立 HTML、MP4、PNG 预览图和说明。暖黑提供 `config-dark.json` / `live-dark.html`，以及默认入口 `config.json` / `live.html`，成片和预览图为 `demo.mp4` / `poster.png`；暖纸使用 `-light` 后缀，经典终端使用 `-terminal` 后缀，经典粉彩使用 `-pastel` 后缀。完整体验说明见 [能力体验馆](examples/capability-demos/README.md)。
 
-重新生成全部深浅主题视频：
+重新生成全部四套配色视频：
 
 ```powershell
-python scripts/make_capability_demos.py --render --themes both --jobs 2
+python scripts/make_capability_demos.py --render --themes all --jobs 2
 ```
+
+只生成原来的暖黑与暖纸两套时，仍可使用 `--themes both`。
 
 命令行也可独立导出一个 Demo 或其中一个功能块：
 
@@ -150,6 +172,12 @@ python scripts/export_demo.py --scene rag-explainer --theme light-pastel --avata
 
 # 功能块：只导出 RAG 的重排区域
 python scripts/export_demo.py --scene rag-explainer --theme light-pastel --avatar drone --view rag-rerank --out examples/capability-demos/exports/rag-rerank-light.mp4
+
+# 经典终端配色：多 Agent 整段
+python scripts/export_demo.py --scene agent-team --theme terminal-classic --avatar spider --view full --out examples/capability-demos/exports/agent-terminal.mp4
+
+# 经典粉彩配色：RAG 重排功能块
+python scripts/export_demo.py --scene rag-explainer --theme pastel-classic --avatar drone --view rag-rerank --out examples/capability-demos/exports/rag-rerank-pastel.mp4
 ```
 
 功能块按实际画布裁剪，保留内部动画、文字和边缘泛光；可用的场景及区域 ID 记录在 [`manifest.json`](examples/capability-demos/manifest.json) 中。原有配置与成片不会被当前方案导出覆盖。
@@ -185,7 +213,7 @@ python scripts/verify_demo_exports.py
 
 ## 来源、许可与致谢
 
-本项目基于 [ythx-101/live-panel-skill](https://github.com/ythx-101/live-panel-skill)，扩展起点为 [`8a70aa2`](https://github.com/ythx-101/live-panel-skill/commit/8a70aa2c4e3fac68b40e2472407e32e2637a7a36)。保留上游代码的 **MIT License** 和版权声明；在此基础上新增能力体验馆、原创中文场景、SVG 组件、角色、深浅主题和本地功能块导出。
+本项目基于 [ythx-101/live-panel-skill](https://github.com/ythx-101/live-panel-skill)，扩展起点为 [`8a70aa2`](https://github.com/ythx-101/live-panel-skill/commit/8a70aa2c4e3fac68b40e2472407e32e2637a7a36)。保留上游代码的 **MIT License** 和版权声明；在此基础上新增能力体验馆、原创中文场景、SVG 组件、角色、四套配色和本地功能块导出。
 
 上游的灵感及保留示例各有来源：
 

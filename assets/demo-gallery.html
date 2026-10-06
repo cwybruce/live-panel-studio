@@ -3,6 +3,8 @@
 <style>
 :root{color-scheme:dark;--bg:#100f0d;--panel:#191713;--border:#343128;--fg:#eee9de;--muted:#a49e90;--accent:#b7c89f}
 :root[data-theme="light-pastel"]{color-scheme:light;--bg:#f1eee5;--panel:#faf6ed;--border:#c9beab;--fg:#302d27;--muted:#746b5e;--accent:#617747}
+:root[data-theme="terminal-classic"]{color-scheme:dark;--bg:#14171c;--panel:#262a32;--border:#4a5367;--fg:#e4e8f0;--muted:#9ba5b7;--accent:#86e1e6;--selected:#20343b;--hover:#232a35;--chip:#302d45}
+:root[data-theme="pastel-classic"]{color-scheme:light;--bg:#fcfcfb;--panel:#ffffff;--border:#c9ccd1;--fg:#23272e;--muted:#626a76;--accent:#3a6fc8;--selected:#e4eefc;--hover:#f1f1ef;--chip:#f2eafa}
 *{box-sizing:border-box}[hidden]{display:none!important}
 body{margin:0;background:var(--bg);color:var(--fg);font:14px "LP Sans","Microsoft YaHei",sans-serif;font-synthesis:none}
 button,a,select,input{font:inherit}
@@ -44,6 +46,18 @@ ul{padding-left:17px;margin:10px 0 0;color:var(--muted);font-size:11px;line-heig
 :root[data-theme="light-pastel"] h3,:root[data-theme="light-pastel"] .checkpoints button{color:#494238}
 :root[data-theme="light-pastel"] .chip{background:#e2dbc9;color:#584c38}
 :root[data-theme="light-pastel"] .bottom a{background:none;border:0}
+:root[data-theme$="-classic"] button,:root[data-theme$="-classic"] a,:root[data-theme$="-classic"] select{background:var(--panel);border-color:var(--border);color:var(--fg)}
+:root[data-theme$="-classic"] button:hover,:root[data-theme$="-classic"] a:hover{background:var(--hover);border-color:var(--accent)}
+:root[data-theme$="-classic"] header,:root[data-theme$="-classic"] .stage{border-color:var(--border)}
+:root[data-theme$="-classic"] .brand,:root[data-theme$="-classic"] .nav-label,:root[data-theme$="-classic"] .category,:root[data-theme$="-classic"] .note,:root[data-theme$="-classic"] .bottom,:root[data-theme$="-classic"] .checkpoints span{color:var(--muted)}
+:root[data-theme$="-classic"] .demo-card{background:transparent;border-color:transparent}
+:root[data-theme$="-classic"] .demo-card[aria-current=true]{background:var(--selected);border-color:var(--border);box-shadow:inset 2px 0 var(--accent)}
+:root[data-theme$="-classic"] .demo-card img{background:var(--bg)}
+:root[data-theme$="-classic"] .scene-link,:root[data-theme$="-classic"] .bottom a{color:var(--accent)}
+:root[data-theme$="-classic"] .loading{background:var(--bg)}
+:root[data-theme$="-classic"] h3,:root[data-theme$="-classic"] .checkpoints button{color:var(--fg)}
+:root[data-theme$="-classic"] .chip{background:var(--chip);color:var(--fg)}
+:root[data-theme$="-classic"] .bottom a{background:none;border:0}
 @media(max-width:1050px){.layout{grid-template-columns:195px minmax(0,1fr);padding:20px;gap:22px}.demo-card img{width:45px;height:33px}.demo-card{gap:8px}.scene-head{flex-direction:column}.selectors{justify-content:flex-start}.details{grid-template-columns:1fr;gap:19px}.workspace[data-shape=portrait] .stage,.workspace[data-shape=portrait] .controls,.workspace[data-shape=portrait] .checkpoints{width:min(100%,600px)}}
 @media(max-width:700px){header{padding:18px 16px;align-items:flex-start}.badge{display:none}h1{font-size:18px}.layout{display:block;padding:17px 16px}nav{display:grid;grid-template-columns:1fr 1fr;gap:4px;margin-bottom:23px}.nav-label{grid-column:1/-1;padding-left:7px}.demo-card{padding:8px;min-height:55px;gap:7px}.demo-card img{display:none}.demo-card .name{font-size:11px}.demo-card .category{font-size:9px}.controls{gap:5px}.controls button{min-width:41px;padding:6px}.controls select{max-width:60px;padding:6px}output{font-size:10px}.bottom{padding:0 16px 20px}h2{font-size:21px}.scene-head{gap:11px}}
 h2{font-family:"LP Serif",serif}.brand,output{font-family:"LP Mono",monospace}
@@ -51,7 +65,7 @@ h2{font-family:"LP Serif",serif}.brand,output{font-family:"LP Mono",monospace}
 </style></head><body>
 <header><div><div class="brand">LIVE PANEL · DEMO COLLECTION</div><h1>把流程，变成看得懂的动画</h1><p>选择一个场景，观看过程，带走网页与视频。</p></div><div class="badge">场景演示 · 模拟数据</div></header>
 <main class="layout"><nav id="demos" aria-label="能力示例"><div class="nav-label">选择一个 Demo</div></nav><section class="workspace" aria-label="示例播放器">
-<div class="scene-head"><div><h2 id="title"></h2><p class="summary" id="summary"></p></div><div class="selectors"><label id="viewLabel" hidden>组件视图<select id="view" aria-label="组件视图"></select></label><label id="themeLabel">主题<select id="theme" aria-label="主题"><option value="terminal-dark">暖黑 · 霓虹</option><option value="light-pastel">暖纸 · 浅色</option></select></label><label id="avatarLabel">角色<select id="avatar" aria-label="角色"><option value="spider">机械蜘蛛</option><option value="drone">机器人</option></select></label><a id="htmlLink" class="scene-link" target="_blank">沉浸预览 ↗</a></div></div>
+<div class="scene-head"><div><h2 id="title"></h2><p class="summary" id="summary"></p></div><div class="selectors"><label id="viewLabel" hidden>组件视图<select id="view" aria-label="组件视图"></select></label><label id="themeLabel">主题<select id="theme" aria-label="主题"><option value="terminal-dark">暖黑 · 霓虹</option><option value="light-pastel">暖纸 · 浅色</option><option value="terminal-classic">经典终端 · 原 Skill</option><option value="pastel-classic">经典粉彩 · 原 Skill</option></select></label><label id="avatarLabel">角色<select id="avatar" aria-label="角色"><option value="spider">机械蜘蛛</option><option value="drone">机器人</option></select></label><a id="htmlLink" class="scene-link" target="_blank">沉浸预览 ↗</a></div></div>
 <div class="stage"><iframe id="scene" title="能力示例动画"></iframe><div id="loading" class="loading" role="status">正在加载示例…</div></div>
 <div class="controls"><button id="play" disabled>加载中</button><button id="replay" disabled>重播</button><label class="sr" for="scrub">动画进度</label><input id="scrub" type="range" min="0" max="12" step="0.01" value="0" disabled><output id="clock">00.00 / 12.00 s</output><select id="speed" aria-label="播放速度"><option value="0.5">0.5×</option><option value="1" selected>1×</option><option value="2">2×</option></select></div>
 <div id="checkpoints" class="checkpoints"></div>
@@ -68,17 +82,18 @@ function enable(on){['play','replay','scrub'].forEach(id=>$(id).disabled=!on);$(
 function paint(){if(ready){frame.contentWindow.seek(t);window.__galleryError=frame.contentWindow.__error||''}slider.value=t;$('clock').textContent=t.toFixed(2).padStart(5,'0')+' / '+selected.duration.toFixed(2)+' s';$('play').textContent=ready?(playing?'暂停':'播放'):'加载中'}
 function jump(value){if(!ready)return;t=Math.max(0,Math.min(selected.duration,Number(value)));playing=false;paint()}
 window.jumpDemo=jump;
-function sceneUrl(){return selected.id+'/'+(selected.themeSwitch===false?'live.html':$('theme').value==='light-pastel'?'live-light.html':'live-dark.html')}
+function currentVariant(){return selected.themeVariants&&selected.themeVariants[$('theme').value]}
+function sceneUrl(){const v=currentVariant();return selected.id+'/'+(selected.themeSwitch===false?'live.html':v?v.page:$('theme').value==='light-pastel'?'live-light.html':'live-dark.html')}
 function paintTheme(){
  const theme=$('theme').value;document.documentElement.dataset.theme=theme;
- document.querySelectorAll('.demo-card img').forEach(img=>{img.hidden=false;img.src=img.parentElement.dataset.id+'/'+(theme==='light-pastel'?'poster-light.png':'poster.png')});
- const file=selected.videos&&selected.videos[theme]||'demo.mp4';safeLink('videoLink',selected.id+'/'+file);safeLink('watchVideoLink',selected.id+'/'+file);
- const hasVideo=selected.videoReady&&theme==='terminal-dark'||selected.lightVideoReady&&theme==='light-pastel';$('videoLink').hidden=!hasVideo;$('watchVideoLink').hidden=!hasVideo;
+ document.querySelectorAll('.demo-card img').forEach(img=>{const demo=DEMOS.find(d=>d.id===img.parentElement.dataset.id),v=demo.themeVariants&&demo.themeVariants[theme];img.hidden=false;img.src=demo.id+'/'+(v?v.poster:theme==='light-pastel'?'poster-light.png':'poster.png')});
+ const variant=currentVariant(),file=variant?variant.video:selected.videos&&selected.videos[theme]||'demo.mp4';safeLink('videoLink',selected.id+'/'+file);safeLink('watchVideoLink',selected.id+'/'+file);
+ const hasVideo=variant?variant.videoReady:selected.videoReady&&theme==='terminal-dark'||selected.lightVideoReady&&theme==='light-pastel';$('videoLink').hidden=!hasVideo;$('watchVideoLink').hidden=!hasVideo;
 }
 function loadScene(){
  paintTheme();
  ready=false;window.__ready=false;enable(false);$('loading').hidden=false;$('loading').textContent='正在加载示例…';const serial=++loadSerial;
- const url=sceneUrl();safeLink('htmlLink',url);safeLink('configLink',url.replace(/live[^/]*\.html$/,'config'+(url.endsWith('live-light.html')?'-light':url.endsWith('live-dark.html')?'-dark':'')+'.json'));
+ const url=sceneUrl(),variant=currentVariant();safeLink('htmlLink',url);safeLink('configLink',variant?selected.id+'/'+variant.config:url.replace(/live[^/]*\.html$/,'config'+(url.endsWith('live-light.html')?'-light':url.endsWith('live-dark.html')?'-dark':'')+'.json'));
  frame.onload=()=>{let attempts=0;function waitReady(){if(serial!==loadSerial)return;try{
   const win=frame.contentWindow;if(win.__error)throw new Error(win.__error);
   if(win.__ready&&win.document.title===selected.sceneTitle){ready=true;window.__ready=true;const avatars=win.document.querySelectorAll('[data-avatar=spider]').length;$('avatarLabel').hidden=!avatars;if(avatars)win.setAvatar($('avatar').value);$('loading').hidden=true;enable(true);paint();return}
@@ -150,5 +165,7 @@ $('exportButton').onclick=async()=>{
  }catch(e){failExport(e)}
 };
 function loop(now){if(ready&&playing&&last)t=(t+(now-last)/1000*Number($('speed').value))%selected.duration;last=now;if(selected)paint();requestAnimationFrame(loop)}
+const requestedTheme=new URLSearchParams(location.search).get('theme');
+if(Array.from($('theme').options).some(option=>option.value===requestedTheme))$('theme').value=requestedTheme;
 window.selectDemo(DEMOS.some(d=>d.id===location.hash.slice(1))?location.hash.slice(1):DEMOS[0].id);requestAnimationFrame(loop);checkExportService();
 </script></body></html>

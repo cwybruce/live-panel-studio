@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Build the 12 short README GIF previews from existing public MP4 files.
+"""Build the short README GIF previews from existing public MP4 files.
 
 python scripts/make_readme_previews.py
 python scripts/make_readme_previews.py --compact
@@ -35,6 +35,10 @@ def sources(compact=False):
     jobs += [
         {'source': ROOT / 'examples/capability-demos/rag-explainer/demo-light.mp4',
          'name': 'rag-explainer-light.gif', 'width': width},
+        {'source': ROOT / 'examples/capability-demos/rag-explainer/demo-terminal.mp4',
+         'name': 'rag-explainer-terminal.gif', 'width': width},
+        {'source': ROOT / 'examples/capability-demos/rag-explainer/demo-pastel.mp4',
+         'name': 'rag-explainer-pastel.gif', 'width': width},
         {'source': ROOT / 'media/recreations/first-recreation.mp4',
          'name': 'first-recreation.gif', 'width': width},
         {'source': ROOT / 'media/recreations/spider-recreation.mp4',
@@ -152,17 +156,17 @@ def main():
     records.sort(key=lambda r: ordering[Path(r['file']).name])
     total = sum(record['bytes'] for record in records)
     budget = total < MAX_TOTAL_BYTES and all(record['bytes'] < MAX_SINGLE_BYTES for record in records)
-    passed = len(records) == 12 and not errors and budget
+    passed = len(records) == len(jobs) and not errors and budget
     report = {'passed': passed, 'createdAt': datetime.now(timezone.utc).isoformat(),
               'previewCount': len(records), 'excerptSeconds': SECONDS, 'previewFps': fps,
               'workers': WORKERS, 'totalBytes': total, 'maxSingleBytes': MAX_SINGLE_BYTES,
               'maxTotalBytes': MAX_TOTAL_BYTES, 'sizeBudgetPassed': budget,
-              'scope': '12 个 GIF 均为已有 MP4 的前 6 秒节选，完整视频通过 README 链接查看。',
+              'scope': f'{len(jobs)} 个 GIF 均为已有 MP4 的前 6 秒节选，完整视频通过 README 链接查看。',
               'files': records, 'errors': errors}
     REPORT.parent.mkdir(parents=True, exist_ok=True)
     with REPORT.open('w', encoding='utf-8', newline='\n') as stream:
         stream.write(json.dumps(report, ensure_ascii=False, indent=2) + '\n')
-    print(f"{'PASS' if passed else 'FAIL'}: {len(records)}/12 GIFs, total {total} B", flush=True)
+    print(f"{'PASS' if passed else 'FAIL'}: {len(records)}/{len(jobs)} GIFs, total {total} B", flush=True)
     if not budget and not args.compact:
         print('GIF 超过体积目标，可运行 --compact 降至宽 384 / 6 fps。', flush=True)
     return 0 if passed else 1

@@ -39,7 +39,8 @@
       "red": "#d77768",
       "surface": "#171511",
       "pi": "#e776af"
-    }
+    },
+    "variant": "terminal-dark"
   },
   "clock": {
     "start": "00:00:00",

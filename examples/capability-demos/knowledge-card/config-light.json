@@ -37,7 +37,8 @@
       "bl": "#317e89",
       "pi": "#aa587e"
     },
-    "font": "\"LP Sans\",sans-serif"
+    "font": "\"LP Sans\",sans-serif",
+    "variant": "light-pastel"
   },
   "machines": {
     "chapter": {

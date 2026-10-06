@@ -98,7 +98,43 @@
     "lightVideoReady": true,
     "videos": {
       "terminal-dark": "demo.mp4",
-      "light-pastel": "demo-light.mp4"
+      "light-pastel": "demo-light.mp4",
+      "terminal-classic": "demo-terminal.mp4",
+      "pastel-classic": "demo-pastel.mp4"
+    },
+    "themeVariants": {
+      "terminal-dark": {
+        "label": "暖黑 / Warm Ink",
+        "config": "config-dark.json",
+        "page": "live-dark.html",
+        "video": "demo.mp4",
+        "poster": "poster.png",
+        "videoReady": true
+      },
+      "light-pastel": {
+        "label": "暖纸 / Warm Paper",
+        "config": "config-light.json",
+        "page": "live-light.html",
+        "video": "demo-light.mp4",
+        "poster": "poster-light.png",
+        "videoReady": true
+      },
+      "terminal-classic": {
+        "label": "经典终端 / Classic Terminal",
+        "config": "config-terminal.json",
+        "page": "live-terminal.html",
+        "video": "demo-terminal.mp4",
+        "poster": "poster-terminal.png",
+        "videoReady": true
+      },
+      "pastel-classic": {
+        "label": "经典粉彩 / Classic Pastel",
+        "config": "config-pastel.json",
+        "page": "live-pastel.html",
+        "video": "demo-pastel.mp4",
+        "poster": "poster-pastel.png",
+        "videoReady": true
+      }
     }
   },
   {
@@ -204,7 +240,43 @@
     "lightVideoReady": true,
     "videos": {
       "terminal-dark": "demo.mp4",
-      "light-pastel": "demo-light.mp4"
+      "light-pastel": "demo-light.mp4",
+      "terminal-classic": "demo-terminal.mp4",
+      "pastel-classic": "demo-pastel.mp4"
+    },
+    "themeVariants": {
+      "terminal-dark": {
+        "label": "暖黑 / Warm Ink",
+        "config": "config-dark.json",
+        "page": "live-dark.html",
+        "video": "demo.mp4",
+        "poster": "poster.png",
+        "videoReady": true
+      },
+      "light-pastel": {
+        "label": "暖纸 / Warm Paper",
+        "config": "config-light.json",
+        "page": "live-light.html",
+        "video": "demo-light.mp4",
+        "poster": "poster-light.png",
+        "videoReady": true
+      },
+      "terminal-classic": {
+        "label": "经典终端 / Classic Terminal",
+        "config": "config-terminal.json",
+        "page": "live-terminal.html",
+        "video": "demo-terminal.mp4",
+        "poster": "poster-terminal.png",
+        "videoReady": true
+      },
+      "pastel-classic": {
+        "label": "经典粉彩 / Classic Pastel",
+        "config": "config-pastel.json",
+        "page": "live-pastel.html",
+        "video": "demo-pastel.mp4",
+        "poster": "poster-pastel.png",
+        "videoReady": true
+      }
     }
   },
   {
@@ -306,7 +378,43 @@
     "lightVideoReady": true,
     "videos": {
       "terminal-dark": "demo.mp4",
-      "light-pastel": "demo-light.mp4"
+      "light-pastel": "demo-light.mp4",
+      "terminal-classic": "demo-terminal.mp4",
+      "pastel-classic": "demo-pastel.mp4"
+    },
+    "themeVariants": {
+      "terminal-dark": {
+        "label": "暖黑 / Warm Ink",
+        "config": "config-dark.json",
+        "page": "live-dark.html",
+        "video": "demo.mp4",
+        "poster": "poster.png",
+        "videoReady": true
+      },
+      "light-pastel": {
+        "label": "暖纸 / Warm Paper",
+        "config": "config-light.json",
+        "page": "live-light.html",
+        "video": "demo-light.mp4",
+        "poster": "poster-light.png",
+        "videoReady": true
+      },
+      "terminal-classic": {
+        "label": "经典终端 / Classic Terminal",
+        "config": "config-terminal.json",
+        "page": "live-terminal.html",
+        "video": "demo-terminal.mp4",
+        "poster": "poster-terminal.png",
+        "videoReady": true
+      },
+      "pastel-classic": {
+        "label": "经典粉彩 / Classic Pastel",
+        "config": "config-pastel.json",
+        "page": "live-pastel.html",
+        "video": "demo-pastel.mp4",
+        "poster": "poster-pastel.png",
+        "videoReady": true
+      }
     }
   },
   {
@@ -408,7 +516,43 @@
     "lightVideoReady": true,
     "videos": {
       "terminal-dark": "demo.mp4",
-      "light-pastel": "demo-light.mp4"
+      "light-pastel": "demo-light.mp4",
+      "terminal-classic": "demo-terminal.mp4",
+      "pastel-classic": "demo-pastel.mp4"
+    },
+    "themeVariants": {
+      "terminal-dark": {
+        "label": "暖黑 / Warm Ink",
+        "config": "config-dark.json",
+        "page": "live-dark.html",
+        "video": "demo.mp4",
+        "poster": "poster.png",
+        "videoReady": true
+      },
+      "light-pastel": {
+        "label": "暖纸 / Warm Paper",
+        "config": "config-light.json",
+        "page": "live-light.html",
+        "video": "demo-light.mp4",
+        "poster": "poster-light.png",
+        "videoReady": true
+      },
+      "terminal-classic": {
+        "label": "经典终端 / Classic Terminal",
+        "config": "config-terminal.json",
+        "page": "live-terminal.html",
+        "video": "demo-terminal.mp4",
+        "poster": "poster-terminal.png",
+        "videoReady": true
+      },
+      "pastel-classic": {
+        "label": "经典粉彩 / Classic Pastel",
+        "config": "config-pastel.json",
+        "page": "live-pastel.html",
+        "video": "demo-pastel.mp4",
+        "poster": "poster-pastel.png",
+        "videoReady": true
+      }
     }
   },
   {
@@ -510,7 +654,43 @@
     "lightVideoReady": true,
     "videos": {
       "terminal-dark": "demo.mp4",
-      "light-pastel": "demo-light.mp4"
+      "light-pastel": "demo-light.mp4",
+      "terminal-classic": "demo-terminal.mp4",
+      "pastel-classic": "demo-pastel.mp4"
+    },
+    "themeVariants": {
+      "terminal-dark": {
+        "label": "暖黑 / Warm Ink",
+        "config": "config-dark.json",
+        "page": "live-dark.html",
+        "video": "demo.mp4",
+        "poster": "poster.png",
+        "videoReady": true
+      },
+      "light-pastel": {
+        "label": "暖纸 / Warm Paper",
+        "config": "config-light.json",
+        "page": "live-light.html",
+        "video": "demo-light.mp4",
+        "poster": "poster-light.png",
+        "videoReady": true
+      },
+      "terminal-classic": {
+        "label": "经典终端 / Classic Terminal",
+        "config": "config-terminal.json",
+        "page": "live-terminal.html",
+        "video": "demo-terminal.mp4",
+        "poster": "poster-terminal.png",
+        "videoReady": true
+      },
+      "pastel-classic": {
+        "label": "经典粉彩 / Classic Pastel",
+        "config": "config-pastel.json",
+        "page": "live-pastel.html",
+        "video": "demo-pastel.mp4",
+        "poster": "poster-pastel.png",
+        "videoReady": true
+      }
     }
   },
   {
@@ -602,7 +782,43 @@
     "lightVideoReady": true,
     "videos": {
       "terminal-dark": "demo.mp4",
-      "light-pastel": "demo-light.mp4"
+      "light-pastel": "demo-light.mp4",
+      "terminal-classic": "demo-terminal.mp4",
+      "pastel-classic": "demo-pastel.mp4"
+    },
+    "themeVariants": {
+      "terminal-dark": {
+        "label": "暖黑 / Warm Ink",
+        "config": "config-dark.json",
+        "page": "live-dark.html",
+        "video": "demo.mp4",
+        "poster": "poster.png",
+        "videoReady": true
+      },
+      "light-pastel": {
+        "label": "暖纸 / Warm Paper",
+        "config": "config-light.json",
+        "page": "live-light.html",
+        "video": "demo-light.mp4",
+        "poster": "poster-light.png",
+        "videoReady": true
+      },
+      "terminal-classic": {
+        "label": "经典终端 / Classic Terminal",
+        "config": "config-terminal.json",
+        "page": "live-terminal.html",
+        "video": "demo-terminal.mp4",
+        "poster": "poster-terminal.png",
+        "videoReady": true
+      },
+      "pastel-classic": {
+        "label": "经典粉彩 / Classic Pastel",
+        "config": "config-pastel.json",
+        "page": "live-pastel.html",
+        "video": "demo-pastel.mp4",
+        "poster": "poster-pastel.png",
+        "videoReady": true
+      }
     }
   },
   {
@@ -752,7 +968,43 @@
     "lightVideoReady": true,
     "videos": {
       "terminal-dark": "demo.mp4",
-      "light-pastel": "demo-light.mp4"
+      "light-pastel": "demo-light.mp4",
+      "terminal-classic": "demo-terminal.mp4",
+      "pastel-classic": "demo-pastel.mp4"
+    },
+    "themeVariants": {
+      "terminal-dark": {
+        "label": "暖黑 / Warm Ink",
+        "config": "config-dark.json",
+        "page": "live-dark.html",
+        "video": "demo.mp4",
+        "poster": "poster.png",
+        "videoReady": true
+      },
+      "light-pastel": {
+        "label": "暖纸 / Warm Paper",
+        "config": "config-light.json",
+        "page": "live-light.html",
+        "video": "demo-light.mp4",
+        "poster": "poster-light.png",
+        "videoReady": true
+      },
+      "terminal-classic": {
+        "label": "经典终端 / Classic Terminal",
+        "config": "config-terminal.json",
+        "page": "live-terminal.html",
+        "video": "demo-terminal.mp4",
+        "poster": "poster-terminal.png",
+        "videoReady": true
+      },
+      "pastel-classic": {
+        "label": "经典粉彩 / Classic Pastel",
+        "config": "config-pastel.json",
+        "page": "live-pastel.html",
+        "video": "demo-pastel.mp4",
+        "poster": "poster-pastel.png",
+        "videoReady": true
+      }
     }
   },
   {
@@ -867,7 +1119,43 @@
     "lightVideoReady": true,
     "videos": {
       "terminal-dark": "demo.mp4",
-      "light-pastel": "demo-light.mp4"
+      "light-pastel": "demo-light.mp4",
+      "terminal-classic": "demo-terminal.mp4",
+      "pastel-classic": "demo-pastel.mp4"
+    },
+    "themeVariants": {
+      "terminal-dark": {
+        "label": "暖黑 / Warm Ink",
+        "config": "config-dark.json",
+        "page": "live-dark.html",
+        "video": "demo.mp4",
+        "poster": "poster.png",
+        "videoReady": true
+      },
+      "light-pastel": {
+        "label": "暖纸 / Warm Paper",
+        "config": "config-light.json",
+        "page": "live-light.html",
+        "video": "demo-light.mp4",
+        "poster": "poster-light.png",
+        "videoReady": true
+      },
+      "terminal-classic": {
+        "label": "经典终端 / Classic Terminal",
+        "config": "config-terminal.json",
+        "page": "live-terminal.html",
+        "video": "demo-terminal.mp4",
+        "poster": "poster-terminal.png",
+        "videoReady": true
+      },
+      "pastel-classic": {
+        "label": "经典粉彩 / Classic Pastel",
+        "config": "config-pastel.json",
+        "page": "live-pastel.html",
+        "video": "demo-pastel.mp4",
+        "poster": "poster-pastel.png",
+        "videoReady": true
+      }
     }
   }
 ]

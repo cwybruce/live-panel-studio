@@ -50,7 +50,7 @@ def component_lab():
          'data': {'countStart': 0, 'countMax': 24, 'countRate': 24, 'countPeriod': 12}},
     ]
     return {'id': 'component-lab', 'title': '矢量组件实验室', 'category': '组件与角色',
-            'summary': '六种真实可复用 SVG 组件，用深浅两套图形场景展示各自的动画与用途。',
+            'summary': '六种真实可复用 SVG 组件，用四套深浅配色展示各自的动画与用途。',
             'capabilities': ['orb', 'seats', 'donut', 'ribbons', 'ghostSeats', 'kanban', '统一缩放'],
             'learn': ['组件保留真实几何和动画，可通过 JSON 组合与复用。',
                       '标签、示例数值和显现时间都可以配置。',

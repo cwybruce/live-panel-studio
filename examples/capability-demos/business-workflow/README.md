@@ -22,9 +22,9 @@
 
 关键时刻：1s 受理与分流；5s 处理与复核；7s 补齐资料；10s 重新复核
 
-文件：`config.json`（默认配置）、`live.html`（独立动画）、`demo.mp4`（暖黑主题默认角色）、`demo-light.mp4`（暖纸主题默认角色）、`poster.png`。
+文件：`config.json`（默认配置）、`live.html`（独立动画）、`demo.mp4`（暖黑）、`demo-light.mp4`（暖纸）、`demo-terminal.mp4`（经典终端）、`demo-pastel.mp4`（经典粉彩）；四套成片均使用默认角色。
 
-每个示例提供 `config-dark.json` / `config-light.json` 与对应 HTML。播放器主题同时切换场景与界面。
+每个示例提供 `config-dark.json` / `config-light.json` / `config-terminal.json` / `config-pastel.json` 与对应 HTML。播放器主题同时切换场景与界面，导出跟随当前主题。
 
 每个功能块带沿边缘流动的霓虹扫光与渐隐拖尾；在 `effects.neon` 中调整强度、周期与拖尾长度，或将 `enabled` 设为 `false` 关闭。
 

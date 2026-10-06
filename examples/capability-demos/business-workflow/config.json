@@ -37,7 +37,8 @@
       "bl": "#64bed0",
       "pi": "#e776af"
     },
-    "font": "\"LP Sans\",sans-serif"
+    "font": "\"LP Sans\",sans-serif",
+    "variant": "terminal-dark"
   },
   "machines": {
     "policy": {

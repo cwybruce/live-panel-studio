@@ -2,7 +2,8 @@
 
 8 个原创中文 Demo，展示当前引擎能做的流程动画、状态切换、数据组件、角色、主题与导出。
 所有演示使用模拟数据与预设时间线，没有连接真实 Agent、数据库、工单或日志服务。
-全部 8 个场景均有暖黑与暖纸两套原创竖屏视觉：984×1280、细线、局部光感、各自的图形叙事。
+全部 8 个场景均有暖黑、暖纸、经典终端、经典粉彩四套竖屏配色：984×1280、细线、局部光感、各自的图形叙事。
+经典终端与经典粉彩源于上游 skill 原有两套配色；布局、文案和动画沿用当前示例。
 每个功能块的边缘有错开相位的霓虹扫光、渐隐拖尾与局部泛光，当前块更亮；浅色主题降低泛光。
 标题使用 Noto Serif SC，正文 Noto Sans SC，英文与数字 IBM Plex Mono。
 网页嵌入更名的 OFL 字体子集（LP Serif / Sans / Mono），无需安装字体或联网。
@@ -23,7 +24,7 @@
 | 8 | [角色导航与主题](avatar-themes/live.html) | spider / drone, 路径移动, 目标框, 虚线指向, 关键词闪烁, 配色 / 大小 / 步频, 深浅主题, 确定性回放 |
 
 播放器支持暂停、重播、拖动时间轴、0.5/1/2 倍速与关键时刻跳转。
-含角色的场景可切换蜘蛛/机器人；全部示例可切换暖黑与暖纸两种主题。
+含角色的场景可切换蜘蛛/机器人；全部示例可切换四种配色。
 组件实验室的“组件视图”下拉框可放大查看六个组件。
 
 每个目录都含 JSON 配置、独立 HTML、12 秒 MP4、预览图和说明。
@@ -38,6 +39,7 @@
 python scripts/make_capability_demos.py
 python scripts/make_capability_demos.py --render --jobs 2
 python scripts/make_capability_demos.py --render --themes light --jobs 2
+python scripts/make_capability_demos.py --render --themes all --jobs 2
 python scripts/export_demo.py --scene rag-explainer --theme light-pastel --avatar drone --view rag-rerank --out examples/capability-demos/rag-explainer/rerank-light.mp4
 python scripts/verify_capability_demos.py
 ```

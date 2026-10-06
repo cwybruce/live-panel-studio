@@ -23,7 +23,11 @@ from typing import Callable
 import livepanel as lp
 
 DEMO_ROOT = Path(__file__).resolve().parent.parent / 'examples' / 'capability-demos'
-THEMES = ('terminal-dark', 'light-pastel')
+THEME_CONFIGS = {'terminal-dark': 'config-dark.json', 'light-pastel': 'config-light.json',
+                 'terminal-classic': 'config-terminal.json', 'pastel-classic': 'config-pastel.json'}
+THEME_PRESETS = {'terminal-dark': 'terminal-dark', 'light-pastel': 'light-pastel',
+                 'terminal-classic': 'terminal-dark', 'pastel-classic': 'light-pastel'}
+THEMES = tuple(THEME_CONFIGS)
 AVATARS = ('spider', 'drone')
 IDENTIFIER = re.compile(r'^[a-z0-9]+(?:-[a-z0-9]+)*$')
 VIEW_IDENTIFIER = re.compile(r'^[A-Za-z0-9]+(?:-[A-Za-z0-9]+)*$')
@@ -98,13 +102,17 @@ def validate_request(payload: dict, demo_root: Path = DEMO_ROOT) -> ExportSpec:
     if match is None:
         raise ValueError('这个示例不在导出列表中。')
     scene_dir = _inside(root, root / scene)
-    config_path = _inside(root, scene_dir / ('config-light.json' if theme == THEMES[1] else 'config-dark.json'))
+    config_path = _inside(root, scene_dir / THEME_CONFIGS[theme])
     if not config_path.is_file() and theme == THEMES[0]:
         config_path = _inside(root, scene_dir / 'config.json')
     if not config_path.is_file():
         raise ValueError('这个示例的主题配置尚未准备好。')
     with config_path.open(encoding='utf-8') as f:
         config = copy.deepcopy(json.load(f))
+    selected = config.get('theme', {})
+    if (selected.get('preset') != THEME_PRESETS[theme]
+            or selected.get('variant', selected.get('preset')) != theme):
+        raise ValueError('主题配置与所选方案不一致，请重新生成示例。')
     width, height, _, _ = lp.canvas(config)
     if type(width) is not int or type(height) is not int or min(width, height) <= 0 or width % 2 or height % 2:
         raise ValueError('示例画布尺寸无效。')

@@ -1,7 +1,7 @@
 /* A short, tapered light travels around each authored function-block border.
  * Geometry and phase are derived only from seek(t); original state borders stay intact. */
 function installNeonFlow(options){
- var NS='http://www.w3.org/2000/svg',light=TH.preset==='light-pastel';
+ var NS='http://www.w3.org/2000/svg',light=TH.preset==='light-pastel',classic=TH.variant==='terminal-classic';
  function node(tag,attrs,parent){var n=document.createElementNS(NS,tag);Object.keys(attrs).forEach(function(k){n.setAttribute(k,attrs[k])});parent.appendChild(n);return n}
  function positive(value,fallback){value=Number(value);return Number.isFinite(value)&&value>0?value:fallback}
  function wrap(value,length){return ((value%length)+length)%length}
@@ -24,8 +24,8 @@ function installNeonFlow(options){
   var halo=outline({'data-neon-halo':'1','stroke-width':5,filter:'url(#'+filterId+')',opacity:light?.1:.3,'stroke-dasharray':tail+' '+(length-tail)});
   var segments=[],count=8,piece=tail/count;
   for(var j=0;j<count;j++)segments.push(outline({opacity:(.94*Math.pow(1-j/count,1.7)).toFixed(4),'stroke-dasharray':(piece+.5)+' '+(length-piece-.5)}));
-  var tip=outline({stroke:light?color:'#fff1d4','stroke-width':.85,opacity:light?.65:.75,'stroke-dasharray':'12 '+(length-12)});
-  var head=node('circle',{'data-neon-head':'1',r:hero?1.7:1.5,fill:light?color:'#fff5df'},layer);
+  var tip=outline({stroke:light?color:classic?TH.colors.fg:'#fff1d4','stroke-width':.85,opacity:light?.65:.75,'stroke-dasharray':'12 '+(length-12)});
+  var head=node('circle',{'data-neon-head':'1',r:hero?1.7:1.5,fill:light?color:classic?TH.colors.wh:'#fff5df'},layer);
   if(source.hasAttribute('transform'))head.setAttribute('transform',source.getAttribute('transform'));
   tracks.push({source:source,layer:layer,halo:halo,segments:segments,tip:tip,head:head,length:length,tail:tail,piece:piece,period:period,
    phase:wrap(index*.173+(hero?.09:0),1),hero:hero,baseStroke:source.getAttribute('stroke')});

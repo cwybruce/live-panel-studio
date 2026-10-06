@@ -18,10 +18,18 @@ One JSON object. All coordinates are canvas pixels (default 1200x1500, y grows d
 
 ## Flowing neon borders
 
-All eight editorial demos offer `terminal-dark` (warm black) and `light-pastel`
-(warm paper). The palette applies to panels, text, graph surfaces, gradients,
+All eight editorial demos offer four palette variants: `terminal-dark` (warm
+black), `light-pastel` (warm paper), `terminal-classic` (the upstream cool terminal
+colors), and `pastel-classic` (the upstream white and colorful pastel scheme).
+For editorial configs, `theme.variant` selects the semantic palette; `theme.preset`
+remains `terminal-dark` or `light-pastel` for the base renderer. The generator
+writes explicit `theme.colors` for every variant. `theme.colors` overrides are
+still applied by name. This adds color choices without changing layout or fonts.
+The palette applies to panels, text, graph surfaces, gradients,
 actors and reusable component colors. The gallery theme selector also changes
 the surrounding controls without resetting playback time, pause or actor choice.
+The manifest's `themeVariants` records each variant's config, HTML, video, poster,
+and video readiness. Existing warm-theme filenames and CLI IDs remain valid.
 
 Use the local `scripts/preview_server.py` to export the current scheme. The
 gallery's `exportViews` manifest lists named, whitelisted block crops; `full`
@@ -138,8 +146,8 @@ do not connect to a service, model, or live measurement.
 | `ghostSeats` | `topValue`, `topCaption`, `middleValue`, `middleLines:[2 strings]`, `bottomValues:[2 strings]`, `bottomLines:[4 strings]` | `revealPeriod` (35 seconds), `revealStart` (8 seconds), `revealDuration` (4 seconds). Period and duration must be positive; reveal time uses the repeating local period. Geometry stays 25 dashed nodes, three green figures and one amber figure. |
 
 `scripts/editorial_components.py` supplies the current portrait Chinese examples
-of these fields and avatar navigation. The component showcase retains a fixed
-warm-black palette; avatar navigation supports warm-black and paper-light themes.
+of these fields and avatar navigation. The component showcase and avatar
+navigation support all four editorial palette variants.
 
 For cycle-driven guides, optional `drone.timelineMachine` names a `cycle`
 machine. Its `period`, `t0` and `order` then drive route traversal and the focus

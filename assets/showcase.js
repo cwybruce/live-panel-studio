@@ -1,8 +1,9 @@
 (() => {
   'use strict';
 
-  const THEMES = ['terminal-dark', 'light-pastel'];
-  const THEME_NAMES = {'terminal-dark': '暖黑', 'light-pastel': '暖纸'};
+  const THEMES = ['terminal-dark', 'light-pastel', 'terminal-classic', 'pastel-classic'];
+  const THEME_NAMES = {'terminal-dark': '暖黑', 'light-pastel': '暖纸', 'terminal-classic': '经典终端', 'pastel-classic': '经典粉彩'};
+  const THEME_COLORS = {'terminal-dark': '#11110f', 'light-pastel': '#f2efe6', 'terminal-classic': '#14171c', 'pastel-classic': '#fcfcfb'};
   const THEME_KEY = 'live-panel-studio-showcase-theme';
   const $ = (id) => document.getElementById(id);
   let theme = 'terminal-dark';
@@ -87,7 +88,8 @@
       if (item.provenance) card.title = item.provenance;
     } else {
       card.dataset.scene = item.id;
-      links.append(link('交互体验 ↗', `examples/capability-demos/index.html#${encodeURIComponent(item.id)}`), link('下载 MP4 ↓', demoVideo(item), true));
+      links.append(link('交互体验 ↗', `examples/capability-demos/index.html?theme=${theme}#${encodeURIComponent(item.id)}`), link('下载 MP4 ↓', demoVideo(item), true));
+      links.firstChild.classList.add('demo-interactive');
       links.lastChild.classList.add('demo-download');
       setMedia(video, demoVideo(item), demoPoster(item), error);
     }
@@ -97,19 +99,19 @@
   }
 
   function demoVideo(item) {
-    const filename = item.videos?.[theme] || (theme === 'light-pastel' ? 'demo-light.mp4' : 'demo.mp4');
+    const filename = item.themeVariants?.[theme]?.video || item.videos?.[theme] || (theme === 'light-pastel' ? 'demo-light.mp4' : 'demo.mp4');
     return `examples/capability-demos/${item.id}/${filename}`;
   }
 
   function demoPoster(item) {
-    return `examples/capability-demos/${item.id}/${theme === 'light-pastel' ? 'poster-light.png' : 'poster.png'}`;
+    return `examples/capability-demos/${item.id}/${item.themeVariants?.[theme]?.poster || (theme === 'light-pastel' ? 'poster-light.png' : 'poster.png')}`;
   }
 
   function applyTheme(next, announce = true) {
     if (!THEMES.includes(next)) return;
     theme = next;
     document.documentElement.dataset.theme = theme;
-    document.querySelector('meta[name="theme-color"]').content = theme === 'light-pastel' ? '#f2efe6' : '#11110f';
+    document.querySelector('meta[name="theme-color"]').content = THEME_COLORS[theme];
     document.querySelectorAll('[data-theme-choice]').forEach((button) => button.setAttribute('aria-pressed', String(button.dataset.themeChoice === theme)));
     try { localStorage.setItem(THEME_KEY, theme); } catch (_) { /* Private sessions can disable storage. */ }
     demos.forEach((item) => {
@@ -117,6 +119,7 @@
       if (!card) return;
       setMedia(card.querySelector('video'), demoVideo(item), demoPoster(item), card.querySelector('.media-error'));
       card.querySelector('.demo-download').href = asset(demoVideo(item));
+      card.querySelector('.demo-interactive').href = asset(`examples/capability-demos/index.html?theme=${theme}#${encodeURIComponent(item.id)}`);
       card.querySelector('.card-theme').textContent = THEME_NAMES[theme];
     });
     if (announce) $('page-status').textContent = `已切换为${THEME_NAMES[theme]}主题，八个 Demo 将播放对应主题的成片。`;
@@ -223,6 +226,8 @@
 
   wireVideo($('export-video'), $('export-error'));
   try { const saved = localStorage.getItem(THEME_KEY); if (THEMES.includes(saved)) theme = saved; } catch (_) { /* Use the default without storage. */ }
+  const requestedTheme = new URLSearchParams(location.search).get('theme');
+  if (THEMES.includes(requestedTheme)) theme = requestedTheme;
   applyTheme(theme, false);
   document.querySelectorAll('[data-theme-choice]').forEach((button) => button.addEventListener('click', () => applyTheme(button.dataset.themeChoice)));
   Promise.allSettled([loadDemos(), loadCatalog()]);

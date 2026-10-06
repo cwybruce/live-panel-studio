@@ -23,7 +23,7 @@ def scene():
             'capabilities': ['图形叙事', '路径光点', '文档阵列', '评分条', '引用流向', '蜘蛛导览', '确定性回放'],
             'learn': ['先检索候选，再筛选和核对依据；不能只看相关性分数。',
                       '引用应当定位到原文；缺少依据时明确说明。',
-                      '细边界、局部光效和分区微图，支持暖黑与暖纸两种阅读环境。'],
+                      '细边界、局部光效和分区微图，支持暖黑、暖纸、经典终端与经典粉彩四套配色。'],
             'checkpoints': [{'time': 1.5, 'label': '明确问题'}, {'time': 4.5, 'label': '检索片段'},
                             {'time': 7.5, 'label': '重排证据'}, {'time': 10.5, 'label': '依据生成'}],
             'themeSwitch': False, 'visualStyle': 'editorial', 'beforePage': 'live-before.html',

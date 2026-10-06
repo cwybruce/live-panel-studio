@@ -35,7 +35,7 @@ class RequestValidationTests(unittest.TestCase):
     def setUpClass(cls):
         cls.manifest = json.loads((ed.DEMO_ROOT / 'manifest.json').read_text(encoding='utf-8'))
 
-    def test_all_39_blocks_both_themes_and_avatars(self):
+    def test_all_39_blocks_four_themes_and_avatars(self):
         self.assertEqual(sum(len(d['exportViews']) for d in self.manifest), 39)
         for demo in self.manifest:
             for view in demo['exportViews']:
@@ -46,12 +46,13 @@ class RequestValidationTests(unittest.TestCase):
                             spec = ed.validate_request(payload)
                             self.assertEqual(spec.crop, tuple(view['crop']))
                             self.assertEqual((spec.width, spec.height), tuple(view['crop'][2:]))
-                            self.assertEqual(spec.config['theme']['preset'], theme)
+                            self.assertEqual(spec.config['theme'].get('variant', spec.config['theme']['preset']), theme)
+                            self.assertEqual(spec.config['theme']['preset'], ed.THEME_PRESETS[theme])
                             self.assertEqual(spec.config['canvas']['fps'], 30)
                             self.assertEqual(spec.config['canvas']['duration'], 12)
                             self.assertTrue(all(a['avatar'] == avatar for a in actors(spec.config['elements'])))
                             self.assertEqual(spec.filename, f"{demo['id']}-{theme}-{avatar}-{view['id']}.mp4")
-                            path = ed.DEMO_ROOT / demo['id'] / ('config-light.json' if theme == ed.THEMES[1] else 'config-dark.json')
+                            path = ed.DEMO_ROOT / demo['id'] / ed.THEME_CONFIGS[theme]
                             unchanged = json.loads(path.read_text(encoding='utf-8'))
                             self.assertTrue(all(a['avatar'] == 'spider' for a in actors(unchanged['elements'])))
 
@@ -101,7 +102,7 @@ class ExportApiTests(unittest.TestCase):
         for demo in manifest:
             folder = cls.root / demo['id']
             folder.mkdir()
-            for name in ('config.json', 'config-dark.json', 'config-light.json'):
+            for name in ('config.json', *ed.THEME_CONFIGS.values()):
                 shutil.copyfile(ed.DEMO_ROOT / demo['id'] / name, folder / name)
         cls.bytes = b'fake-video-bytes-for-http-only'
         cls.fail_next = threading.Event()

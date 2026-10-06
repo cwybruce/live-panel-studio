@@ -16,7 +16,7 @@ import os
 from pathlib import Path
 import subprocess
 
-from export_demo import (DEMO_ROOT, DURATION, FPS, THEMES, ExportError,
+from export_demo import (DEMO_ROOT, DURATION, FPS, THEMES, THEME_CONFIGS, ExportError,
                          _executable, validate_request, verify_video)
 
 REPORT = DEMO_ROOT / 'export-verification.json'
@@ -46,8 +46,9 @@ def _source_check(job, ffmpeg, ffprobe):
     demo, theme, spec, video = job
     info = verify_video(video, spec.source_width, spec.source_height, ffmpeg, ffprobe)
     return {'scene': demo['id'], 'theme': theme, 'avatar': 'spider',
-            'config': demo['id'] + ('/config-light.json' if theme == THEMES[1] else '/config-dark.json'),
+            'config': demo['id'] + '/' + THEME_CONFIGS[theme],
             'configTheme': spec.config.get('theme', {}).get('preset'),
+            'configVariant': spec.config.get('theme', {}).get('variant', theme),
             'sourceVideo': _relative(video), 'passed': True, **info}
 
 
@@ -115,7 +116,7 @@ def run():
             for theme in THEMES:
                 spec = validate_request({'scene': demo['id'], 'theme': theme,
                                          'avatar': 'spider', 'view': 'full'})
-                filename = 'demo-light.mp4' if theme == THEMES[1] else 'demo.mp4'
+                filename = demo['themeVariants'][theme]['video']
                 video = _path(demo['id'], filename)
                 pending = video.with_name(video.stem + '.pending.mp4')
                 if not video.is_file() or not video.stat().st_size or pending.exists():
@@ -126,7 +127,7 @@ def run():
                                          'avatar': 'spider', 'view': view['id']})
                 block_jobs.append((demo, view, spec, _path(demo['id'], 'demo-light.mp4')))
         if unfinished:
-            raise ValueError('Wait for all 16 full videos to finish rendering: ' + ', '.join(unfinished))
+            raise ValueError(f'Wait for all {EXPECTED_DEMOS * len(THEMES)} full videos to finish rendering: ' + ', '.join(unfinished))
         ffmpeg = _executable(['ffmpeg'], 'ffmpeg')
         ffprobe = _executable(['ffprobe'], 'ffprobe')
         with ThreadPoolExecutor(max_workers=WORKERS) as pool:
@@ -134,7 +135,7 @@ def run():
             for future in as_completed(futures):
                 info = future.result()
                 report['fullSources'].append(info)
-                print(f"SOURCE {len(report['fullSources'])}/16 {info['scene']} {info['theme']} PASS", flush=True)
+                print(f"SOURCE {len(report['fullSources'])}/{len(source_jobs)} {info['scene']} {info['theme']} PASS", flush=True)
         with ThreadPoolExecutor(max_workers=WORKERS) as pool:
             futures = {pool.submit(_crop_check, job, ffmpeg, ffprobe): job for job in block_jobs}
             for future in as_completed(futures):
@@ -148,7 +149,7 @@ def run():
         report['realRendererSample'] = _sample()
         report['fullVideoCount'] = len(report['fullSources'])
         report['blockCount'] = len(report['blocks'])
-        report['passed'] = (len(report['fullSources']) == 16 and len(report['blocks']) == EXPECTED_BLOCKS
+        report['passed'] = (len(report['fullSources']) == EXPECTED_DEMOS * len(THEMES) and len(report['blocks']) == EXPECTED_BLOCKS
                             and all(b['passed'] for b in report['blocks'])
                             and all(s['passed'] for s in report['fullSources']))
         report['status'] = 'complete' if report['passed'] else 'failed'
