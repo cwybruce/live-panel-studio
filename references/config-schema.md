@@ -1,6 +1,6 @@
 # Config schema
 
-One JSON object. All coordinates are canvas pixels (default 1200x1500, y grows downward). Colour names refer to `theme.colors`. Text is monospace; Latin glyphs are 0.6 em wide, CJK glyphs two cells.
+One JSON object. All coordinates are canvas pixels (default 1200x1500, y grows downward). Colour names refer to `theme.colors`. Generic terminal text is monospace: Latin glyphs are 0.6 em wide and CJK glyphs two cells. Authored editorial scenes also use the bundled LP Serif and LP Sans fonts; terminal presentation applies monospace text to the supported scene components.
 
 ## Top level
 
@@ -14,7 +14,67 @@ One JSON object. All coordinates are canvas pixels (default 1200x1500, y grows d
 | `credit` | text element for the source/credit line: `{text, y, size?, c?}` (default 12 px, centred, dim) |
 | `machines` | named state machines, see below |
 | `elements` | drawn in order (later = on top) |
+| `presentation` | optional `{style:"diagram"|"terminal", sceneId?, title?, command?, events:[{t,actor,text}]}` for the eight authored editorial scenes; omitted means Diagram, see below |
 | `effects` | optional `{neon:{enabled, intensity, period, heroPeriod, tail}}`; flowing light on authored editorial function-block borders, see below |
+
+## Presentation styles
+
+Presentation and palette are independent. The eight authored editorial scenes
+support `diagram` (the original composition, default) and `terminal` (a complete
+macOS-style terminal window). Each supports all four `theme.variant` values. The
+terminal style is a visual presentation and does not require macOS; its title bar,
+ASCII block borders, command prompt and log rows are rendered into the same
+self-contained HTML and exported video. The underlying scene geometry and named
+block-crop coordinates are preserved.
+
+```json
+"presentation": {
+  "style": "terminal",
+  "sceneId": "rag-explainer",
+  "title": "~/motion-diagram-studio/rag-explainer — zsh",
+  "command": "python scripts/render.py --config examples/capability-demos/rag-explainer/config-console-terminal.json",
+  "events": [
+    {"t": 0, "actor": "studio", "text": "演示启动 · 预设模拟"},
+    {"t": 3, "actor": "rag", "text": "演示关键点：重排证据"}
+  ]
+}
+```
+
+`events` are authored simulated messages, not an operating-system terminal or a
+live process log. `t` is seconds on the scene timeline; only finite event times
+from 0 up to (but excluding) `canvas.duration` are displayed. Rows are sorted by
+`t` and the two latest visible messages are shown. Command typing, spinners,
+logs and cursor blinking are pure functions of `seek(t)`, following replay,
+scrubbing and frame-by-frame export. The generator derives events from the demo's
+preauthored checkpoints and adds an explicit simulation label.
+
+The manifest records files in
+`styleVariants[style].themeVariants[theme]` (`config`, `page`, `video`, `poster`,
+`videoReady`). Its legacy `themeVariants` remains the Diagram mapping. Terminal
+files use the independent names `config-console-{dark|light|terminal|pastel}.json`,
+`live-console-*.html`, `demo-console-*.mp4` and `poster-console-*.png`.
+
+Use `?style=terminal&theme=terminal-classic#rag-explainer` in the gallery URL, or
+`?style=terminal&theme=terminal-classic` on the homepage. The homepage stores
+independent browser preferences, with URL values taking precedence. The gallery
+keeps both choices in its URL. First visits default to Diagram. Existing theme
+IDs and original filenames remain valid.
+
+```bash
+# Terminal presentation, all four palettes (32 complete videos)
+python scripts/make_capability_demos.py --render --styles terminal --themes all --jobs 2
+# Both presentations, all four palettes (64 complete videos)
+python scripts/make_capability_demos.py --render --styles both --themes all --jobs 2
+# A single full terminal export
+python scripts/export_demo.py --scene rag-explainer --style terminal --theme terminal-classic --avatar spider --view full --out rag-console.mp4
+```
+
+`--styles diagram` and `--style diagram` are the defaults. The existing
+`--themes both` selects the original Warm Ink / Warm Paper palette pair;
+`--styles both` selects two presentations. A named block export retains its
+original content crop and glow margin, without the outer terminal window shell;
+`--view full` includes the complete terminal presentation. Retained reference and
+pre-rendered block videos keep their original styles.
 
 ## Flowing neon borders
 
@@ -28,13 +88,14 @@ still applied by name. This adds color choices without changing layout or fonts.
 The palette applies to panels, text, graph surfaces, gradients,
 actors and reusable component colors. The gallery theme selector also changes
 the surrounding controls without resetting playback time, pause or actor choice.
-The manifest's `themeVariants` records each variant's config, HTML, video, poster,
-and video readiness. Existing warm-theme filenames and CLI IDs remain valid.
+The manifest's `styleVariants` maps presentation styles to these palette variants;
+the legacy `themeVariants` contains the original Diagram files. Existing
+warm-theme filenames and CLI IDs remain valid.
 
 Use the local `scripts/preview_server.py` to export the current scheme. The
 gallery's `exportViews` manifest lists named, whitelisted block crops; `full`
 exports the entire Demo. Blocks retain a 12px glow margin, even dimensions and
-the entire 12-second timeline. Theme and actor are applied to a copied config;
+the entire 12-second timeline. Style, theme and actor are applied to a copied config;
 the source files are retained. `scripts/export_demo.py` provides the same export
 as a CLI, e.g. `--scene rag-explainer --theme light-pastel --avatar drone
 --view rag-rerank --out rerank.mp4`.

@@ -4,7 +4,7 @@
 
 把架构与流程，做成会动的图解。支持交互网页与 MP4 视频导出。
 
-基于 [live-panel-skill](https://github.com/ythx-101/live-panel-skill)，将 JSON 配置变成动态示意图、交互网页与 MP4 视频，提供八个原创中文 Demo、四套配色、动态角色与功能块独立导出。
+基于 [live-panel-skill](https://github.com/ythx-101/live-panel-skill)，将 JSON 配置变成动态示意图、交互网页与 MP4 视频，提供八个原创中文 Demo、原版图解与 macOS 终端两种样式、四套配色、动态角色与功能块独立导出。
 
 由 @sycbruce 独立扩展和维护，非上游官方项目。本项目原名 Live Panel Studio。
 
@@ -12,9 +12,9 @@
 
 **[在线体验与视频库](https://cwybruce.github.io/motion-diagram-studio/)** · [交互体验馆](https://cwybruce.github.io/motion-diagram-studio/examples/capability-demos/index.html) · [功能块导出案例](https://cwybruce.github.io/motion-diagram-studio/#exports)
 
-网页可直接播放 8 个 Demo 的四套配色成片、初期复刻与蜘蛛更新视频，并浏览 39 个功能块成片及 3 个浅色机器人导出案例。支持播放、拖动进度和 MP4 下载；生成新方案请运行下方本地服务。
+网页可直接播放 8 个 Demo × 2 种样式 × 4 套配色的 **64 段完整成片**、初期复刻与蜘蛛更新视频，并浏览 39 个功能块成片及 3 个浅色机器人导出案例。支持播放、拖动进度和 MP4 下载；生成新方案请运行下方本地服务。
 
-默认源码检出包含配置、HTML、GIF 和海报，**不含预制 MP4**；视频通过固定版本 [media-v2 Release](https://github.com/cwybruce/motion-diagram-studio/releases/tag/media-v2) 下载。在线网站在部署时恢复媒体，现有播放与下载链接保持不变；本地使用可按下方命令恢复成片。旧 `media-v1` 仍保留，可配合对应版本的源码与清单使用。详见 [媒体分发与迁移说明](docs/media-distribution.md)。
+默认源码检出包含配置、HTML、GIF 和海报，**不含预制 MP4**；视频通过固定版本 [media-v3 Release](https://github.com/cwybruce/motion-diagram-studio/releases/tag/media-v3) 下载。在线网站在部署时恢复媒体，现有播放与下载链接保持不变；本地使用可按下方命令恢复成片。旧 `media-v1`、`media-v2` 仍保留，可配合对应版本的源码与清单使用。详见 [媒体分发与迁移说明](docs/media-distribution.md)。
 
 ## 动态 Demo
 
@@ -30,12 +30,22 @@
 | [![RAG 证据讲解：经典终端动态预览](assets/readme/rag-explainer-terminal.gif)](https://cwybruce.github.io/motion-diagram-studio/examples/capability-demos/rag-explainer/demo-terminal.mp4) | [![RAG 证据讲解：经典粉彩动态预览](assets/readme/rag-explainer-pastel.gif)](https://cwybruce.github.io/motion-diagram-studio/examples/capability-demos/rag-explainer/demo-pastel.mp4) |
 | [▶ 完整 MP4 · 12 秒](https://cwybruce.github.io/motion-diagram-studio/examples/capability-demos/rag-explainer/demo-terminal.mp4) | [▶ 完整 MP4 · 12 秒](https://cwybruce.github.io/motion-diagram-studio/examples/capability-demos/rag-explainer/demo-pastel.mp4) |
 
+### macOS 终端样式
+
+窗口标题栏、等宽信息与预设日志组成完整的终端呈现；它是一种展示样式，可以在 Windows 浏览和导出。样式与配色分别选择，**不增加第五套配色**。
+
+| RAG · macOS 终端 · 经典终端配色 | 多 Agent · macOS 终端 · 经典终端配色 |
+| --- | --- |
+| [![RAG macOS 终端动态预览](assets/readme/rag-explainer-console.gif)](https://cwybruce.github.io/motion-diagram-studio/examples/capability-demos/rag-explainer/demo-console-terminal.mp4) | [![多 Agent macOS 终端动态预览](assets/readme/agent-team-console.gif)](https://cwybruce.github.io/motion-diagram-studio/examples/capability-demos/agent-team/demo-console-terminal.mp4) |
+| [▶ 完整 MP4 · 12 秒](https://cwybruce.github.io/motion-diagram-studio/examples/capability-demos/rag-explainer/demo-console-terminal.mp4) · [交互体验](https://cwybruce.github.io/motion-diagram-studio/examples/capability-demos/index.html?style=terminal&theme=terminal-classic#rag-explainer) | [▶ 完整 MP4 · 12 秒](https://cwybruce.github.io/motion-diagram-studio/examples/capability-demos/agent-team/demo-console-terminal.mp4) · [交互体验](https://cwybruce.github.io/motion-diagram-studio/examples/capability-demos/index.html?style=terminal&theme=terminal-classic#agent-team) |
+
 ## 能做什么
 
 - **8 个原创中文 Demo**：RAG 证据讲解、多 Agent 交接、请求与缓存、知识卡、工单流转、故障恢复、矢量组件、角色导航。
+- **两种独立样式**：默认 `diagram` 原版图解；`terminal` 提供 macOS 风格的完整终端呈现。首页与体验馆可切换样式，八个场景均支持四套配色，合计 **64 段整图视频**。
 - **四套配色方案**：暖黑、暖纸、经典终端、经典粉彩，均使用 984 × 1280 竖屏排版与内嵌中文字体；每个功能块有流动的霓虹边缘、拖尾与局部泛光。
 - **交互播放**：暂停、重播、时间轴拖动、关键时刻跳转、0.5 / 1 / 2 倍速；含角色的场景支持蜘蛛与机器人切换。
-- **独立 MP4 导出**：每个 Demo 可整段导出，也可单独导出内部功能块，共 **39 个命名区域**。导出按当前主题、角色与范围生成新文件。
+- **独立 MP4 导出**：每个 Demo 可整段导出，也可单独导出内部功能块，共 **39 个命名区域**。导出按当前样式、主题、角色与范围生成新文件。
 - **确定性回放**：动画由 `window.seek(t)` 驱动，浏览器预览和逐帧渲染使用同一时间线。
 - **可修改的 JSON 和 SVG**：配置文本、数据、配色与时间线，扩展组件或重新设计场景。
 
@@ -49,12 +59,12 @@ Demo 中的事件、指标、日志和数据均为**预设模拟**，没有连�
 
 | 配色 | 主题 ID | 风格与在线体验 |
 | --- | --- | --- |
-| 暖黑 | `terminal-dark` | 暖黑底、金橙色强调；[打开 RAG](https://cwybruce.github.io/motion-diagram-studio/examples/capability-demos/index.html?theme=terminal-dark#rag-explainer) |
-| 暖纸 | `light-pastel` | 米白纸底、柔和暖色；[打开 RAG](https://cwybruce.github.io/motion-diagram-studio/examples/capability-demos/index.html?theme=light-pastel#rag-explainer) |
-| 经典终端 | `terminal-classic` | 冷灰黑底、青 / 蓝 / 绿 / 紫强调；[打开 RAG](https://cwybruce.github.io/motion-diagram-studio/examples/capability-demos/index.html?theme=terminal-classic#rag-explainer) |
-| 经典粉彩 | `pastel-classic` | 白底、蓝 / 黄 / 橙 / 紫 / 红色分区；[打开 RAG](https://cwybruce.github.io/motion-diagram-studio/examples/capability-demos/index.html?theme=pastel-classic#rag-explainer) |
+| 暖黑 | `terminal-dark` | 暖黑底、金橙色强调；[打开 RAG](https://cwybruce.github.io/motion-diagram-studio/examples/capability-demos/index.html?style=diagram&theme=terminal-dark#rag-explainer) |
+| 暖纸 | `light-pastel` | 米白纸底、柔和暖色；[打开 RAG](https://cwybruce.github.io/motion-diagram-studio/examples/capability-demos/index.html?style=diagram&theme=light-pastel#rag-explainer) |
+| 经典终端 | `terminal-classic` | 冷灰黑底、青 / 蓝 / 绿 / 紫强调；[打开 RAG](https://cwybruce.github.io/motion-diagram-studio/examples/capability-demos/index.html?style=diagram&theme=terminal-classic#rag-explainer) |
+| 经典粉彩 | `pastel-classic` | 白底、蓝 / 黄 / 橙 / 紫 / 红色分区；[打开 RAG](https://cwybruce.github.io/motion-diagram-studio/examples/capability-demos/index.html?style=diagram&theme=pastel-classic#rag-explainer) |
 
-主题与角色可以分别选择，整段和功能块导出都使用当前选择的配色。新增配色不改变现有主题 ID 或旧成片文件名。
+样式、配色与角色分别选择，整段和功能块导出使用当前组合。`terminal` 是样式 ID，`terminal-classic` 是配色 ID。首次访问默认原版图解；首页将样式与配色分别保存在浏览器中，URL 参数优先；体验馆将选择保留在 URL 中。例如[打开终端首页](https://cwybruce.github.io/motion-diagram-studio/?style=terminal&theme=terminal-classic)。旧主题 ID 和原版成片文件名继续可用。
 
 ## 快速开始
 
@@ -77,13 +87,15 @@ python scripts/make_capability_demos.py
 python scripts/preview_server.py --port 8779
 ```
 
-打开 **[http://127.0.0.1:8779/index.html](http://127.0.0.1:8779/index.html)**，选择 Demo、主题、角色和导出范围，再点击“导出当前方案”。服务只监听本机，生成的文件保存在 `examples/capability-demos/exports/`。
+打开 **[http://127.0.0.1:8779/index.html](http://127.0.0.1:8779/index.html)**，选择 Demo、样式、配色、角色和导出范围，再点击“导出当前方案”。服务只监听本机，生成的文件保存在 `examples/capability-demos/exports/`。
 
-`download --set all` 恢复全部预制视频，包括 32 段四配色 Demo、旧示例、复刻与功能块案例；只需要 Demo 时用 `--set demos`。现有本地媒体会保留。仅编辑动画或逐帧渲染新 MP4 时，可以跳过媒体下载。迁移保留 Git 历史，普通完整克隆仍会下载旧提交中的视频，所以推荐上面的浅克隆。
+`download --set all` 恢复全部预制视频，共 **112 段 MP4**：64 段两样式四配色 Demo、42 段保留的功能块 / 机器人案例，以及 6 段复刻 / 保留示例；只需要 64 段 Demo 时用 `--set demos`。现有本地媒体会保留。仅编辑动画或逐帧渲染新 MP4 时，可以跳过媒体下载。迁移保留 Git 历史，普通完整克隆仍会下载旧提交中的视频，所以推荐上面的浅克隆。
 
 已生成的独立 HTML 可离线打开，也可部署到静态网站。**从 HTML 文件或静态托管网站浏览时，交互动画可用；生成新的 MP4 需要运行上面的本地 Python 预览服务。** 预生成的视频可直接下载。
 
 ## 示例与导出
+
+下表列出原版图解的四套配色成片。全部八个场景的 macOS 终端成片可在[终端样式视频库](https://cwybruce.github.io/motion-diagram-studio/?style=terminal#demos)切换配色、播放与下载。
 
 | Demo | 场景 | 完整视频 |
 | --- | --- | --- |
@@ -103,43 +115,43 @@ python scripts/preview_server.py --port 8779
 
 [![多 Agent 任务交接动态预览](assets/readme/agent-team-dark.gif)](https://cwybruce.github.io/motion-diagram-studio/examples/capability-demos/agent-team/demo.mp4)
 
-[▶ 完整 MP4](https://cwybruce.github.io/motion-diagram-studio/examples/capability-demos/agent-team/demo.mp4) · [交互体验](https://cwybruce.github.io/motion-diagram-studio/examples/capability-demos/index.html#agent-team)
+[▶ 完整 MP4](https://cwybruce.github.io/motion-diagram-studio/examples/capability-demos/agent-team/demo.mp4) · [交互体验](https://cwybruce.github.io/motion-diagram-studio/examples/capability-demos/index.html?style=diagram#agent-team)
 
 ### 请求与缓存分支
 
 [![请求与缓存分支动态预览](assets/readme/product-request-dark.gif)](https://cwybruce.github.io/motion-diagram-studio/examples/capability-demos/product-request/demo.mp4)
 
-[▶ 完整 MP4](https://cwybruce.github.io/motion-diagram-studio/examples/capability-demos/product-request/demo.mp4) · [交互体验](https://cwybruce.github.io/motion-diagram-studio/examples/capability-demos/index.html#product-request)
+[▶ 完整 MP4](https://cwybruce.github.io/motion-diagram-studio/examples/capability-demos/product-request/demo.mp4) · [交互体验](https://cwybruce.github.io/motion-diagram-studio/examples/capability-demos/index.html?style=diagram#product-request)
 
 ### 短视频知识卡
 
 [![短视频知识卡动态预览](assets/readme/knowledge-card-dark.gif)](https://cwybruce.github.io/motion-diagram-studio/examples/capability-demos/knowledge-card/demo.mp4)
 
-[▶ 完整 MP4](https://cwybruce.github.io/motion-diagram-studio/examples/capability-demos/knowledge-card/demo.mp4) · [交互体验](https://cwybruce.github.io/motion-diagram-studio/examples/capability-demos/index.html#knowledge-card)
+[▶ 完整 MP4](https://cwybruce.github.io/motion-diagram-studio/examples/capability-demos/knowledge-card/demo.mp4) · [交互体验](https://cwybruce.github.io/motion-diagram-studio/examples/capability-demos/index.html?style=diagram#knowledge-card)
 
 ### 业务工单流转
 
 [![业务工单流转动态预览](assets/readme/business-workflow-dark.gif)](https://cwybruce.github.io/motion-diagram-studio/examples/capability-demos/business-workflow/demo.mp4)
 
-[▶ 完整 MP4](https://cwybruce.github.io/motion-diagram-studio/examples/capability-demos/business-workflow/demo.mp4) · [交互体验](https://cwybruce.github.io/motion-diagram-studio/examples/capability-demos/index.html#business-workflow)
+[▶ 完整 MP4](https://cwybruce.github.io/motion-diagram-studio/examples/capability-demos/business-workflow/demo.mp4) · [交互体验](https://cwybruce.github.io/motion-diagram-studio/examples/capability-demos/index.html?style=diagram#business-workflow)
 
 ### 故障与恢复回放
 
 [![故障与恢复回放动态预览](assets/readme/incident-replay-dark.gif)](https://cwybruce.github.io/motion-diagram-studio/examples/capability-demos/incident-replay/demo.mp4)
 
-[▶ 完整 MP4](https://cwybruce.github.io/motion-diagram-studio/examples/capability-demos/incident-replay/demo.mp4) · [交互体验](https://cwybruce.github.io/motion-diagram-studio/examples/capability-demos/index.html#incident-replay)
+[▶ 完整 MP4](https://cwybruce.github.io/motion-diagram-studio/examples/capability-demos/incident-replay/demo.mp4) · [交互体验](https://cwybruce.github.io/motion-diagram-studio/examples/capability-demos/index.html?style=diagram#incident-replay)
 
 ### 矢量组件实验室
 
 [![矢量组件实验室动态预览](assets/readme/component-lab-dark.gif)](https://cwybruce.github.io/motion-diagram-studio/examples/capability-demos/component-lab/demo.mp4)
 
-[▶ 完整 MP4](https://cwybruce.github.io/motion-diagram-studio/examples/capability-demos/component-lab/demo.mp4) · [交互体验](https://cwybruce.github.io/motion-diagram-studio/examples/capability-demos/index.html#component-lab)
+[▶ 完整 MP4](https://cwybruce.github.io/motion-diagram-studio/examples/capability-demos/component-lab/demo.mp4) · [交互体验](https://cwybruce.github.io/motion-diagram-studio/examples/capability-demos/index.html?style=diagram#component-lab)
 
 ### 角色导航与主题
 
 [![角色导航与主题动态预览](assets/readme/avatar-themes-dark.gif)](https://cwybruce.github.io/motion-diagram-studio/examples/capability-demos/avatar-themes/demo.mp4)
 
-[▶ 完整 MP4](https://cwybruce.github.io/motion-diagram-studio/examples/capability-demos/avatar-themes/demo.mp4) · [交互体验](https://cwybruce.github.io/motion-diagram-studio/examples/capability-demos/index.html#avatar-themes)
+[▶ 完整 MP4](https://cwybruce.github.io/motion-diagram-studio/examples/capability-demos/avatar-themes/demo.mp4) · [交互体验](https://cwybruce.github.io/motion-diagram-studio/examples/capability-demos/index.html?style=diagram#avatar-themes)
 
 </details>
 
@@ -165,13 +177,21 @@ RAG 重排证据区域，暖纸主题、机器人配置。点击预览观看完�
 
 每个目录的源码包含四套配色的配置 JSON、独立 HTML、PNG 预览图和说明；下载媒体后，MP4 恢复到相同目录。暖黑提供 `config-dark.json` / `live-dark.html`，以及默认入口 `config.json` / `live.html`，成片和预览图为 `demo.mp4` / `poster.png`；暖纸使用 `-light` 后缀，经典终端使用 `-terminal` 后缀，经典粉彩使用 `-pastel` 后缀。完整体验说明见 [能力体验馆](examples/capability-demos/README.md)。
 
-重新生成全部四套配色视频：
+macOS 终端样式的文件独立使用 `config-console-{dark|light|terminal|pastel}.json`、`live-console-*.html`、`demo-console-*.mp4` 与 `poster-console-*.png`，不会替换上面的原版图解入口。
+
+重新生成原版图解的全部四套配色视频：
 
 ```powershell
-python scripts/make_capability_demos.py --render --themes all --jobs 2
+python scripts/make_capability_demos.py --render --styles diagram --themes all --jobs 2
+
+# 只渲染 macOS 终端样式的 32 段视频
+python scripts/make_capability_demos.py --render --styles terminal --themes all --jobs 2
+
+# 两种样式 × 四套配色：64 段视频
+python scripts/make_capability_demos.py --render --styles both --themes all --jobs 2
 ```
 
-只生成原来的暖黑与暖纸两套时，仍可使用 `--themes both`。
+默认 `--styles diagram` 保留原版图解；`--themes both` 仍表示暖黑与暖纸两套配色，和 `--styles both` 的两种样式不同。
 
 命令行也可独立导出一个 Demo 或其中一个功能块：
 
@@ -185,11 +205,14 @@ python scripts/export_demo.py --scene rag-explainer --theme light-pastel --avata
 # 经典终端配色：多 Agent 整段
 python scripts/export_demo.py --scene agent-team --theme terminal-classic --avatar spider --view full --out examples/capability-demos/exports/agent-terminal.mp4
 
+# macOS 终端样式：RAG 整段、经典终端配色
+python scripts/export_demo.py --scene rag-explainer --style terminal --theme terminal-classic --avatar spider --view full --out examples/capability-demos/exports/rag-console.mp4
+
 # 经典粉彩配色：RAG 重排功能块
 python scripts/export_demo.py --scene rag-explainer --theme pastel-classic --avatar drone --view rag-rerank --out examples/capability-demos/exports/rag-rerank-pastel.mp4
 ```
 
-功能块按实际画布裁剪，保留内部动画、文字和边缘泛光；可用的场景及区域 ID 记录在 [`manifest.json`](examples/capability-demos/manifest.json) 中。原有配置与成片不会被当前方案导出覆盖。
+功能块按命名区域的原内容坐标裁剪，保留内部动画、文字和边缘泛光；终端样式的单块导出不包含外围窗口壳，整图导出包含完整终端呈现。可用的场景及区域 ID 记录在 [`manifest.json`](examples/capability-demos/manifest.json) 中。原有配置与成片不会被当前方案导出覆盖。
 
 ## 做自己的场景
 
@@ -223,7 +246,7 @@ python scripts/verify_demo_exports.py
 
 ## 来源、许可与致谢
 
-本项目基于 [ythx-101/live-panel-skill](https://github.com/ythx-101/live-panel-skill)，扩展起点为 [`8a70aa2`](https://github.com/ythx-101/live-panel-skill/commit/8a70aa2c4e3fac68b40e2472407e32e2637a7a36)。保留上游代码的 **MIT License** 和版权声明；在此基础上新增能力体验馆、原创中文场景、SVG 组件、角色、四套配色和本地功能块导出。
+本项目基于 [ythx-101/live-panel-skill](https://github.com/ythx-101/live-panel-skill)，扩展起点为 [`8a70aa2`](https://github.com/ythx-101/live-panel-skill/commit/8a70aa2c4e3fac68b40e2472407e32e2637a7a36)。保留上游代码的 **MIT License** 和版权声明；在此基础上新增能力体验馆、原创中文场景、SVG 组件、角色、两种样式、四套配色和本地功能块导出。
 
 上游的灵感及保留示例各有来源：
 
@@ -236,14 +259,14 @@ MIT 许可覆盖代码，不将上述第三方视觉设计、文字、数据或�
 
 ## 静态网站与视频库维护
 
-仓库根目录的 `index.html`、`assets/showcase.css` 和 `assets/showcase.js` 构成静态首页。八个 Demo 读取 `examples/capability-demos/manifest.json`，复刻与导出案例读取 [`media/catalog.json`](media/catalog.json)。视频是部署产物中的真实 MP4，恢复原相对路径后与网页同源播放，使用浏览器原生播放器；默认不预加载整段视频，播放一个视频时会暂停其他视频。
+仓库根目录的 `index.html`、`assets/showcase.css` 和 `assets/showcase.js` 构成静态首页。八个 Demo 按清单的 `styleVariants[style].themeVariants[theme]` 选择成片，旧 `themeVariants` 继续指向原版图解；清单位于 `examples/capability-demos/manifest.json`。复刻与导出案例读取 [`media/catalog.json`](media/catalog.json)。视频是部署产物中的真实 MP4，恢复原相对路径后与网页同源播放，使用浏览器原生播放器；默认不预加载整段视频，播放一个视频时会暂停其他视频。
 
-GitHub Pages 使用 **GitHub Actions 构建产物部署**：工作流检出源码，从固定 `media-v2` Release 下载 ZIP，校验并恢复 MP4，再上传完整静态网站。Pages 发布来源应选择 **GitHub Actions**。首页或清单更新推送到 `main` 后由工作流部署；不能直接把不含 MP4 的源码目录作为完整视频站点发布。[媒体分发说明](docs/media-distribution.md)列出本地恢复、离线使用与发布顺序。
+GitHub Pages 使用 **GitHub Actions 构建产物部署**：工作流检出源码，从固定 `media-v3` Release 下载 ZIP，校验并恢复 MP4，再上传完整静态网站。Pages 发布来源应选择 **GitHub Actions**。首页或清单更新推送到 `main` 后由工作流部署；不能直接把不含 MP4 的源码目录作为完整视频站点发布。[媒体分发说明](docs/media-distribution.md)列出本地恢复、离线使用与发布顺序。
 
-README 使用从实际成片生成的 GIF 节选展示动画，并链接到完整 MP4。GIF 和海报继续随 Git 保存，MP4 在 Release 分发。重新生成 GIF 前先运行 `python scripts/media_assets.py download --set all` 恢复视频，再运行 `python scripts/make_readme_previews.py`；需要 FFmpeg。更新预制媒体应发布新的不可变 tag / 附件 URL，并更新清单中的 SHA-256；不覆盖 `media-v1`、`media-v2` 已发布附件。
+README 使用从实际成片生成的 GIF 节选展示动画，并链接到完整 MP4。GIF 和海报继续随 Git 保存，MP4 在 Release 分发。重新生成 GIF 前先运行 `python scripts/media_assets.py download --set all` 恢复视频，再运行 `python scripts/make_readme_previews.py`；需要 FFmpeg。更新预制媒体应发布新的不可变 tag / 附件 URL，并更新清单中的 SHA-256；不覆盖 `media-v1`、`media-v2`、`media-v3` 已发布附件。
 
-维护者恢复现有媒体后可用 `python scripts/media_assets.py pack --tag media-v3` 打包下一版本；新片通过 `--include examples/my-demo/demo.mp4` 显式加入，该路径需已存在。打包合并旧清单、仍由 Git 管理的 MP4 和显式加入的文件，不自动扫描用户导出目录；公开版本的 tag 禁止重用。完整发布顺序见 [媒体分发说明](docs/media-distribution.md)。
+维护者恢复现有媒体后可用 `python scripts/media_assets.py pack --tag media-v4` 打包下一版本；新片通过 `--include examples/my-demo/demo.mp4` 显式加入，该路径需已存在。打包合并旧清单、仍由 Git 管理的 MP4 和显式加入的文件，不自动扫描用户导出目录；公开版本的 tag 禁止重用。完整发布顺序见 [媒体分发说明](docs/media-distribution.md)。
 
-`media/exports/` 中 39 个浅色蜘蛛功能块由对应完整成片裁剪，另有 3 个通过渲染器按浅色机器人配置逐帧生成的全段 / 主流程 / 重排区域案例。两种生成方式在视频库明确标注。网站播放和下载已有成片，交互体验馆可调主题、角色与时间线；静态 Pages 不运行 Python 渲染器，生成新 MP4 需本地服务。
+`media/exports/` 中 39 个浅色蜘蛛功能块由对应完整成片裁剪，另有 3 个通过渲染器按浅色机器人配置逐帧生成的全段 / 主流程 / 重排区域案例。两种生成方式在视频库明确标注。网站播放和下载已有成片，交互体验馆可调样式、配色、角色与时间线；静态 Pages 不运行 Python 渲染器，生成新 MP4 需本地服务。
 
 欢迎提交 Issue、改进场景或贡献组件。项目交流与联系方式：**[X / @sycbruce](https://x.com/sycbruce)**。

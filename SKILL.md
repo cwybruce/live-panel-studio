@@ -1,20 +1,20 @@
 ---
 name: motion-diagram-studio
-description: Use when the user wants animated architecture, agent, RAG or business-flow diagrams from JSON, with interactive HTML playback or whole-diagram and block MP4 exports.
+description: Use when the user wants animated architecture, agent, RAG or business-flow diagrams from JSON, with independent Diagram/macOS Terminal styles and four palettes, interactive HTML playback or whole-diagram and block MP4 exports.
 ---
 
 # Motion Diagram Studio · 动态图解工作室
 
 Turn a system description into a continuously animated diagram, an interactive web page and an MP4 video. A complete diagram stays readable while packets, states, logs, counters, neon borders and guide avatars show how the flow works.
 
-This is an independently maintained extension of [live-panel-skill](https://github.com/ythx-101/live-panel-skill) by **[@YuLin807](https://x.com/YuLin807)**, maintained here by **[@sycbruce](https://x.com/sycbruce)**. It adds eight Chinese demos, four palettes, SVG components, spider / robot avatars, interactive playback and local export of whole demos or named blocks. It is not the upstream official project. All bundled demo events and metrics are **scripted simulations**, not live agents or business telemetry.
+This is an independently maintained extension of [live-panel-skill](https://github.com/ythx-101/live-panel-skill) by **[@YuLin807](https://x.com/YuLin807)**, maintained here by **[@sycbruce](https://x.com/sycbruce)**. It adds eight Chinese demos, two presentation styles, four palettes, SVG components, spider / robot avatars, interactive playback and local export of whole demos or named blocks. It is not the upstream official project. All bundled demo events and metrics are **scripted simulations**, not live agents or business telemetry.
 
 > **Design credit.** The upstream terminal look and motion grammar were inspired by **[@thedelost](https://x.com/thedelost)**'s [Codex agent-tree clip](https://x.com/thedelost/status/2105398038026195279), shared through **[@slashui](https://x.com/slashui)**'s [quote-post](https://x.com/slashui/status/2105850132365443528). `examples/codex-agents/` recreates that design; `examples/agent-architecture/` animates 小红书 **@林纾**'s infographic. Their visual designs, layout and wording retain their original rights; keep credits when publishing recreations. See [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md).
 
 ## When to use
 
 - Animate architecture, agent handoffs, RAG evidence, request paths, knowledge cards, ticket workflows or incident recovery.
-- Provide a live page with pause, replay, timeline scrubbing, speed and key-moment controls; switch palettes and supported avatars.
+- Provide a live page with pause, replay, timeline scrubbing, speed and key-moment controls; switch presentation styles, palettes and supported avatars.
 - Render a complete diagram or a named demo block as an MP4 for teaching or project demonstrations.
 - For real telemetry, first define and implement a data integration. The bundled examples and preview service do not provide one.
 
@@ -24,7 +24,7 @@ A JSON config defines canvas dimensions, colors, text, boxes, wires, packet path
 
 Start with `examples/capability-demos/rag-explainer/config.json`, or choose another scene from [the demo guide](examples/capability-demos/README.md): `agent-team`, `product-request`, `knowledge-card`, `business-workflow`, `incident-replay`, `component-lab` or `avatar-themes`.
 
-Upstream configs remain supported: `examples/codex-agents/`, `examples/airbnb/` and `examples/agent-architecture/`. Canvas presets remain `4:5` (1200×1500), `3:4` (1080×1440) and `1:1` (1080×1080); the added demos use 984×1280 compositions. Positions are absolute canvas pixels, so a different aspect ratio needs its own layout. Internal `livepanel` module names retain compatibility and do not change the installed skill name.
+Upstream configs remain supported: `examples/codex-agents/`, `examples/airbnb/` and `examples/agent-architecture/`. Canvas presets remain `4:5` (1200×1500), `3:4` (1080×1440) and `1:1` (1080×1080); the added demos use 984×1280 compositions in both presentation styles. Positions are absolute canvas pixels, so a different aspect ratio needs its own layout. Internal `livepanel` module names retain compatibility and do not change the installed skill name.
 
 ## Four palettes and compatible config fields
 
@@ -35,7 +35,35 @@ Upstream configs remain supported: `examples/codex-agents/`, `examples/airbnb/` 
 | `terminal-classic` | Classic Terminal / 经典终端 |
 | `pastel-classic` | Classic Pastel / 经典粉彩 |
 
-Editorial configs use `theme.variant` for these four palettes. The compatible base-renderer field `theme.preset` remains `terminal-dark` or `light-pastel`; explicit `theme.colors` supplies the selected palette. Use the generated matching config rather than replacing `theme.preset` with a classic variant ID. Theme and avatar are independent: `spider` is the spider and `drone` is the robot. Avatars appear in scenes with actor definitions.
+Editorial configs use `theme.variant` for these four palettes. The compatible base-renderer field `theme.preset` remains `terminal-dark` or `light-pastel`; explicit `theme.colors` supplies the selected palette. Use the generated matching config rather than replacing `theme.preset` with a classic variant ID. Style, theme and avatar are independent: `spider` is the spider and `drone` is the robot. Avatars appear in scenes with actor definitions.
+
+## Two presentation styles
+
+`diagram` is the original Diagram composition and remains the default.
+`terminal` is a complete macOS-style terminal presentation with a window title
+bar, monospace text, ASCII block borders, command typing and log rows. It runs in
+standalone HTML and the Windows renderer; the label describes appearance, not a
+macOS runtime requirement. Every scene supports both styles in all four palettes,
+for **64 complete demo videos**. `terminal` is a style ID; `terminal-classic` is a
+palette ID.
+
+The optional config field `presentation.style` selects the style. Terminal
+configs add `presentation.sceneId`, `title`, `command` and `events`, with each
+scripted event written as `{t, actor, text}`. Events follow the scene's authored
+checkpoints and simulated timeline; they do not run the displayed command or
+connect to a real terminal. See the [config schema](references/config-schema.md).
+
+Original Diagram filenames remain valid. Terminal files use
+`config-console-{dark|light|terminal|pastel}.json`, `live-console-*.html`,
+`demo-console-*.mp4` and `poster-console-*.png`. Read matching paths from
+`styleVariants[style].themeVariants[theme]` in the demo manifest; the legacy
+`themeVariants` remains the Diagram mapping. Keep both controls independent.
+
+To open a specific combination, use
+`http://127.0.0.1:8779/index.html?style=terminal&theme=terminal-classic#rag-explainer`.
+The homepage saves style and palette preferences separately, with URL
+values taking precedence. A first visit defaults to Diagram. Existing recreations
+and the 42 pre-rendered block / robot examples retain their original style.
 
 ## Fixed procedure
 
@@ -55,11 +83,11 @@ python scripts/make_capability_demos.py
 python scripts/preview_server.py --port 8779
 ```
 
-Open `http://127.0.0.1:8779/index.html`. Select a scene, one of four palettes, a supported avatar and an export scope. Playback offers pause, replay, timeline scrubbing, 0.5/1/2× speed and key moments. The component lab also offers six close-up views.
+Open `http://127.0.0.1:8779/index.html`. Select a scene, a presentation style, one of four palettes, a supported avatar and an export scope. Playback offers pause, replay, timeline scrubbing, 0.5/1/2× speed and key moments. The component lab also offers six close-up views.
 
-Pre-rendered MP4s are distributed through versioned Releases. To restore local demo videos, run `python scripts/media_assets.py download --set demos`; use `--set all` for retained examples, recreations and block exports too. Interactive HTML and rendering new videos do not require those pre-rendered files. See [media distribution](docs/media-distribution.md).
+Pre-rendered MP4s are pinned to the immutable `media-v3` Release. To restore the 64 complete demo videos, run `python scripts/media_assets.py download --set demos`; use `--set all` for all 112 videos, including 42 retained block / robot examples and six recreations / retained examples. Keep earlier `media-v1` / `media-v2` attachments with their matching manifests; never overwrite published attachments. The next media-package example uses `media-v4`. Interactive HTML and rendering new videos do not require those pre-rendered files. See [media distribution](docs/media-distribution.md).
 
-The eight demos have **39 named export blocks**. “导出当前方案” exports the full scene or selected block on its complete 12-second timeline, at 30 fps, as H.264 MP4. Blocks are actual canvas crops retaining text, internal animation and a glow margin. The service binds only to `127.0.0.1` and writes new files to `examples/capability-demos/exports/`, preserving source configs and videos.
+The eight demos have **39 named export blocks**. “导出当前方案” exports the full scene or selected block on its complete 12-second timeline, at 30 fps, as H.264 MP4. Blocks are actual canvas crops retaining text, internal animation and a glow margin. Their coordinates remain those of the original content: terminal block exports omit the surrounding window shell, while full exports include it. The service binds only to `127.0.0.1` and writes new files to `examples/capability-demos/exports/`, preserving source configs and videos.
 
 The same export is available from the CLI:
 
@@ -67,11 +95,16 @@ The same export is available from the CLI:
 # Entire RAG demo, Warm Paper, robot
 python scripts/export_demo.py --scene rag-explainer --theme light-pastel --avatar drone --view full --out rag-light.mp4
 
+# Full macOS Terminal, Classic Terminal palette, spider
+python scripts/export_demo.py --scene rag-explainer --style terminal --theme terminal-classic --avatar spider --view full --out rag-console.mp4
+
 # Reranking evidence block, Classic Pastel, robot
 python scripts/export_demo.py --scene rag-explainer --theme pastel-classic --avatar drone --view rag-rerank --out rag-rerank.mp4
 ```
 
-Valid scenes, palette variants and block IDs are listed in [manifest.json](examples/capability-demos/manifest.json). Static hosting supports interactive playback and existing video downloads; rendering a new MP4 requires the local Python service or CLI. For demo-wide verification, run `python scripts/verify_capability_demos.py` and `python scripts/verify_demo_exports.py`; browser / video checks need the installed browser, FFmpeg and `ffprobe`.
+For batch rendering, `python scripts/make_capability_demos.py --render --styles terminal --themes all --jobs 2` renders the 32 terminal videos; use `--styles both` for all 64. `--styles diagram` is the default. Existing `--themes both` means the Warm Ink / Warm Paper palette pair, independent of the two-style option.
+
+Valid scenes, styles, palette variants and block IDs are listed in [manifest.json](examples/capability-demos/manifest.json). Static hosting supports interactive playback and existing video downloads; rendering a new MP4 requires the local Python service or CLI. For demo-wide verification, run `python scripts/verify_capability_demos.py` and `python scripts/verify_demo_exports.py`; browser / video checks need the installed browser, FFmpeg and `ffprobe`.
 
 ## Motion rules in one screen
 
@@ -79,7 +112,7 @@ Valid scenes, palette variants and block IDs are listed in [manifest.json](examp
 
 - **Layout stays fixed.** A readable complete diagram is present at frame 0; state and guide avatars move within it.
 - **Three tempos at once**: fast (packets with trails on every wire, spinners, fast counters), medium (log scrolls with newest line bright and older grey; bars re-roll and flip colour and label past a threshold), slow (side-rail triggers light up one at a time in order, their arrow changes colour and carries a packet, advice is typed out, totals accumulate).
-- **One truth everywhere.** The number in the log is the number on the bar; the trigger lit in the rail is the one the log mentions; counters in the status bar equal counters in boxes. In this engine that holds by construction: log lines are generated from the same state machines as the boxes.
+- **One truth everywhere.** The number in the log is the number on the bar; the trigger lit in the rail is the one the log mentions; counters in the status bar equal counters in boxes. In this engine that holds by construction: scene log lines are generated from the same state machines as the boxes. The optional terminal shell has separate preauthored checkpoint messages, which must accurately label the illustrated stage.
 - **No real data? Say "illustrative".** Fixed facts stay fixed; only the animation's own counters move, and they are labelled.
 - **Neon follows the timeline.** Configure `effects.neon` for sweeping borders, tails and local bloom. Light palettes reduce bloom; text stays sharp.
 
@@ -89,10 +122,10 @@ The page exposes `window.seek(t)`. Every visual is a pure function of `t` (and a
 
 ## Files
 
-- `assets/template.html` - the generic page. `scripts/render.py` - MP4. `scripts/check_frames.py` - checks + PNGs. `scripts/livepanel.py` - shared browser and renderer helpers.
+- `assets/template.html` - the generic page. `assets/terminal-shell.js` - optional terminal presentation for the authored scenes. `scripts/render.py` - MP4. `scripts/check_frames.py` - checks + PNGs. `scripts/livepanel.py` - shared browser and renderer helpers.
 - `scripts/make_capability_demos.py`, `scripts/preview_server.py`, `scripts/export_demo.py` - demo generation, local preview and named exports.
 - `references/motion-grammar.md`, `references/config-schema.md`.
-- `examples/capability-demos/` - eight scenes, four palettes, standalone HTML, JSON configs and export metadata.
+- `examples/capability-demos/` - eight scenes, two styles, four palettes, standalone HTML, JSON configs and export metadata.
 - `examples/codex-agents/`, `examples/airbnb/`, `examples/agent-architecture/` - compatible upstream examples; preserve their individual source credits.
 
 ## Light theme notes

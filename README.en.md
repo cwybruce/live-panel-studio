@@ -4,7 +4,7 @@
 
 Turn architecture and workflows into animated diagrams, interactive HTML and MP4 videos.
 
-Built on [live-panel-skill](https://github.com/ythx-101/live-panel-skill), Motion Diagram Studio turns JSON configurations into animated diagrams, interactive web pages and MP4 videos. It includes eight original Chinese demos, four color schemes, animated avatars and individual block exports.
+Built on [live-panel-skill](https://github.com/ythx-101/live-panel-skill), Motion Diagram Studio turns JSON configurations into animated diagrams, interactive web pages and MP4 videos. It includes eight original Chinese demos, two presentation styles (Diagram and macOS Terminal), four color schemes, animated avatars and individual block exports.
 
 Independently extended and maintained by @sycbruce; not an official upstream project. Formerly named Live Panel Studio.
 
@@ -12,9 +12,9 @@ Maintainer and contact: **[@sycbruce on X](https://x.com/sycbruce)** · [Report 
 
 **[Live website and video library](https://cwybruce.github.io/motion-diagram-studio/)** · [Interactive demo gallery](https://cwybruce.github.io/motion-diagram-studio/examples/capability-demos/index.html) · [Block export examples](https://cwybruce.github.io/motion-diagram-studio/#exports)
 
-The website plays all eight demos in four color schemes, the initial recreation and the spider update. It also presents 39 block videos and three light-theme robot export examples. Playback, seeking and MP4 downloads work online; run the local service below to render a new configuration. The demos and gallery currently use Chinese; this README is available in both languages.
+The website plays **64 complete demo videos: eight scenes × two styles × four color schemes**, the initial recreation and the spider update. It also presents 39 block videos and three light-theme robot export examples. Playback, seeking and MP4 downloads work online; run the local service below to render a new configuration. The demos and gallery currently use Chinese; this README is available in both languages.
 
-The default source checkout includes configurations, HTML, GIFs and posters, **without pre-rendered MP4s**. Videos are distributed through the fixed [media-v2 Release](https://github.com/cwybruce/motion-diagram-studio/releases/tag/media-v2). The website restores media during deployment, preserving existing playback and download links. Restore local videos with the commands below. The earlier `media-v1` remains available for its matching source version and manifest; see the [media distribution and migration guide](docs/media-distribution.md).
+The default source checkout includes configurations, HTML, GIFs and posters, **without pre-rendered MP4s**. Videos are distributed through the fixed [media-v3 Release](https://github.com/cwybruce/motion-diagram-studio/releases/tag/media-v3). The website restores media during deployment, preserving existing playback and download links. Restore local videos with the commands below. The earlier `media-v1` and `media-v2` remain available with their matching source versions and manifests; see the [media distribution and migration guide](docs/media-distribution.md).
 
 ## Animated demos
 
@@ -30,12 +30,22 @@ These looping previews show the first **six seconds** of the actual exported MP4
 | [![RAG evidence walkthrough: Classic Terminal animated preview](assets/readme/rag-explainer-terminal.gif)](https://cwybruce.github.io/motion-diagram-studio/examples/capability-demos/rag-explainer/demo-terminal.mp4) | [![RAG evidence walkthrough: Classic Pastel animated preview](assets/readme/rag-explainer-pastel.gif)](https://cwybruce.github.io/motion-diagram-studio/examples/capability-demos/rag-explainer/demo-pastel.mp4) |
 | [▶ Full MP4 · 12 seconds](https://cwybruce.github.io/motion-diagram-studio/examples/capability-demos/rag-explainer/demo-terminal.mp4) | [▶ Full MP4 · 12 seconds](https://cwybruce.github.io/motion-diagram-studio/examples/capability-demos/rag-explainer/demo-pastel.mp4) |
 
+### macOS Terminal style
+
+A window title bar, monospace information and scripted logs form a complete terminal presentation. This is a visual style that can be viewed and exported on Windows. Style and palette are separate choices; **this is not a fifth color scheme**.
+
+| RAG · macOS Terminal · Classic Terminal palette | Multi-agent · macOS Terminal · Classic Terminal palette |
+| --- | --- |
+| [![RAG macOS Terminal animated preview](assets/readme/rag-explainer-console.gif)](https://cwybruce.github.io/motion-diagram-studio/examples/capability-demos/rag-explainer/demo-console-terminal.mp4) | [![Multi-agent macOS Terminal animated preview](assets/readme/agent-team-console.gif)](https://cwybruce.github.io/motion-diagram-studio/examples/capability-demos/agent-team/demo-console-terminal.mp4) |
+| [▶ Full MP4 · 12 seconds](https://cwybruce.github.io/motion-diagram-studio/examples/capability-demos/rag-explainer/demo-console-terminal.mp4) · [Interactive demo](https://cwybruce.github.io/motion-diagram-studio/examples/capability-demos/index.html?style=terminal&theme=terminal-classic#rag-explainer) | [▶ Full MP4 · 12 seconds](https://cwybruce.github.io/motion-diagram-studio/examples/capability-demos/agent-team/demo-console-terminal.mp4) · [Interactive demo](https://cwybruce.github.io/motion-diagram-studio/examples/capability-demos/index.html?style=terminal&theme=terminal-classic#agent-team) |
+
 ## What it does
 
 - **Eight original Chinese demos:** RAG evidence walkthrough, multi-agent handoffs, requests and caching, knowledge cards, ticket workflows, incident recovery, vector components and avatar navigation.
+- **Two independent styles:** `diagram` remains the default. `terminal` adds a full macOS-style terminal presentation. The homepage and gallery switch styles independently of the four palettes across all eight scenes, giving **64 complete demo videos**.
 - **Four color schemes:** Warm Ink, Warm Paper, Classic Terminal and Classic Pastel. Each uses a 984 × 1280 portrait layout with embedded Chinese fonts and animated neon edges, trails and local glows around functional blocks.
 - **Interactive playback:** pause, replay, seek, jump to key moments and play at 0.5 / 1 / 2× speed. Scenes with avatars support switching between a spider and a robot.
-- **Independent MP4 exports:** export a complete demo or one of its internal blocks, with **39 named regions** in total. Each export renders a new file using the selected theme, avatar and scope.
+- **Independent MP4 exports:** export a complete demo or one of its internal blocks, with **39 named regions** in total. Each export renders a new file using the selected style, theme, avatar and scope.
 - **Deterministic playback:** animation is driven by `window.seek(t)`. Browser previews and frame-by-frame video rendering share the same timeline.
 - **Editable JSON and SVG:** change text, data, colors and timelines, extend components or design your own scenes.
 
@@ -49,12 +59,12 @@ This visual update increases text and semantic-color contrast, keeps inactive-no
 
 | Scheme | Theme ID | Style and live preview |
 | --- | --- | --- |
-| Warm Ink | `terminal-dark` | Warm dark background with gold and orange accents; [open RAG](https://cwybruce.github.io/motion-diagram-studio/examples/capability-demos/index.html?theme=terminal-dark#rag-explainer) |
-| Warm Paper | `light-pastel` | Off-white paper background with soft, warm colors; [open RAG](https://cwybruce.github.io/motion-diagram-studio/examples/capability-demos/index.html?theme=light-pastel#rag-explainer) |
-| Classic Terminal | `terminal-classic` | Cool charcoal background with cyan, blue, green and purple accents; [open RAG](https://cwybruce.github.io/motion-diagram-studio/examples/capability-demos/index.html?theme=terminal-classic#rag-explainer) |
-| Classic Pastel | `pastel-classic` | White background with blue, yellow, orange, purple and red sections; [open RAG](https://cwybruce.github.io/motion-diagram-studio/examples/capability-demos/index.html?theme=pastel-classic#rag-explainer) |
+| Warm Ink | `terminal-dark` | Warm dark background with gold and orange accents; [open RAG](https://cwybruce.github.io/motion-diagram-studio/examples/capability-demos/index.html?style=diagram&theme=terminal-dark#rag-explainer) |
+| Warm Paper | `light-pastel` | Off-white paper background with soft, warm colors; [open RAG](https://cwybruce.github.io/motion-diagram-studio/examples/capability-demos/index.html?style=diagram&theme=light-pastel#rag-explainer) |
+| Classic Terminal | `terminal-classic` | Cool charcoal background with cyan, blue, green and purple accents; [open RAG](https://cwybruce.github.io/motion-diagram-studio/examples/capability-demos/index.html?style=diagram&theme=terminal-classic#rag-explainer) |
+| Classic Pastel | `pastel-classic` | White background with blue, yellow, orange, purple and red sections; [open RAG](https://cwybruce.github.io/motion-diagram-studio/examples/capability-demos/index.html?style=diagram&theme=pastel-classic#rag-explainer) |
 
-Theme and avatar are selected independently. Complete-demo and block exports both use the selected scheme. The new schemes preserve existing theme IDs and video filenames.
+Style, palette and avatar are selected independently. Complete-demo and block exports use the current combination. `terminal` is a style ID; `terminal-classic` is a palette ID. First visits default to Diagram. On the homepage, style and palette preferences use separate browser storage keys, with URL parameters taking precedence. The gallery keeps both choices in its URL. For example, [open the terminal homepage](https://cwybruce.github.io/motion-diagram-studio/?style=terminal&theme=terminal-classic). Existing theme IDs and Diagram video filenames remain valid.
 
 ## Quick start
 
@@ -77,13 +87,15 @@ python scripts/make_capability_demos.py
 python scripts/preview_server.py --port 8779
 ```
 
-Open **[http://127.0.0.1:8779/index.html](http://127.0.0.1:8779/index.html)**. Select a demo, theme, avatar and export scope, then click “导出当前方案” (Export current configuration). The service listens only on localhost and saves generated files in `examples/capability-demos/exports/`.
+Open **[http://127.0.0.1:8779/index.html](http://127.0.0.1:8779/index.html)**. Select a demo, style, palette, avatar and export scope, then click “导出当前方案” (Export current configuration). The service listens only on localhost and saves generated files in `examples/capability-demos/exports/`.
 
-`download --set all` restores every pre-rendered video, including the 32 four-palette demo videos, retained examples, recreations and block examples. Use `--set demos` for only the 32 demo videos. Existing local media is retained. Media downloads can be skipped when editing animation or rendering a new MP4 frame by frame. Git history is preserved, so a complete clone still downloads videos in historical commits; a shallow clone is recommended above.
+`download --set all` restores every pre-rendered video, **112 MP4s** in total: 64 complete two-style/four-palette demos, 42 retained block/robot examples, and six recreations/retained examples. Use `--set demos` for only the 64 complete demo videos. Existing local media is retained. Media downloads can be skipped when editing animation or rendering a new MP4 frame by frame. Git history is preserved, so a complete clone still downloads videos in historical commits; a shallow clone is recommended above.
 
 Generated standalone HTML files can be opened offline or deployed to a static website. **Interactive animation works when viewing an HTML file or a statically hosted website; rendering a new MP4 requires the local Python preview service above.** Existing videos can be downloaded directly.
 
 ## Examples and exports
+
+The table lists Diagram videos in all four palettes. All eight scenes also have macOS Terminal videos in the [terminal video library](https://cwybruce.github.io/motion-diagram-studio/?style=terminal#demos), with palette switching, playback and downloads.
 
 | Demo | Scenario | Full videos |
 | --- | --- | --- |
@@ -103,43 +115,43 @@ Generated standalone HTML files can be opened offline or deployed to a static we
 
 [![Multi-agent handoffs animated preview](assets/readme/agent-team-dark.gif)](https://cwybruce.github.io/motion-diagram-studio/examples/capability-demos/agent-team/demo.mp4)
 
-[▶ Full MP4](https://cwybruce.github.io/motion-diagram-studio/examples/capability-demos/agent-team/demo.mp4) · [Interactive demo](https://cwybruce.github.io/motion-diagram-studio/examples/capability-demos/index.html#agent-team)
+[▶ Full MP4](https://cwybruce.github.io/motion-diagram-studio/examples/capability-demos/agent-team/demo.mp4) · [Interactive demo](https://cwybruce.github.io/motion-diagram-studio/examples/capability-demos/index.html?style=diagram#agent-team)
 
 ### Requests and cache branches
 
 [![Requests and cache branches animated preview](assets/readme/product-request-dark.gif)](https://cwybruce.github.io/motion-diagram-studio/examples/capability-demos/product-request/demo.mp4)
 
-[▶ Full MP4](https://cwybruce.github.io/motion-diagram-studio/examples/capability-demos/product-request/demo.mp4) · [Interactive demo](https://cwybruce.github.io/motion-diagram-studio/examples/capability-demos/index.html#product-request)
+[▶ Full MP4](https://cwybruce.github.io/motion-diagram-studio/examples/capability-demos/product-request/demo.mp4) · [Interactive demo](https://cwybruce.github.io/motion-diagram-studio/examples/capability-demos/index.html?style=diagram#product-request)
 
 ### Short-video knowledge cards
 
 [![Short-video knowledge cards animated preview](assets/readme/knowledge-card-dark.gif)](https://cwybruce.github.io/motion-diagram-studio/examples/capability-demos/knowledge-card/demo.mp4)
 
-[▶ Full MP4](https://cwybruce.github.io/motion-diagram-studio/examples/capability-demos/knowledge-card/demo.mp4) · [Interactive demo](https://cwybruce.github.io/motion-diagram-studio/examples/capability-demos/index.html#knowledge-card)
+[▶ Full MP4](https://cwybruce.github.io/motion-diagram-studio/examples/capability-demos/knowledge-card/demo.mp4) · [Interactive demo](https://cwybruce.github.io/motion-diagram-studio/examples/capability-demos/index.html?style=diagram#knowledge-card)
 
 ### Business ticket workflows
 
 [![Business ticket workflows animated preview](assets/readme/business-workflow-dark.gif)](https://cwybruce.github.io/motion-diagram-studio/examples/capability-demos/business-workflow/demo.mp4)
 
-[▶ Full MP4](https://cwybruce.github.io/motion-diagram-studio/examples/capability-demos/business-workflow/demo.mp4) · [Interactive demo](https://cwybruce.github.io/motion-diagram-studio/examples/capability-demos/index.html#business-workflow)
+[▶ Full MP4](https://cwybruce.github.io/motion-diagram-studio/examples/capability-demos/business-workflow/demo.mp4) · [Interactive demo](https://cwybruce.github.io/motion-diagram-studio/examples/capability-demos/index.html?style=diagram#business-workflow)
 
 ### Incident and recovery replay
 
 [![Incident and recovery replay animated preview](assets/readme/incident-replay-dark.gif)](https://cwybruce.github.io/motion-diagram-studio/examples/capability-demos/incident-replay/demo.mp4)
 
-[▶ Full MP4](https://cwybruce.github.io/motion-diagram-studio/examples/capability-demos/incident-replay/demo.mp4) · [Interactive demo](https://cwybruce.github.io/motion-diagram-studio/examples/capability-demos/index.html#incident-replay)
+[▶ Full MP4](https://cwybruce.github.io/motion-diagram-studio/examples/capability-demos/incident-replay/demo.mp4) · [Interactive demo](https://cwybruce.github.io/motion-diagram-studio/examples/capability-demos/index.html?style=diagram#incident-replay)
 
 ### Vector component lab
 
 [![Vector component lab animated preview](assets/readme/component-lab-dark.gif)](https://cwybruce.github.io/motion-diagram-studio/examples/capability-demos/component-lab/demo.mp4)
 
-[▶ Full MP4](https://cwybruce.github.io/motion-diagram-studio/examples/capability-demos/component-lab/demo.mp4) · [Interactive demo](https://cwybruce.github.io/motion-diagram-studio/examples/capability-demos/index.html#component-lab)
+[▶ Full MP4](https://cwybruce.github.io/motion-diagram-studio/examples/capability-demos/component-lab/demo.mp4) · [Interactive demo](https://cwybruce.github.io/motion-diagram-studio/examples/capability-demos/index.html?style=diagram#component-lab)
 
 ### Avatar navigation and themes
 
 [![Avatar navigation and themes animated preview](assets/readme/avatar-themes-dark.gif)](https://cwybruce.github.io/motion-diagram-studio/examples/capability-demos/avatar-themes/demo.mp4)
 
-[▶ Full MP4](https://cwybruce.github.io/motion-diagram-studio/examples/capability-demos/avatar-themes/demo.mp4) · [Interactive demo](https://cwybruce.github.io/motion-diagram-studio/examples/capability-demos/index.html#avatar-themes)
+[▶ Full MP4](https://cwybruce.github.io/motion-diagram-studio/examples/capability-demos/avatar-themes/demo.mp4) · [Interactive demo](https://cwybruce.github.io/motion-diagram-studio/examples/capability-demos/index.html?style=diagram#avatar-themes)
 
 </details>
 
@@ -165,13 +177,21 @@ The RAG reranking evidence region, using Warm Paper and the robot configuration.
 
 Each demo's source directory contains JSON configurations, standalone HTML, PNG posters and documentation for all four color schemes. Downloading media restores the MP4s to the same directories. Warm Ink provides `config-dark.json` / `live-dark.html`, plus the default `config.json` / `live.html` entry points; its video and poster are `demo.mp4` / `poster.png`. Warm Paper uses the `-light` suffix, Classic Terminal uses `-terminal`, and Classic Pastel uses `-pastel`. See the [demo gallery guide](examples/capability-demos/README.md) for details.
 
-Regenerate videos in all four color schemes:
+macOS Terminal has separate `config-console-{dark|light|terminal|pastel}.json`, `live-console-*.html`, `demo-console-*.mp4` and `poster-console-*.png` files, preserving all existing Diagram entry points.
+
+Regenerate Diagram videos in all four color schemes:
 
 ```powershell
-python scripts/make_capability_demos.py --render --themes all --jobs 2
+python scripts/make_capability_demos.py --render --styles diagram --themes all --jobs 2
+
+# Render only the 32 macOS Terminal videos
+python scripts/make_capability_demos.py --render --styles terminal --themes all --jobs 2
+
+# Both styles × four palettes: 64 videos
+python scripts/make_capability_demos.py --render --styles both --themes all --jobs 2
 ```
 
-To generate only the original Warm Ink and Warm Paper pair, `--themes both` remains available.
+`--styles diagram` is the default. `--themes both` still means the Warm Ink/Warm Paper palette pair, whereas `--styles both` selects both presentation styles.
 
 Export a complete demo or an individual block from the command line:
 
@@ -185,11 +205,14 @@ python scripts/export_demo.py --scene rag-explainer --theme light-pastel --avata
 # Classic Terminal: complete multi-agent demo
 python scripts/export_demo.py --scene agent-team --theme terminal-classic --avatar spider --view full --out examples/capability-demos/exports/agent-terminal.mp4
 
+# macOS Terminal style: complete RAG demo, Classic Terminal palette
+python scripts/export_demo.py --scene rag-explainer --style terminal --theme terminal-classic --avatar spider --view full --out examples/capability-demos/exports/rag-console.mp4
+
 # Classic Pastel: RAG reranking block
 python scripts/export_demo.py --scene rag-explainer --theme pastel-classic --avatar drone --view rag-rerank --out examples/capability-demos/exports/rag-rerank-pastel.mp4
 ```
 
-Blocks are cropped to their actual canvas region while preserving their internal animation, text and edge glow. Available scene and region IDs are recorded in [`manifest.json`](examples/capability-demos/manifest.json). Exporting a current configuration preserves the original configurations and videos.
+Blocks are cropped using the named regions in the original content coordinate system, preserving internal animation, text and edge glow. Terminal block exports omit the surrounding window shell; full-demo exports include the complete terminal presentation. Available scene and region IDs are recorded in [`manifest.json`](examples/capability-demos/manifest.json). Exporting a current configuration preserves the original configurations and videos.
 
 ## Create your own scene
 
@@ -223,7 +246,7 @@ Download media before running complete media acceptance. `media_assets.py check 
 
 ## Sources, licenses and acknowledgments
 
-This project is based on [ythx-101/live-panel-skill](https://github.com/ythx-101/live-panel-skill), starting from upstream commit [`8a70aa2`](https://github.com/ythx-101/live-panel-skill/commit/8a70aa2c4e3fac68b40e2472407e32e2637a7a36). The upstream **MIT License** and copyright notice are retained. Additions include the demo gallery, original Chinese scenes, SVG components, avatars, four color schemes and local block exports.
+This project is based on [ythx-101/live-panel-skill](https://github.com/ythx-101/live-panel-skill), starting from upstream commit [`8a70aa2`](https://github.com/ythx-101/live-panel-skill/commit/8a70aa2c4e3fac68b40e2472407e32e2637a7a36). The upstream **MIT License** and copyright notice are retained. Additions include the demo gallery, original Chinese scenes, SVG components, avatars, two styles, four color schemes and local block exports.
 
 Upstream inspiration and retained examples have their own sources:
 
@@ -236,14 +259,14 @@ The MIT License covers the code; it does not relicense these third-party visual 
 
 ## Static website and video library maintenance
 
-The repository's root `index.html`, `assets/showcase.css` and `assets/showcase.js` form the static homepage. The eight demos use `examples/capability-demos/manifest.json`; recreations and export examples use [`media/catalog.json`](media/catalog.json). Actual MP4s live in the deployment artifact, restored to their original relative paths and played from the same origin with the browser's native player. Full videos are not preloaded by default, and starting one pauses other videos.
+The repository's root `index.html`, `assets/showcase.css` and `assets/showcase.js` form the static homepage. The eight demos select media with `styleVariants[style].themeVariants[theme]` in `examples/capability-demos/manifest.json`; legacy `themeVariants` continues to describe Diagram videos; recreations and export examples use [`media/catalog.json`](media/catalog.json). Actual MP4s live in the deployment artifact, restored to their original relative paths and played from the same origin with the browser's native player. Full videos are not preloaded by default, and starting one pauses other videos.
 
-GitHub Pages uses a **GitHub Actions deployment artifact**: the workflow checks out source, downloads ZIPs from the fixed `media-v2` Release, verifies and restores MP4s, then uploads the complete static site. Set the Pages publishing source to **GitHub Actions**. Homepage or catalog changes pushed to `main` are deployed by the workflow. A source directory without restored MP4s is insufficient for the complete video site. The [media distribution guide](docs/media-distribution.md) documents local restoration, offline use and publication order.
+GitHub Pages uses a **GitHub Actions deployment artifact**: the workflow checks out source, downloads ZIPs from the fixed `media-v3` Release, verifies and restores MP4s, then uploads the complete static site. Set the Pages publishing source to **GitHub Actions**. Homepage or catalog changes pushed to `main` are deployed by the workflow. A source directory without restored MP4s is insufficient for the complete video site. The [media distribution guide](docs/media-distribution.md) documents local restoration, offline use and publication order.
 
-The README shows GIF excerpts generated from rendered videos and links to complete MP4s. GIFs and posters stay in Git; MP4s are distributed through Releases. Before regenerating GIFs, restore videos with `python scripts/media_assets.py download --set all`, then run `python scripts/make_readme_previews.py`; FFmpeg is required. Updated pre-rendered media requires a new immutable tag / attachment URL and manifest SHA-256 values. Do not overwrite published `media-v1` or `media-v2` attachments.
+The README shows GIF excerpts generated from rendered videos and links to complete MP4s. GIFs and posters stay in Git; MP4s are distributed through Releases. Before regenerating GIFs, restore videos with `python scripts/media_assets.py download --set all`, then run `python scripts/make_readme_previews.py`; FFmpeg is required. Updated pre-rendered media requires a new immutable tag / attachment URL and manifest SHA-256 values. Do not overwrite published `media-v1`, `media-v2` or `media-v3` attachments.
 
-After restoring existing media, maintainers can package the next version with `python scripts/media_assets.py pack --tag media-v3`. Add a new video explicitly with `--include examples/my-demo/demo.mp4`; that file must exist. Packaging combines the previous manifest, still-tracked MP4s and explicit additions without scanning user export directories. Published tags must not be reused. See the [media distribution guide](docs/media-distribution.md) for publication order.
+After restoring existing media, maintainers can package the next version with `python scripts/media_assets.py pack --tag media-v4`. Add a new video explicitly with `--include examples/my-demo/demo.mp4`; that file must exist. Packaging combines the previous manifest, still-tracked MP4s and explicit additions without scanning user export directories. Published tags must not be reused. See the [media distribution guide](docs/media-distribution.md) for publication order.
 
-The 39 light-theme spider block videos in `media/exports/` are cropped from their corresponding complete videos. Three additional examples—complete demo, main flow and reranking region—are rendered frame by frame with the light-theme robot configuration. The video library labels both methods. The website plays and downloads existing videos; the interactive gallery lets you adjust themes, avatars and the timeline. Static Pages does not run the Python renderer, so new MP4s require the local service.
+The 39 light-theme spider block videos in `media/exports/` are cropped from their corresponding complete videos. Three additional examples—complete demo, main flow and reranking region—are rendered frame by frame with the light-theme robot configuration. The video library labels both methods. The website plays and downloads existing videos; the interactive gallery lets you adjust styles, palettes, avatars and the timeline. Static Pages does not run the Python renderer, so new MP4s require the local service.
 
 Issues, scene improvements and component contributions are welcome. Project contact: **[X / @sycbruce](https://x.com/sycbruce)**.
