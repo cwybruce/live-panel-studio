@@ -26,6 +26,7 @@
 
 播放器支持暂停、重播、拖动时间轴、0.5/1/2 倍速与关键时刻跳转。
 含角色的场景可切换蜘蛛/机器人；全部示例可切换四种配色。
+展示样式另行切换“原版图解 / macOS 终端”，与四套配色互不绑定；终端的标题栏、日志和光标也进入整段 MP4。功能块保持原裁剪范围。
 组件实验室的“组件视图”下拉框可放大查看六个组件。
 
 每个目录都含 JSON 配置、独立 HTML、12 秒 MP4、预览图和说明。
@@ -41,6 +42,7 @@ python scripts/make_capability_demos.py
 python scripts/make_capability_demos.py --render --jobs 2
 python scripts/make_capability_demos.py --render --themes light --jobs 2
 python scripts/make_capability_demos.py --render --themes all --jobs 2
+python scripts/make_capability_demos.py --render --styles terminal --themes all --jobs 2
 python scripts/export_demo.py --scene rag-explainer --theme light-pastel --avatar drone --view rag-rerank --out examples/capability-demos/rag-explainer/rerank-light.mp4
 python scripts/verify_capability_demos.py
 ```

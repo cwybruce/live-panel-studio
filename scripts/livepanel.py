@@ -50,7 +50,7 @@ def build_page(config_path, out_path, template=None):
     if '<!--LIVE_EXTENSIONS-->' in tpl:
         ext = (Path(template or DEFAULT_TEMPLATE).parent / 'components.js').read_text(encoding='utf-8')
         for filename in ['editorial-theme.js', 'rag-editorial.js', 'editorial-systems.js',
-                         'editorial-stories.js', 'editorial-components.js', 'neon-flow.js']:
+                         'editorial-stories.js', 'editorial-components.js', 'neon-flow.js', 'terminal-shell.js']:
             editorial = Path(template or DEFAULT_TEMPLATE).parent / filename
             if editorial.is_file():
                 ext += '\n' + editorial.read_text(encoding='utf-8')

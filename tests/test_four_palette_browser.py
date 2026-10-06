@@ -87,7 +87,7 @@ class FourPaletteBrowserTests(unittest.TestCase):
     def test_homepage_has_four_real_media_sets_and_mobile_fits(self):
         br = self.br
         # The showcase is a static site and has no scene readiness flag.
-        url = f'http://127.0.0.1:{self.server.server_port}/index.html?theme=pastel-classic'
+        url = f'http://127.0.0.1:{self.server.server_port}/index.html?theme=pastel-classic&style=diagram'
         if br._pw:
             br._page.goto(url, wait_until='load')
         else:
@@ -109,7 +109,7 @@ class FourPaletteBrowserTests(unittest.TestCase):
                 self.assertTrue(actual['video'].endswith('/' + demo['id'] + '/' + variant['video']))
                 self.assertTrue(actual['poster'].endswith('/' + demo['id'] + '/' + variant['poster']))
                 self.assertEqual(actual['download'], actual['video'])
-                self.assertIn('?theme=' + theme + '#' + demo['id'], actual['interactive'])
+                self.assertIn('?theme=' + theme + '&style=diagram#' + demo['id'], actual['interactive'])
                 video = OUT / demo['id'] / variant['video']
                 self.assertTrue(video.is_file() or video.relative_to(lp.ROOT).as_posix() in published_paths())
                 self.assertTrue((OUT / demo['id'] / variant['poster']).is_file())

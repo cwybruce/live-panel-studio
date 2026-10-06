@@ -135,6 +135,82 @@
         "poster": "poster-pastel.png",
         "videoReady": true
       }
+    },
+    "styleVariants": {
+      "diagram": {
+        "label": "原版图解 / Diagram",
+        "themeVariants": {
+          "terminal-dark": {
+            "label": "暖黑 / Warm Ink",
+            "config": "config-dark.json",
+            "page": "live-dark.html",
+            "video": "demo.mp4",
+            "poster": "poster.png",
+            "videoReady": true
+          },
+          "light-pastel": {
+            "label": "暖纸 / Warm Paper",
+            "config": "config-light.json",
+            "page": "live-light.html",
+            "video": "demo-light.mp4",
+            "poster": "poster-light.png",
+            "videoReady": true
+          },
+          "terminal-classic": {
+            "label": "经典终端 / Classic Terminal",
+            "config": "config-terminal.json",
+            "page": "live-terminal.html",
+            "video": "demo-terminal.mp4",
+            "poster": "poster-terminal.png",
+            "videoReady": true
+          },
+          "pastel-classic": {
+            "label": "经典粉彩 / Classic Pastel",
+            "config": "config-pastel.json",
+            "page": "live-pastel.html",
+            "video": "demo-pastel.mp4",
+            "poster": "poster-pastel.png",
+            "videoReady": true
+          }
+        }
+      },
+      "terminal": {
+        "label": "macOS 终端 / macOS Terminal",
+        "themeVariants": {
+          "terminal-dark": {
+            "label": "暖黑 / Warm Ink",
+            "config": "config-console-dark.json",
+            "page": "live-console-dark.html",
+            "video": "demo-console-dark.mp4",
+            "poster": "poster-console-dark.png",
+            "videoReady": true
+          },
+          "light-pastel": {
+            "label": "暖纸 / Warm Paper",
+            "config": "config-console-light.json",
+            "page": "live-console-light.html",
+            "video": "demo-console-light.mp4",
+            "poster": "poster-console-light.png",
+            "videoReady": true
+          },
+          "terminal-classic": {
+            "label": "经典终端 / Classic Terminal",
+            "config": "config-console-terminal.json",
+            "page": "live-console-terminal.html",
+            "video": "demo-console-terminal.mp4",
+            "poster": "poster-console-terminal.png",
+            "videoReady": true
+          },
+          "pastel-classic": {
+            "label": "经典粉彩 / Classic Pastel",
+            "config": "config-console-pastel.json",
+            "page": "live-console-pastel.html",
+            "video": "demo-console-pastel.mp4",
+            "poster": "poster-console-pastel.png",
+            "videoReady": true
+          }
+        }
+      }
     }
   },
   {
@@ -277,6 +353,82 @@
         "poster": "poster-pastel.png",
         "videoReady": true
       }
+    },
+    "styleVariants": {
+      "diagram": {
+        "label": "原版图解 / Diagram",
+        "themeVariants": {
+          "terminal-dark": {
+            "label": "暖黑 / Warm Ink",
+            "config": "config-dark.json",
+            "page": "live-dark.html",
+            "video": "demo.mp4",
+            "poster": "poster.png",
+            "videoReady": true
+          },
+          "light-pastel": {
+            "label": "暖纸 / Warm Paper",
+            "config": "config-light.json",
+            "page": "live-light.html",
+            "video": "demo-light.mp4",
+            "poster": "poster-light.png",
+            "videoReady": true
+          },
+          "terminal-classic": {
+            "label": "经典终端 / Classic Terminal",
+            "config": "config-terminal.json",
+            "page": "live-terminal.html",
+            "video": "demo-terminal.mp4",
+            "poster": "poster-terminal.png",
+            "videoReady": true
+          },
+          "pastel-classic": {
+            "label": "经典粉彩 / Classic Pastel",
+            "config": "config-pastel.json",
+            "page": "live-pastel.html",
+            "video": "demo-pastel.mp4",
+            "poster": "poster-pastel.png",
+            "videoReady": true
+          }
+        }
+      },
+      "terminal": {
+        "label": "macOS 终端 / macOS Terminal",
+        "themeVariants": {
+          "terminal-dark": {
+            "label": "暖黑 / Warm Ink",
+            "config": "config-console-dark.json",
+            "page": "live-console-dark.html",
+            "video": "demo-console-dark.mp4",
+            "poster": "poster-console-dark.png",
+            "videoReady": true
+          },
+          "light-pastel": {
+            "label": "暖纸 / Warm Paper",
+            "config": "config-console-light.json",
+            "page": "live-console-light.html",
+            "video": "demo-console-light.mp4",
+            "poster": "poster-console-light.png",
+            "videoReady": true
+          },
+          "terminal-classic": {
+            "label": "经典终端 / Classic Terminal",
+            "config": "config-console-terminal.json",
+            "page": "live-console-terminal.html",
+            "video": "demo-console-terminal.mp4",
+            "poster": "poster-console-terminal.png",
+            "videoReady": true
+          },
+          "pastel-classic": {
+            "label": "经典粉彩 / Classic Pastel",
+            "config": "config-console-pastel.json",
+            "page": "live-console-pastel.html",
+            "video": "demo-console-pastel.mp4",
+            "poster": "poster-console-pastel.png",
+            "videoReady": true
+          }
+        }
+      }
     }
   },
   {
@@ -414,6 +566,82 @@
         "video": "demo-pastel.mp4",
         "poster": "poster-pastel.png",
         "videoReady": true
+      }
+    },
+    "styleVariants": {
+      "diagram": {
+        "label": "原版图解 / Diagram",
+        "themeVariants": {
+          "terminal-dark": {
+            "label": "暖黑 / Warm Ink",
+            "config": "config-dark.json",
+            "page": "live-dark.html",
+            "video": "demo.mp4",
+            "poster": "poster.png",
+            "videoReady": true
+          },
+          "light-pastel": {
+            "label": "暖纸 / Warm Paper",
+            "config": "config-light.json",
+            "page": "live-light.html",
+            "video": "demo-light.mp4",
+            "poster": "poster-light.png",
+            "videoReady": true
+          },
+          "terminal-classic": {
+            "label": "经典终端 / Classic Terminal",
+            "config": "config-terminal.json",
+            "page": "live-terminal.html",
+            "video": "demo-terminal.mp4",
+            "poster": "poster-terminal.png",
+            "videoReady": true
+          },
+          "pastel-classic": {
+            "label": "经典粉彩 / Classic Pastel",
+            "config": "config-pastel.json",
+            "page": "live-pastel.html",
+            "video": "demo-pastel.mp4",
+            "poster": "poster-pastel.png",
+            "videoReady": true
+          }
+        }
+      },
+      "terminal": {
+        "label": "macOS 终端 / macOS Terminal",
+        "themeVariants": {
+          "terminal-dark": {
+            "label": "暖黑 / Warm Ink",
+            "config": "config-console-dark.json",
+            "page": "live-console-dark.html",
+            "video": "demo-console-dark.mp4",
+            "poster": "poster-console-dark.png",
+            "videoReady": true
+          },
+          "light-pastel": {
+            "label": "暖纸 / Warm Paper",
+            "config": "config-console-light.json",
+            "page": "live-console-light.html",
+            "video": "demo-console-light.mp4",
+            "poster": "poster-console-light.png",
+            "videoReady": true
+          },
+          "terminal-classic": {
+            "label": "经典终端 / Classic Terminal",
+            "config": "config-console-terminal.json",
+            "page": "live-console-terminal.html",
+            "video": "demo-console-terminal.mp4",
+            "poster": "poster-console-terminal.png",
+            "videoReady": true
+          },
+          "pastel-classic": {
+            "label": "经典粉彩 / Classic Pastel",
+            "config": "config-console-pastel.json",
+            "page": "live-console-pastel.html",
+            "video": "demo-console-pastel.mp4",
+            "poster": "poster-console-pastel.png",
+            "videoReady": true
+          }
+        }
       }
     }
   },
@@ -553,6 +781,82 @@
         "poster": "poster-pastel.png",
         "videoReady": true
       }
+    },
+    "styleVariants": {
+      "diagram": {
+        "label": "原版图解 / Diagram",
+        "themeVariants": {
+          "terminal-dark": {
+            "label": "暖黑 / Warm Ink",
+            "config": "config-dark.json",
+            "page": "live-dark.html",
+            "video": "demo.mp4",
+            "poster": "poster.png",
+            "videoReady": true
+          },
+          "light-pastel": {
+            "label": "暖纸 / Warm Paper",
+            "config": "config-light.json",
+            "page": "live-light.html",
+            "video": "demo-light.mp4",
+            "poster": "poster-light.png",
+            "videoReady": true
+          },
+          "terminal-classic": {
+            "label": "经典终端 / Classic Terminal",
+            "config": "config-terminal.json",
+            "page": "live-terminal.html",
+            "video": "demo-terminal.mp4",
+            "poster": "poster-terminal.png",
+            "videoReady": true
+          },
+          "pastel-classic": {
+            "label": "经典粉彩 / Classic Pastel",
+            "config": "config-pastel.json",
+            "page": "live-pastel.html",
+            "video": "demo-pastel.mp4",
+            "poster": "poster-pastel.png",
+            "videoReady": true
+          }
+        }
+      },
+      "terminal": {
+        "label": "macOS 终端 / macOS Terminal",
+        "themeVariants": {
+          "terminal-dark": {
+            "label": "暖黑 / Warm Ink",
+            "config": "config-console-dark.json",
+            "page": "live-console-dark.html",
+            "video": "demo-console-dark.mp4",
+            "poster": "poster-console-dark.png",
+            "videoReady": true
+          },
+          "light-pastel": {
+            "label": "暖纸 / Warm Paper",
+            "config": "config-console-light.json",
+            "page": "live-console-light.html",
+            "video": "demo-console-light.mp4",
+            "poster": "poster-console-light.png",
+            "videoReady": true
+          },
+          "terminal-classic": {
+            "label": "经典终端 / Classic Terminal",
+            "config": "config-console-terminal.json",
+            "page": "live-console-terminal.html",
+            "video": "demo-console-terminal.mp4",
+            "poster": "poster-console-terminal.png",
+            "videoReady": true
+          },
+          "pastel-classic": {
+            "label": "经典粉彩 / Classic Pastel",
+            "config": "config-console-pastel.json",
+            "page": "live-console-pastel.html",
+            "video": "demo-console-pastel.mp4",
+            "poster": "poster-console-pastel.png",
+            "videoReady": true
+          }
+        }
+      }
     }
   },
   {
@@ -691,6 +995,82 @@
         "poster": "poster-pastel.png",
         "videoReady": true
       }
+    },
+    "styleVariants": {
+      "diagram": {
+        "label": "原版图解 / Diagram",
+        "themeVariants": {
+          "terminal-dark": {
+            "label": "暖黑 / Warm Ink",
+            "config": "config-dark.json",
+            "page": "live-dark.html",
+            "video": "demo.mp4",
+            "poster": "poster.png",
+            "videoReady": true
+          },
+          "light-pastel": {
+            "label": "暖纸 / Warm Paper",
+            "config": "config-light.json",
+            "page": "live-light.html",
+            "video": "demo-light.mp4",
+            "poster": "poster-light.png",
+            "videoReady": true
+          },
+          "terminal-classic": {
+            "label": "经典终端 / Classic Terminal",
+            "config": "config-terminal.json",
+            "page": "live-terminal.html",
+            "video": "demo-terminal.mp4",
+            "poster": "poster-terminal.png",
+            "videoReady": true
+          },
+          "pastel-classic": {
+            "label": "经典粉彩 / Classic Pastel",
+            "config": "config-pastel.json",
+            "page": "live-pastel.html",
+            "video": "demo-pastel.mp4",
+            "poster": "poster-pastel.png",
+            "videoReady": true
+          }
+        }
+      },
+      "terminal": {
+        "label": "macOS 终端 / macOS Terminal",
+        "themeVariants": {
+          "terminal-dark": {
+            "label": "暖黑 / Warm Ink",
+            "config": "config-console-dark.json",
+            "page": "live-console-dark.html",
+            "video": "demo-console-dark.mp4",
+            "poster": "poster-console-dark.png",
+            "videoReady": true
+          },
+          "light-pastel": {
+            "label": "暖纸 / Warm Paper",
+            "config": "config-console-light.json",
+            "page": "live-console-light.html",
+            "video": "demo-console-light.mp4",
+            "poster": "poster-console-light.png",
+            "videoReady": true
+          },
+          "terminal-classic": {
+            "label": "经典终端 / Classic Terminal",
+            "config": "config-console-terminal.json",
+            "page": "live-console-terminal.html",
+            "video": "demo-console-terminal.mp4",
+            "poster": "poster-console-terminal.png",
+            "videoReady": true
+          },
+          "pastel-classic": {
+            "label": "经典粉彩 / Classic Pastel",
+            "config": "config-console-pastel.json",
+            "page": "live-console-pastel.html",
+            "video": "demo-console-pastel.mp4",
+            "poster": "poster-console-pastel.png",
+            "videoReady": true
+          }
+        }
+      }
     }
   },
   {
@@ -818,6 +1198,82 @@
         "video": "demo-pastel.mp4",
         "poster": "poster-pastel.png",
         "videoReady": true
+      }
+    },
+    "styleVariants": {
+      "diagram": {
+        "label": "原版图解 / Diagram",
+        "themeVariants": {
+          "terminal-dark": {
+            "label": "暖黑 / Warm Ink",
+            "config": "config-dark.json",
+            "page": "live-dark.html",
+            "video": "demo.mp4",
+            "poster": "poster.png",
+            "videoReady": true
+          },
+          "light-pastel": {
+            "label": "暖纸 / Warm Paper",
+            "config": "config-light.json",
+            "page": "live-light.html",
+            "video": "demo-light.mp4",
+            "poster": "poster-light.png",
+            "videoReady": true
+          },
+          "terminal-classic": {
+            "label": "经典终端 / Classic Terminal",
+            "config": "config-terminal.json",
+            "page": "live-terminal.html",
+            "video": "demo-terminal.mp4",
+            "poster": "poster-terminal.png",
+            "videoReady": true
+          },
+          "pastel-classic": {
+            "label": "经典粉彩 / Classic Pastel",
+            "config": "config-pastel.json",
+            "page": "live-pastel.html",
+            "video": "demo-pastel.mp4",
+            "poster": "poster-pastel.png",
+            "videoReady": true
+          }
+        }
+      },
+      "terminal": {
+        "label": "macOS 终端 / macOS Terminal",
+        "themeVariants": {
+          "terminal-dark": {
+            "label": "暖黑 / Warm Ink",
+            "config": "config-console-dark.json",
+            "page": "live-console-dark.html",
+            "video": "demo-console-dark.mp4",
+            "poster": "poster-console-dark.png",
+            "videoReady": true
+          },
+          "light-pastel": {
+            "label": "暖纸 / Warm Paper",
+            "config": "config-console-light.json",
+            "page": "live-console-light.html",
+            "video": "demo-console-light.mp4",
+            "poster": "poster-console-light.png",
+            "videoReady": true
+          },
+          "terminal-classic": {
+            "label": "经典终端 / Classic Terminal",
+            "config": "config-console-terminal.json",
+            "page": "live-console-terminal.html",
+            "video": "demo-console-terminal.mp4",
+            "poster": "poster-console-terminal.png",
+            "videoReady": true
+          },
+          "pastel-classic": {
+            "label": "经典粉彩 / Classic Pastel",
+            "config": "config-console-pastel.json",
+            "page": "live-console-pastel.html",
+            "video": "demo-console-pastel.mp4",
+            "poster": "poster-console-pastel.png",
+            "videoReady": true
+          }
+        }
       }
     }
   },
@@ -1005,6 +1461,82 @@
         "poster": "poster-pastel.png",
         "videoReady": true
       }
+    },
+    "styleVariants": {
+      "diagram": {
+        "label": "原版图解 / Diagram",
+        "themeVariants": {
+          "terminal-dark": {
+            "label": "暖黑 / Warm Ink",
+            "config": "config-dark.json",
+            "page": "live-dark.html",
+            "video": "demo.mp4",
+            "poster": "poster.png",
+            "videoReady": true
+          },
+          "light-pastel": {
+            "label": "暖纸 / Warm Paper",
+            "config": "config-light.json",
+            "page": "live-light.html",
+            "video": "demo-light.mp4",
+            "poster": "poster-light.png",
+            "videoReady": true
+          },
+          "terminal-classic": {
+            "label": "经典终端 / Classic Terminal",
+            "config": "config-terminal.json",
+            "page": "live-terminal.html",
+            "video": "demo-terminal.mp4",
+            "poster": "poster-terminal.png",
+            "videoReady": true
+          },
+          "pastel-classic": {
+            "label": "经典粉彩 / Classic Pastel",
+            "config": "config-pastel.json",
+            "page": "live-pastel.html",
+            "video": "demo-pastel.mp4",
+            "poster": "poster-pastel.png",
+            "videoReady": true
+          }
+        }
+      },
+      "terminal": {
+        "label": "macOS 终端 / macOS Terminal",
+        "themeVariants": {
+          "terminal-dark": {
+            "label": "暖黑 / Warm Ink",
+            "config": "config-console-dark.json",
+            "page": "live-console-dark.html",
+            "video": "demo-console-dark.mp4",
+            "poster": "poster-console-dark.png",
+            "videoReady": true
+          },
+          "light-pastel": {
+            "label": "暖纸 / Warm Paper",
+            "config": "config-console-light.json",
+            "page": "live-console-light.html",
+            "video": "demo-console-light.mp4",
+            "poster": "poster-console-light.png",
+            "videoReady": true
+          },
+          "terminal-classic": {
+            "label": "经典终端 / Classic Terminal",
+            "config": "config-console-terminal.json",
+            "page": "live-console-terminal.html",
+            "video": "demo-console-terminal.mp4",
+            "poster": "poster-console-terminal.png",
+            "videoReady": true
+          },
+          "pastel-classic": {
+            "label": "经典粉彩 / Classic Pastel",
+            "config": "config-console-pastel.json",
+            "page": "live-console-pastel.html",
+            "video": "demo-console-pastel.mp4",
+            "poster": "poster-console-pastel.png",
+            "videoReady": true
+          }
+        }
+      }
     }
   },
   {
@@ -1155,6 +1687,82 @@
         "video": "demo-pastel.mp4",
         "poster": "poster-pastel.png",
         "videoReady": true
+      }
+    },
+    "styleVariants": {
+      "diagram": {
+        "label": "原版图解 / Diagram",
+        "themeVariants": {
+          "terminal-dark": {
+            "label": "暖黑 / Warm Ink",
+            "config": "config-dark.json",
+            "page": "live-dark.html",
+            "video": "demo.mp4",
+            "poster": "poster.png",
+            "videoReady": true
+          },
+          "light-pastel": {
+            "label": "暖纸 / Warm Paper",
+            "config": "config-light.json",
+            "page": "live-light.html",
+            "video": "demo-light.mp4",
+            "poster": "poster-light.png",
+            "videoReady": true
+          },
+          "terminal-classic": {
+            "label": "经典终端 / Classic Terminal",
+            "config": "config-terminal.json",
+            "page": "live-terminal.html",
+            "video": "demo-terminal.mp4",
+            "poster": "poster-terminal.png",
+            "videoReady": true
+          },
+          "pastel-classic": {
+            "label": "经典粉彩 / Classic Pastel",
+            "config": "config-pastel.json",
+            "page": "live-pastel.html",
+            "video": "demo-pastel.mp4",
+            "poster": "poster-pastel.png",
+            "videoReady": true
+          }
+        }
+      },
+      "terminal": {
+        "label": "macOS 终端 / macOS Terminal",
+        "themeVariants": {
+          "terminal-dark": {
+            "label": "暖黑 / Warm Ink",
+            "config": "config-console-dark.json",
+            "page": "live-console-dark.html",
+            "video": "demo-console-dark.mp4",
+            "poster": "poster-console-dark.png",
+            "videoReady": true
+          },
+          "light-pastel": {
+            "label": "暖纸 / Warm Paper",
+            "config": "config-console-light.json",
+            "page": "live-console-light.html",
+            "video": "demo-console-light.mp4",
+            "poster": "poster-console-light.png",
+            "videoReady": true
+          },
+          "terminal-classic": {
+            "label": "经典终端 / Classic Terminal",
+            "config": "config-console-terminal.json",
+            "page": "live-console-terminal.html",
+            "video": "demo-console-terminal.mp4",
+            "poster": "poster-console-terminal.png",
+            "videoReady": true
+          },
+          "pastel-classic": {
+            "label": "经典粉彩 / Classic Pastel",
+            "config": "config-console-pastel.json",
+            "page": "live-console-pastel.html",
+            "video": "demo-console-pastel.mp4",
+            "poster": "poster-console-pastel.png",
+            "videoReady": true
+          }
+        }
       }
     }
   }

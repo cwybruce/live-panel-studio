@@ -28,11 +28,11 @@ function ESRoot(e, meta, title, subtitle, detail, steps, footer){
  var colors=[C.amber,C.cyan,C.pink,C.mint,C.mint];
  var s='<defs><pattern id="'+id+'grid" width="24" height="24" patternUnits="userSpaceOnUse"><circle cx="1" cy="1" r=".4" fill="'+C.shade('#76654b')+'" opacity=".14"/></pattern><filter id="'+id+'halo" x="-180%" y="-180%" width="460%" height="460%"><feGaussianBlur stdDeviation="'+(C.light?1.7:3)+'" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>';
  colors.forEach(function(c,i){s+='<radialGradient id="'+id+'orb'+i+'" cx="30%" cy="25%"><stop stop-color="'+c+'" stop-opacity="'+(C.light?'.24':'.58')+'"/><stop offset="1" stop-color="'+C.shade('#171512')+'"/></radialGradient>'});s+='</defs>';
- s+='<rect width="984" height="1280" fill="'+C.bg+'"/><rect x="18" y="16" width="948" height="1248" fill="url(#'+id+'grid)"/>'+small(28,29,meta)+txt(28,76,title,31,C.fg,'LP Serif')+txt(28,107,subtitle,14,C.amber)+txt(28,134,detail,12,C.dim);
+ s+='<rect width="984" height="1280" fill="'+C.bg+'"/><rect x="18" y="16" width="948" height="1248" fill="url(#'+id+'grid)"/><g data-diagram-header="1">'+small(28,29,meta)+'</g>'+txt(28,76,title,31,C.fg,'LP Serif')+txt(28,107,subtitle,14,C.amber)+txt(28,134,detail,12,C.dim);
  steps.forEach(function(a,i){s+=small(28+i*122,164,a[0],C.shade(a[1]))});s+=mono(956,164,'12s / SCRIPTED LOOP',9,C.dim,' text-anchor="end"');
  s+='<g data-panel="hero">'+rect(28,194,928,383,C.amber,C.shade('#171511'),4,' data-panel-border="hero" data-neon-border="'+e.type+'-hero" data-neon-color="'+C.amber+'" data-neon-role="hero"')+small(42,219,'THE SYSTEM IN MOTION',C.amber)+rule(43,531,897);
  var edition={agentEditorial:'COLLABORATION / 02',requestEditorial:'REQUEST / 03',incidentEditorial:'REPLAY / 04'};
- var tail=rule(28,1212,928)+txt(28,1237,footer,12,C.fg)+txt(28,1259,'原创中文视觉示例 / 所有文本、指标与事件均为预设演示',10,C.dim)+mono(956,1259,'MOTION DIAGRAM STUDIO / '+edition[e.type],9,C.amber,' text-anchor="end"');
+ var tail='<g data-diagram-footer="1">'+rule(28,1212,928)+txt(28,1237,footer,12,C.fg)+txt(28,1259,'原创中文视觉示例 / 所有文本、指标与事件均为预设演示',10,C.dim)+mono(956,1259,'MOTION DIAGRAM STUDIO / '+edition[e.type],9,C.amber,' text-anchor="end"')+'</g>';
  return {svg:svg,id:id,C:C,txt:txt,mono:mono,small:small,rule:rule,rect:rect,panel:panel,end:end,circle:circle,icon:icon,node:node,route:route,particles:particles,s:s,tail:tail};
 }
 function ESValue(name){var v=V[name];return v==null?'':typeof v==='object'?v.text:String(v)}

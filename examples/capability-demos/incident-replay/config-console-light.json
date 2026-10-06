@@ -1,0 +1,242 @@
+{
+  "meta": {
+    "title": "回放 · 让异常沿依赖显形",
+    "lang": "zh-CN",
+    "visualStyle": "editorial"
+  },
+  "canvas": {
+    "width": 984,
+    "height": 1280,
+    "duration": 12,
+    "fps": 30
+  },
+  "theme": {
+    "preset": "light-pastel",
+    "font": "\"LP Sans\",sans-serif",
+    "fontSize": 13,
+    "lineHeight": 19,
+    "colors": {
+      "bg": "#faf7f0",
+      "fg": "#24211c",
+      "dim": "#62584a",
+      "line": "#978a76",
+      "cy": "#216674",
+      "bl": "#2f568d",
+      "pu": "#943768",
+      "gr": "#326743",
+      "ye": "#885412",
+      "rd": "#a1382b",
+      "wh": "#24211c",
+      "panel": "#fffdf8",
+      "hl": "#f6edec",
+      "bar": "#fffdf8",
+      "dots": "#978a76",
+      "line2": "#978a76",
+      "surface": "#f2ecdf",
+      "amber": "#885412",
+      "cyan": "#216674",
+      "pink": "#943768",
+      "mint": "#326743",
+      "red": "#a1382b",
+      "blue": "#2f568d",
+      "pi": "#943768",
+      "pk": "#a1382b",
+      "gn": "#326743",
+      "ort": "#885412",
+      "blt": "#2f568d",
+      "put": "#943768",
+      "mc": "#943768",
+      "tl": "#216674",
+      "gy": "#978a76",
+      "or": "#885412",
+      "yl": "#885412",
+      "gnf": "#f1f3eb",
+      "blf": "#f0f1f1",
+      "ylf": "#f7f1e8",
+      "orf": "#f7f1e8",
+      "rdf": "#f8efea",
+      "puf": "#f8efee",
+      "mcf": "#f8efee",
+      "tlf": "#eff2ef",
+      "gyf": "#f4f1ec",
+      "lit": "#f7f1e8"
+    },
+    "variant": "light-pastel"
+  },
+  "clock": {
+    "start": "09:00:00",
+    "rate": 1
+  },
+  "machines": {
+    "phase": {
+      "type": "cycle",
+      "period": 4,
+      "values": [
+        {
+          "t": "服务稳定",
+          "reason": "工作池与存储余量充足，依赖链保持正常。",
+          "m": "健康检查通过"
+        },
+        {
+          "t": "出现拥塞",
+          "reason": "两个余量指标低于阈值，需要定位共享瓶颈。",
+          "m": "余量不足，标记异常依赖"
+        },
+        {
+          "t": "恢复服务",
+          "reason": "模拟排队压力解除；余量回升，再核对任务结果。",
+          "m": "余量回升，开始恢复验证"
+        }
+      ],
+      "log": {
+        "who": "回放",
+        "c": "cy"
+      }
+    },
+    "pool": {
+      "type": "gauge",
+      "values": [
+        0.94,
+        0.36,
+        0.88
+      ],
+      "period": 4,
+      "seed": 3,
+      "threshold": 0.7,
+      "decimals": 2,
+      "high": {
+        "label": "余量正常"
+      },
+      "low": {
+        "label": "余量不足"
+      },
+      "highColor": "gr",
+      "lowColor": "rd"
+    },
+    "storage": {
+      "type": "gauge",
+      "values": [
+        0.91,
+        0.24,
+        0.83
+      ],
+      "period": 4,
+      "seed": 3,
+      "threshold": 0.7,
+      "decimals": 2,
+      "high": {
+        "label": "余量正常"
+      },
+      "low": {
+        "label": "余量不足"
+      },
+      "highColor": "gr",
+      "lowColor": "rd"
+    },
+    "health": {
+      "type": "any_low",
+      "of": [
+        "pool",
+        "storage"
+      ]
+    }
+  },
+  "elements": [
+    {
+      "type": "incidentEditorial",
+      "x": 0,
+      "y": 0,
+      "w": 984,
+      "h": 1280
+    },
+    {
+      "type": "drone",
+      "avatar": "spider",
+      "avatarScale": 0.48,
+      "avatarColors": {
+        "leg": "#d68865",
+        "joint": "#88c4a2",
+        "shell": "#9d9acc",
+        "core": "#e776af"
+      },
+      "x": 0,
+      "y": 0,
+      "w": 984,
+      "h": 1280,
+      "period": 12,
+      "focusPeriod": 4.0,
+      "path": [
+        [
+          176,
+          487
+        ],
+        [
+          492,
+          487
+        ],
+        [
+          808,
+          487
+        ]
+      ],
+      "targets": [
+        {
+          "x": 118,
+          "y": 281,
+          "w": 116,
+          "h": 116
+        },
+        {
+          "x": 434,
+          "y": 281,
+          "w": 116,
+          "h": 116
+        },
+        {
+          "x": 750,
+          "y": 281,
+          "w": 116,
+          "h": 116
+        }
+      ],
+      "words": []
+    }
+  ],
+  "effects": {
+    "neon": {
+      "enabled": true,
+      "intensity": 0.8,
+      "period": 6,
+      "heroPeriod": 12,
+      "tail": 144
+    }
+  },
+  "presentation": {
+    "style": "terminal",
+    "sceneId": "incident-replay",
+    "title": "~/motion-diagram-studio/incident-replay — zsh",
+    "command": "python scripts/render.py --config examples/capability-demos/incident-replay/config-console-light.json",
+    "events": [
+      {
+        "t": 0,
+        "actor": "studio",
+        "text": "演示启动 · 预设模拟"
+      },
+      {
+        "t": 2.0,
+        "actor": "incident",
+        "text": "演示关键点：健康：0.94 / 0.91"
+      },
+      {
+        "t": 6.0,
+        "actor": "incident",
+        "text": "演示关键点：拥塞：0.36 / 0.24"
+      },
+      {
+        "t": 10.0,
+        "actor": "incident",
+        "text": "演示关键点：恢复：0.88 / 0.83"
+      }
+    ]
+  }
+}

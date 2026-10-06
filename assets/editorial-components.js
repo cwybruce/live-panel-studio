@@ -8,8 +8,8 @@ function ecAuthor(root,C){
  function meta(x,y,s,color,extra){return txt(x,y,s,10,color||C.dim,'mono',false,' letter-spacing="1.1"'+(extra||''))}
  function rect(x,y,w,h,fill,stroke,rx,extra){return '<rect x="'+x+'" y="'+y+'" width="'+w+'" height="'+h+'" rx="'+(rx==null?4:rx)+'" fill="'+(fill||'none')+'" stroke="'+(stroke||C.line)+'" stroke-width="1.2"'+(extra||'')+'/>'}
  function panel(x,y,w,h,index,title,caption,color){return '<g transform="translate('+x+' '+y+')">'+rect(0,0,w,h,C.panel,color,4,' data-neon-border="component-'+index.toLowerCase().replace(/[^a-z0-9]+/g,'-')+'" data-neon-color="'+color+'"')+meta(15,24,index,color)+txt(15,55,title,18,C.fg,'serif',true)+txt(w-15,24,caption,10,C.dim,'mono',false,' text-anchor="end"')+'</g>'}
- function page(title,sub,description,kicker){return '<rect width="984" height="1280" fill="'+C.bg+'"/>'+meta(28,29,kicker)+txt(28,77,title,31,C.fg,'serif',true)+txt(28,106,sub,14,C.amber)+txt(28,135,description,12,C.dim)+'<path d="M28 166H956" stroke="'+C.line+'" stroke-width="1.1"/>'+meta(28,184,'12 SECOND LOOP / ORIGINAL CONFIGURATION / NO LIVE DATA')}
- function footer(s,label){return '<path d="M28 1212H956" stroke="'+C.line+'" stroke-width="1.1"/>'+txt(28,1238,s,12,C.fg)+txt(28,1259,'原创中文视觉样板 / 所有事件、数字与状态均为预设演示',10,C.dim)+meta(956,1259,label,C.amber,' text-anchor="end"')}
+ function page(title,sub,description,kicker){return '<rect width="984" height="1280" fill="'+C.bg+'"/><g data-diagram-header="1">'+meta(28,29,kicker)+'</g>'+txt(28,77,title,31,C.fg,'serif',true)+txt(28,106,sub,14,C.amber)+txt(28,135,description,12,C.dim)+'<path d="M28 166H956" stroke="'+C.line+'" stroke-width="1.1"/>'+meta(28,184,'12 SECOND LOOP / ORIGINAL CONFIGURATION / NO LIVE DATA')}
+ function footer(s,label){return '<g data-diagram-footer="1"><path d="M28 1212H956" stroke="'+C.line+'" stroke-width="1.1"/>'+txt(28,1238,s,12,C.fg)+txt(28,1259,'原创中文视觉样板 / 所有事件、数字与状态均为预设演示',10,C.dim)+meta(956,1259,label,C.amber,' text-anchor="end"')+'</g>'}
  return {txt:txt,meta:meta,rect:rect,panel:panel,page:page,footer:footer};
 }
 

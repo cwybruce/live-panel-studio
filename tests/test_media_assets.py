@@ -309,16 +309,19 @@ class MediaBundleTests(unittest.TestCase):
 
 
 class PublishedInventoryTests(unittest.TestCase):
-    def test_current_inventory_contains_all_eighty_videos_and_thirty_two_demos(self):
+    def test_current_inventory_contains_112_videos_and_64_two_style_demos(self):
         self.assertIsNotNone(media, 'The media restore tool has not been implemented yet.')
         inventory = media.load_manifest(ROOT / 'media/assets-manifest.json')
         videos = [a for a in inventory['assets'] if a['type'] == 'video']
-        self.assertEqual(len(videos), 80)
-        self.assertEqual(sum(a['set'] == 'demos' for a in videos), 32)
-        self.assertEqual(sum(a['size'] for a in videos), 56566395)
+        self.assertEqual(len(videos), 112)
+        self.assertEqual(sum(a['set'] == 'demos' for a in videos), 64)
+        self.assertEqual(sum('/demo-console-' in a['path'] for a in videos), 32)
+        payload_bytes = sum(a['size'] for a in inventory['assets'])
+        self.assertGreater(inventory['bundle']['size'], payload_bytes)
+        self.assertLess(inventory['bundle']['size'] - payload_bytes, 100_000)
         self.assertFalse(any('national-day-promo' in a['path'] for a in videos))
         self.assertEqual(inventory['bundle']['url'],
-                         'https://github.com/cwybruce/motion-diagram-studio/releases/download/media-v2/motion-diagram-studio-media-v2.zip')
+                         'https://github.com/cwybruce/motion-diagram-studio/releases/download/media-v3/motion-diagram-studio-media-v3.zip')
         for asset in videos:
             path = ROOT / asset['path']
             if path.is_file():  # fresh source checkouts intentionally do not contain MP4s

@@ -1,0 +1,288 @@
+{
+  "meta": {
+    "title": "协作 · 一次任务，四种角色",
+    "lang": "zh-CN",
+    "visualStyle": "editorial"
+  },
+  "canvas": {
+    "width": 984,
+    "height": 1280,
+    "duration": 12,
+    "fps": 30
+  },
+  "theme": {
+    "preset": "terminal-dark",
+    "font": "\"LP Sans\",sans-serif",
+    "fontSize": 13,
+    "lineHeight": 19,
+    "colors": {
+      "bg": "#191f27",
+      "fg": "#f6f8ff",
+      "dim": "#c0cbd9",
+      "line": "#8395ad",
+      "cy": "#80dfef",
+      "bl": "#9bbeff",
+      "pu": "#c7acff",
+      "gr": "#89e7b4",
+      "ye": "#f2ca80",
+      "rd": "#ff786f",
+      "wh": "#f6f8ff",
+      "panel": "#222a35",
+      "hl": "#2f3445",
+      "bar": "#222a35",
+      "dots": "#8395ad",
+      "line2": "#8395ad",
+      "surface": "#1e2630",
+      "amber": "#f2ca80",
+      "cyan": "#80dfef",
+      "pink": "#c7acff",
+      "mint": "#89e7b4",
+      "red": "#ff786f",
+      "blue": "#9bbeff",
+      "pi": "#c7acff",
+      "pk": "#ff786f",
+      "gn": "#89e7b4",
+      "ort": "#f2ca80",
+      "blt": "#9bbeff",
+      "put": "#c7acff",
+      "mc": "#c7acff",
+      "tl": "#80dfef",
+      "gy": "#8395ad",
+      "or": "#f2ca80",
+      "yl": "#f2ca80",
+      "gnf": "#29373e",
+      "blf": "#2a3443",
+      "ylf": "#31353a",
+      "orf": "#31353a",
+      "rdf": "#312f39",
+      "puf": "#2e3343",
+      "mcf": "#2e3343",
+      "tlf": "#293742",
+      "gyf": "#2d3540",
+      "lit": "#31353a"
+    },
+    "variant": "terminal-classic"
+  },
+  "clock": {
+    "start": "09:00:00",
+    "rate": 1
+  },
+  "machines": {
+    "handoff": {
+      "type": "triggers",
+      "period": 3,
+      "on": 2.8,
+      "t0": 0,
+      "color": "pu",
+      "cps": 28,
+      "callsStart": 1,
+      "onText": "正在交接",
+      "offText": "准备下一步",
+      "items": [
+        {
+          "name": "规划",
+          "adv": [
+            "拆成三个可验收的小任务。",
+            "交给检索角色补齐所需资料。"
+          ]
+        },
+        {
+          "name": "检索",
+          "adv": [
+            "找到接口约束和数据样例。",
+            "把证据连同来源交给实现角色。"
+          ]
+        },
+        {
+          "name": "实现",
+          "adv": [
+            "按约束完成最小实现。",
+            "把补丁和复现方法交给审核角色。"
+          ]
+        },
+        {
+          "name": "审核",
+          "adv": [
+            "核对行为、边界和证据。",
+            "记录可验收结果，再交付用户。"
+          ]
+        }
+      ],
+      "log": {
+        "who": "协作",
+        "c": "pu",
+        "start": {
+          "m": "开始：{name}"
+        },
+        "end": {
+          "m": "完成：{name}，准备交接"
+        }
+      }
+    },
+    "task": {
+      "type": "lane",
+      "period": 12,
+      "run": 10.8,
+      "off": 0,
+      "busy": "任务协作中",
+      "done": [
+        "本轮已交付"
+      ],
+      "busyColor": "cy",
+      "doneColor": "gr"
+    },
+    "role0": {
+      "type": "cycle",
+      "period": 3,
+      "values": [
+        "正在规划",
+        "计划已交接",
+        "计划已交接",
+        "计划已交接"
+      ]
+    },
+    "role1": {
+      "type": "cycle",
+      "period": 3,
+      "values": [
+        "等待计划",
+        "正在检索",
+        "证据已交接",
+        "证据已交接"
+      ]
+    },
+    "role2": {
+      "type": "cycle",
+      "period": 3,
+      "values": [
+        "等待证据",
+        "等待证据",
+        "正在实现",
+        "补丁已交接"
+      ]
+    },
+    "role3": {
+      "type": "cycle",
+      "period": 3,
+      "values": [
+        "等待补丁",
+        "等待补丁",
+        "等待补丁",
+        "核对并交付"
+      ]
+    }
+  },
+  "elements": [
+    {
+      "type": "agentEditorial",
+      "x": 0,
+      "y": 0,
+      "w": 984,
+      "h": 1280
+    },
+    {
+      "type": "drone",
+      "avatar": "spider",
+      "avatarScale": 0.48,
+      "avatarColors": {
+        "leg": "#d68865",
+        "joint": "#88c4a2",
+        "shell": "#9d9acc",
+        "core": "#e776af"
+      },
+      "x": 0,
+      "y": 0,
+      "w": 984,
+      "h": 1280,
+      "period": 12,
+      "focusPeriod": 3.0,
+      "path": [
+        [
+          145,
+          487
+        ],
+        [
+          376,
+          487
+        ],
+        [
+          607,
+          487
+        ],
+        [
+          838,
+          487
+        ]
+      ],
+      "targets": [
+        {
+          "x": 88,
+          "y": 282,
+          "w": 114,
+          "h": 114
+        },
+        {
+          "x": 319,
+          "y": 282,
+          "w": 114,
+          "h": 114
+        },
+        {
+          "x": 550,
+          "y": 282,
+          "w": 114,
+          "h": 114
+        },
+        {
+          "x": 781,
+          "y": 282,
+          "w": 114,
+          "h": 114
+        }
+      ],
+      "words": []
+    }
+  ],
+  "effects": {
+    "neon": {
+      "enabled": true,
+      "intensity": 0.8,
+      "period": 6,
+      "heroPeriod": 12,
+      "tail": 144
+    }
+  },
+  "presentation": {
+    "style": "terminal",
+    "sceneId": "agent-team",
+    "title": "~/motion-diagram-studio/agent-team — zsh",
+    "command": "python scripts/render.py --config examples/capability-demos/agent-team/config-console-terminal.json",
+    "events": [
+      {
+        "t": 0,
+        "actor": "studio",
+        "text": "演示启动 · 预设模拟"
+      },
+      {
+        "t": 1.5,
+        "actor": "agent",
+        "text": "演示关键点：规划与建议"
+      },
+      {
+        "t": 4.5,
+        "actor": "agent",
+        "text": "演示关键点：检索交接"
+      },
+      {
+        "t": 7.5,
+        "actor": "agent",
+        "text": "演示关键点：实现交接"
+      },
+      {
+        "t": 11.3,
+        "actor": "agent",
+        "text": "演示关键点：审核与交付"
+      }
+    ]
+  }
+}

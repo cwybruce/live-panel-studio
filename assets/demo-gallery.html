@@ -41,7 +41,7 @@ h2{font-family:"LP Serif",serif}.brand,output{font-family:"LP Mono",monospace}
 </style></head><body>
 <header><div><div class="brand">MOTION DIAGRAM STUDIO · DEMO COLLECTION</div><h1>把流程，变成看得懂的动画</h1><p>选择一个场景，观看过程，带走网页与视频。</p></div><div class="badge">场景演示 · 模拟数据</div></header>
 <main class="layout"><nav id="demos" aria-label="能力示例"><div class="nav-label">选择一个 Demo</div></nav><section class="workspace" aria-label="示例播放器">
-<div class="scene-head"><div><h2 id="title"></h2><p class="summary" id="summary"></p></div><div class="selectors"><label id="viewLabel" hidden>组件视图<select id="view" aria-label="组件视图"></select></label><label id="themeLabel">主题<select id="theme" aria-label="主题"><option value="terminal-dark">暖黑 · 霓虹</option><option value="light-pastel">暖纸 · 浅色</option><option value="terminal-classic">经典终端 · 原 Skill</option><option value="pastel-classic">经典粉彩 · 原 Skill</option></select></label><label id="avatarLabel">角色<select id="avatar" aria-label="角色"><option value="spider">机械蜘蛛</option><option value="drone">机器人</option></select></label><a id="htmlLink" class="scene-link" target="_blank">沉浸预览 ↗</a></div></div>
+<div class="scene-head"><div><h2 id="title"></h2><p class="summary" id="summary"></p></div><div class="selectors"><label id="viewLabel" hidden>组件视图<select id="view" aria-label="组件视图"></select></label><label id="styleLabel">展示样式<select id="style" aria-label="展示样式"><option value="diagram">原版图解</option><option value="terminal">macOS 终端</option></select></label><label id="themeLabel">主题<select id="theme" aria-label="主题"><option value="terminal-dark">暖黑 · 霓虹</option><option value="light-pastel">暖纸 · 浅色</option><option value="terminal-classic">经典终端 · 原 Skill</option><option value="pastel-classic">经典粉彩 · 原 Skill</option></select></label><label id="avatarLabel">角色<select id="avatar" aria-label="角色"><option value="spider">机械蜘蛛</option><option value="drone">机器人</option></select></label><a id="htmlLink" class="scene-link" target="_blank">沉浸预览 ↗</a></div></div>
 <div class="stage"><iframe id="scene" title="能力示例动画"></iframe><div id="loading" class="loading" role="status">正在加载示例…</div></div>
 <div class="controls"><button id="play" disabled>加载中</button><button id="replay" disabled>重播</button><label class="sr" for="scrub">动画进度</label><input id="scrub" type="range" min="0" max="12" step="0.01" value="0" disabled><output id="clock">00.00 / 12.00 s</output><select id="speed" aria-label="播放速度"><option value="0.5">0.5×</option><option value="1" selected>1×</option><option value="2">2×</option></select></div>
 <div id="checkpoints" class="checkpoints"></div>
@@ -58,11 +58,12 @@ function enable(on){['play','replay','scrub'].forEach(id=>$(id).disabled=!on);$(
 function paint(){if(ready){frame.contentWindow.seek(t);window.__galleryError=frame.contentWindow.__error||''}slider.value=t;$('clock').textContent=t.toFixed(2).padStart(5,'0')+' / '+selected.duration.toFixed(2)+' s';$('play').textContent=ready?(playing?'暂停':'播放'):'加载中'}
 function jump(value){if(!ready)return;t=Math.max(0,Math.min(selected.duration,Number(value)));playing=false;paint()}
 window.jumpDemo=jump;
-function currentVariant(){return selected.themeVariants&&selected.themeVariants[$('theme').value]}
+function variantFor(demo){const style=demo.styleVariants&&demo.styleVariants[$('style').value],variants=style&&style.themeVariants;return variants?variants[$('theme').value]:$('style').value==='diagram'&&demo.themeVariants&&demo.themeVariants[$('theme').value]}
+function currentVariant(){return variantFor(selected)}
 function sceneUrl(){const v=currentVariant();return selected.id+'/'+(selected.themeSwitch===false?'live.html':v?v.page:$('theme').value==='light-pastel'?'live-light.html':'live-dark.html')}
 function paintTheme(){
  const theme=$('theme').value;document.documentElement.dataset.theme=theme;
- document.querySelectorAll('.demo-card img').forEach(img=>{const demo=DEMOS.find(d=>d.id===img.parentElement.dataset.id),v=demo.themeVariants&&demo.themeVariants[theme];img.hidden=false;img.src=demo.id+'/'+(v?v.poster:theme==='light-pastel'?'poster-light.png':'poster.png')});
+ document.querySelectorAll('.demo-card img').forEach(img=>{const demo=DEMOS.find(d=>d.id===img.parentElement.dataset.id),v=variantFor(demo);img.hidden=false;img.src=demo.id+'/'+(v?v.poster:theme==='light-pastel'?'poster-light.png':'poster.png')});
  const variant=currentVariant(),file=variant?variant.video:selected.videos&&selected.videos[theme]||'demo.mp4';safeLink('videoLink',selected.id+'/'+file);safeLink('watchVideoLink',selected.id+'/'+file);
  const hasVideo=variant?variant.videoReady:selected.videoReady&&theme==='terminal-dark'||selected.lightVideoReady&&theme==='light-pastel';$('videoLink').hidden=!hasVideo;$('watchVideoLink').hidden=!hasVideo;
 }
@@ -81,6 +82,8 @@ window.selectDemo=function(id){
  const next=DEMOS.find(d=>d.id===id);if(!next)throw new Error('Unknown demo: '+id);selected=next;t=0;playing=true;window.__galleryError='';
  document.querySelectorAll('.demo-card').forEach(n=>n.setAttribute('aria-current',String(n.dataset.id===id)));
  $('title').textContent=next.title;$('summary').textContent=next.summary;slider.max=next.duration;
+ Array.from($('style').options).forEach(option=>option.disabled=option.value!=='diagram'&&!(next.styleVariants&&next.styleVariants[option.value]));
+ if($('style').selectedOptions[0].disabled)$('style').value='diagram';
  $('themeLabel').hidden=next.themeSwitch===false;frame.style.transform='';$('viewLabel').hidden=!next.focusViews;
  const aspect=Number(next.width)>0&&Number(next.height)>0?Number(next.width)/Number(next.height):1.5;
  const workspace=document.querySelector('.workspace');workspace.style.setProperty('--scene-aspect',String(aspect));workspace.dataset.shape=aspect<1?'portrait':'landscape';workspace.dataset.visualStyle=next.visualStyle||'';
@@ -93,12 +96,13 @@ window.selectDemo=function(id){
  safeLink('videoLink',id+'/demo.mp4');safeLink('docLink',id+'/README.md');$('videoLink').hidden=!next.videoReady;
  loadScene();return id;
 };
-DEMOS.forEach((d,i)=>{const b=document.createElement('button');b.className='demo-card';b.dataset.id=d.id;const img=document.createElement('img');img.src=d.id+'/poster.png';img.alt='';img.onerror=()=>img.hidden=true;const info=document.createElement('span'),name=document.createElement('span'),category=document.createElement('span');name.className='name';name.textContent=String(i+1).padStart(2,'0')+' '+d.title;category.className='category';category.textContent=d.category;info.append(name,category);b.append(img,info);b.onclick=()=>{window.selectDemo(d.id);history.replaceState(null,'','#'+d.id)};$('demos').append(b)});
+DEMOS.forEach((d,i)=>{const b=document.createElement('button');b.className='demo-card';b.dataset.id=d.id;const img=document.createElement('img');img.src=d.id+'/poster.png';img.alt='';img.onerror=()=>img.hidden=true;const info=document.createElement('span'),name=document.createElement('span'),category=document.createElement('span');name.className='name';name.textContent=String(i+1).padStart(2,'0')+' '+d.title;category.className='category';category.textContent=d.category;info.append(name,category);b.append(img,info);b.onclick=()=>{window.selectDemo(d.id);const url=new URL(location.href);url.hash=d.id;history.replaceState(null,'',url)};$('demos').append(b)});
 $('play').onclick=()=>{if(ready){playing=!playing;paint()}};$('replay').onclick=()=>{if(ready){t=0;playing=true;paint()}};slider.oninput=()=>jump(slider.value);
-$('theme').onchange=loadScene;$('avatar').onchange=()=>{if(ready)frame.contentWindow.setAvatar($('avatar').value)};
+function updateChoiceUrl(){const url=new URL(location.href);url.searchParams.set('theme',$('theme').value);if($('style').value==='diagram')url.searchParams.delete('style');else url.searchParams.set('style',$('style').value);url.hash=selected.id;history.replaceState(null,'',url)}
+$('theme').onchange=()=>{updateChoiceUrl();loadScene()};$('style').onchange=()=>{updateChoiceUrl();loadScene()};$('avatar').onchange=()=>{if(ready)frame.contentWindow.setAvatar($('avatar').value)};
 $('view').onchange=()=>{const v=selected.focusViews[Number($('view').value)-1],w=selected.width,h=selected.height;frame.style.transform=v?'scale('+(v.zoom||2.8)+') translate('+((w/2-v.x)/w*100)+'%, '+((h/2-v.y)/h*100)+'%)':''};
 document.addEventListener('keydown',e=>{if(!ready||(e.target instanceof Element&&e.target.matches('input,select,button,a,textarea')))return;if(e.code==='Space'){e.preventDefault();playing=!playing;paint()}else if(e.code==='ArrowLeft'||e.code==='ArrowRight'){e.preventDefault();jump(t+(e.code==='ArrowLeft'?-1:1))}});
-window.galleryState=()=>({id:selected.id,time:t,playing,ready,theme:$('theme').value,avatar:$('avatar').value});
+window.galleryState=()=>({id:selected.id,time:t,playing,ready,style:$('style').value,theme:$('theme').value,avatar:$('avatar').value});
 window.exportState=()=>({busy:exportBusy,job:exportJob,service:exportService});
 function isLocalPreview(){return location.protocol==='http:'&&['127.0.0.1','localhost','[::1]'].includes(location.hostname)}
 function setExportService(service,message){exportService=service;$('exportPanel').hidden=service!=='local';$('localExportHelp').hidden=service==='local';$('exportRetry').hidden=!isLocalPreview();$('exportRetry').disabled=service==='checking';$('exportButton').disabled=!ready||exportBusy||service!=='local';if(message&&!exportBusy)$('exportStatus').textContent=message}
@@ -121,8 +125,8 @@ function finishExport(){exportBusy=false;$('exportButton').textContent='导出�
 function failExport(error){let message=error.message;if(error instanceof TypeError){setExportService('static');message='本地导出服务连接已断开，请按下方说明重新启动服务。'}$('exportStatus').textContent=message;finishExport()}
 $('exportButton').onclick=async()=>{
  if(!ready||exportBusy||exportService!=='local')return;
- const choice={scene:selected.id,theme:$('theme').value,avatar:$('avatar').value,view:$('exportView').value};
- const label=selected.title+' · '+$('theme').selectedOptions[0].textContent+' · '+$('exportView').selectedOptions[0].textContent;
+ const choice={scene:selected.id,theme:$('theme').value,style:$('style').value,avatar:$('avatar').value,view:$('exportView').value};
+ const label=selected.title+' · '+$('style').selectedOptions[0].textContent+' · '+$('theme').selectedOptions[0].textContent+' · '+$('exportView').selectedOptions[0].textContent;
  exportBusy=true;exportJob=null;$('exportButton').disabled=true;$('exportButton').textContent='正在导出…';$('exportDownload').hidden=true;
  $('exportStatus').textContent='准备导出：'+label;
  try{
@@ -143,5 +147,7 @@ $('exportButton').onclick=async()=>{
 function loop(now){if(ready&&playing&&last)t=(t+(now-last)/1000*Number($('speed').value))%selected.duration;last=now;if(selected)paint();requestAnimationFrame(loop)}
 const requestedTheme=new URLSearchParams(location.search).get('theme');
 if(Array.from($('theme').options).some(option=>option.value===requestedTheme))$('theme').value=requestedTheme;
+const requestedStyle=new URLSearchParams(location.search).get('style');
+if(Array.from($('style').options).some(option=>option.value===requestedStyle))$('style').value=requestedStyle;
 window.selectDemo(DEMOS.some(d=>d.id===location.hash.slice(1))?location.hash.slice(1):DEMOS[0].id);requestAnimationFrame(loop);checkExportService();
 </script></body></html>

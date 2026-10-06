@@ -1,16 +1,17 @@
 {
   "version": 1,
   "repository": "cwybruce/motion-diagram-studio",
-  "releaseTag": "media-v2",
+  "releaseTag": "media-v3",
   "published": true,
   "publishedTags": [
-    "media-v1"
+    "media-v1",
+    "media-v2"
   ],
   "bundle": {
-    "filename": "motion-diagram-studio-media-v2.zip",
-    "url": "https://github.com/cwybruce/motion-diagram-studio/releases/download/media-v2/motion-diagram-studio-media-v2.zip",
-    "size": 56588425,
-    "sha256": "abc69bf17c427f4eed97b820670d601856dd3e8d342294691e1a01a5f5cce9fe"
+    "filename": "motion-diagram-studio-media-v3.zip",
+    "url": "https://github.com/cwybruce/motion-diagram-studio/releases/download/media-v3/motion-diagram-studio-media-v3.zip",
+    "size": 92045936,
+    "sha256": "b5c81a441936c5b63d3c7c486a9302e366181a73cd29060ff76e6fab26839212"
   },
   "assets": [
     {
@@ -26,6 +27,34 @@
       "set": "all",
       "size": 1953949,
       "sha256": "048bd1945166a27f793b72fac3333c80dc170cdf5fe76a1bab40cc5d16d3307a"
+    },
+    {
+      "path": "examples/capability-demos/agent-team/demo-console-dark.mp4",
+      "type": "video",
+      "set": "demos",
+      "size": 1070991,
+      "sha256": "3fb073ad4a39c55b67b624004a5da89c1e337cc39fdebdd8a53b6d01ae0075fa"
+    },
+    {
+      "path": "examples/capability-demos/agent-team/demo-console-light.mp4",
+      "type": "video",
+      "set": "demos",
+      "size": 1027998,
+      "sha256": "3dfdf34d11f830ae4dc56968d2a86e292c861b2fd7165ed51fe45faa7c83b892"
+    },
+    {
+      "path": "examples/capability-demos/agent-team/demo-console-pastel.mp4",
+      "type": "video",
+      "set": "demos",
+      "size": 1104821,
+      "sha256": "ef7fa1703a7811b934fe8f8f88ed74725e9f62507f804347e179884aeee56861"
+    },
+    {
+      "path": "examples/capability-demos/agent-team/demo-console-terminal.mp4",
+      "type": "video",
+      "set": "demos",
+      "size": 1073317,
+      "sha256": "e6a522a7c63ba04bcf4e5dadccd84aaa5e1d03d1940c71adb7be6cbe242c971d"
     },
     {
       "path": "examples/capability-demos/agent-team/demo-light.mp4",
@@ -56,6 +85,34 @@
       "sha256": "bae5fba40d36e20718b6e7d970056666555a7a502ea8c7d2bad5c6286937a15f"
     },
     {
+      "path": "examples/capability-demos/avatar-themes/demo-console-dark.mp4",
+      "type": "video",
+      "set": "demos",
+      "size": 1251893,
+      "sha256": "0e5f04f9e1b13f3b27e1a517a41d5792690ba2c831609e6e65aab31808591924"
+    },
+    {
+      "path": "examples/capability-demos/avatar-themes/demo-console-light.mp4",
+      "type": "video",
+      "set": "demos",
+      "size": 1183444,
+      "sha256": "974095997d29deef4a7ec8ab04878c409c6aa5c63c5c1c15f052b073b456745c"
+    },
+    {
+      "path": "examples/capability-demos/avatar-themes/demo-console-pastel.mp4",
+      "type": "video",
+      "set": "demos",
+      "size": 1320926,
+      "sha256": "9a0719271d1cad86177d6f661ec5cf58da6773ee5b30cbac9ba66fd550bb27b2"
+    },
+    {
+      "path": "examples/capability-demos/avatar-themes/demo-console-terminal.mp4",
+      "type": "video",
+      "set": "demos",
+      "size": 1283956,
+      "sha256": "d50aba2297762671a0b38e4c57419d9712295ad3adebc9cffc4004d32c3d2e01"
+    },
+    {
       "path": "examples/capability-demos/avatar-themes/demo-light.mp4",
       "type": "video",
       "set": "demos",
@@ -82,6 +139,34 @@
       "set": "demos",
       "size": 1030116,
       "sha256": "7f7b0c33c22e3a8fc5f768cfa884bbe12a6517a47585dea0d4d4b2eb429d76d5"
+    },
+    {
+      "path": "examples/capability-demos/business-workflow/demo-console-dark.mp4",
+      "type": "video",
+      "set": "demos",
+      "size": 1110686,
+      "sha256": "15aff14f71b3f9f7f5215e629d1e83cc27caa95cdd6ed6df17341cadecb48ba4"
+    },
+    {
+      "path": "examples/capability-demos/business-workflow/demo-console-light.mp4",
+      "type": "video",
+      "set": "demos",
+      "size": 1077923,
+      "sha256": "95efdea88dd884fbd1b15c6a1e96de667af52d920ed19908e1b28d970879e5d2"
+    },
+    {
+      "path": "examples/capability-demos/business-workflow/demo-console-pastel.mp4",
+      "type": "video",
+      "set": "demos",
+      "size": 1136365,
+      "sha256": "816d6fcdec87e9283a9b94de3f93042f672ed25a293682dcef1937cf9b0d006f"
+    },
+    {
+      "path": "examples/capability-demos/business-workflow/demo-console-terminal.mp4",
+      "type": "video",
+      "set": "demos",
+      "size": 1120305,
+      "sha256": "86b7d91171516e7f9779730b0dc2fbf9723f02866cfe3be197c6b1fd686e54f4"
     },
     {
       "path": "examples/capability-demos/business-workflow/demo-light.mp4",
@@ -112,6 +197,34 @@
       "sha256": "09fc5fc4bc80dbbefb9b573973c0426745683d14ecdbf513aa3a90abeafc1e4c"
     },
     {
+      "path": "examples/capability-demos/component-lab/demo-console-dark.mp4",
+      "type": "video",
+      "set": "demos",
+      "size": 1387712,
+      "sha256": "274cf14b038cfa7a41d05c58a54eb4d08ac6719274de9a2aa3cb03bab3c9a9f3"
+    },
+    {
+      "path": "examples/capability-demos/component-lab/demo-console-light.mp4",
+      "type": "video",
+      "set": "demos",
+      "size": 1303470,
+      "sha256": "32e5fcf374ef32f5cade600397102ba7fc1ac46e96b18f98a74156b129666ba5"
+    },
+    {
+      "path": "examples/capability-demos/component-lab/demo-console-pastel.mp4",
+      "type": "video",
+      "set": "demos",
+      "size": 1353262,
+      "sha256": "4a4ec1bfc0db05f214bf386767303cb256b9cc8e53f8c606b8f47363a3e22862"
+    },
+    {
+      "path": "examples/capability-demos/component-lab/demo-console-terminal.mp4",
+      "type": "video",
+      "set": "demos",
+      "size": 1379085,
+      "sha256": "8e526a61d92770b09e33fcb9cc712f74ea8d5d4a515e3daf8d6eec9e39099e0b"
+    },
+    {
       "path": "examples/capability-demos/component-lab/demo-light.mp4",
       "type": "video",
       "set": "demos",
@@ -138,6 +251,34 @@
       "set": "demos",
       "size": 1053634,
       "sha256": "25da2ae2394b3896f9a598d97b46927b6ae65bafe69fff2e3f308779c2475887"
+    },
+    {
+      "path": "examples/capability-demos/incident-replay/demo-console-dark.mp4",
+      "type": "video",
+      "set": "demos",
+      "size": 953682,
+      "sha256": "e26f872a6b8cb7950993ea863a9d63900b66d9e8ad5b683f5cf2447633eca3e9"
+    },
+    {
+      "path": "examples/capability-demos/incident-replay/demo-console-light.mp4",
+      "type": "video",
+      "set": "demos",
+      "size": 912844,
+      "sha256": "696b9352a62db29aa0689a477ed13b2dce96b80a9ecd6a25c96a5f2e336871dc"
+    },
+    {
+      "path": "examples/capability-demos/incident-replay/demo-console-pastel.mp4",
+      "type": "video",
+      "set": "demos",
+      "size": 985557,
+      "sha256": "a91b302044555a9c82e1cbab07761200e2b7e37272ccdb63ca88c19e5236eeb1"
+    },
+    {
+      "path": "examples/capability-demos/incident-replay/demo-console-terminal.mp4",
+      "type": "video",
+      "set": "demos",
+      "size": 960621,
+      "sha256": "fe5f02238dc7682e9045fdef5a83e7fd6a0ba776aaf87ae4a19522c6646f2056"
     },
     {
       "path": "examples/capability-demos/incident-replay/demo-light.mp4",
@@ -168,6 +309,34 @@
       "sha256": "174231eb7454381c83a85a74ea5c98930cae6913768819e62806e57e7eacaefe"
     },
     {
+      "path": "examples/capability-demos/knowledge-card/demo-console-dark.mp4",
+      "type": "video",
+      "set": "demos",
+      "size": 947023,
+      "sha256": "1eb709cadc3afb9340d6a03d11a5f9e15a49075cff0c5ef78892ab5f9b6eed48"
+    },
+    {
+      "path": "examples/capability-demos/knowledge-card/demo-console-light.mp4",
+      "type": "video",
+      "set": "demos",
+      "size": 899491,
+      "sha256": "6f835ea40f05728f51f11eb5200dcde06942fdcc353ac1dd01383774fbf3a740"
+    },
+    {
+      "path": "examples/capability-demos/knowledge-card/demo-console-pastel.mp4",
+      "type": "video",
+      "set": "demos",
+      "size": 948823,
+      "sha256": "c61712421b0a892cdb4ab46b0156eac9bdb5174529ca475a170846d1f0bfb3fe"
+    },
+    {
+      "path": "examples/capability-demos/knowledge-card/demo-console-terminal.mp4",
+      "type": "video",
+      "set": "demos",
+      "size": 950735,
+      "sha256": "92fbbff6dc2161527c7b444baa4507d05809ba8e1ed4c9c38665ea7848420e1f"
+    },
+    {
       "path": "examples/capability-demos/knowledge-card/demo-light.mp4",
       "type": "video",
       "set": "demos",
@@ -196,6 +365,34 @@
       "sha256": "abf70568c805b4c63aefcae661d11095a9f8284906502e8b8accc45a090e3e18"
     },
     {
+      "path": "examples/capability-demos/product-request/demo-console-dark.mp4",
+      "type": "video",
+      "set": "demos",
+      "size": 1134376,
+      "sha256": "7dc8425f7fde5033471af83a599730b723d5c283d2b6acd2424bf9264941988d"
+    },
+    {
+      "path": "examples/capability-demos/product-request/demo-console-light.mp4",
+      "type": "video",
+      "set": "demos",
+      "size": 1054976,
+      "sha256": "d8b58c30f527cf0780b0c9ac7f6677c416a61358cd28a18c50077175fc2618f5"
+    },
+    {
+      "path": "examples/capability-demos/product-request/demo-console-pastel.mp4",
+      "type": "video",
+      "set": "demos",
+      "size": 1136180,
+      "sha256": "a81268ed52338d337b7fb9f658892f936c9e9204d44c6011bff0f0e2aa0bef03"
+    },
+    {
+      "path": "examples/capability-demos/product-request/demo-console-terminal.mp4",
+      "type": "video",
+      "set": "demos",
+      "size": 1124812,
+      "sha256": "db2dff93f66245366e194f21151e2153844cdead8ed583b7cfa8f93aa51779f1"
+    },
+    {
       "path": "examples/capability-demos/product-request/demo-light.mp4",
       "type": "video",
       "set": "demos",
@@ -222,6 +419,34 @@
       "set": "demos",
       "size": 874694,
       "sha256": "a56b362a5d4b655b3b49c71386540ba8fd80b44ef811a975db102e28fcc478ed"
+    },
+    {
+      "path": "examples/capability-demos/rag-explainer/demo-console-dark.mp4",
+      "type": "video",
+      "set": "demos",
+      "size": 1085106,
+      "sha256": "d329150a32c60c16d5f05a7905124f0a5c5cf7d5b89880126a849acda4d3d4d9"
+    },
+    {
+      "path": "examples/capability-demos/rag-explainer/demo-console-light.mp4",
+      "type": "video",
+      "set": "demos",
+      "size": 1005561,
+      "sha256": "db2d4ca2bd74dcdc867bc9d01d0136f8be25d9f61ed80ea00af2a006ac17f4cc"
+    },
+    {
+      "path": "examples/capability-demos/rag-explainer/demo-console-pastel.mp4",
+      "type": "video",
+      "set": "demos",
+      "size": 1082659,
+      "sha256": "fadee925cdbd09c1480646e3d429019b7df8cd5ea736c6e945e9812043894c2e"
+    },
+    {
+      "path": "examples/capability-demos/rag-explainer/demo-console-terminal.mp4",
+      "type": "video",
+      "set": "demos",
+      "size": 1082415,
+      "sha256": "97c05650aa416d16a5cddcde77912499a5a03a3196300f885fc768b108d34b7c"
     },
     {
       "path": "examples/capability-demos/rag-explainer/demo-light.mp4",
@@ -574,21 +799,21 @@
       "sha256": "92c7bd7c758f64b23515bfeed03215d553a3b03f2b223c6031c9a023fb06d6fb"
     },
     {
-      "path": "media/release-notices/media-v2/LICENSE",
+      "path": "media/release-notices/media-v3/LICENSE",
       "type": "metadata",
       "set": "all",
       "size": 1080,
       "sha256": "d9a271454ec62391b2b304fba4c45068887fd7ef1a872dca544c6938ef7fef2b"
     },
     {
-      "path": "media/release-notices/media-v2/README.md",
+      "path": "media/release-notices/media-v3/README.md",
       "type": "metadata",
       "set": "all",
       "size": 428,
       "sha256": "8c693647c0cfe4fc146a63d70e2ebd1a8bad0a838275a2f74989d6f29a34b96b"
     },
     {
-      "path": "media/release-notices/media-v2/THIRD_PARTY_NOTICES.md",
+      "path": "media/release-notices/media-v3/THIRD_PARTY_NOTICES.md",
       "type": "metadata",
       "set": "all",
       "size": 5648,

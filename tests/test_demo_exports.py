@@ -35,26 +35,30 @@ class RequestValidationTests(unittest.TestCase):
     def setUpClass(cls):
         cls.manifest = json.loads((ed.DEMO_ROOT / 'manifest.json').read_text(encoding='utf-8'))
 
-    def test_all_39_blocks_four_themes_and_avatars(self):
+    def test_all_39_blocks_two_styles_four_themes_and_avatars(self):
         self.assertEqual(sum(len(d['exportViews']) for d in self.manifest), 39)
         for demo in self.manifest:
             for view in demo['exportViews']:
                 for theme in ed.THEMES:
                     for avatar in ed.AVATARS:
-                        with self.subTest(scene=demo['id'], view=view['id'], theme=theme, avatar=avatar):
-                            payload = dict(scene=demo['id'], theme=theme, avatar=avatar, view=view['id'])
-                            spec = ed.validate_request(payload)
-                            self.assertEqual(spec.crop, tuple(view['crop']))
-                            self.assertEqual((spec.width, spec.height), tuple(view['crop'][2:]))
-                            self.assertEqual(spec.config['theme'].get('variant', spec.config['theme']['preset']), theme)
-                            self.assertEqual(spec.config['theme']['preset'], ed.THEME_PRESETS[theme])
-                            self.assertEqual(spec.config['canvas']['fps'], 30)
-                            self.assertEqual(spec.config['canvas']['duration'], 12)
-                            self.assertTrue(all(a['avatar'] == avatar for a in actors(spec.config['elements'])))
-                            self.assertEqual(spec.filename, f"{demo['id']}-{theme}-{avatar}-{view['id']}.mp4")
-                            path = ed.DEMO_ROOT / demo['id'] / ed.THEME_CONFIGS[theme]
-                            unchanged = json.loads(path.read_text(encoding='utf-8'))
-                            self.assertTrue(all(a['avatar'] == 'spider' for a in actors(unchanged['elements'])))
+                        for style in ed.STYLES:
+                            with self.subTest(scene=demo['id'], view=view['id'], theme=theme, avatar=avatar, style=style):
+                                payload = dict(scene=demo['id'], theme=theme, avatar=avatar, view=view['id'], style=style)
+                                spec = ed.validate_request(payload)
+                                self.assertEqual(spec.style, style)
+                                self.assertEqual(spec.config.get('presentation', {}).get('style', 'diagram'), style)
+                                self.assertEqual(spec.crop, tuple(view['crop']))
+                                self.assertEqual((spec.width, spec.height), tuple(view['crop'][2:]))
+                                self.assertEqual(spec.config['theme'].get('variant', spec.config['theme']['preset']), theme)
+                                self.assertEqual(spec.config['theme']['preset'], ed.THEME_PRESETS[theme])
+                                self.assertEqual(spec.config['canvas']['fps'], 30)
+                                self.assertEqual(spec.config['canvas']['duration'], 12)
+                                self.assertTrue(all(a['avatar'] == avatar for a in actors(spec.config['elements'])))
+                                suffix = '' if style == 'diagram' else '-terminal'
+                                self.assertEqual(spec.filename, f"{demo['id']}{suffix}-{theme}-{avatar}-{view['id']}.mp4")
+                                path = ed.DEMO_ROOT / demo['id'] / ed.STYLE_CONFIGS[style][theme]
+                                unchanged = json.loads(path.read_text(encoding='utf-8'))
+                                self.assertTrue(all(a['avatar'] == 'spider' for a in actors(unchanged['elements'])))
 
     def test_full_view_and_reject_untrusted_fields_values_and_paths(self):
         self.assertIsNone(ed.validate_request({'scene': 'rag-explainer'}).crop)

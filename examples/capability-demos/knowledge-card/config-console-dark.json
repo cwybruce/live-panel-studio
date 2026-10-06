@@ -1,0 +1,208 @@
+{
+  "meta": {
+    "title": "知识卡 · 把一个知识点翻成看得懂的页",
+    "lang": "zh-CN",
+    "visualStyle": "editorial"
+  },
+  "canvas": {
+    "width": 984,
+    "height": 1280,
+    "duration": 12,
+    "fps": 30
+  },
+  "theme": {
+    "preset": "terminal-dark",
+    "colors": {
+      "bg": "#191713",
+      "panel": "#25221b",
+      "surface": "#211e18",
+      "line": "#958871",
+      "fg": "#fff5e6",
+      "dim": "#d0c1aa",
+      "amber": "#f3cf88",
+      "cyan": "#8de1ee",
+      "pink": "#ff9bcc",
+      "mint": "#a7e6bd",
+      "red": "#ff9a88",
+      "blue": "#aacff7",
+      "ye": "#f3cf88",
+      "cy": "#8de1ee",
+      "pu": "#ff9bcc",
+      "gr": "#a7e6bd",
+      "rd": "#ff9a88",
+      "wh": "#fff5e6",
+      "bl": "#aacff7",
+      "pi": "#ff9bcc",
+      "pk": "#ff9a88",
+      "gn": "#a7e6bd",
+      "ort": "#f3cf88",
+      "blt": "#aacff7",
+      "put": "#ff9bcc",
+      "mc": "#ff9bcc",
+      "tl": "#8de1ee",
+      "gy": "#958871",
+      "or": "#f3cf88",
+      "yl": "#f3cf88",
+      "bar": "#25221b",
+      "line2": "#958871",
+      "dots": "#958871",
+      "hl": "#362c29",
+      "gnf": "#2e3026",
+      "blf": "#2e2e2a",
+      "ylf": "#332e23",
+      "orf": "#332e23",
+      "rdf": "#342a23",
+      "puf": "#342a27",
+      "mcf": "#342a27",
+      "tlf": "#2c2f2a",
+      "gyf": "#312d25",
+      "lit": "#332e23"
+    },
+    "font": "\"LP Sans\",sans-serif",
+    "variant": "terminal-dark"
+  },
+  "machines": {
+    "chapter": {
+      "type": "cycle",
+      "period": 3,
+      "values": [
+        {
+          "t": "01 / 明确输入",
+          "note": "先说明问题与已有材料。"
+        },
+        {
+          "t": "02 / 展示过程",
+          "note": "让信息沿连线经过处理节点。"
+        },
+        {
+          "t": "03 / 检查输出",
+          "note": "结果应当有依据，并且可以核对。"
+        },
+        {
+          "t": "04 / 回顾要点",
+          "note": "看清输入、过程、输出，再迁移到自己的场景。"
+        }
+      ]
+    },
+    "views": {
+      "type": "counter",
+      "start": 120,
+      "rate": 8,
+      "suffix": " 次演示播放"
+    }
+  },
+  "elements": [
+    {
+      "type": "knowledgeEditorial",
+      "x": 0,
+      "y": 0,
+      "w": 984,
+      "h": 1280
+    },
+    {
+      "type": "drone",
+      "avatar": "spider",
+      "avatarScale": 0.48,
+      "avatarColors": {
+        "leg": "#d68865",
+        "joint": "#88c4a2",
+        "shell": "#9d9acc",
+        "core": "#e776af"
+      },
+      "x": 0,
+      "y": 0,
+      "w": 984,
+      "h": 1280,
+      "period": 12,
+      "focusPeriod": 3,
+      "path": [
+        [
+          309,
+          481
+        ],
+        [
+          414,
+          481
+        ],
+        [
+          569,
+          481
+        ],
+        [
+          675,
+          481
+        ]
+      ],
+      "targets": [
+        {
+          "x": 531,
+          "y": 387,
+          "w": 43,
+          "h": 43
+        },
+        {
+          "x": 609,
+          "y": 387,
+          "w": 43,
+          "h": 43
+        },
+        {
+          "x": 687,
+          "y": 387,
+          "w": 43,
+          "h": 43
+        },
+        {
+          "x": 238,
+          "y": 285,
+          "w": 508,
+          "h": 204
+        }
+      ],
+      "words": [],
+      "timelineMachine": "chapter"
+    }
+  ],
+  "effects": {
+    "neon": {
+      "enabled": true,
+      "intensity": 0.8,
+      "period": 6,
+      "heroPeriod": 12,
+      "tail": 144
+    }
+  },
+  "presentation": {
+    "style": "terminal",
+    "sceneId": "knowledge-card",
+    "title": "~/motion-diagram-studio/knowledge-card — zsh",
+    "command": "python scripts/render.py --config examples/capability-demos/knowledge-card/config-console-dark.json",
+    "events": [
+      {
+        "t": 0,
+        "actor": "studio",
+        "text": "演示启动 · 预设模拟"
+      },
+      {
+        "t": 0.8,
+        "actor": "knowledge",
+        "text": "演示关键点：明确输入"
+      },
+      {
+        "t": 3.8,
+        "actor": "knowledge",
+        "text": "演示关键点：展示过程"
+      },
+      {
+        "t": 6.8,
+        "actor": "knowledge",
+        "text": "演示关键点：检查输出"
+      },
+      {
+        "t": 9.8,
+        "actor": "knowledge",
+        "text": "演示关键点：回顾要点"
+      }
+    ]
+  }
+}

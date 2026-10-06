@@ -32,6 +32,8 @@
 
 每个示例提供 `config-dark.json` / `config-light.json` / `config-terminal.json` / `config-pastel.json` 与对应 HTML。播放器主题同时切换场景与界面，导出跟随当前主题。
 
+展示样式与配色分别选择：原版图解保留原有排版；macOS 终端加入窗口外壳、等宽文字、字符边框、模拟日志与命令光标。终端配置、网页、视频与海报使用 `config-console-*` / `live-console-*` / `demo-console-*` / `poster-console-*` 文件名。
+
 每个功能块带沿边缘流动的霓虹扫光与渐隐拖尾；在 `effects.neon` 中调整强度、周期与拖尾长度，或将 `enabled` 设为 `false` 关闭。
 
 从仓库根目录重新导出：
@@ -47,4 +49,10 @@ python scripts/render.py --config examples/capability-demos/agent-team/config.js
 
 ```powershell
 python scripts/export_demo.py --scene agent-team --theme light-pastel --view full --out examples/capability-demos/agent-team/custom-light.mp4
+```
+
+导出此 Demo 的经典终端配色与 macOS 终端样式：
+
+```powershell
+python scripts/export_demo.py --scene agent-team --theme terminal-classic --style terminal --view full --out examples/capability-demos/agent-team/custom-console.mp4
 ```

@@ -209,6 +209,43 @@ THEME_VARIANTS = {
                        'video': 'demo-pastel.mp4', 'poster': 'poster-pastel.png'},
 }
 
+STYLE_VARIANTS = {
+    'diagram': {'label': '原版图解 / Diagram', 'themeVariants': THEME_VARIANTS},
+    'terminal': {'label': 'macOS 终端 / macOS Terminal', 'themeVariants': {
+        theme: {**files,
+                'config': 'config-console-' + suffix + '.json',
+                'page': 'live-console-' + suffix + '.html',
+                'video': 'demo-console-' + suffix + '.mp4',
+                'poster': 'poster-console-' + suffix + '.png'}
+        for theme, suffix in (('terminal-dark', 'dark'), ('light-pastel', 'light'),
+                              ('terminal-classic', 'terminal'), ('pastel-classic', 'pastel'))
+        for files in (THEME_VARIANTS[theme],)
+    }},
+}
+
+
+def presentation_config(config, style, demo, theme):
+    """Add optional terminal furniture while preserving authored crop geometry."""
+    if style not in STYLE_VARIANTS:
+        raise ValueError('Unknown presentation style: ' + str(style))
+    version = copy.deepcopy(config)
+    if style == 'diagram':
+        return version
+    files = STYLE_VARIANTS[style]['themeVariants'][theme]
+    events = [{'t': 0, 'actor': 'studio', 'text': '演示启动 · 预设模拟'}]
+    events += [{'t': float(checkpoint['time']), 'actor': demo['id'].split('-')[0],
+                'text': '演示关键点：' + checkpoint['label']}
+               for checkpoint in demo['checkpoints']
+               if 0 <= float(checkpoint['time']) < lp.canvas(version)[2]]
+    version['presentation'] = {
+        'style': 'terminal', 'sceneId': demo['id'],
+        'title': '~/motion-diagram-studio/' + demo['id'] + ' — zsh',
+        'command': 'python scripts/render.py --config examples/capability-demos/' +
+                   demo['id'] + '/' + files['config'],
+        'events': sorted(events, key=lambda event: event['t']),
+    }
+    return version
+
 
 def theme_config(config, variant):
     """Apply a whitelisted palette without changing the source scene or timing."""
@@ -256,8 +293,10 @@ def generate():
         config['theme']['font'] = '"LP Sans",sans-serif'
         config = theme_config(config, 'terminal-dark')
         variants = [('config.json', 'live.html', config)]
-        for variant, files in THEME_VARIANTS.items():
-            variants.append((files['config'], files['page'], theme_config(config, variant)))
+        for style, style_files in STYLE_VARIANTS.items():
+            for variant, files in style_files['themeVariants'].items():
+                version = presentation_config(theme_config(config, variant), style, demo, variant)
+                variants.append((files['config'], files['page'], version))
         for config_name, page_name, version in variants:
             path = dest / config_name
             path.write_text(json.dumps(version, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
@@ -273,7 +312,14 @@ def generate():
                         videos={theme: files['video'] for theme, files in THEME_VARIANTS.items()},
                         themeVariants={theme: {**{k: v for k, v in files.items() if k != 'preset'},
                                                'videoReady': video_ready(files['video'])}
-                                       for theme, files in THEME_VARIANTS.items()})
+                                       for theme, files in THEME_VARIANTS.items()},
+                        styleVariants={style: {
+                            'label': style_files['label'],
+                            'themeVariants': {theme: {
+                                **{k: v for k, v in files.items() if k != 'preset'},
+                                'videoReady': video_ready(files['video'])}
+                                for theme, files in style_files['themeVariants'].items()}}
+                            for style, style_files in STYLE_VARIANTS.items()})
         manifest.append(metadata)
         readme = [f"# {demo['title']}", '', demo['summary'], '',
                   '原创中文示例。所有事件、数字与状态来自预设时间线，未接入外部系统。', '',
@@ -283,6 +329,7 @@ def generate():
                   '文件：`config.json`（默认配置）、`live.html`（独立动画）、`demo.mp4`（暖黑）、`demo-light.mp4`（暖纸）、`demo-terminal.mp4`（经典终端）、`demo-pastel.mp4`（经典粉彩）；四套成片均使用默认角色。', '',
                   '预制 MP4 由 Releases 分发。需要本地观看成片时，从仓库根目录运行 `python scripts/media_assets.py download --set demos`；交互 HTML 和生成新视频不依赖这些预制成片。', '',
                   '每个示例提供 `config-dark.json` / `config-light.json` / `config-terminal.json` / `config-pastel.json` 与对应 HTML。播放器主题同时切换场景与界面，导出跟随当前主题。', '',
+                  '展示样式与配色分别选择：原版图解保留原有排版；macOS 终端加入窗口外壳、等宽文字、字符边框、模拟日志与命令光标。终端配置、网页、视频与海报使用 `config-console-*` / `live-console-*` / `demo-console-*` / `poster-console-*` 文件名。', '',
                   '每个功能块带沿边缘流动的霓虹扫光与渐隐拖尾；在 `effects.neon` 中调整强度、周期与拖尾长度，或将 `enabled` 设为 `false` 关闭。', '',
                   '从仓库根目录重新导出：', '', '```powershell',
                   f"python scripts/render.py --config examples/capability-demos/{demo['id']}/config.json --out examples/capability-demos/{demo['id']}/demo.mp4", '```', '',
@@ -290,6 +337,8 @@ def generate():
                   '“导出当前方案”按当前主题、角色与导出范围新建视频，不改变原始配置。范围可选整段或内部功能块；功能块保留完整 12 秒过程和边缘泛光。', '',
                   '单独导出此 Demo 的浅色版：', '', '```powershell',
                   f"python scripts/export_demo.py --scene {demo['id']} --theme light-pastel --view full --out examples/capability-demos/{demo['id']}/custom-light.mp4", '```', '']
+        readme += ['导出此 Demo 的经典终端配色与 macOS 终端样式：', '', '```powershell',
+                   f"python scripts/export_demo.py --scene {demo['id']} --theme terminal-classic --style terminal --view full --out examples/capability-demos/{demo['id']}/custom-console.mp4", '```', '']
         (dest / 'README.md').write_text('\n'.join(readme), encoding='utf-8')
     (OUT / 'manifest.json').write_text(json.dumps(manifest, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
     template = (lp.ROOT / 'assets/demo-gallery.html').read_text(encoding='utf-8')
@@ -318,6 +367,7 @@ def generate():
 
 播放器支持暂停、重播、拖动时间轴、0.5/1/2 倍速与关键时刻跳转。
 含角色的场景可切换蜘蛛/机器人；全部示例可切换四种配色。
+展示样式另行切换“原版图解 / macOS 终端”，与四套配色互不绑定；终端的标题栏、日志和光标也进入整段 MP4。功能块保持原裁剪范围。
 组件实验室的“组件视图”下拉框可放大查看六个组件。
 
 每个目录都含 JSON 配置、独立 HTML、12 秒 MP4、预览图和说明。
@@ -333,6 +383,7 @@ python scripts/make_capability_demos.py
 python scripts/make_capability_demos.py --render --jobs 2
 python scripts/make_capability_demos.py --render --themes light --jobs 2
 python scripts/make_capability_demos.py --render --themes all --jobs 2
+python scripts/make_capability_demos.py --render --styles terminal --themes all --jobs 2
 python scripts/export_demo.py --scene rag-explainer --theme light-pastel --avatar drone --view rag-rerank --out examples/capability-demos/rag-explainer/rerank-light.mp4
 python scripts/verify_capability_demos.py
 ```
@@ -351,13 +402,13 @@ python scripts/verify_capability_demos.py
 
 
 def render(job):
-    demo, theme = job
+    demo, theme, style = job
     dest = OUT / demo['id']
-    files = THEME_VARIANTS[theme]
+    files = STYLE_VARIANTS[style]['themeVariants'][theme]
     subprocess.run([sys.executable, str(lp.ROOT / 'scripts/render.py'), '--config',
                     str(dest / files['config']), '--out',
                     str(dest / files['video'])], check=True)
-    return demo['id'] + ':' + theme
+    return demo['id'] + ':' + theme + ':' + style
 
 
 def main():
@@ -366,12 +417,15 @@ def main():
     ap.add_argument('--jobs', type=int, default=1, choices=[1, 2])
     ap.add_argument('--themes', choices=['dark', 'light', 'both', 'terminal', 'pastel', 'all'], default='both',
                     help='themes to render; both = the two warm themes; generation always includes all four')
+    ap.add_argument('--styles', choices=['diagram', 'terminal', 'both'], default='diagram',
+                    help='presentation to render; default preserves the original diagram videos')
     args = ap.parse_args()
     demos = generate()
     if args.render:
         with ThreadPoolExecutor(max_workers=args.jobs) as pool:
             themes = render_themes(args.themes)
-            for name in pool.map(render, [(demo, theme) for demo in demos for theme in themes]):
+            styles = list(STYLE_VARIANTS) if args.styles == 'both' else [args.styles]
+            for name in pool.map(render, [(demo, theme, style) for demo in demos for style in styles for theme in themes]):
                 print('rendered', name, flush=True)
         generate()
     print(f'Built {len(demos)} demos: {OUT / "index.html"}')

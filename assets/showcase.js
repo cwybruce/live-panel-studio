@@ -6,8 +6,12 @@
   const THEME_COLORS = {'terminal-dark': '#191713', 'light-pastel': '#faf7f0', 'terminal-classic': '#191f27', 'pastel-classic': '#ffffff'};
   const THEME_KEY = 'motion-diagram-studio-showcase-theme';
   const LEGACY_THEME_KEY = 'live-panel-studio-showcase-theme';
+  const STYLES = ['diagram', 'terminal'];
+  const STYLE_NAMES = {diagram: '原版图解', terminal: 'macOS 终端'};
+  const STYLE_KEY = 'motion-diagram-studio-showcase-style';
   const $ = (id) => document.getElementById(id);
   let theme = 'terminal-dark';
+  let style = 'diagram';
   let demos = [];
   let exports = [];
 
@@ -82,6 +86,7 @@
     body.append(node('h3', '', item.title), node('p', '', item.summary || '由配置与时间线生成的动画。'));
     const meta = node('div', 'media-meta');
     meta.append(node('span', '', durationLabel(item.duration)), node('span', '', `${item.fps || 30}fps`), node('span', 'card-theme', THEME_NAMES[recreation ? item.theme : theme] || THEME_NAMES[theme]));
+    if (!recreation) meta.append(node('span', 'card-style', STYLE_NAMES[style]));
     const links = node('div', 'media-links');
     if (recreation) {
       setMedia(video, item.video, item.poster, error);
@@ -89,7 +94,7 @@
       if (item.provenance) card.title = item.provenance;
     } else {
       card.dataset.scene = item.id;
-      links.append(link('交互体验 ↗', `examples/capability-demos/index.html?theme=${theme}#${encodeURIComponent(item.id)}`), link('下载 MP4 ↓', demoVideo(item), true));
+      links.append(link('交互体验 ↗', galleryPath(item.id)), link('下载 MP4 ↓', demoVideo(item), true));
       links.firstChild.classList.add('demo-interactive');
       links.lastChild.classList.add('demo-download');
       setMedia(video, demoVideo(item), demoPoster(item), error);
@@ -99,31 +104,62 @@
     return card;
   }
 
+  function galleryPath(scene) {
+    return `examples/capability-demos/index.html?theme=${theme}&style=${style}${scene ? '#' + encodeURIComponent(scene) : ''}`;
+  }
+
+  function demoVariant(item) {
+    return item.styleVariants?.[style]?.themeVariants?.[theme] || item.themeVariants?.[theme];
+  }
+
   function demoVideo(item) {
-    const filename = item.themeVariants?.[theme]?.video || item.videos?.[theme] || (theme === 'light-pastel' ? 'demo-light.mp4' : 'demo.mp4');
+    const filename = demoVariant(item)?.video || item.videos?.[theme] || (theme === 'light-pastel' ? 'demo-light.mp4' : 'demo.mp4');
     return `examples/capability-demos/${item.id}/${filename}`;
   }
 
   function demoPoster(item) {
-    return `examples/capability-demos/${item.id}/${item.themeVariants?.[theme]?.poster || (theme === 'light-pastel' ? 'poster-light.png' : 'poster.png')}`;
+    return `examples/capability-demos/${item.id}/${demoVariant(item)?.poster || (theme === 'light-pastel' ? 'poster-light.png' : 'poster.png')}`;
   }
 
   function applyTheme(next, announce = true) {
     if (!THEMES.includes(next)) return;
     theme = next;
+    refreshPresentation(announce);
+  }
+
+  function applyStyle(next, announce = true) {
+    if (!STYLES.includes(next)) return;
+    style = next;
+    refreshPresentation(announce);
+  }
+
+  function refreshPresentation(announce) {
     document.documentElement.dataset.theme = theme;
+    document.documentElement.dataset.style = style;
     document.querySelector('meta[name="theme-color"]').content = THEME_COLORS[theme];
     document.querySelectorAll('[data-theme-choice]').forEach((button) => button.setAttribute('aria-pressed', String(button.dataset.themeChoice === theme)));
-    try { localStorage.setItem(THEME_KEY, theme); } catch (_) { /* Private sessions can disable storage. */ }
+    document.querySelectorAll('[data-style-choice]').forEach((button) => button.setAttribute('aria-pressed', String(button.dataset.styleChoice === style)));
+    try {
+      localStorage.setItem(THEME_KEY, theme);
+      localStorage.setItem(STYLE_KEY, style);
+    } catch (_) { /* Private sessions can disable storage. */ }
+    document.querySelectorAll('[data-gallery-entry]').forEach((entry) => { entry.href = asset(galleryPath()); });
     demos.forEach((item) => {
       const card = document.querySelector(`[data-scene="${item.id}"]`);
       if (!card) return;
       setMedia(card.querySelector('video'), demoVideo(item), demoPoster(item), card.querySelector('.media-error'));
       card.querySelector('.demo-download').href = asset(demoVideo(item));
-      card.querySelector('.demo-interactive').href = asset(`examples/capability-demos/index.html?theme=${theme}#${encodeURIComponent(item.id)}`);
+      card.querySelector('.demo-interactive').href = asset(galleryPath(item.id));
       card.querySelector('.card-theme').textContent = THEME_NAMES[theme];
+      card.querySelector('.card-style').textContent = STYLE_NAMES[style];
     });
-    if (announce) $('page-status').textContent = `已切换为${THEME_NAMES[theme]}主题，八个 Demo 将播放对应主题的成片。`;
+    if (announce) {
+      const url = new URL(location.href);
+      url.searchParams.set('theme', theme);
+      url.searchParams.set('style', style);
+      history.replaceState(null, '', url);
+      $('page-status').textContent = `已切换为${STYLE_NAMES[style]}样式、${THEME_NAMES[theme]}配色，八个原创 Demo 将播放对应成片。`;
+    }
   }
 
   function rangeLabel(item) {
@@ -201,12 +237,12 @@
 
   async function loadDemos() {
     try {
-      demos = await getJson('examples/capability-demos/manifest.json?v=motion-diagram-studio-1');
+      demos = await getJson('examples/capability-demos/manifest.json?v=motion-diagram-studio-styles-1');
       if (!Array.isArray(demos)) throw new Error('无效的示例清单');
       $('demo-grid').replaceChildren(...demos.map((item, index) => mediaCard(item, index)));
     } catch (_) {
       const message = node('p', 'loading-message', '示例清单暂时无法加载。');
-      message.append(document.createTextNode(' '), link('打开交互体验馆 ↗', 'examples/capability-demos/index.html'));
+      message.append(document.createTextNode(' '), link('打开交互体验馆 ↗', galleryPath()));
       $('demo-grid').replaceChildren(message);
     }
   }
@@ -227,9 +263,14 @@
 
   wireVideo($('export-video'), $('export-error'));
   try { const saved = localStorage.getItem(THEME_KEY) || localStorage.getItem(LEGACY_THEME_KEY); if (THEMES.includes(saved)) theme = saved; } catch (_) { /* Use the default without storage. */ }
-  const requestedTheme = new URLSearchParams(location.search).get('theme');
+  try { const saved = localStorage.getItem(STYLE_KEY); if (STYLES.includes(saved)) style = saved; } catch (_) { /* Use the default without storage. */ }
+  const params = new URLSearchParams(location.search);
+  const requestedTheme = params.get('theme');
+  const requestedStyle = params.get('style');
   if (THEMES.includes(requestedTheme)) theme = requestedTheme;
+  if (STYLES.includes(requestedStyle)) style = requestedStyle;
   applyTheme(theme, false);
   document.querySelectorAll('[data-theme-choice]').forEach((button) => button.addEventListener('click', () => applyTheme(button.dataset.themeChoice)));
+  document.querySelectorAll('[data-style-choice]').forEach((button) => button.addEventListener('click', () => applyStyle(button.dataset.styleChoice)));
   Promise.allSettled([loadDemos(), loadCatalog()]);
 })();

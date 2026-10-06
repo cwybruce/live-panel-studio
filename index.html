@@ -1,20 +1,23 @@
 <!doctype html>
-<html lang="zh-CN" data-theme="terminal-dark">
+<html lang="zh-CN" data-theme="terminal-dark" data-style="diagram">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="description" content="Motion Diagram Studio：把架构、流程与知识讲解做成可交互的动画。观看 8 个 Demo、参考画面复刻和功能块导出案例，下载网页与 MP4。">
   <meta name="theme-color" content="#191713">
   <title>Motion Diagram Studio · 动态图解工作室</title>
-  <link rel="stylesheet" href="assets/showcase.css?v=clarity-20261006">
-  <script defer src="assets/showcase.js?v=clarity-20261006"></script>
+  <link rel="stylesheet" href="assets/showcase.css?v=styles-20261006">
+  <script defer src="assets/showcase.js?v=styles-20261006"></script>
 </head>
 <body>
   <a class="skip-link" href="#demos">跳到示例</a>
   <header class="site-header wrap">
     <a class="brand" href="#top" aria-label="Motion Diagram Studio 首页"><span class="brand-mark" aria-hidden="true">md<span>·</span></span><span>MOTION DIAGRAM<span class="brand-sub">STUDIO</span></span></a>
     <nav class="main-nav" aria-label="主导航"><a href="#demos">示例</a><a href="#recreations">复刻</a><a href="#exports">导出</a><a href="https://github.com/cwybruce/motion-diagram-studio" target="_blank" rel="noopener noreferrer">GitHub ↗</a></nav>
-    <div class="theme-switch" role="group" aria-label="页面与 Demo 主题"><button type="button" data-theme-choice="terminal-dark" aria-pressed="true">暖黑</button><button type="button" data-theme-choice="light-pastel" aria-pressed="false">暖纸</button><button type="button" data-theme-choice="terminal-classic" aria-pressed="false">经典终端</button><button type="button" data-theme-choice="pastel-classic" aria-pressed="false">经典粉彩</button></div>
+    <div class="display-controls">
+      <div class="display-choice-row"><span class="display-choice-label">样式</span><div class="style-switch" role="group" aria-label="原创 Demo 样式"><button type="button" data-style-choice="diagram" aria-pressed="true">原版图解</button><button type="button" data-style-choice="terminal" aria-pressed="false">macOS 终端</button></div></div>
+      <div class="display-choice-row"><span class="display-choice-label">配色</span><div class="theme-switch" role="group" aria-label="页面与 Demo 配色"><button type="button" data-theme-choice="terminal-dark" aria-pressed="true">暖黑</button><button type="button" data-theme-choice="light-pastel" aria-pressed="false">暖纸</button><button type="button" data-theme-choice="terminal-classic" aria-pressed="false">经典终端</button><button type="button" data-theme-choice="pastel-classic" aria-pressed="false">经典粉彩</button></div></div>
+    </div>
   </header>
 
   <main id="top">
@@ -23,7 +26,7 @@
         <p class="eyebrow"><span class="status-dot" aria-hidden="true"></span> OPEN SOURCE · JSON TO MOTION</p>
         <h1 id="hero-title">让流程可见。<br><span>让讲解动起来。</span></h1>
         <p class="hero-lead">架构、协作、知识与业务，一张面板说清楚。<br>把过程写成配置，带走会动的网页与视频。</p>
-        <div class="hero-actions"><a class="button primary" href="#demos">看一段动画 <span aria-hidden="true">↓</span></a><a class="button secondary" href="examples/capability-demos/index.html">进入交互体验馆 <span aria-hidden="true">↗</span></a></div>
+        <div class="hero-actions"><a class="button primary" href="#demos">看一段动画 <span aria-hidden="true">↓</span></a><a class="button secondary" data-gallery-entry href="examples/capability-demos/index.html">进入交互体验馆 <span aria-hidden="true">↗</span></a></div>
       </div>
       <div class="process-panel" aria-label="从配置到视频的过程">
         <div class="panel-kicker"><span>ONE CONFIG. THREE WAYS.</span><span class="tiny-dot" aria-hidden="true"></span></div>
@@ -34,10 +37,10 @@
       </div>
     </section>
 
-    <div class="collection-strip wrap"><div><strong>08</strong><span>原创能力示例</span></div><div><strong>04</strong><span>配色方案</span></div><div><strong>39</strong><span>可单独导出的功能块</span></div><p>无需滚动录屏。<br>由配置逐帧生成。</p></div>
+    <div class="collection-strip wrap"><div><strong>08</strong><span>原创能力示例</span></div><div><strong>02</strong><span>展示样式</span></div><div><strong>04</strong><span>配色方案</span></div><div><strong>39</strong><span>可单独导出的功能块</span></div><p>无需滚动录屏。<br>由配置逐帧生成。</p></div>
 
     <section id="demos" class="showcase-section wrap" aria-labelledby="demos-title">
-      <div class="section-heading"><div><p class="eyebrow">01 / THE COLLECTION</p><h2 id="demos-title">八种场景，各有动法。</h2></div><p>暖黑、暖纸、经典终端、经典粉彩，四套配色均有成片。<br>点击视频播放，进入体验馆可操作时间线与角色。</p></div>
+      <div class="section-heading"><div><p class="eyebrow">01 / THE COLLECTION</p><h2 id="demos-title">八种场景，各有动法。</h2></div><p>原版图解与 macOS 终端，两套样式分别支持四套配色。<br>点击视频播放，进入体验馆可操作时间线与角色。</p></div>
       <div id="demo-grid" class="demo-grid" aria-live="polite"><p class="loading-message">正在读取示例…</p></div>
       <p class="section-note"><span class="status-dot" aria-hidden="true"></span> 预设时间线 · 模拟数据。未连接真实 Agent、数据库或业务系统。</p>
     </section>
@@ -54,7 +57,7 @@
         <div class="export-sidebar"><div class="export-sidebar-head"><span class="mono">EXPORT LIBRARY</span><span id="export-count" class="small-badge">正在读取</span></div><label for="export-scene">场景<select id="export-scene" disabled><option>正在读取案例…</option></select></label><label for="export-case">范围与版本<select id="export-case" disabled><option>正在读取案例…</option></select></label><div id="export-quick-links" class="quick-picks" aria-label="精选案例"></div><div class="export-details"><h3 id="export-title">查看导出案例</h3><p id="export-summary">包含全部功能块，以及不同角色的整段与区域示例。</p><dl><div><dt>范围</dt><dd id="export-view">—</dd></div><div><dt>主题 / 角色</dt><dd id="export-variant">—</dd></div><div><dt>画幅</dt><dd id="export-dimensions">—</dd></div><div><dt>成片</dt><dd id="export-timing">—</dd></div></dl><a id="export-download" class="button secondary" hidden download>下载这段 MP4 <span aria-hidden="true">↓</span></a></div></div>
         <div class="export-stage"><div class="stage-label"><span id="export-stage-label" class="mono">READY TO PLAY</span><span>原生成片</span></div><video id="export-video" controls playsinline preload="none" aria-label="导出案例视频"></video><p id="export-error" class="media-error" role="status" hidden></p></div>
       </div>
-      <p class="section-note">这里展示已生成的文件。切换页面主题不会改变复刻与导出案例各自的原始主题。</p>
+      <p class="section-note">样式与配色切换影响上方八个原创 Demo。这里的复刻与功能块成片保留各自的原始样式、主题与角色。</p>
     </section>
 
     <section class="make-section wrap" aria-labelledby="make-title"><div><p class="eyebrow">04 / MAKE IT YOURS</p><h2 id="make-title">下一张面板，写你的故事。</h2><p>这个站点支持播放、互动预览和下载。要按自己的配置生成新 MP4，<br>安装本地 Python 预览服务，选择主题、角色与整段 / 功能块范围。</p><a class="button primary" href="https://github.com/cwybruce/motion-diagram-studio#快速开始" target="_blank" rel="noopener noreferrer">本地安装与使用 <span aria-hidden="true">↗</span></a></div><div class="make-code"><span class="mono">LOCAL STUDIO / PYTHON 3.11+</span><code>python -m pip install -r requirements-windows.txt<br>python scripts/make_capability_demos.py<br>python scripts/preview_server.py --port 8779</code><span>系统 Chrome / Edge · FFmpeg · 本地导出</span></div></section>

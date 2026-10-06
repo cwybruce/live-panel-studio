@@ -1,0 +1,316 @@
+{
+  "meta": {
+    "title": "矢量组件实验室 · 六种组件的视觉讲解",
+    "lang": "zh-CN",
+    "visualStyle": "editorial"
+  },
+  "canvas": {
+    "width": 984,
+    "height": 1280,
+    "duration": 12,
+    "fps": 30
+  },
+  "theme": {
+    "preset": "terminal-dark",
+    "font": "\"LP Sans\",sans-serif",
+    "colors": {
+      "bg": "#191f27",
+      "panel": "#222a35",
+      "surface": "#1e2630",
+      "line": "#8395ad",
+      "fg": "#f6f8ff",
+      "dim": "#c0cbd9",
+      "ye": "#f2ca80",
+      "cy": "#80dfef",
+      "pi": "#c7acff",
+      "gr": "#89e7b4",
+      "rd": "#ff786f",
+      "amber": "#f2ca80",
+      "cyan": "#80dfef",
+      "pink": "#c7acff",
+      "mint": "#89e7b4",
+      "red": "#ff786f",
+      "blue": "#9bbeff",
+      "pu": "#c7acff",
+      "wh": "#f6f8ff",
+      "bl": "#9bbeff",
+      "pk": "#ff786f",
+      "gn": "#89e7b4",
+      "ort": "#f2ca80",
+      "blt": "#9bbeff",
+      "put": "#c7acff",
+      "mc": "#c7acff",
+      "tl": "#80dfef",
+      "gy": "#8395ad",
+      "or": "#f2ca80",
+      "yl": "#f2ca80",
+      "bar": "#222a35",
+      "line2": "#8395ad",
+      "dots": "#8395ad",
+      "hl": "#2f3445",
+      "gnf": "#29373e",
+      "blf": "#2a3443",
+      "ylf": "#31353a",
+      "orf": "#31353a",
+      "rdf": "#312f39",
+      "puf": "#2e3343",
+      "mcf": "#2e3343",
+      "tlf": "#293742",
+      "gyf": "#2d3540",
+      "lit": "#31353a"
+    },
+    "variant": "terminal-classic"
+  },
+  "machines": {},
+  "elements": [
+    {
+      "type": "labEditorial",
+      "x": 0,
+      "y": 0,
+      "w": 984,
+      "h": 1280
+    },
+    {
+      "type": "orb",
+      "x": 84,
+      "y": 226,
+      "w": 200,
+      "h": 198,
+      "cy": 77,
+      "r": 52,
+      "color": "#64bed0",
+      "light": "#e0efe4",
+      "dark": "#203b3b",
+      "eyeColor": "#faf6ed",
+      "label": "知识向导",
+      "subtitle": "浮动 · 渐变 · 光环",
+      "detail": "ORIGINAL VECTOR / 01"
+    },
+    {
+      "type": "seats",
+      "x": 73,
+      "y": 530,
+      "w": 833,
+      "h": 166,
+      "period": 12,
+      "labels": {
+        "title": "候选节点逐个汇入协调中心",
+        "leader": "协调器",
+        "teams": [
+          "检索",
+          "分析",
+          "验证",
+          "输出"
+        ],
+        "hub": [
+          "汇聚",
+          "中心"
+        ],
+        "count": "已选",
+        "captions": [
+          "已选节点",
+          "处理片段",
+          "任务单位",
+          "总候选"
+        ]
+      },
+      "data": {
+        "metrics": [
+          {
+            "perSeat": 1,
+            "suffix": " 项"
+          },
+          {
+            "perSeat": 4,
+            "suffix": " 段"
+          },
+          {
+            "perSeat": 2,
+            "suffix": " 单位"
+          },
+          {
+            "value": 25,
+            "suffix": " 项"
+          }
+        ]
+      }
+    },
+    {
+      "type": "donut",
+      "x": 41,
+      "y": 746,
+      "w": 460,
+      "h": 228,
+      "scale": 0.86,
+      "labels": {
+        "total": "100%",
+        "period": "示例分布",
+        "items": [
+          "检索",
+          "重排",
+          "生成",
+          "校验",
+          "缓存",
+          "其他"
+        ],
+        "values": [
+          "30%",
+          "20%",
+          "20%",
+          "10%",
+          "10%",
+          "10%"
+        ],
+        "notes": [
+          "占比来自预设配置",
+          "高亮分区用于讲解",
+          "呼吸变化为视觉示意"
+        ]
+      },
+      "data": {
+        "parts": [
+          0.3,
+          0.2,
+          0.2,
+          0.1,
+          0.1,
+          0.1
+        ],
+        "pulseAmount": 0.025
+      }
+    },
+    {
+      "type": "ghostSeats",
+      "x": 524,
+      "y": 759,
+      "w": 480,
+      "h": 218,
+      "scale": 0.8,
+      "labels": {
+        "topValue": "25",
+        "topCaption": "候选知识片段",
+        "middleValue": "8",
+        "middleLines": [
+          "初步检索命中",
+          "进入后续筛选"
+        ],
+        "bottomValues": [
+          "4",
+          "3"
+        ],
+        "bottomLines": [
+          "四个重点对象",
+          "逐渐显现",
+          "其中三个高亮",
+          "一个待人工复核"
+        ]
+      },
+      "data": {
+        "revealPeriod": 12,
+        "revealStart": 3,
+        "revealDuration": 3
+      }
+    },
+    {
+      "type": "ribbons",
+      "x": 43,
+      "y": 985,
+      "w": 568,
+      "h": 280,
+      "scale": 0.73,
+      "labels": {
+        "source": "输入请求",
+        "branches": [
+          "检索路径",
+          "重排路径",
+          "生成路径",
+          "校验路径",
+          "输出路径"
+        ],
+        "values": [
+          "A",
+          "B",
+          "C",
+          "D",
+          "E"
+        ],
+        "footer": "流带宽度为视觉示意，数值来自作者配置"
+      }
+    },
+    {
+      "type": "kanban",
+      "x": 519,
+      "y": 989,
+      "w": 439,
+      "h": 227,
+      "scale": 0.9,
+      "period": 12,
+      "tickets": [
+        "工单01",
+        "工单02",
+        "工单03",
+        "工单04",
+        "工单05",
+        "工单06"
+      ],
+      "labels": {
+        "columns": [
+          "待处理",
+          "进行中",
+          "待复核",
+          "已完成"
+        ],
+        "countCaption": "演示进度单位",
+        "footer": "预设计数独立于卡片位置，未接入真实工单"
+      },
+      "data": {
+        "countStart": 0,
+        "countMax": 24,
+        "countRate": 24,
+        "countPeriod": 12
+      }
+    }
+  ],
+  "effects": {
+    "neon": {
+      "enabled": true,
+      "intensity": 0.8,
+      "period": 6,
+      "heroPeriod": 12,
+      "tail": 144
+    }
+  },
+  "presentation": {
+    "style": "terminal",
+    "sceneId": "component-lab",
+    "title": "~/motion-diagram-studio/component-lab — zsh",
+    "command": "python scripts/render.py --config examples/capability-demos/component-lab/config-console-terminal.json",
+    "events": [
+      {
+        "t": 0,
+        "actor": "studio",
+        "text": "演示启动 · 预设模拟"
+      },
+      {
+        "t": 1.5,
+        "actor": "component",
+        "text": "演示关键点：角色与初始比例"
+      },
+      {
+        "t": 4.5,
+        "actor": "component",
+        "text": "演示关键点：候选对象显现"
+      },
+      {
+        "t": 7.5,
+        "actor": "component",
+        "text": "演示关键点：节点汇聚与任务推进"
+      },
+      {
+        "t": 10.5,
+        "actor": "component",
+        "text": "演示关键点：后段计数与流带"
+      }
+    ]
+  }
+}

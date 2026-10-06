@@ -27,6 +27,12 @@ THEME_CONFIGS = {'terminal-dark': 'config-dark.json', 'light-pastel': 'config-li
                  'terminal-classic': 'config-terminal.json', 'pastel-classic': 'config-pastel.json'}
 THEME_PRESETS = {'terminal-dark': 'terminal-dark', 'light-pastel': 'light-pastel',
                  'terminal-classic': 'terminal-dark', 'pastel-classic': 'light-pastel'}
+STYLE_CONFIGS = {'diagram': THEME_CONFIGS,
+                 'terminal': {'terminal-dark': 'config-console-dark.json',
+                              'light-pastel': 'config-console-light.json',
+                              'terminal-classic': 'config-console-terminal.json',
+                              'pastel-classic': 'config-console-pastel.json'}}
+STYLES = tuple(STYLE_CONFIGS)
 THEMES = tuple(THEME_CONFIGS)
 AVATARS = ('spider', 'drone')
 IDENTIFIER = re.compile(r'^[a-z0-9]+(?:-[a-z0-9]+)*$')
@@ -49,6 +55,7 @@ class ExportSpec:
     source_height: int
     crop: tuple[int, int, int, int] | None
     filename: str
+    style: str = 'diagram'
 
     @property
     def width(self):
@@ -81,16 +88,19 @@ def validate_request(payload: dict, demo_root: Path = DEMO_ROOT) -> ExportSpec:
     """Resolve all source paths and crops from trusted local metadata only."""
     if not isinstance(payload, dict):
         raise ValueError('请求必须是 JSON 对象。')
-    if set(payload) - {'scene', 'theme', 'avatar', 'view'}:
+    if set(payload) - {'scene', 'theme', 'avatar', 'view', 'style'}:
         raise ValueError('请求包含不支持的字段。')
     scene = payload.get('scene')
     theme = payload.get('theme', THEMES[0])
     avatar = payload.get('avatar', AVATARS[0])
     view = payload.get('view', 'full')
+    style = payload.get('style', STYLES[0])
     if not isinstance(scene, str) or not IDENTIFIER.fullmatch(scene):
         raise ValueError('请选择有效的示例。')
     if not isinstance(theme, str) or theme not in THEMES:
         raise ValueError('请选择支持的主题。')
+    if not isinstance(style, str) or style not in STYLES:
+        raise ValueError('请选择支持的展示样式。')
     if not isinstance(avatar, str) or avatar not in AVATARS:
         raise ValueError('请选择支持的角色。')
     if not isinstance(view, str) or not VIEW_IDENTIFIER.fullmatch(view):
@@ -102,13 +112,24 @@ def validate_request(payload: dict, demo_root: Path = DEMO_ROOT) -> ExportSpec:
     if match is None:
         raise ValueError('这个示例不在导出列表中。')
     scene_dir = _inside(root, root / scene)
-    config_path = _inside(root, scene_dir / THEME_CONFIGS[theme])
-    if not config_path.is_file() and theme == THEMES[0]:
+    filename = STYLE_CONFIGS[style][theme]
+    if style != STYLES[0]:
+        styles = match.get('styleVariants', {})
+        style_record = styles.get(style, {}) if isinstance(styles, dict) else {}
+        variants = style_record.get('themeVariants', {}) if isinstance(style_record, dict) else {}
+        variant = variants.get(theme, {}) if isinstance(variants, dict) else {}
+        if not isinstance(variant, dict) or variant.get('config') != filename:
+            raise ValueError('这个示例的展示样式不在导出列表中。')
+    config_path = _inside(root, scene_dir / filename)
+    if not config_path.is_file() and style == STYLES[0] and theme == THEMES[0]:
         config_path = _inside(root, scene_dir / 'config.json')
     if not config_path.is_file():
         raise ValueError('这个示例的主题配置尚未准备好。')
     with config_path.open(encoding='utf-8') as f:
         config = copy.deepcopy(json.load(f))
+    presentation = config.get('presentation', {})
+    if not isinstance(presentation, dict) or presentation.get('style', STYLES[0]) != style:
+        raise ValueError('配置中的展示样式与所选方案不一致，请重新生成示例。')
     selected = config.get('theme', {})
     if (selected.get('preset') != THEME_PRESETS[theme]
             or selected.get('variant', selected.get('preset')) != theme):
@@ -130,8 +151,9 @@ def validate_request(payload: dict, demo_root: Path = DEMO_ROOT) -> ExportSpec:
         crop = tuple(area)
     config.setdefault('canvas', {}).update(width=width, height=height, duration=DURATION, fps=FPS)
     _avatar_elements(config.get('elements', []), avatar)
+    style_suffix = '' if style == STYLES[0] else f'-{style}'
     return ExportSpec(scene, theme, avatar, view, config, width, height, crop,
-                      f'{scene}-{theme}-{avatar}-{view}.mp4')
+                      f'{scene}{style_suffix}-{theme}-{avatar}-{view}.mp4', style=style)
 
 
 def _executable(names, what):
@@ -277,13 +299,14 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--scene', required=True)
     parser.add_argument('--theme', choices=THEMES, default=THEMES[0])
+    parser.add_argument('--style', choices=STYLES, default=STYLES[0])
     parser.add_argument('--avatar', choices=AVATARS, default=AVATARS[0])
     parser.add_argument('--view', default='full')
     parser.add_argument('--out', required=True)
     args = parser.parse_args()
     try:
         spec = validate_request({'scene': args.scene, 'theme': args.theme,
-                                 'avatar': args.avatar, 'view': args.view})
+                                 'avatar': args.avatar, 'view': args.view, 'style': args.style})
         info = export(spec, Path(args.out), lambda value, stage: print(f'{value:.0f}% {stage}', flush=True))
         print(json.dumps({'file': str(Path(args.out).resolve()), **info}, ensure_ascii=False))
     except (ValueError, ExportError, OSError, json.JSONDecodeError) as e:

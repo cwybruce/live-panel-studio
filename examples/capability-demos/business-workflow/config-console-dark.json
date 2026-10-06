@@ -1,0 +1,213 @@
+{
+  "meta": {
+    "title": "工单 · 一张工单走过四个处理站",
+    "lang": "zh-CN",
+    "visualStyle": "editorial"
+  },
+  "canvas": {
+    "width": 984,
+    "height": 1280,
+    "duration": 12,
+    "fps": 30
+  },
+  "theme": {
+    "preset": "terminal-dark",
+    "colors": {
+      "bg": "#191713",
+      "panel": "#25221b",
+      "surface": "#211e18",
+      "line": "#958871",
+      "fg": "#fff5e6",
+      "dim": "#d0c1aa",
+      "amber": "#f3cf88",
+      "cyan": "#8de1ee",
+      "pink": "#ff9bcc",
+      "mint": "#a7e6bd",
+      "red": "#ff9a88",
+      "blue": "#aacff7",
+      "ye": "#f3cf88",
+      "cy": "#8de1ee",
+      "pu": "#ff9bcc",
+      "gr": "#a7e6bd",
+      "rd": "#ff9a88",
+      "wh": "#fff5e6",
+      "bl": "#aacff7",
+      "pi": "#ff9bcc",
+      "pk": "#ff9a88",
+      "gn": "#a7e6bd",
+      "ort": "#f3cf88",
+      "blt": "#aacff7",
+      "put": "#ff9bcc",
+      "mc": "#ff9bcc",
+      "tl": "#8de1ee",
+      "gy": "#958871",
+      "or": "#f3cf88",
+      "yl": "#f3cf88",
+      "bar": "#25221b",
+      "line2": "#958871",
+      "dots": "#958871",
+      "hl": "#362c29",
+      "gnf": "#2e3026",
+      "blf": "#2e2e2a",
+      "ylf": "#332e23",
+      "orf": "#332e23",
+      "rdf": "#342a23",
+      "puf": "#342a27",
+      "mcf": "#342a27",
+      "tlf": "#2c2f2a",
+      "gyf": "#312d25",
+      "lit": "#332e23"
+    },
+    "font": "\"LP Sans\",sans-serif",
+    "variant": "terminal-dark"
+  },
+  "machines": {
+    "policy": {
+      "type": "cycle",
+      "period": 4,
+      "values": [
+        {
+          "t": "受理：先确认用户问题",
+          "detail": "补齐订单编号，确认工单属于哪一类。"
+        },
+        {
+          "t": "处理：给出可执行方案",
+          "detail": "核对资料，处理问题，并记录处理依据。"
+        },
+        {
+          "t": "复核：确认问题已解决",
+          "detail": "复核处理结果，再将工单归档。"
+        }
+      ]
+    },
+    "received": {
+      "type": "counter",
+      "start": 24,
+      "rate": 2
+    },
+    "review": {
+      "type": "lane",
+      "period": 6,
+      "run": 4,
+      "off": 0,
+      "busy": "复核处理中",
+      "done": [
+        "复核通过"
+      ],
+      "busyColor": "ye"
+    }
+  },
+  "elements": [
+    {
+      "type": "workflowEditorial",
+      "x": 0,
+      "y": 0,
+      "w": 984,
+      "h": 1280
+    },
+    {
+      "type": "drone",
+      "avatar": "spider",
+      "avatarScale": 0.48,
+      "avatarColors": {
+        "leg": "#d68865",
+        "joint": "#88c4a2",
+        "shell": "#9d9acc",
+        "core": "#e776af"
+      },
+      "x": 0,
+      "y": 0,
+      "w": 984,
+      "h": 1280,
+      "period": 12,
+      "focusPeriod": 3,
+      "path": [
+        [
+          143,
+          558
+        ],
+        [
+          373,
+          558
+        ],
+        [
+          603,
+          558
+        ],
+        [
+          833,
+          558
+        ]
+      ],
+      "targets": [
+        {
+          "x": 49,
+          "y": 280,
+          "w": 195,
+          "h": 265
+        },
+        {
+          "x": 279,
+          "y": 280,
+          "w": 195,
+          "h": 265
+        },
+        {
+          "x": 509,
+          "y": 280,
+          "w": 195,
+          "h": 265
+        },
+        {
+          "x": 739,
+          "y": 280,
+          "w": 195,
+          "h": 265
+        }
+      ],
+      "words": []
+    }
+  ],
+  "effects": {
+    "neon": {
+      "enabled": true,
+      "intensity": 0.8,
+      "period": 6,
+      "heroPeriod": 12,
+      "tail": 144
+    }
+  },
+  "presentation": {
+    "style": "terminal",
+    "sceneId": "business-workflow",
+    "title": "~/motion-diagram-studio/business-workflow — zsh",
+    "command": "python scripts/render.py --config examples/capability-demos/business-workflow/config-console-dark.json",
+    "events": [
+      {
+        "t": 0,
+        "actor": "studio",
+        "text": "演示启动 · 预设模拟"
+      },
+      {
+        "t": 1.0,
+        "actor": "business",
+        "text": "演示关键点：受理与分流"
+      },
+      {
+        "t": 5.0,
+        "actor": "business",
+        "text": "演示关键点：处理与复核"
+      },
+      {
+        "t": 7.0,
+        "actor": "business",
+        "text": "演示关键点：补齐资料"
+      },
+      {
+        "t": 10.0,
+        "actor": "business",
+        "text": "演示关键点：重新复核"
+      }
+    ]
+  }
+}

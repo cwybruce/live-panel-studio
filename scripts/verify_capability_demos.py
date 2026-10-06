@@ -25,7 +25,7 @@ def editorial_layout(br):
     return br.eval('''(()=>{
       const stage=document.getElementById('stage'),sr=stage.getBoundingClientRect(),
             scale=sr.width/parseFloat(stage.style.width),texts=[],problems=[];
-      for(const n of stage.querySelectorAll('[data-component-text]')){
+      for(const n of stage.querySelectorAll('[data-component-text],[data-terminal-text]')){
         if(n.closest('[data-component="drone"]'))continue;
         const b=n.getBoundingClientRect();if(!b.width||!b.height)continue;
         const t={l:b.left,r:b.right,t:b.top,b:b.bottom,s:n.textContent,n};texts.push(t);
@@ -46,14 +46,16 @@ def editorial_layout(br):
     })()''')
 
 
-def platform_fonts(br):
+def platform_fonts(br, style='diagram'):
     """CDP proves that the embedded font files rendered the visible glyphs."""
     br.cmd('DOM.enable')
     br.cmd('CSS.enable')
     root = br.cmd('DOM.getDocument', {'depth': 1})['root']['nodeId']
     result = {}
-    for family in ['LP Sans', 'LP Serif', 'LP Mono']:
+    for family in (['LP Mono'] if style == 'terminal' else ['LP Sans', 'LP Serif', 'LP Mono']):
         selector = f'#stage text[font-family*="{family}"]'
+        if style == 'terminal':
+            selector = f'#stage [data-terminal-shell] text[font-family*="{family}"]'
         if family == 'LP Sans':
             selector += ':not([font-family*="LP Serif"]):not([font-family*="LP Mono"])'
         node = br.cmd('DOM.querySelector', {'nodeId': root,
@@ -62,11 +64,14 @@ def platform_fonts(br):
         faces = br.cmd('CSS.getPlatformFontsForNode', {'nodeId': node})['fonts']
         assert any(f['isCustomFont'] and f['familyName'] == family for f in faces), faces
         result[family] = faces
-    selector = '#stage text[data-component-text]'
+    selector = '#stage text[data-component-text],#stage text[data-terminal-text]'
     nodes = br.cmd('DOM.querySelectorAll', {'nodeId': root, 'selector': selector})['nodeIds']
     texts = br.eval('Array.from(document.querySelectorAll(' + json.dumps(selector) + ')).map(n=>n.textContent)')
+    visible = br.eval('Array.from(document.querySelectorAll(' + json.dumps(selector) + ')).map(n=>!!n.getBoundingClientRect().width)')
     checked = 0
-    for node, text in zip(nodes, texts):
+    for node, text, rendered in zip(nodes, texts, visible):
+        if not rendered:
+            continue
         if not any('\u4e00' <= c <= '\u9fff' for c in text):
             continue
         faces = br.cmd('CSS.getPlatformFontsForNode', {'nodeId': node})['fonts']
@@ -95,6 +100,9 @@ def main():
     manifest = json.loads((OUT / 'manifest.json').read_text(encoding='utf-8'))
     for demo in manifest:
         assert set(demo['themeVariants']) == EXPECTED_THEMES, demo['id']
+        assert set(demo['styleVariants']) == {'diagram', 'terminal'}, demo['id']
+        for style in demo['styleVariants'].values():
+            assert set(style['themeVariants']) == EXPECTED_THEMES, demo['id']
     chrome = lp.find_exe(None, lp.CHROME_NAMES, 'Chrome')
     result = {'checkedAt': datetime.now(timezone.utc).isoformat(), 'browser': chrome,
               'simulatedData': True, 'scenes': [], 'gallery': {}, 'videos': []}
@@ -103,13 +111,15 @@ def main():
     with lp.Chrome(chrome, 960, 640) as br:
         for demo in manifest:
             dest = OUT / demo['id']
-            variants = [('default', {'config': 'config.json', 'page': 'live.html', 'poster': 'poster.png'})]
+            variants = [('diagram', 'default', {'config': 'config.json', 'page': 'live.html', 'poster': 'poster.png'})]
             if demo.get('themeSwitch', True):
-                variants += list(demo['themeVariants'].items())
+                variants += [(style, theme, files) for style, spec in demo['styleVariants'].items()
+                             for theme, files in spec['themeVariants'].items()]
             default_record = None
-            for theme, files in variants:
+            for style, theme, files in variants:
                 config_path = dest / files['config']
                 cfg = lp.load_config(config_path)
+                assert cfg.get('presentation', {}).get('style', 'diagram') == style
                 if theme != 'default':
                     assert cfg['theme']['variant'] == theme, (demo['id'], theme)
                 w, h, _, _ = lp.canvas(cfg)
@@ -137,12 +147,18 @@ def main():
                 same = br.shot()
                 count, delta = pixel_diff(br, first, same)
                 movement, _ = pixel_diff(br, first, other)
-                record = {'id': demo['id'], 'variant': config_path.stem, 'theme': theme, 'samples': 61,
+                record = {'id': demo['id'], 'variant': config_path.stem, 'theme': theme, 'style': style, 'samples': 61,
                           'layoutProblems': sorted(problems), 'replayDifferentPixels': count,
                           'maxReplayChannelDelta': delta, 'animationDifferentPixels': movement}
                 if demo.get('visualStyle') == 'editorial':
                     assert (w, h) == (984, 1280)
-                    record['embeddedFonts'] = platform_fonts(br)
+                    record['embeddedFonts'] = platform_fonts(br, style)
+                if style == 'terminal':
+                    terminal = br.eval('''(()=>({shell:document.querySelectorAll('[data-terminal-shell]').length,
+                      borders:document.querySelectorAll('[data-terminal-border]').length,
+                      text:document.querySelector('[data-terminal-shell]')?.textContent||''}))()''')
+                    assert terminal['shell'] == 1 and terminal['borders'] > 0, terminal
+                    record['terminal'] = terminal
                 if cfg.get('effects', {}).get('neon', {}).get('enabled'):
                     sources = br.eval('Array.from(document.querySelectorAll("[data-neon-border]")).map(n=>n.getAttribute("data-neon-border"))')
                     layers = br.eval('Array.from(document.querySelectorAll("[data-neon-layer]")).map(n=>n.getAttribute("data-neon-layer"))')
@@ -274,7 +290,9 @@ def main():
     if not args.skip_video:
         ffprobe = lp.find_exe(None, ['ffprobe'], 'ffprobe')
         ffmpeg = lp.find_exe(None, ['ffmpeg'], 'ffmpeg')
-        for demo, theme, files in [(d, theme, files) for d in manifest for theme, files in d['themeVariants'].items()]:
+        for demo, style, theme, files in [(d, style, theme, files) for d in manifest
+                                        for style, spec in d['styleVariants'].items()
+                                        for theme, files in spec['themeVariants'].items()]:
             file = OUT / demo['id'] / files['video']
             assert files['videoReady'] and file.is_file(), (demo['id'], theme)
             data = json.loads(subprocess.check_output([ffprobe, '-v', 'error', '-show_streams', '-show_format', '-of', 'json', str(file)]))
@@ -285,10 +303,10 @@ def main():
             assert abs(float(data['format']['duration']) - 12) < .1
             assert any(s['codec_type'] == 'audio' for s in data['streams'])
             subprocess.run([ffmpeg, '-v', 'error', '-i', str(file), '-f', 'null', '-'], check=True, stdout=subprocess.DEVNULL)
-            result['videos'].append({'id': demo['id'], 'theme': theme, 'codec': 'h264', 'width': w, 'height': h,
+            result['videos'].append({'id': demo['id'], 'theme': theme, 'style': style, 'codec': 'h264', 'width': w, 'height': h,
                                      'fps': fps, 'frames': round(fps*duration), 'duration': float(data['format']['duration']),
                                      'bytes': file.stat().st_size, 'fullDecode': 'passed'})
-            print('video checked', demo['id'], theme, flush=True)
+            print('video checked', demo['id'], style, theme, flush=True)
     result['coverage'] = {'elementTypes': sorted(element_types), 'machineTypes': sorted(machine_types)}
     result['passed'] = not errors
     (OUT / ('verification-layout.json' if args.skip_video else 'verification.json')).write_text(json.dumps(result, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')

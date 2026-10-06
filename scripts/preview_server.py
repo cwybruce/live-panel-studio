@@ -35,7 +35,7 @@ class ExportQueue:
         spec = validate_request(payload, self.root)
         identity = str(uuid.uuid4())
         job = {'id': identity, 'status': 'queued', 'progress': 0,
-               'scene': spec.scene, 'theme': spec.theme, 'avatar': spec.avatar, 'view': spec.view,
+               'scene': spec.scene, 'theme': spec.theme, 'style': spec.style, 'avatar': spec.avatar, 'view': spec.view,
                'filename': spec.filename, 'width': spec.width, 'height': spec.height,
                'fps': 30, 'duration': 12}
         with self.lock:
