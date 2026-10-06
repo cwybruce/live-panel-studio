@@ -54,7 +54,7 @@ Demo 中的事件、指标、日志和数据均为**预设模拟**，没有连�
 
 ## 快速开始
 
-当前实测环境为 **Windows、Python 3.11、系统 Chrome 与 FFmpeg**，渲染器也支持检测已安装的 Edge。推荐 Python 3.11 或更新版本。原上游保留 Linux / macOS 渲染路径；本项目新增的完整导出流程尚未在这些平台实测。
+当前实测环境为 **Windows、Python 3.11、系统 Chrome 与 FFmpeg**，渲染器也支持检测已安装的 Edge。推荐 Python 3.11 或更新版本。Linux / macOS 的上游渲染路径仍保留；新增完整导出流程尚未在这些平台实测。[平台支持与验收路线图](docs/platform-support.md)提供可执行的检查步骤。
 
 先安装：
 
@@ -197,7 +197,7 @@ python scripts/check_frames.py --config my-config.json --out-dir my-frames --rep
 - [`references/motion-grammar.md`](references/motion-grammar.md)：路径光点、状态变化和时间线动法。
 - `scripts/rag_editorial.py`、`editorial_systems.py`、`editorial_stories.py`、`editorial_components.py`：八个 Demo 的配置与叙事数据。
 - `assets/*editorial*.js`、`components.js`、`neon-flow.js`：SVG 绘制、组件、角色与流光。
-- [`SKILL.md`](SKILL.md)：供编码 Agent 使用的原上游工作流。
+- [`SKILL.md`](SKILL.md)：供编码 Agent 使用的 `motion-diagram-studio` 工作流，包含当前主题、交互预览和功能块导出。
 
 如果直接编辑生成后的 JSON，用 `render.py` 导出；再次运行 `make_capability_demos.py` 会按生成器内容重建配置。坐标以画布像素计，改比例需要重新排版；`render.py --width / --height` 只缩放输出。
 

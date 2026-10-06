@@ -2,9 +2,29 @@
 
 本文件区分代码、示例视觉素材和字体的来源。仓库的 MIT 许可不替代第三方内容各自的许可或权利归属。
 
+## License scope / 许可范围
+
+`LICENSE` 仅保留标准 MIT 代码许可。原先附在该文件后的第三方权利说明完整移至此处，授权范围没有扩大：
+
+Note: the MIT license covers the code in this repository. The visual design,
+layout and wording that examples/codex-agents/ recreates belong to the original
+author, @thedelost. The design recreated in examples/agent-architecture/ belongs
+to its original author, Xiaohongshu @林纾. The Airbnb figures in examples/airbnb/
+are Airbnb's own statements from a public interview. These third-party designs
+and source materials are not granted under this MIT license.
+
+The bundled font files and renamed subsets in assets/fonts/ remain under the
+SIL Open Font License 1.1, with their original copyright and license notices.
+Reference-video recreations in media/recreations/ retain the original author's
+rights in their reference design, layout and wording. The public files are
+videos rendered by this project; the original reference video and reference
+frames are excluded. See THIRD_PARTY_NOTICES.md and media/catalog.json for
+sources and scope.
+
 ## 上游代码
 
 - 项目：[ythx-101/live-panel-skill](https://github.com/ythx-101/live-panel-skill)。
+- 上游作者：[ythx-101 / @YuLin807](https://x.com/YuLin807)。
 - 本项目扩展起点：[`8a70aa2c4e3fac68b40e2472407e32e2637a7a36`](https://github.com/ythx-101/live-panel-skill/commit/8a70aa2c4e3fac68b40e2472407e32e2637a7a36)。
 - 许可：MIT，原声明 `Copyright (c) 2026 live-panel contributors` 保留在 [`LICENSE`](LICENSE) 中。
 - Motion Diagram Studio 在上游基础上扩展了八个中文能力示例、SVG 组件、角色与主题、霓虹流光、预览体验和本地 MP4 导出。

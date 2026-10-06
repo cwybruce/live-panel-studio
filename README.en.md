@@ -54,7 +54,7 @@ Theme and avatar are selected independently. Complete-demo and block exports bot
 
 ## Quick start
 
-The currently tested environment is **Windows, Python 3.11, system Chrome and FFmpeg**. The renderer can also detect an installed Edge browser. Python 3.11 or later is recommended. Upstream Linux and macOS rendering paths remain available; the complete export workflow added by this project has not yet been tested on those platforms.
+The currently tested environment is **Windows, Python 3.11, system Chrome and FFmpeg**. The renderer can also detect an installed Edge browser. Python 3.11 or later is recommended. Upstream Linux and macOS rendering paths remain available; the complete export workflow added by this project has not yet been tested on those platforms. The [platform support and acceptance roadmap](docs/platform-support.md) provides executable checks.
 
 Install these prerequisites:
 
@@ -197,7 +197,7 @@ python scripts/check_frames.py --config my-config.json --out-dir my-frames --rep
 - [`references/motion-grammar.md`](references/motion-grammar.md): path particles, state transitions and timeline motion.
 - `scripts/rag_editorial.py`, `editorial_systems.py`, `editorial_stories.py` and `editorial_components.py`: configuration and narrative data for the eight demos.
 - `assets/*editorial*.js`, `components.js` and `neon-flow.js`: SVG drawing, components, avatars and animated light effects.
-- [`SKILL.md`](SKILL.md): the original upstream workflow for coding agents.
+- [`SKILL.md`](SKILL.md): the `motion-diagram-studio` workflow for coding agents, including current themes, interactive preview and block export.
 
 If you edit generated JSON directly, export it with `render.py`. Running `make_capability_demos.py` again rebuilds configurations from the generator. Coordinates are canvas pixels; changing the aspect ratio requires a new layout. `render.py --width / --height` scales the output only.
 
