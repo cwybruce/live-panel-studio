@@ -200,7 +200,7 @@
 
   async function loadDemos() {
     try {
-      demos = await getJson('examples/capability-demos/manifest.json');
+      demos = await getJson('examples/capability-demos/manifest.json?v=4-palettes');
       if (!Array.isArray(demos)) throw new Error('无效的示例清单');
       $('demo-grid').replaceChildren(...demos.map((item, index) => mediaCard(item, index)));
     } catch (_) {
