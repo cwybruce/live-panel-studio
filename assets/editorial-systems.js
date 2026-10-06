@@ -32,7 +32,7 @@ function ESRoot(e, meta, title, subtitle, detail, steps, footer){
  steps.forEach(function(a,i){s+=small(28+i*122,164,a[0],C.shade(a[1]))});s+=mono(956,164,'12s / SCRIPTED LOOP',9,C.dim,' text-anchor="end"');
  s+='<g data-panel="hero">'+rect(28,194,928,383,C.line,C.shade('#171511'),4,' data-panel-border="hero" data-neon-border="'+e.type+'-hero" data-neon-color="'+C.amber+'" data-neon-role="hero"')+small(42,219,'THE SYSTEM IN MOTION',C.amber)+rule(43,531,897);
  var edition={agentEditorial:'COLLABORATION / 02',requestEditorial:'REQUEST / 03',incidentEditorial:'REPLAY / 04'};
- var tail=rule(28,1212,928)+txt(28,1237,footer,12,C.fg)+txt(28,1259,'原创中文视觉示例 / 所有文本、指标与事件均为预设演示',10,C.dim)+mono(956,1259,'LIVE PANEL / '+edition[e.type],9,C.amber,' text-anchor="end"');
+ var tail=rule(28,1212,928)+txt(28,1237,footer,12,C.fg)+txt(28,1259,'原创中文视觉示例 / 所有文本、指标与事件均为预设演示',10,C.dim)+mono(956,1259,'MOTION DIAGRAM STUDIO / '+edition[e.type],9,C.amber,' text-anchor="end"');
  return {svg:svg,id:id,C:C,txt:txt,mono:mono,small:small,rule:rule,rect:rect,panel:panel,end:end,circle:circle,icon:icon,node:node,route:route,particles:particles,s:s,tail:tail};
 }
 function ESValue(name){var v=V[name];return v==null?'':typeof v==='object'?v.text:String(v)}
@@ -40,7 +40,7 @@ function ESFlights(svg){var paths={};svg.querySelectorAll('[data-es-route]').for
 function ESAnimateFlights(f,t,active){Object.keys(f.paths).forEach(function(key){f.paths[key].p.setAttribute('opacity',active(key)? .8:.18)});f.dots.forEach(function(n){var a=n.getAttribute('data-es-flight').split(':'),key=a[0],j=Number(a[1]),u=phase(t,2.2,-j*.14),p=f.paths[key].p.getPointAtLength(f.paths[key].len*u);n.setAttribute('cx',p.x);n.setAttribute('cy',p.y);n.setAttribute('opacity',active(key)?Math.sin(u*Math.PI)*(.94-j*.14):0)})}
 
 B.agentEditorial=function(e){
- var a=ESRoot(e,'LIVE PANEL / COLLABORATION / FOUR ROLES','一次任务，如何交到下一双手','多 Agent · 让状态、建议与验收依据一起交接','四种角色轮流工作；交付时，成果应当带着可以复现的证据。',[['01 / PLAN','#dfb96d'],['02 / RESEARCH','#64bed0'],['03 / BUILD','#e776af'],['04 / REVIEW','#88c4a2']], '角色划分职责 · 交接携带依据 · 时间线同步状态 · 结果需要验收'),s=a.s,C=a.C,T=a.txt,M=a.mono,R=a.rect,S=a.small;
+ var a=ESRoot(e,'MOTION DIAGRAM STUDIO / COLLABORATION / FOUR ROLES','一次任务，如何交到下一双手','多 Agent · 让状态、建议与验收依据一起交接','四种角色轮流工作；交付时，成果应当带着可以复现的证据。',[['01 / PLAN','#dfb96d'],['02 / RESEARCH','#64bed0'],['03 / BUILD','#e776af'],['04 / REVIEW','#88c4a2']], '角色划分职责 · 交接携带依据 · 时间线同步状态 · 结果需要验收'),s=a.s,C=a.C,T=a.txt,M=a.mono,R=a.rect,S=a.small;
  var xs=[145,376,607,838],colors=[C.amber,C.cyan,C.pink,C.mint],names=['规划','检索','实现','审核'],desc=['定义可验收的目标','补齐接口与来源','按约束编写补丁','核对边界与结果'];
  s+=T(42,253,'把分工变成一条可追踪的交付链。',20,C.fg,'LP Serif')+M(942,219,'GOAL → CONTEXT → PATCH → CHECK',9,C.dim,' text-anchor="end"');
  for(var i=0;i<3;i++){s+=a.route(String(i),'M'+(xs[i]+43)+' 339C'+(xs[i]+85)+' 294 '+(xs[i+1]-85)+' 294 '+(xs[i+1]-43)+' 339',colors[i])+a.particles(String(i),colors[i])}
@@ -72,7 +72,7 @@ B.agentEditorial=function(e){
 };
 
 B.requestEditorial=function(e){
- var a=ESRoot(e,'LIVE PANEL / REQUEST ROUTING / TWO BRANCHES','一次请求，走捷径或回到源头','缓存 · 复用已有结果，也保留读取原始数据的路径','命中和未命中走不同分支，最终汇成同一种响应格式。', [['01 / HIT','#88c4a2'],['02 / MISS','#e776af'],['03 / RETURN','#64bed0']], '命中复用结果 · 未命中读取源头 · 两路统一响应 · 指标标明来源'),s=a.s,C=a.C,T=a.txt,M=a.mono,R=a.rect,S=a.small;
+ var a=ESRoot(e,'MOTION DIAGRAM STUDIO / REQUEST ROUTING / TWO BRANCHES','一次请求，走捷径或回到源头','缓存 · 复用已有结果，也保留读取原始数据的路径','命中和未命中走不同分支，最终汇成同一种响应格式。', [['01 / HIT','#88c4a2'],['02 / MISS','#e776af'],['03 / RETURN','#64bed0']], '命中复用结果 · 未命中读取源头 · 两路统一响应 · 指标标明来源'),s=a.s,C=a.C,T=a.txt,M=a.mono,R=a.rect,S=a.small;
  s+=T(42,253,'分支不同，返回结果的约定一致。',20,C.fg,'LP Serif')+M(942,219,'REQUEST → CACHE / DATABASE → RESPONSE',9,C.dim,' text-anchor="end"');
  var routes=[['in','M167 353H302',C.amber],['lookup','M383 339C445 298 488 298 544 298',C.cyan],['hit','M586 340V386',C.mint],['miss','M628 304C708 292 750 313 797 341',C.pink],['read','M807 383C748 421 690 426 628 426',C.pink],['return','M544 430C410 491 217 488 139 393',C.mint]];
  routes.forEach(function(q){s+=a.route(q[0],q[1],q[2])+a.particles(q[0],q[2])});
@@ -104,7 +104,7 @@ B.requestEditorial=function(e){
 };
 
 B.incidentEditorial=function(e){
- var a=ESRoot(e,'LIVE PANEL / INCIDENT REPLAY / DEPENDENCY CHAIN','一次异常，如何沿着依赖显形','回放 · 从服务稳定，到拥塞，再到恢复检查','用余量驱动状态，让异常路径与恢复证据出现在同一条时间线上。',[['01 / HEALTHY','#88c4a2'],['02 / DEGRADED','#d77768'],['03 / RECOVER','#64bed0']], '阈值驱动告警 · 依赖呈现传播 · 回放复现过程 · 恢复后仍需验收'),s=a.s,C=a.C,T=a.txt,M=a.mono,R=a.rect,S=a.small;
+ var a=ESRoot(e,'MOTION DIAGRAM STUDIO / INCIDENT REPLAY / DEPENDENCY CHAIN','一次异常，如何沿着依赖显形','回放 · 从服务稳定，到拥塞，再到恢复检查','用余量驱动状态，让异常路径与恢复证据出现在同一条时间线上。',[['01 / HEALTHY','#88c4a2'],['02 / DEGRADED','#d77768'],['03 / RECOVER','#64bed0']], '阈值驱动告警 · 依赖呈现传播 · 回放复现过程 · 恢复后仍需验收'),s=a.s,C=a.C,T=a.txt,M=a.mono,R=a.rect,S=a.small;
  var machines=cfg.machines,poolMachine=machines.pool,storageMachine=machines.storage,duration=cfg.canvas.duration||12;
  var thresholds={pool:Number(poolMachine.threshold),storage:Number(storageMachine.threshold)},phasePeriod=machines.phase.period;
  s+=T(42,253,'让指标变成可定位的状态。',20,C.fg,'LP Serif')+M(942,219,'ENTRY → WORK POOL → STORAGE',9,C.dim,' text-anchor="end"');

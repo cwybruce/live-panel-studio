@@ -1,30 +1,32 @@
-# Live Panel Studio
+# Motion Diagram Studio · 动态图解工作室
 
 **中文** · [English](README.en.md)
 
-把架构、流程与知识讲解做成可交互、可导出的视频面板。
+把架构与流程，做成会动的图解。支持交互网页与 MP4 视频导出。
 
 基于 [live-panel-skill](https://github.com/ythx-101/live-panel-skill)，将 JSON 配置变成动态示意图、交互网页与 MP4 视频，提供八个原创中文 Demo、四套配色、动态角色与功能块独立导出。
 
-维护与交流：**[@sycbruce · X](https://x.com/sycbruce)** · [提交问题](https://github.com/cwybruce/live-panel-studio/issues)
+由 @sycbruce 独立扩展和维护，非上游官方项目。本项目原名 Live Panel Studio。
 
-**[在线体验与视频库](https://cwybruce.github.io/live-panel-studio/)** · [交互体验馆](https://cwybruce.github.io/live-panel-studio/examples/capability-demos/index.html) · [功能块导出案例](https://cwybruce.github.io/live-panel-studio/#exports)
+维护与交流：**[@sycbruce · X](https://x.com/sycbruce)** · [提交问题](https://github.com/cwybruce/motion-diagram-studio/issues)
+
+**[在线体验与视频库](https://cwybruce.github.io/motion-diagram-studio/)** · [交互体验馆](https://cwybruce.github.io/motion-diagram-studio/examples/capability-demos/index.html) · [功能块导出案例](https://cwybruce.github.io/motion-diagram-studio/#exports)
 
 网页可直接播放 8 个 Demo 的四套配色成片、初期复刻与蜘蛛更新视频，并浏览 39 个功能块成片及 3 个浅色机器人导出案例。支持播放、拖动进度和 MP4 下载；生成新方案请运行下方本地服务。
 
 ## 动态 Demo
 
-下方动画直接取自已经导出的 MP4，节选前 **6 秒**并自动循环。**点击动画观看完整成片**；完整视频保留原画质与帧率。更多场景、角色和功能块见 [在线视频库](https://cwybruce.github.io/live-panel-studio/)。
+下方动画直接取自已经导出的 MP4，节选前 **6 秒**并自动循环。**点击动画观看完整成片**；完整视频保留原画质与帧率。更多场景、角色和功能块见 [在线视频库](https://cwybruce.github.io/motion-diagram-studio/)。
 
 | RAG 证据讲解 · 暖黑 | RAG 证据讲解 · 暖纸 |
 | --- | --- |
-| [![RAG 证据讲解：暖黑动态预览](assets/readme/rag-explainer-dark.gif)](https://cwybruce.github.io/live-panel-studio/examples/capability-demos/rag-explainer/demo.mp4) | [![RAG 证据讲解：暖纸动态预览](assets/readme/rag-explainer-light.gif)](https://cwybruce.github.io/live-panel-studio/examples/capability-demos/rag-explainer/demo-light.mp4) |
-| [▶ 完整 MP4 · 12 秒](https://cwybruce.github.io/live-panel-studio/examples/capability-demos/rag-explainer/demo.mp4) | [▶ 完整 MP4 · 12 秒](https://cwybruce.github.io/live-panel-studio/examples/capability-demos/rag-explainer/demo-light.mp4) |
+| [![RAG 证据讲解：暖黑动态预览](assets/readme/rag-explainer-dark.gif)](https://cwybruce.github.io/motion-diagram-studio/examples/capability-demos/rag-explainer/demo.mp4) | [![RAG 证据讲解：暖纸动态预览](assets/readme/rag-explainer-light.gif)](https://cwybruce.github.io/motion-diagram-studio/examples/capability-demos/rag-explainer/demo-light.mp4) |
+| [▶ 完整 MP4 · 12 秒](https://cwybruce.github.io/motion-diagram-studio/examples/capability-demos/rag-explainer/demo.mp4) | [▶ 完整 MP4 · 12 秒](https://cwybruce.github.io/motion-diagram-studio/examples/capability-demos/rag-explainer/demo-light.mp4) |
 
 | RAG 证据讲解 · 经典终端 | RAG 证据讲解 · 经典粉彩 |
 | --- | --- |
-| [![RAG 证据讲解：经典终端动态预览](assets/readme/rag-explainer-terminal.gif)](https://cwybruce.github.io/live-panel-studio/examples/capability-demos/rag-explainer/demo-terminal.mp4) | [![RAG 证据讲解：经典粉彩动态预览](assets/readme/rag-explainer-pastel.gif)](https://cwybruce.github.io/live-panel-studio/examples/capability-demos/rag-explainer/demo-pastel.mp4) |
-| [▶ 完整 MP4 · 12 秒](https://cwybruce.github.io/live-panel-studio/examples/capability-demos/rag-explainer/demo-terminal.mp4) | [▶ 完整 MP4 · 12 秒](https://cwybruce.github.io/live-panel-studio/examples/capability-demos/rag-explainer/demo-pastel.mp4) |
+| [![RAG 证据讲解：经典终端动态预览](assets/readme/rag-explainer-terminal.gif)](https://cwybruce.github.io/motion-diagram-studio/examples/capability-demos/rag-explainer/demo-terminal.mp4) | [![RAG 证据讲解：经典粉彩动态预览](assets/readme/rag-explainer-pastel.gif)](https://cwybruce.github.io/motion-diagram-studio/examples/capability-demos/rag-explainer/demo-pastel.mp4) |
+| [▶ 完整 MP4 · 12 秒](https://cwybruce.github.io/motion-diagram-studio/examples/capability-demos/rag-explainer/demo-terminal.mp4) | [▶ 完整 MP4 · 12 秒](https://cwybruce.github.io/motion-diagram-studio/examples/capability-demos/rag-explainer/demo-pastel.mp4) |
 
 ## 能做什么
 
@@ -43,10 +45,10 @@ Demo 中的事件、指标、日志和数据均为**预设模拟**，没有连�
 
 | 配色 | 主题 ID | 风格与在线体验 |
 | --- | --- | --- |
-| 暖黑 | `terminal-dark` | 暖黑底、金橙色强调；[打开 RAG](https://cwybruce.github.io/live-panel-studio/examples/capability-demos/index.html?theme=terminal-dark#rag-explainer) |
-| 暖纸 | `light-pastel` | 米白纸底、柔和暖色；[打开 RAG](https://cwybruce.github.io/live-panel-studio/examples/capability-demos/index.html?theme=light-pastel#rag-explainer) |
-| 经典终端 | `terminal-classic` | 冷灰黑底、青 / 蓝 / 绿 / 紫强调；[打开 RAG](https://cwybruce.github.io/live-panel-studio/examples/capability-demos/index.html?theme=terminal-classic#rag-explainer) |
-| 经典粉彩 | `pastel-classic` | 白底、蓝 / 黄 / 橙 / 紫 / 红色分区；[打开 RAG](https://cwybruce.github.io/live-panel-studio/examples/capability-demos/index.html?theme=pastel-classic#rag-explainer) |
+| 暖黑 | `terminal-dark` | 暖黑底、金橙色强调；[打开 RAG](https://cwybruce.github.io/motion-diagram-studio/examples/capability-demos/index.html?theme=terminal-dark#rag-explainer) |
+| 暖纸 | `light-pastel` | 米白纸底、柔和暖色；[打开 RAG](https://cwybruce.github.io/motion-diagram-studio/examples/capability-demos/index.html?theme=light-pastel#rag-explainer) |
+| 经典终端 | `terminal-classic` | 冷灰黑底、青 / 蓝 / 绿 / 紫强调；[打开 RAG](https://cwybruce.github.io/motion-diagram-studio/examples/capability-demos/index.html?theme=terminal-classic#rag-explainer) |
+| 经典粉彩 | `pastel-classic` | 白底、蓝 / 黄 / 橙 / 紫 / 红色分区；[打开 RAG](https://cwybruce.github.io/motion-diagram-studio/examples/capability-demos/index.html?theme=pastel-classic#rag-explainer) |
 
 主题与角色可以分别选择，整段和功能块导出都使用当前选择的配色。新增配色不改变现有主题 ID 或旧成片文件名。
 
@@ -63,8 +65,8 @@ Demo 中的事件、指标、日志和数据均为**预设模拟**，没有连�
 在终端运行：
 
 ```powershell
-git clone https://github.com/cwybruce/live-panel-studio.git
-cd live-panel-studio
+git clone https://github.com/cwybruce/motion-diagram-studio.git
+cd motion-diagram-studio
 python -m pip install -r requirements-windows.txt
 python scripts/make_capability_demos.py
 python scripts/preview_server.py --port 8779
@@ -78,59 +80,59 @@ python scripts/preview_server.py --port 8779
 
 | Demo | 场景 | 完整视频 |
 | --- | --- | --- |
-| [RAG 证据讲解](examples/capability-demos/rag-explainer/README.md) | 检索、评分、重排、引用与回答流向 | [暖黑](https://cwybruce.github.io/live-panel-studio/examples/capability-demos/rag-explainer/demo.mp4) · [暖纸](https://cwybruce.github.io/live-panel-studio/examples/capability-demos/rag-explainer/demo-light.mp4) · [经典终端](https://cwybruce.github.io/live-panel-studio/examples/capability-demos/rag-explainer/demo-terminal.mp4) · [经典粉彩](https://cwybruce.github.io/live-panel-studio/examples/capability-demos/rag-explainer/demo-pastel.mp4) |
-| [多 Agent 任务交接](examples/capability-demos/agent-team/README.md) | 任务树、时间泳道、交接包与状态切换 | [暖黑](https://cwybruce.github.io/live-panel-studio/examples/capability-demos/agent-team/demo.mp4) · [暖纸](https://cwybruce.github.io/live-panel-studio/examples/capability-demos/agent-team/demo-light.mp4) · [经典终端](https://cwybruce.github.io/live-panel-studio/examples/capability-demos/agent-team/demo-terminal.mp4) · [经典粉彩](https://cwybruce.github.io/live-panel-studio/examples/capability-demos/agent-team/demo-pastel.mp4) |
-| [请求与缓存分支](examples/capability-demos/product-request/README.md) | 请求路径、缓存命中、回源与合流 | [暖黑](https://cwybruce.github.io/live-panel-studio/examples/capability-demos/product-request/demo.mp4) · [暖纸](https://cwybruce.github.io/live-panel-studio/examples/capability-demos/product-request/demo-light.mp4) · [经典终端](https://cwybruce.github.io/live-panel-studio/examples/capability-demos/product-request/demo-terminal.mp4) · [经典粉彩](https://cwybruce.github.io/live-panel-studio/examples/capability-demos/product-request/demo-pastel.mp4) |
-| [短视频知识卡](examples/capability-demos/knowledge-card/README.md) | 章节轮播、出处核对与回顾图谱 | [暖黑](https://cwybruce.github.io/live-panel-studio/examples/capability-demos/knowledge-card/demo.mp4) · [暖纸](https://cwybruce.github.io/live-panel-studio/examples/capability-demos/knowledge-card/demo-light.mp4) · [经典终端](https://cwybruce.github.io/live-panel-studio/examples/capability-demos/knowledge-card/demo-terminal.mp4) · [经典粉彩](https://cwybruce.github.io/live-panel-studio/examples/capability-demos/knowledge-card/demo-pastel.mp4) |
-| [业务工单流转](examples/capability-demos/business-workflow/README.md) | 四站看板、问题分流、复核与重试 | [暖黑](https://cwybruce.github.io/live-panel-studio/examples/capability-demos/business-workflow/demo.mp4) · [暖纸](https://cwybruce.github.io/live-panel-studio/examples/capability-demos/business-workflow/demo-light.mp4) · [经典终端](https://cwybruce.github.io/live-panel-studio/examples/capability-demos/business-workflow/demo-terminal.mp4) · [经典粉彩](https://cwybruce.github.io/live-panel-studio/examples/capability-demos/business-workflow/demo-pastel.mp4) |
-| [故障与恢复回放](examples/capability-demos/incident-replay/README.md) | 余量曲线、阈值、异常路径与恢复检查 | [暖黑](https://cwybruce.github.io/live-panel-studio/examples/capability-demos/incident-replay/demo.mp4) · [暖纸](https://cwybruce.github.io/live-panel-studio/examples/capability-demos/incident-replay/demo-light.mp4) · [经典终端](https://cwybruce.github.io/live-panel-studio/examples/capability-demos/incident-replay/demo-terminal.mp4) · [经典粉彩](https://cwybruce.github.io/live-panel-studio/examples/capability-demos/incident-replay/demo-pastel.mp4) |
-| [矢量组件实验室](examples/capability-demos/component-lab/README.md) | 光球、座位、圆环、流带、看板与人物组件 | [暖黑](https://cwybruce.github.io/live-panel-studio/examples/capability-demos/component-lab/demo.mp4) · [暖纸](https://cwybruce.github.io/live-panel-studio/examples/capability-demos/component-lab/demo-light.mp4) · [经典终端](https://cwybruce.github.io/live-panel-studio/examples/capability-demos/component-lab/demo-terminal.mp4) · [经典粉彩](https://cwybruce.github.io/live-panel-studio/examples/capability-demos/component-lab/demo-pastel.mp4) |
-| [角色导航与主题](examples/capability-demos/avatar-themes/README.md) | 蜘蛛 / 机器人、路径移动、目标框与关键词提示 | [暖黑](https://cwybruce.github.io/live-panel-studio/examples/capability-demos/avatar-themes/demo.mp4) · [暖纸](https://cwybruce.github.io/live-panel-studio/examples/capability-demos/avatar-themes/demo-light.mp4) · [经典终端](https://cwybruce.github.io/live-panel-studio/examples/capability-demos/avatar-themes/demo-terminal.mp4) · [经典粉彩](https://cwybruce.github.io/live-panel-studio/examples/capability-demos/avatar-themes/demo-pastel.mp4) |
+| [RAG 证据讲解](examples/capability-demos/rag-explainer/README.md) | 检索、评分、重排、引用与回答流向 | [暖黑](https://cwybruce.github.io/motion-diagram-studio/examples/capability-demos/rag-explainer/demo.mp4) · [暖纸](https://cwybruce.github.io/motion-diagram-studio/examples/capability-demos/rag-explainer/demo-light.mp4) · [经典终端](https://cwybruce.github.io/motion-diagram-studio/examples/capability-demos/rag-explainer/demo-terminal.mp4) · [经典粉彩](https://cwybruce.github.io/motion-diagram-studio/examples/capability-demos/rag-explainer/demo-pastel.mp4) |
+| [多 Agent 任务交接](examples/capability-demos/agent-team/README.md) | 任务树、时间泳道、交接包与状态切换 | [暖黑](https://cwybruce.github.io/motion-diagram-studio/examples/capability-demos/agent-team/demo.mp4) · [暖纸](https://cwybruce.github.io/motion-diagram-studio/examples/capability-demos/agent-team/demo-light.mp4) · [经典终端](https://cwybruce.github.io/motion-diagram-studio/examples/capability-demos/agent-team/demo-terminal.mp4) · [经典粉彩](https://cwybruce.github.io/motion-diagram-studio/examples/capability-demos/agent-team/demo-pastel.mp4) |
+| [请求与缓存分支](examples/capability-demos/product-request/README.md) | 请求路径、缓存命中、回源与合流 | [暖黑](https://cwybruce.github.io/motion-diagram-studio/examples/capability-demos/product-request/demo.mp4) · [暖纸](https://cwybruce.github.io/motion-diagram-studio/examples/capability-demos/product-request/demo-light.mp4) · [经典终端](https://cwybruce.github.io/motion-diagram-studio/examples/capability-demos/product-request/demo-terminal.mp4) · [经典粉彩](https://cwybruce.github.io/motion-diagram-studio/examples/capability-demos/product-request/demo-pastel.mp4) |
+| [短视频知识卡](examples/capability-demos/knowledge-card/README.md) | 章节轮播、出处核对与回顾图谱 | [暖黑](https://cwybruce.github.io/motion-diagram-studio/examples/capability-demos/knowledge-card/demo.mp4) · [暖纸](https://cwybruce.github.io/motion-diagram-studio/examples/capability-demos/knowledge-card/demo-light.mp4) · [经典终端](https://cwybruce.github.io/motion-diagram-studio/examples/capability-demos/knowledge-card/demo-terminal.mp4) · [经典粉彩](https://cwybruce.github.io/motion-diagram-studio/examples/capability-demos/knowledge-card/demo-pastel.mp4) |
+| [业务工单流转](examples/capability-demos/business-workflow/README.md) | 四站看板、问题分流、复核与重试 | [暖黑](https://cwybruce.github.io/motion-diagram-studio/examples/capability-demos/business-workflow/demo.mp4) · [暖纸](https://cwybruce.github.io/motion-diagram-studio/examples/capability-demos/business-workflow/demo-light.mp4) · [经典终端](https://cwybruce.github.io/motion-diagram-studio/examples/capability-demos/business-workflow/demo-terminal.mp4) · [经典粉彩](https://cwybruce.github.io/motion-diagram-studio/examples/capability-demos/business-workflow/demo-pastel.mp4) |
+| [故障与恢复回放](examples/capability-demos/incident-replay/README.md) | 余量曲线、阈值、异常路径与恢复检查 | [暖黑](https://cwybruce.github.io/motion-diagram-studio/examples/capability-demos/incident-replay/demo.mp4) · [暖纸](https://cwybruce.github.io/motion-diagram-studio/examples/capability-demos/incident-replay/demo-light.mp4) · [经典终端](https://cwybruce.github.io/motion-diagram-studio/examples/capability-demos/incident-replay/demo-terminal.mp4) · [经典粉彩](https://cwybruce.github.io/motion-diagram-studio/examples/capability-demos/incident-replay/demo-pastel.mp4) |
+| [矢量组件实验室](examples/capability-demos/component-lab/README.md) | 光球、座位、圆环、流带、看板与人物组件 | [暖黑](https://cwybruce.github.io/motion-diagram-studio/examples/capability-demos/component-lab/demo.mp4) · [暖纸](https://cwybruce.github.io/motion-diagram-studio/examples/capability-demos/component-lab/demo-light.mp4) · [经典终端](https://cwybruce.github.io/motion-diagram-studio/examples/capability-demos/component-lab/demo-terminal.mp4) · [经典粉彩](https://cwybruce.github.io/motion-diagram-studio/examples/capability-demos/component-lab/demo-pastel.mp4) |
+| [角色导航与主题](examples/capability-demos/avatar-themes/README.md) | 蜘蛛 / 机器人、路径移动、目标框与关键词提示 | [暖黑](https://cwybruce.github.io/motion-diagram-studio/examples/capability-demos/avatar-themes/demo.mp4) · [暖纸](https://cwybruce.github.io/motion-diagram-studio/examples/capability-demos/avatar-themes/demo-light.mp4) · [经典终端](https://cwybruce.github.io/motion-diagram-studio/examples/capability-demos/avatar-themes/demo-terminal.mp4) · [经典粉彩](https://cwybruce.github.io/motion-diagram-studio/examples/capability-demos/avatar-themes/demo-pastel.mp4) |
 
 <details>
 <summary>展开其余 7 个 Demo 的动态预览</summary>
 
 ### 多 Agent 任务交接
 
-[![多 Agent 任务交接动态预览](assets/readme/agent-team-dark.gif)](https://cwybruce.github.io/live-panel-studio/examples/capability-demos/agent-team/demo.mp4)
+[![多 Agent 任务交接动态预览](assets/readme/agent-team-dark.gif)](https://cwybruce.github.io/motion-diagram-studio/examples/capability-demos/agent-team/demo.mp4)
 
-[▶ 完整 MP4](https://cwybruce.github.io/live-panel-studio/examples/capability-demos/agent-team/demo.mp4) · [交互体验](https://cwybruce.github.io/live-panel-studio/examples/capability-demos/index.html#agent-team)
+[▶ 完整 MP4](https://cwybruce.github.io/motion-diagram-studio/examples/capability-demos/agent-team/demo.mp4) · [交互体验](https://cwybruce.github.io/motion-diagram-studio/examples/capability-demos/index.html#agent-team)
 
 ### 请求与缓存分支
 
-[![请求与缓存分支动态预览](assets/readme/product-request-dark.gif)](https://cwybruce.github.io/live-panel-studio/examples/capability-demos/product-request/demo.mp4)
+[![请求与缓存分支动态预览](assets/readme/product-request-dark.gif)](https://cwybruce.github.io/motion-diagram-studio/examples/capability-demos/product-request/demo.mp4)
 
-[▶ 完整 MP4](https://cwybruce.github.io/live-panel-studio/examples/capability-demos/product-request/demo.mp4) · [交互体验](https://cwybruce.github.io/live-panel-studio/examples/capability-demos/index.html#product-request)
+[▶ 完整 MP4](https://cwybruce.github.io/motion-diagram-studio/examples/capability-demos/product-request/demo.mp4) · [交互体验](https://cwybruce.github.io/motion-diagram-studio/examples/capability-demos/index.html#product-request)
 
 ### 短视频知识卡
 
-[![短视频知识卡动态预览](assets/readme/knowledge-card-dark.gif)](https://cwybruce.github.io/live-panel-studio/examples/capability-demos/knowledge-card/demo.mp4)
+[![短视频知识卡动态预览](assets/readme/knowledge-card-dark.gif)](https://cwybruce.github.io/motion-diagram-studio/examples/capability-demos/knowledge-card/demo.mp4)
 
-[▶ 完整 MP4](https://cwybruce.github.io/live-panel-studio/examples/capability-demos/knowledge-card/demo.mp4) · [交互体验](https://cwybruce.github.io/live-panel-studio/examples/capability-demos/index.html#knowledge-card)
+[▶ 完整 MP4](https://cwybruce.github.io/motion-diagram-studio/examples/capability-demos/knowledge-card/demo.mp4) · [交互体验](https://cwybruce.github.io/motion-diagram-studio/examples/capability-demos/index.html#knowledge-card)
 
 ### 业务工单流转
 
-[![业务工单流转动态预览](assets/readme/business-workflow-dark.gif)](https://cwybruce.github.io/live-panel-studio/examples/capability-demos/business-workflow/demo.mp4)
+[![业务工单流转动态预览](assets/readme/business-workflow-dark.gif)](https://cwybruce.github.io/motion-diagram-studio/examples/capability-demos/business-workflow/demo.mp4)
 
-[▶ 完整 MP4](https://cwybruce.github.io/live-panel-studio/examples/capability-demos/business-workflow/demo.mp4) · [交互体验](https://cwybruce.github.io/live-panel-studio/examples/capability-demos/index.html#business-workflow)
+[▶ 完整 MP4](https://cwybruce.github.io/motion-diagram-studio/examples/capability-demos/business-workflow/demo.mp4) · [交互体验](https://cwybruce.github.io/motion-diagram-studio/examples/capability-demos/index.html#business-workflow)
 
 ### 故障与恢复回放
 
-[![故障与恢复回放动态预览](assets/readme/incident-replay-dark.gif)](https://cwybruce.github.io/live-panel-studio/examples/capability-demos/incident-replay/demo.mp4)
+[![故障与恢复回放动态预览](assets/readme/incident-replay-dark.gif)](https://cwybruce.github.io/motion-diagram-studio/examples/capability-demos/incident-replay/demo.mp4)
 
-[▶ 完整 MP4](https://cwybruce.github.io/live-panel-studio/examples/capability-demos/incident-replay/demo.mp4) · [交互体验](https://cwybruce.github.io/live-panel-studio/examples/capability-demos/index.html#incident-replay)
+[▶ 完整 MP4](https://cwybruce.github.io/motion-diagram-studio/examples/capability-demos/incident-replay/demo.mp4) · [交互体验](https://cwybruce.github.io/motion-diagram-studio/examples/capability-demos/index.html#incident-replay)
 
 ### 矢量组件实验室
 
-[![矢量组件实验室动态预览](assets/readme/component-lab-dark.gif)](https://cwybruce.github.io/live-panel-studio/examples/capability-demos/component-lab/demo.mp4)
+[![矢量组件实验室动态预览](assets/readme/component-lab-dark.gif)](https://cwybruce.github.io/motion-diagram-studio/examples/capability-demos/component-lab/demo.mp4)
 
-[▶ 完整 MP4](https://cwybruce.github.io/live-panel-studio/examples/capability-demos/component-lab/demo.mp4) · [交互体验](https://cwybruce.github.io/live-panel-studio/examples/capability-demos/index.html#component-lab)
+[▶ 完整 MP4](https://cwybruce.github.io/motion-diagram-studio/examples/capability-demos/component-lab/demo.mp4) · [交互体验](https://cwybruce.github.io/motion-diagram-studio/examples/capability-demos/index.html#component-lab)
 
 ### 角色导航与主题
 
-[![角色导航与主题动态预览](assets/readme/avatar-themes-dark.gif)](https://cwybruce.github.io/live-panel-studio/examples/capability-demos/avatar-themes/demo.mp4)
+[![角色导航与主题动态预览](assets/readme/avatar-themes-dark.gif)](https://cwybruce.github.io/motion-diagram-studio/examples/capability-demos/avatar-themes/demo.mp4)
 
-[▶ 完整 MP4](https://cwybruce.github.io/live-panel-studio/examples/capability-demos/avatar-themes/demo.mp4) · [交互体验](https://cwybruce.github.io/live-panel-studio/examples/capability-demos/index.html#avatar-themes)
+[▶ 完整 MP4](https://cwybruce.github.io/motion-diagram-studio/examples/capability-demos/avatar-themes/demo.mp4) · [交互体验](https://cwybruce.github.io/motion-diagram-studio/examples/capability-demos/index.html#avatar-themes)
 
 </details>
 
@@ -141,8 +143,8 @@ python scripts/preview_server.py --port 8779
 
 | 初期完整成片 · 71 秒 | 蜘蛛更新 · 12 秒 |
 | --- | --- |
-| [![初期复刻动态预览](assets/readme/first-recreation.gif)](https://cwybruce.github.io/live-panel-studio/media/recreations/first-recreation.mp4) | [![蜘蛛更新动态预览](assets/readme/spider-recreation.gif)](https://cwybruce.github.io/live-panel-studio/media/recreations/spider-recreation.mp4) |
-| [▶ 完整 MP4](https://cwybruce.github.io/live-panel-studio/media/recreations/first-recreation.mp4) | [▶ 完整 MP4](https://cwybruce.github.io/live-panel-studio/media/recreations/spider-recreation.mp4) |
+| [![初期复刻动态预览](assets/readme/first-recreation.gif)](https://cwybruce.github.io/motion-diagram-studio/media/recreations/first-recreation.mp4) | [![蜘蛛更新动态预览](assets/readme/spider-recreation.gif)](https://cwybruce.github.io/motion-diagram-studio/media/recreations/spider-recreation.mp4) |
+| [▶ 完整 MP4](https://cwybruce.github.io/motion-diagram-studio/media/recreations/first-recreation.mp4) | [▶ 完整 MP4](https://cwybruce.github.io/motion-diagram-studio/media/recreations/spider-recreation.mp4) |
 
 </details>
 
@@ -150,9 +152,9 @@ python scripts/preview_server.py --port 8779
 
 RAG 重排证据区域，暖纸主题、机器人配置。点击预览观看完整的 **478 × 324、12 秒 MP4**。
 
-[![RAG 重排证据：暖纸机器人分区动态预览](assets/readme/rag-rerank-light-drone.gif)](https://cwybruce.github.io/live-panel-studio/media/exports/robot/rag-rerank-light-drone.mp4)
+[![RAG 重排证据：暖纸机器人分区动态预览](assets/readme/rag-rerank-light-drone.gif)](https://cwybruce.github.io/motion-diagram-studio/media/exports/robot/rag-rerank-light-drone.mp4)
 
-[▶ 完整分区 MP4](https://cwybruce.github.io/live-panel-studio/media/exports/robot/rag-rerank-light-drone.mp4) · [浏览全部 39 个功能块与导出案例](https://cwybruce.github.io/live-panel-studio/#exports)
+[▶ 完整分区 MP4](https://cwybruce.github.io/motion-diagram-studio/media/exports/robot/rag-rerank-light-drone.mp4) · [浏览全部 39 个功能块与导出案例](https://cwybruce.github.io/motion-diagram-studio/#exports)
 
 每个目录包含四套配色的配置 JSON、独立 HTML、MP4、PNG 预览图和说明。暖黑提供 `config-dark.json` / `live-dark.html`，以及默认入口 `config.json` / `live.html`，成片和预览图为 `demo.mp4` / `poster.png`；暖纸使用 `-light` 后缀，经典终端使用 `-terminal` 后缀，经典粉彩使用 `-pastel` 后缀。完整体验说明见 [能力体验馆](examples/capability-demos/README.md)。
 

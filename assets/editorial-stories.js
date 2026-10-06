@@ -10,10 +10,10 @@
  function section(x,y,w,h,n,title,tag,c){return '<g transform="translate('+x+' '+y+')" data-panel="'+n+'">'+box(0,0,w,h,C.line,C.panel,5,' data-section-border="'+n+'" data-panel-border="'+n+'" data-neon-border="story-'+tag.toLowerCase()+'" data-neon-color="'+c+'"')+mono(16,26,'0'+(n+1)+' / '+tag,c)+text(16,59,title,19,C.fg,'LP Serif')+line('M16 77H'+(w-16));}
  function defs(id){return '<defs><pattern id="'+id+'grain" width="24" height="24" patternUnits="userSpaceOnUse"><circle cx="1" cy="1" r=".45" fill="'+C.shade('#75664d')+'" opacity=".17"/></pattern><filter id="'+id+'halo" x="-180%" y="-180%" width="460%" height="460%"><feGaussianBlur stdDeviation="'+(C.light?1.7:3)+'" result="blur"/><feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge></filter><linearGradient id="'+id+'paper" x1="0" x2="1"><stop stop-color="'+C.shade('#28231b')+'"/><stop offset=".5" stop-color="'+C.shade('#30271d')+'"/><stop offset="1" stop-color="'+C.shade('#1b1813')+'"/></linearGradient></defs>';}
  function header(id,title,sub,note,tags,colors){var s=defs(id)+'<rect width="984" height="1280" fill="'+C.bg+'"/><rect x="18" y="16" width="948" height="1248" fill="url(#'+id+'grain)"/>';
-  s+=mono(28,29,'LIVE PANEL / '+note)+text(28,76,title,31,C.fg,'LP Serif')+text(28,107,sub,14,C.amber)+text(28,134,'用图形展示关键关系；再用例子，检查自己是否真的理解。',12,C.dim);
+  s+=mono(28,29,'MOTION DIAGRAM STUDIO / '+note)+text(28,76,title,31,C.fg,'LP Serif')+text(28,107,sub,14,C.amber)+text(28,134,'用图形展示关键关系；再用例子，检查自己是否真的理解。',12,C.dim);
   tags.forEach(function(a,i){s+=badge(28+i*102,151,92,a,colors[i])});s+=text(956,165,'12 秒循环 / 原创场景',10,C.dim,'LP Sans',' text-anchor="end"');return s;
  }
- function footer(slogan,tag){return line('M28 1212H956')+text(28,1237,slogan,12,C.fg)+text(28,1259,'原创中文演示 / 所有文本、指标与事件均为预设模拟',9,C.dim)+mono(956,1259,'LIVE PANEL · '+tag,C.amber,' text-anchor="end"');}
+ function footer(slogan,tag){return line('M28 1212H956')+text(28,1237,slogan,12,C.fg)+text(28,1259,'原创中文演示 / 所有文本、指标与事件均为预设模拟',9,C.dim)+mono(956,1259,'MOTION DIAGRAM STUDIO · '+tag,C.amber,' text-anchor="end"');}
  function flight(s,id,key,c,count){for(var i=0;i<count;i++)s+='<circle data-'+key+'="'+i+'" r="'+(i?1.8:3)+'" fill="'+c+'" filter="url(#'+id+'halo)"/>';return s;}
  function clamp(x){return Math.max(0,Math.min(1,x))}
  function machine(id){return cfg.machines&&cfg.machines[id]||{}}

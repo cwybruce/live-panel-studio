@@ -3,17 +3,17 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <meta name="description" content="Live Panel Studio：把架构、流程与知识讲解做成可交互的动画。观看 8 个 Demo、参考画面复刻和功能块导出案例，下载网页与 MP4。">
+  <meta name="description" content="Motion Diagram Studio：把架构、流程与知识讲解做成可交互的动画。观看 8 个 Demo、参考画面复刻和功能块导出案例，下载网页与 MP4。">
   <meta name="theme-color" content="#11110f">
-  <title>Live Panel Studio · 让流程可见</title>
-  <link rel="stylesheet" href="assets/showcase.css?v=4-palettes">
-  <script defer src="assets/showcase.js?v=4-palettes"></script>
+  <title>Motion Diagram Studio · 动态图解工作室</title>
+  <link rel="stylesheet" href="assets/showcase.css?v=motion-diagram-studio-1">
+  <script defer src="assets/showcase.js?v=motion-diagram-studio-1"></script>
 </head>
 <body>
   <a class="skip-link" href="#demos">跳到示例</a>
   <header class="site-header wrap">
-    <a class="brand" href="#top" aria-label="Live Panel Studio 首页"><span class="brand-mark" aria-hidden="true">lp<span>·</span></span><span>LIVE PANEL<span class="brand-sub">STUDIO</span></span></a>
-    <nav class="main-nav" aria-label="主导航"><a href="#demos">示例</a><a href="#recreations">复刻</a><a href="#exports">导出</a><a href="https://github.com/cwybruce/live-panel-studio" target="_blank" rel="noopener noreferrer">GitHub ↗</a></nav>
+    <a class="brand" href="#top" aria-label="Motion Diagram Studio 首页"><span class="brand-mark" aria-hidden="true">md<span>·</span></span><span>MOTION DIAGRAM<span class="brand-sub">STUDIO</span></span></a>
+    <nav class="main-nav" aria-label="主导航"><a href="#demos">示例</a><a href="#recreations">复刻</a><a href="#exports">导出</a><a href="https://github.com/cwybruce/motion-diagram-studio" target="_blank" rel="noopener noreferrer">GitHub ↗</a></nav>
     <div class="theme-switch" role="group" aria-label="页面与 Demo 主题"><button type="button" data-theme-choice="terminal-dark" aria-pressed="true">暖黑</button><button type="button" data-theme-choice="light-pastel" aria-pressed="false">暖纸</button><button type="button" data-theme-choice="terminal-classic" aria-pressed="false">经典终端</button><button type="button" data-theme-choice="pastel-classic" aria-pressed="false">经典粉彩</button></div>
   </header>
 
@@ -45,7 +45,7 @@
     <section id="recreations" class="showcase-section wrap" aria-labelledby="recreations-title">
       <div class="section-heading"><div><p class="eyebrow">02 / FROM A REFERENCE</p><h2 id="recreations-title">从参考画面，到重新实现。</h2></div><p>项目初期的成片：重画图形、编排运动，<br>用同一套引擎复现画面里的节奏。</p></div>
       <div id="recreation-grid" class="recreation-grid"><p class="loading-message">正在读取复刻成片…</p></div>
-      <p class="section-note provenance-note">参考画面的设计权利归原作者；原始参考视频未公开。业务数据仅用于视觉演示，更多来源见 <a href="https://github.com/cwybruce/live-panel-studio/blob/main/THIRD_PARTY_NOTICES.md" target="_blank" rel="noopener noreferrer">第三方说明 ↗</a>。</p>
+      <p class="section-note provenance-note">参考画面的设计权利归原作者；原始参考视频未公开。业务数据仅用于视觉演示，更多来源见 <a href="https://github.com/cwybruce/motion-diagram-studio/blob/main/THIRD_PARTY_NOTICES.md" target="_blank" rel="noopener noreferrer">第三方说明 ↗</a>。</p>
     </section>
 
     <section id="exports" class="showcase-section wrap" aria-labelledby="exports-title">
@@ -57,11 +57,11 @@
       <p class="section-note">这里展示已生成的文件。切换页面主题不会改变复刻与导出案例各自的原始主题。</p>
     </section>
 
-    <section class="make-section wrap" aria-labelledby="make-title"><div><p class="eyebrow">04 / MAKE IT YOURS</p><h2 id="make-title">下一张面板，写你的故事。</h2><p>这个站点支持播放、互动预览和下载。要按自己的配置生成新 MP4，<br>安装本地 Python 预览服务，选择主题、角色与整段 / 功能块范围。</p><a class="button primary" href="https://github.com/cwybruce/live-panel-studio#快速开始" target="_blank" rel="noopener noreferrer">本地安装与使用 <span aria-hidden="true">↗</span></a></div><div class="make-code"><span class="mono">LOCAL STUDIO / PYTHON 3.11+</span><code>python -m pip install -r requirements-windows.txt<br>python scripts/make_capability_demos.py<br>python scripts/preview_server.py --port 8779</code><span>系统 Chrome / Edge · FFmpeg · 本地导出</span></div></section>
+    <section class="make-section wrap" aria-labelledby="make-title"><div><p class="eyebrow">04 / MAKE IT YOURS</p><h2 id="make-title">下一张面板，写你的故事。</h2><p>这个站点支持播放、互动预览和下载。要按自己的配置生成新 MP4，<br>安装本地 Python 预览服务，选择主题、角色与整段 / 功能块范围。</p><a class="button primary" href="https://github.com/cwybruce/motion-diagram-studio#快速开始" target="_blank" rel="noopener noreferrer">本地安装与使用 <span aria-hidden="true">↗</span></a></div><div class="make-code"><span class="mono">LOCAL STUDIO / PYTHON 3.11+</span><code>python -m pip install -r requirements-windows.txt<br>python scripts/make_capability_demos.py<br>python scripts/preview_server.py --port 8779</code><span>系统 Chrome / Edge · FFmpeg · 本地导出</span></div></section>
   </main>
 
-  <footer class="site-footer wrap"><div><strong>LIVE PANEL STUDIO</strong><p>基于 <a href="https://github.com/ythx-101/live-panel-skill" target="_blank" rel="noopener noreferrer">live-panel-skill</a> 扩展 · 代码 MIT · 字体 OFL</p></div><div class="footer-links"><a href="https://x.com/sycbruce" target="_blank" rel="noopener noreferrer">X / @sycbruce ↗</a><a href="https://github.com/cwybruce/live-panel-studio" target="_blank" rel="noopener noreferrer">GitHub ↗</a><a href="#top">回到顶部 ↑</a></div></footer>
+  <footer class="site-footer wrap"><div><strong>MOTION DIAGRAM STUDIO</strong><p>基于 <a href="https://github.com/ythx-101/live-panel-skill" target="_blank" rel="noopener noreferrer">live-panel-skill</a> 扩展 · @sycbruce 独立维护 · 非上游官方项目<br>代码 MIT · 字体 OFL</p></div><div class="footer-links"><a href="https://x.com/sycbruce" target="_blank" rel="noopener noreferrer">X / @sycbruce ↗</a><a href="https://github.com/cwybruce/motion-diagram-studio" target="_blank" rel="noopener noreferrer">GitHub ↗</a><a href="#top">回到顶部 ↑</a></div></footer>
   <div id="page-status" class="sr-only" role="status" aria-live="polite"></div>
-  <noscript><p class="noscript-note">启用 JavaScript 可在首页播放并选择案例，也可以直接进入 <a href="examples/capability-demos/index.html">交互体验馆</a> 或查看 <a href="https://github.com/cwybruce/live-panel-studio">项目仓库</a>。</p></noscript>
+  <noscript><p class="noscript-note">启用 JavaScript 可在首页播放并选择案例，也可以直接进入 <a href="examples/capability-demos/index.html">交互体验馆</a> 或查看 <a href="https://github.com/cwybruce/motion-diagram-studio">项目仓库</a>。</p></noscript>
 </body>
 </html>

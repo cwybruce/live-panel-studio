@@ -7,7 +7,7 @@
 - 项目：[ythx-101/live-panel-skill](https://github.com/ythx-101/live-panel-skill)。
 - 本项目扩展起点：[`8a70aa2c4e3fac68b40e2472407e32e2637a7a36`](https://github.com/ythx-101/live-panel-skill/commit/8a70aa2c4e3fac68b40e2472407e32e2637a7a36)。
 - 许可：MIT，原声明 `Copyright (c) 2026 live-panel contributors` 保留在 [`LICENSE`](LICENSE) 中。
-- Live Panel Studio 在上游基础上扩展了八个中文能力示例、SVG 组件、角色与主题、霓虹流光、预览体验和本地 MP4 导出。
+- Motion Diagram Studio 在上游基础上扩展了八个中文能力示例、SVG 组件、角色与主题、霓虹流光、预览体验和本地 MP4 导出。
 
 ## 上游保留示例与参考设计
 

@@ -4,7 +4,8 @@
   const THEMES = ['terminal-dark', 'light-pastel', 'terminal-classic', 'pastel-classic'];
   const THEME_NAMES = {'terminal-dark': '暖黑', 'light-pastel': '暖纸', 'terminal-classic': '经典终端', 'pastel-classic': '经典粉彩'};
   const THEME_COLORS = {'terminal-dark': '#11110f', 'light-pastel': '#f2efe6', 'terminal-classic': '#14171c', 'pastel-classic': '#fcfcfb'};
-  const THEME_KEY = 'live-panel-studio-showcase-theme';
+  const THEME_KEY = 'motion-diagram-studio-showcase-theme';
+  const LEGACY_THEME_KEY = 'live-panel-studio-showcase-theme';
   const $ = (id) => document.getElementById(id);
   let theme = 'terminal-dark';
   let demos = [];
@@ -200,7 +201,7 @@
 
   async function loadDemos() {
     try {
-      demos = await getJson('examples/capability-demos/manifest.json?v=4-palettes');
+      demos = await getJson('examples/capability-demos/manifest.json?v=motion-diagram-studio-1');
       if (!Array.isArray(demos)) throw new Error('无效的示例清单');
       $('demo-grid').replaceChildren(...demos.map((item, index) => mediaCard(item, index)));
     } catch (_) {
@@ -225,7 +226,7 @@
   }
 
   wireVideo($('export-video'), $('export-error'));
-  try { const saved = localStorage.getItem(THEME_KEY); if (THEMES.includes(saved)) theme = saved; } catch (_) { /* Use the default without storage. */ }
+  try { const saved = localStorage.getItem(THEME_KEY) || localStorage.getItem(LEGACY_THEME_KEY); if (THEMES.includes(saved)) theme = saved; } catch (_) { /* Use the default without storage. */ }
   const requestedTheme = new URLSearchParams(location.search).get('theme');
   if (THEMES.includes(requestedTheme)) theme = requestedTheme;
   applyTheme(theme, false);

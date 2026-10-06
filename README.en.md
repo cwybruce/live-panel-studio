@@ -1,30 +1,32 @@
-# Live Panel Studio
+# Motion Diagram Studio
 
 [中文](README.md) · **English**
 
-Turn architecture, workflows and explanations into interactive panels and exportable videos.
+Turn architecture and workflows into animated diagrams, interactive HTML and MP4 videos.
 
-Built on [live-panel-skill](https://github.com/ythx-101/live-panel-skill), Live Panel Studio turns JSON configurations into animated diagrams, interactive web pages and MP4 videos. It includes eight original Chinese demos, four color schemes, animated avatars and individual block exports.
+Built on [live-panel-skill](https://github.com/ythx-101/live-panel-skill), Motion Diagram Studio turns JSON configurations into animated diagrams, interactive web pages and MP4 videos. It includes eight original Chinese demos, four color schemes, animated avatars and individual block exports.
 
-Maintainer and contact: **[@sycbruce on X](https://x.com/sycbruce)** · [Report an issue](https://github.com/cwybruce/live-panel-studio/issues)
+Independently extended and maintained by @sycbruce; not an official upstream project. Formerly named Live Panel Studio.
 
-**[Live website and video library](https://cwybruce.github.io/live-panel-studio/)** · [Interactive demo gallery](https://cwybruce.github.io/live-panel-studio/examples/capability-demos/index.html) · [Block export examples](https://cwybruce.github.io/live-panel-studio/#exports)
+Maintainer and contact: **[@sycbruce on X](https://x.com/sycbruce)** · [Report an issue](https://github.com/cwybruce/motion-diagram-studio/issues)
+
+**[Live website and video library](https://cwybruce.github.io/motion-diagram-studio/)** · [Interactive demo gallery](https://cwybruce.github.io/motion-diagram-studio/examples/capability-demos/index.html) · [Block export examples](https://cwybruce.github.io/motion-diagram-studio/#exports)
 
 The website plays all eight demos in four color schemes, the initial recreation and the spider update. It also presents 39 block videos and three light-theme robot export examples. Playback, seeking and MP4 downloads work online; run the local service below to render a new configuration. The demos and gallery currently use Chinese; this README is available in both languages.
 
 ## Animated demos
 
-These looping previews show the first **six seconds** of the actual exported MP4s. **Click a preview to watch the full video** at its original quality and frame rate. More scenes, avatars and blocks are available in the [online video library](https://cwybruce.github.io/live-panel-studio/).
+These looping previews show the first **six seconds** of the actual exported MP4s. **Click a preview to watch the full video** at its original quality and frame rate. More scenes, avatars and blocks are available in the [online video library](https://cwybruce.github.io/motion-diagram-studio/).
 
 | RAG evidence walkthrough · Warm Ink | RAG evidence walkthrough · Warm Paper |
 | --- | --- |
-| [![RAG evidence walkthrough: Warm Ink animated preview](assets/readme/rag-explainer-dark.gif)](https://cwybruce.github.io/live-panel-studio/examples/capability-demos/rag-explainer/demo.mp4) | [![RAG evidence walkthrough: Warm Paper animated preview](assets/readme/rag-explainer-light.gif)](https://cwybruce.github.io/live-panel-studio/examples/capability-demos/rag-explainer/demo-light.mp4) |
-| [▶ Full MP4 · 12 seconds](https://cwybruce.github.io/live-panel-studio/examples/capability-demos/rag-explainer/demo.mp4) | [▶ Full MP4 · 12 seconds](https://cwybruce.github.io/live-panel-studio/examples/capability-demos/rag-explainer/demo-light.mp4) |
+| [![RAG evidence walkthrough: Warm Ink animated preview](assets/readme/rag-explainer-dark.gif)](https://cwybruce.github.io/motion-diagram-studio/examples/capability-demos/rag-explainer/demo.mp4) | [![RAG evidence walkthrough: Warm Paper animated preview](assets/readme/rag-explainer-light.gif)](https://cwybruce.github.io/motion-diagram-studio/examples/capability-demos/rag-explainer/demo-light.mp4) |
+| [▶ Full MP4 · 12 seconds](https://cwybruce.github.io/motion-diagram-studio/examples/capability-demos/rag-explainer/demo.mp4) | [▶ Full MP4 · 12 seconds](https://cwybruce.github.io/motion-diagram-studio/examples/capability-demos/rag-explainer/demo-light.mp4) |
 
 | RAG evidence walkthrough · Classic Terminal | RAG evidence walkthrough · Classic Pastel |
 | --- | --- |
-| [![RAG evidence walkthrough: Classic Terminal animated preview](assets/readme/rag-explainer-terminal.gif)](https://cwybruce.github.io/live-panel-studio/examples/capability-demos/rag-explainer/demo-terminal.mp4) | [![RAG evidence walkthrough: Classic Pastel animated preview](assets/readme/rag-explainer-pastel.gif)](https://cwybruce.github.io/live-panel-studio/examples/capability-demos/rag-explainer/demo-pastel.mp4) |
-| [▶ Full MP4 · 12 seconds](https://cwybruce.github.io/live-panel-studio/examples/capability-demos/rag-explainer/demo-terminal.mp4) | [▶ Full MP4 · 12 seconds](https://cwybruce.github.io/live-panel-studio/examples/capability-demos/rag-explainer/demo-pastel.mp4) |
+| [![RAG evidence walkthrough: Classic Terminal animated preview](assets/readme/rag-explainer-terminal.gif)](https://cwybruce.github.io/motion-diagram-studio/examples/capability-demos/rag-explainer/demo-terminal.mp4) | [![RAG evidence walkthrough: Classic Pastel animated preview](assets/readme/rag-explainer-pastel.gif)](https://cwybruce.github.io/motion-diagram-studio/examples/capability-demos/rag-explainer/demo-pastel.mp4) |
+| [▶ Full MP4 · 12 seconds](https://cwybruce.github.io/motion-diagram-studio/examples/capability-demos/rag-explainer/demo-terminal.mp4) | [▶ Full MP4 · 12 seconds](https://cwybruce.github.io/motion-diagram-studio/examples/capability-demos/rag-explainer/demo-pastel.mp4) |
 
 ## What it does
 
@@ -43,10 +45,10 @@ Warm Ink and Warm Paper preserve this project's existing visual style. Classic T
 
 | Scheme | Theme ID | Style and live preview |
 | --- | --- | --- |
-| Warm Ink | `terminal-dark` | Warm dark background with gold and orange accents; [open RAG](https://cwybruce.github.io/live-panel-studio/examples/capability-demos/index.html?theme=terminal-dark#rag-explainer) |
-| Warm Paper | `light-pastel` | Off-white paper background with soft, warm colors; [open RAG](https://cwybruce.github.io/live-panel-studio/examples/capability-demos/index.html?theme=light-pastel#rag-explainer) |
-| Classic Terminal | `terminal-classic` | Cool charcoal background with cyan, blue, green and purple accents; [open RAG](https://cwybruce.github.io/live-panel-studio/examples/capability-demos/index.html?theme=terminal-classic#rag-explainer) |
-| Classic Pastel | `pastel-classic` | White background with blue, yellow, orange, purple and red sections; [open RAG](https://cwybruce.github.io/live-panel-studio/examples/capability-demos/index.html?theme=pastel-classic#rag-explainer) |
+| Warm Ink | `terminal-dark` | Warm dark background with gold and orange accents; [open RAG](https://cwybruce.github.io/motion-diagram-studio/examples/capability-demos/index.html?theme=terminal-dark#rag-explainer) |
+| Warm Paper | `light-pastel` | Off-white paper background with soft, warm colors; [open RAG](https://cwybruce.github.io/motion-diagram-studio/examples/capability-demos/index.html?theme=light-pastel#rag-explainer) |
+| Classic Terminal | `terminal-classic` | Cool charcoal background with cyan, blue, green and purple accents; [open RAG](https://cwybruce.github.io/motion-diagram-studio/examples/capability-demos/index.html?theme=terminal-classic#rag-explainer) |
+| Classic Pastel | `pastel-classic` | White background with blue, yellow, orange, purple and red sections; [open RAG](https://cwybruce.github.io/motion-diagram-studio/examples/capability-demos/index.html?theme=pastel-classic#rag-explainer) |
 
 Theme and avatar are selected independently. Complete-demo and block exports both use the selected scheme. The new schemes preserve existing theme IDs and video filenames.
 
@@ -63,8 +65,8 @@ Install these prerequisites:
 Run in a terminal:
 
 ```powershell
-git clone https://github.com/cwybruce/live-panel-studio.git
-cd live-panel-studio
+git clone https://github.com/cwybruce/motion-diagram-studio.git
+cd motion-diagram-studio
 python -m pip install -r requirements-windows.txt
 python scripts/make_capability_demos.py
 python scripts/preview_server.py --port 8779
@@ -78,59 +80,59 @@ Generated standalone HTML files can be opened offline or deployed to a static we
 
 | Demo | Scenario | Full videos |
 | --- | --- | --- |
-| [RAG evidence walkthrough](examples/capability-demos/rag-explainer/README.md) | Retrieval, scoring, reranking, citations and answer flow | [Warm Ink](https://cwybruce.github.io/live-panel-studio/examples/capability-demos/rag-explainer/demo.mp4) · [Warm Paper](https://cwybruce.github.io/live-panel-studio/examples/capability-demos/rag-explainer/demo-light.mp4) · [Classic Terminal](https://cwybruce.github.io/live-panel-studio/examples/capability-demos/rag-explainer/demo-terminal.mp4) · [Classic Pastel](https://cwybruce.github.io/live-panel-studio/examples/capability-demos/rag-explainer/demo-pastel.mp4) |
-| [Multi-agent handoffs](examples/capability-demos/agent-team/README.md) | Task tree, time lanes, handoff packages and status changes | [Warm Ink](https://cwybruce.github.io/live-panel-studio/examples/capability-demos/agent-team/demo.mp4) · [Warm Paper](https://cwybruce.github.io/live-panel-studio/examples/capability-demos/agent-team/demo-light.mp4) · [Classic Terminal](https://cwybruce.github.io/live-panel-studio/examples/capability-demos/agent-team/demo-terminal.mp4) · [Classic Pastel](https://cwybruce.github.io/live-panel-studio/examples/capability-demos/agent-team/demo-pastel.mp4) |
-| [Requests and cache branches](examples/capability-demos/product-request/README.md) | Request paths, cache hits, origin fetches and merges | [Warm Ink](https://cwybruce.github.io/live-panel-studio/examples/capability-demos/product-request/demo.mp4) · [Warm Paper](https://cwybruce.github.io/live-panel-studio/examples/capability-demos/product-request/demo-light.mp4) · [Classic Terminal](https://cwybruce.github.io/live-panel-studio/examples/capability-demos/product-request/demo-terminal.mp4) · [Classic Pastel](https://cwybruce.github.io/live-panel-studio/examples/capability-demos/product-request/demo-pastel.mp4) |
-| [Short-video knowledge cards](examples/capability-demos/knowledge-card/README.md) | Chapter rotation, source checks and review maps | [Warm Ink](https://cwybruce.github.io/live-panel-studio/examples/capability-demos/knowledge-card/demo.mp4) · [Warm Paper](https://cwybruce.github.io/live-panel-studio/examples/capability-demos/knowledge-card/demo-light.mp4) · [Classic Terminal](https://cwybruce.github.io/live-panel-studio/examples/capability-demos/knowledge-card/demo-terminal.mp4) · [Classic Pastel](https://cwybruce.github.io/live-panel-studio/examples/capability-demos/knowledge-card/demo-pastel.mp4) |
-| [Business ticket workflows](examples/capability-demos/business-workflow/README.md) | Four-stage board, ticket routing, review and retries | [Warm Ink](https://cwybruce.github.io/live-panel-studio/examples/capability-demos/business-workflow/demo.mp4) · [Warm Paper](https://cwybruce.github.io/live-panel-studio/examples/capability-demos/business-workflow/demo-light.mp4) · [Classic Terminal](https://cwybruce.github.io/live-panel-studio/examples/capability-demos/business-workflow/demo-terminal.mp4) · [Classic Pastel](https://cwybruce.github.io/live-panel-studio/examples/capability-demos/business-workflow/demo-pastel.mp4) |
-| [Incident and recovery replay](examples/capability-demos/incident-replay/README.md) | Capacity curves, thresholds, exception paths and recovery checks | [Warm Ink](https://cwybruce.github.io/live-panel-studio/examples/capability-demos/incident-replay/demo.mp4) · [Warm Paper](https://cwybruce.github.io/live-panel-studio/examples/capability-demos/incident-replay/demo-light.mp4) · [Classic Terminal](https://cwybruce.github.io/live-panel-studio/examples/capability-demos/incident-replay/demo-terminal.mp4) · [Classic Pastel](https://cwybruce.github.io/live-panel-studio/examples/capability-demos/incident-replay/demo-pastel.mp4) |
-| [Vector component lab](examples/capability-demos/component-lab/README.md) | Orbs, seats, rings, flowing ribbons, boards and figures | [Warm Ink](https://cwybruce.github.io/live-panel-studio/examples/capability-demos/component-lab/demo.mp4) · [Warm Paper](https://cwybruce.github.io/live-panel-studio/examples/capability-demos/component-lab/demo-light.mp4) · [Classic Terminal](https://cwybruce.github.io/live-panel-studio/examples/capability-demos/component-lab/demo-terminal.mp4) · [Classic Pastel](https://cwybruce.github.io/live-panel-studio/examples/capability-demos/component-lab/demo-pastel.mp4) |
-| [Avatar navigation and themes](examples/capability-demos/avatar-themes/README.md) | Spider / robot avatars, path motion, target frames and keyword cues | [Warm Ink](https://cwybruce.github.io/live-panel-studio/examples/capability-demos/avatar-themes/demo.mp4) · [Warm Paper](https://cwybruce.github.io/live-panel-studio/examples/capability-demos/avatar-themes/demo-light.mp4) · [Classic Terminal](https://cwybruce.github.io/live-panel-studio/examples/capability-demos/avatar-themes/demo-terminal.mp4) · [Classic Pastel](https://cwybruce.github.io/live-panel-studio/examples/capability-demos/avatar-themes/demo-pastel.mp4) |
+| [RAG evidence walkthrough](examples/capability-demos/rag-explainer/README.md) | Retrieval, scoring, reranking, citations and answer flow | [Warm Ink](https://cwybruce.github.io/motion-diagram-studio/examples/capability-demos/rag-explainer/demo.mp4) · [Warm Paper](https://cwybruce.github.io/motion-diagram-studio/examples/capability-demos/rag-explainer/demo-light.mp4) · [Classic Terminal](https://cwybruce.github.io/motion-diagram-studio/examples/capability-demos/rag-explainer/demo-terminal.mp4) · [Classic Pastel](https://cwybruce.github.io/motion-diagram-studio/examples/capability-demos/rag-explainer/demo-pastel.mp4) |
+| [Multi-agent handoffs](examples/capability-demos/agent-team/README.md) | Task tree, time lanes, handoff packages and status changes | [Warm Ink](https://cwybruce.github.io/motion-diagram-studio/examples/capability-demos/agent-team/demo.mp4) · [Warm Paper](https://cwybruce.github.io/motion-diagram-studio/examples/capability-demos/agent-team/demo-light.mp4) · [Classic Terminal](https://cwybruce.github.io/motion-diagram-studio/examples/capability-demos/agent-team/demo-terminal.mp4) · [Classic Pastel](https://cwybruce.github.io/motion-diagram-studio/examples/capability-demos/agent-team/demo-pastel.mp4) |
+| [Requests and cache branches](examples/capability-demos/product-request/README.md) | Request paths, cache hits, origin fetches and merges | [Warm Ink](https://cwybruce.github.io/motion-diagram-studio/examples/capability-demos/product-request/demo.mp4) · [Warm Paper](https://cwybruce.github.io/motion-diagram-studio/examples/capability-demos/product-request/demo-light.mp4) · [Classic Terminal](https://cwybruce.github.io/motion-diagram-studio/examples/capability-demos/product-request/demo-terminal.mp4) · [Classic Pastel](https://cwybruce.github.io/motion-diagram-studio/examples/capability-demos/product-request/demo-pastel.mp4) |
+| [Short-video knowledge cards](examples/capability-demos/knowledge-card/README.md) | Chapter rotation, source checks and review maps | [Warm Ink](https://cwybruce.github.io/motion-diagram-studio/examples/capability-demos/knowledge-card/demo.mp4) · [Warm Paper](https://cwybruce.github.io/motion-diagram-studio/examples/capability-demos/knowledge-card/demo-light.mp4) · [Classic Terminal](https://cwybruce.github.io/motion-diagram-studio/examples/capability-demos/knowledge-card/demo-terminal.mp4) · [Classic Pastel](https://cwybruce.github.io/motion-diagram-studio/examples/capability-demos/knowledge-card/demo-pastel.mp4) |
+| [Business ticket workflows](examples/capability-demos/business-workflow/README.md) | Four-stage board, ticket routing, review and retries | [Warm Ink](https://cwybruce.github.io/motion-diagram-studio/examples/capability-demos/business-workflow/demo.mp4) · [Warm Paper](https://cwybruce.github.io/motion-diagram-studio/examples/capability-demos/business-workflow/demo-light.mp4) · [Classic Terminal](https://cwybruce.github.io/motion-diagram-studio/examples/capability-demos/business-workflow/demo-terminal.mp4) · [Classic Pastel](https://cwybruce.github.io/motion-diagram-studio/examples/capability-demos/business-workflow/demo-pastel.mp4) |
+| [Incident and recovery replay](examples/capability-demos/incident-replay/README.md) | Capacity curves, thresholds, exception paths and recovery checks | [Warm Ink](https://cwybruce.github.io/motion-diagram-studio/examples/capability-demos/incident-replay/demo.mp4) · [Warm Paper](https://cwybruce.github.io/motion-diagram-studio/examples/capability-demos/incident-replay/demo-light.mp4) · [Classic Terminal](https://cwybruce.github.io/motion-diagram-studio/examples/capability-demos/incident-replay/demo-terminal.mp4) · [Classic Pastel](https://cwybruce.github.io/motion-diagram-studio/examples/capability-demos/incident-replay/demo-pastel.mp4) |
+| [Vector component lab](examples/capability-demos/component-lab/README.md) | Orbs, seats, rings, flowing ribbons, boards and figures | [Warm Ink](https://cwybruce.github.io/motion-diagram-studio/examples/capability-demos/component-lab/demo.mp4) · [Warm Paper](https://cwybruce.github.io/motion-diagram-studio/examples/capability-demos/component-lab/demo-light.mp4) · [Classic Terminal](https://cwybruce.github.io/motion-diagram-studio/examples/capability-demos/component-lab/demo-terminal.mp4) · [Classic Pastel](https://cwybruce.github.io/motion-diagram-studio/examples/capability-demos/component-lab/demo-pastel.mp4) |
+| [Avatar navigation and themes](examples/capability-demos/avatar-themes/README.md) | Spider / robot avatars, path motion, target frames and keyword cues | [Warm Ink](https://cwybruce.github.io/motion-diagram-studio/examples/capability-demos/avatar-themes/demo.mp4) · [Warm Paper](https://cwybruce.github.io/motion-diagram-studio/examples/capability-demos/avatar-themes/demo-light.mp4) · [Classic Terminal](https://cwybruce.github.io/motion-diagram-studio/examples/capability-demos/avatar-themes/demo-terminal.mp4) · [Classic Pastel](https://cwybruce.github.io/motion-diagram-studio/examples/capability-demos/avatar-themes/demo-pastel.mp4) |
 
 <details>
 <summary>Expand animated previews of the other seven demos</summary>
 
 ### Multi-agent handoffs
 
-[![Multi-agent handoffs animated preview](assets/readme/agent-team-dark.gif)](https://cwybruce.github.io/live-panel-studio/examples/capability-demos/agent-team/demo.mp4)
+[![Multi-agent handoffs animated preview](assets/readme/agent-team-dark.gif)](https://cwybruce.github.io/motion-diagram-studio/examples/capability-demos/agent-team/demo.mp4)
 
-[▶ Full MP4](https://cwybruce.github.io/live-panel-studio/examples/capability-demos/agent-team/demo.mp4) · [Interactive demo](https://cwybruce.github.io/live-panel-studio/examples/capability-demos/index.html#agent-team)
+[▶ Full MP4](https://cwybruce.github.io/motion-diagram-studio/examples/capability-demos/agent-team/demo.mp4) · [Interactive demo](https://cwybruce.github.io/motion-diagram-studio/examples/capability-demos/index.html#agent-team)
 
 ### Requests and cache branches
 
-[![Requests and cache branches animated preview](assets/readme/product-request-dark.gif)](https://cwybruce.github.io/live-panel-studio/examples/capability-demos/product-request/demo.mp4)
+[![Requests and cache branches animated preview](assets/readme/product-request-dark.gif)](https://cwybruce.github.io/motion-diagram-studio/examples/capability-demos/product-request/demo.mp4)
 
-[▶ Full MP4](https://cwybruce.github.io/live-panel-studio/examples/capability-demos/product-request/demo.mp4) · [Interactive demo](https://cwybruce.github.io/live-panel-studio/examples/capability-demos/index.html#product-request)
+[▶ Full MP4](https://cwybruce.github.io/motion-diagram-studio/examples/capability-demos/product-request/demo.mp4) · [Interactive demo](https://cwybruce.github.io/motion-diagram-studio/examples/capability-demos/index.html#product-request)
 
 ### Short-video knowledge cards
 
-[![Short-video knowledge cards animated preview](assets/readme/knowledge-card-dark.gif)](https://cwybruce.github.io/live-panel-studio/examples/capability-demos/knowledge-card/demo.mp4)
+[![Short-video knowledge cards animated preview](assets/readme/knowledge-card-dark.gif)](https://cwybruce.github.io/motion-diagram-studio/examples/capability-demos/knowledge-card/demo.mp4)
 
-[▶ Full MP4](https://cwybruce.github.io/live-panel-studio/examples/capability-demos/knowledge-card/demo.mp4) · [Interactive demo](https://cwybruce.github.io/live-panel-studio/examples/capability-demos/index.html#knowledge-card)
+[▶ Full MP4](https://cwybruce.github.io/motion-diagram-studio/examples/capability-demos/knowledge-card/demo.mp4) · [Interactive demo](https://cwybruce.github.io/motion-diagram-studio/examples/capability-demos/index.html#knowledge-card)
 
 ### Business ticket workflows
 
-[![Business ticket workflows animated preview](assets/readme/business-workflow-dark.gif)](https://cwybruce.github.io/live-panel-studio/examples/capability-demos/business-workflow/demo.mp4)
+[![Business ticket workflows animated preview](assets/readme/business-workflow-dark.gif)](https://cwybruce.github.io/motion-diagram-studio/examples/capability-demos/business-workflow/demo.mp4)
 
-[▶ Full MP4](https://cwybruce.github.io/live-panel-studio/examples/capability-demos/business-workflow/demo.mp4) · [Interactive demo](https://cwybruce.github.io/live-panel-studio/examples/capability-demos/index.html#business-workflow)
+[▶ Full MP4](https://cwybruce.github.io/motion-diagram-studio/examples/capability-demos/business-workflow/demo.mp4) · [Interactive demo](https://cwybruce.github.io/motion-diagram-studio/examples/capability-demos/index.html#business-workflow)
 
 ### Incident and recovery replay
 
-[![Incident and recovery replay animated preview](assets/readme/incident-replay-dark.gif)](https://cwybruce.github.io/live-panel-studio/examples/capability-demos/incident-replay/demo.mp4)
+[![Incident and recovery replay animated preview](assets/readme/incident-replay-dark.gif)](https://cwybruce.github.io/motion-diagram-studio/examples/capability-demos/incident-replay/demo.mp4)
 
-[▶ Full MP4](https://cwybruce.github.io/live-panel-studio/examples/capability-demos/incident-replay/demo.mp4) · [Interactive demo](https://cwybruce.github.io/live-panel-studio/examples/capability-demos/index.html#incident-replay)
+[▶ Full MP4](https://cwybruce.github.io/motion-diagram-studio/examples/capability-demos/incident-replay/demo.mp4) · [Interactive demo](https://cwybruce.github.io/motion-diagram-studio/examples/capability-demos/index.html#incident-replay)
 
 ### Vector component lab
 
-[![Vector component lab animated preview](assets/readme/component-lab-dark.gif)](https://cwybruce.github.io/live-panel-studio/examples/capability-demos/component-lab/demo.mp4)
+[![Vector component lab animated preview](assets/readme/component-lab-dark.gif)](https://cwybruce.github.io/motion-diagram-studio/examples/capability-demos/component-lab/demo.mp4)
 
-[▶ Full MP4](https://cwybruce.github.io/live-panel-studio/examples/capability-demos/component-lab/demo.mp4) · [Interactive demo](https://cwybruce.github.io/live-panel-studio/examples/capability-demos/index.html#component-lab)
+[▶ Full MP4](https://cwybruce.github.io/motion-diagram-studio/examples/capability-demos/component-lab/demo.mp4) · [Interactive demo](https://cwybruce.github.io/motion-diagram-studio/examples/capability-demos/index.html#component-lab)
 
 ### Avatar navigation and themes
 
-[![Avatar navigation and themes animated preview](assets/readme/avatar-themes-dark.gif)](https://cwybruce.github.io/live-panel-studio/examples/capability-demos/avatar-themes/demo.mp4)
+[![Avatar navigation and themes animated preview](assets/readme/avatar-themes-dark.gif)](https://cwybruce.github.io/motion-diagram-studio/examples/capability-demos/avatar-themes/demo.mp4)
 
-[▶ Full MP4](https://cwybruce.github.io/live-panel-studio/examples/capability-demos/avatar-themes/demo.mp4) · [Interactive demo](https://cwybruce.github.io/live-panel-studio/examples/capability-demos/index.html#avatar-themes)
+[▶ Full MP4](https://cwybruce.github.io/motion-diagram-studio/examples/capability-demos/avatar-themes/demo.mp4) · [Interactive demo](https://cwybruce.github.io/motion-diagram-studio/examples/capability-demos/index.html#avatar-themes)
 
 </details>
 
@@ -141,8 +143,8 @@ These animations come from videos reimplemented and rendered by this project. Ri
 
 | Initial full video · 71 seconds | Spider update · 12 seconds |
 | --- | --- |
-| [![Initial recreation animated preview](assets/readme/first-recreation.gif)](https://cwybruce.github.io/live-panel-studio/media/recreations/first-recreation.mp4) | [![Spider recreation animated preview](assets/readme/spider-recreation.gif)](https://cwybruce.github.io/live-panel-studio/media/recreations/spider-recreation.mp4) |
-| [▶ Full MP4](https://cwybruce.github.io/live-panel-studio/media/recreations/first-recreation.mp4) | [▶ Full MP4](https://cwybruce.github.io/live-panel-studio/media/recreations/spider-recreation.mp4) |
+| [![Initial recreation animated preview](assets/readme/first-recreation.gif)](https://cwybruce.github.io/motion-diagram-studio/media/recreations/first-recreation.mp4) | [![Spider recreation animated preview](assets/readme/spider-recreation.gif)](https://cwybruce.github.io/motion-diagram-studio/media/recreations/spider-recreation.mp4) |
+| [▶ Full MP4](https://cwybruce.github.io/motion-diagram-studio/media/recreations/first-recreation.mp4) | [▶ Full MP4](https://cwybruce.github.io/motion-diagram-studio/media/recreations/spider-recreation.mp4) |
 
 </details>
 
@@ -150,9 +152,9 @@ These animations come from videos reimplemented and rendered by this project. Ri
 
 The RAG reranking evidence region, using Warm Paper and the robot configuration. Click the preview to watch the complete **478 × 324, 12-second MP4**.
 
-[![RAG reranking evidence: Warm Paper robot block animated preview](assets/readme/rag-rerank-light-drone.gif)](https://cwybruce.github.io/live-panel-studio/media/exports/robot/rag-rerank-light-drone.mp4)
+[![RAG reranking evidence: Warm Paper robot block animated preview](assets/readme/rag-rerank-light-drone.gif)](https://cwybruce.github.io/motion-diagram-studio/media/exports/robot/rag-rerank-light-drone.mp4)
 
-[▶ Full block MP4](https://cwybruce.github.io/live-panel-studio/media/exports/robot/rag-rerank-light-drone.mp4) · [Browse all 39 blocks and export examples](https://cwybruce.github.io/live-panel-studio/#exports)
+[▶ Full block MP4](https://cwybruce.github.io/motion-diagram-studio/media/exports/robot/rag-rerank-light-drone.mp4) · [Browse all 39 blocks and export examples](https://cwybruce.github.io/motion-diagram-studio/#exports)
 
 Each demo directory contains JSON configurations, standalone HTML, MP4s, PNG posters and documentation for all four color schemes. Warm Ink provides `config-dark.json` / `live-dark.html`, plus the default `config.json` / `live.html` entry points; its video and poster are `demo.mp4` / `poster.png`. Warm Paper uses the `-light` suffix, Classic Terminal uses `-terminal`, and Classic Pastel uses `-pastel`. See the [demo gallery guide](examples/capability-demos/README.md) for details.
 

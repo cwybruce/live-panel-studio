@@ -16,7 +16,7 @@ function ecAuthor(root,C){
 B.labEditorial=function(e){
  var root=vroot(e),svg=root.svg,C=ecPalette(e),A=ecAuthor(root,C),id=root.id;
  var s='<defs><pattern id="'+id+'dots" width="23" height="23" patternUnits="userSpaceOnUse"><circle cx="1" cy="1" r=".45" fill="'+C.dim+'" opacity=".12"/></pattern></defs>';
- s+=A.page('六种组件，把过程变成可见的故事','角色 · 汇聚 · 比例 · 分支 · 虚实 · 任务状态','同一份配置，可以组织成网页，也可以导出成一段动画。','LIVE PANEL / THE VECTOR FIELD GUIDE / 06 COMPONENTS');
+ s+=A.page('六种组件，把过程变成可见的故事','角色 · 汇聚 · 比例 · 分支 · 虚实 · 任务状态','同一份配置，可以组织成网页，也可以导出成一段动画。','MOTION DIAGRAM STUDIO / THE VECTOR FIELD GUIDE / 06 COMPONENTS');
  s+=A.rect(28,201,928,247,C.surface,C.line,4,' data-neon-border="lab-hero" data-neon-color="'+C.amber+'" data-neon-role="hero"')+'<rect x="29" y="202" width="926" height="245" fill="url(#'+id+'dots)"/>';
  s+=A.meta(42,224,'01 / THE GLOWING GUIDE',C.cyan)+A.txt(334,261,'先让读者知道，应该看哪里。',21,C.fg,'serif',true);
  s+=A.txt(334,289,'角色的浮动、渐变与光环，把注意力聚在起点。',13,C.dim);
@@ -52,7 +52,7 @@ B.avatarEditorial=function(e){
  var guide=cfg.machines&&cfg.machines.guide||{},guidePeriod=Number(guide.period)||4,guideCount=guide.order?guide.order.length:guide.values?guide.values.length:3,timelineDuration=guidePeriod*guideCount,guideStart=Number(guide.t0)||0;
  (cfg.elements||[]).forEach(function(actor){if(actor.type==='drone'){actor.period=timelineDuration;actor.focusPeriod=guidePeriod}});
  var s='<defs><filter id="'+id+'halo" x="-160%" y="-160%" width="420%" height="420%"><feGaussianBlur stdDeviation="'+(C.light?1.7:3)+'" result="blur"/><feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge></filter></defs>';
- s+=A.page('一个游走的角色，带着读者走完过程','导航 · 聚焦 · 关键词 · 角色样式 · 深浅阅读环境','角色可以换，路径可以改；读者始终知道，当前正在讲哪一步。','LIVE PANEL / THE TRAVELING GUIDE / AVATAR & THEME');
+ s+=A.page('一个游走的角色，带着读者走完过程','导航 · 聚焦 · 关键词 · 角色样式 · 深浅阅读环境','角色可以换，路径可以改；读者始终知道，当前正在讲哪一步。','MOTION DIAGRAM STUDIO / THE TRAVELING GUIDE / AVATAR & THEME');
  s+=A.rect(28,201,928,351,C.surface,C.line,4,' data-neon-border="avatar-hero" data-neon-color="'+C.amber+'" data-neon-role="hero"')+A.meta(42,224,'THE GUIDED JOURNEY',C.amber)+A.txt(42,258,'让视线跟随过程，而不只是在画布上移动。',20,C.fg,'serif',true);
  var centers=[178,492,807],colors=[C.cyan,C.amber,C.mint],titles=['检索依据','核对上下文','解释结果'];
  centers.forEach(function(x,i){

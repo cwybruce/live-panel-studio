@@ -872,7 +872,7 @@ B.ragEditorial=function(e){
  var s='<defs><pattern id="'+id+'grid" width="24" height="24" patternUnits="userSpaceOnUse"><circle cx="1" cy="1" r=".45" fill="'+C.shade('#625643')+'" opacity=".17"/></pattern><filter id="'+id+'halo" x="-180%" y="-180%" width="460%" height="460%"><feGaussianBlur stdDeviation="'+(C.light?1.7:4)+'" result="blur"/><feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge></filter>';
  [C.amber,C.cyan,C.pink,C.mint].forEach(function(c,i){s+='<radialGradient id="'+id+'orb'+i+'" cx="30%" cy="25%"><stop stop-color="'+C.shade('#fff5df')+'" stop-opacity=".85"/><stop offset=".35" stop-color="'+(C.light?C.tint(c,.72):c)+'"/><stop offset="1" stop-color="'+C.shade('#211b1a')+'"/></radialGradient>'});s+='</defs>';
  s+='<rect width="984" height="1280" fill="'+C.bg+'"/><rect x="18" y="16" width="948" height="1248" fill="url(#'+id+'grid)"/>';
- s+=small(28,29,'LIVE PANEL / A QUESTION’S JOURNEY / 4 STAGES',C.dim);
+ s+=small(28,29,'MOTION DIAGRAM STUDIO / A QUESTION’S JOURNEY / 4 STAGES',C.dim);
  s+=txt(28,76,'一个问题，如何找到它的依据',31,C.fg,true)+txt(28,106,'RAG · 从候选知识，到可以核对的回答',14,C.amber);
  s+=txt(28,133,'先检索，再筛选；让每一句回答，沿着引用回到原文。',12,C.dim);
  ['01 提问','02 检索','03 重排','04 回答'].forEach(function(t,i){s+=badge(28+i*87,150,77,t,[C.amber,C.cyan,C.pink,C.mint][i])});
@@ -919,7 +919,7 @@ B.ragEditorial=function(e){
  s+=small(18,97,'WHEN EVIDENCE IS MISSING',C.dim)+card(20,116,184,57,'问题 / 管理员口令？','提供的文档没有这项信息',C.amber);
  s+='<path d="M205 144H262" stroke="'+C.red+'" stroke-width=".8" stroke-dasharray="3 5"/><circle cx="335" cy="155" r="42" fill="none" stroke="'+C.red+'" stroke-width=".8" opacity=".7"/><circle cx="335" cy="155" r="51" fill="none" stroke="'+C.red+'" stroke-dasharray="2 7" opacity=".25"/>'+txt(335,159,'0',31,C.red,true,' text-anchor="middle"')+txt(335,180,'条可用证据',9,C.dim,false,' text-anchor="middle"');
  s+=rect(20,220,414,42,C.shade('#70473d'),C.shade('#271b16'),4)+txt(32,247,'无法根据现有资料确认，请补充来源。',13,C.red,true)+txt(18,284,'缺失、矛盾和越界信息，都应当明确说明。',10,C.dim)+'</g>';
- s+='<path d="M28 1212H956" stroke="'+C.line+'" stroke-width=".7"/>'+txt(28,1237,'检索提供候选 · 重排筛选证据 · 引用连接原文 · 无依据时说明',12,C.fg)+txt(28,1259,'原创中文视觉样板 / 所有文本、分数与事件均为预设演示',9,C.dim)+txt(956,1259,'LIVE PANEL · RAG / 01',9,C.amber,false,' text-anchor="end"');
+ s+='<path d="M28 1212H956" stroke="'+C.line+'" stroke-width=".7"/>'+txt(28,1237,'检索提供候选 · 重排筛选证据 · 引用连接原文 · 无依据时说明',12,C.fg)+txt(28,1259,'原创中文视觉样板 / 所有文本、分数与事件均为预设演示',9,C.dim)+txt(956,1259,'MOTION DIAGRAM STUDIO · RAG / 01',9,C.amber,false,' text-anchor="end"');
  svg.innerHTML=s;
  var rings=svg.querySelectorAll('[data-ring]'),steps=svg.querySelectorAll('[data-step]'),routes=svg.querySelectorAll('[data-route]'),dots=svg.querySelectorAll('[data-flight]'),panels=svg.querySelectorAll('[data-panel-border]'),docs=svg.querySelectorAll('[data-document]'),scores=svg.querySelectorAll('[data-score]'),evidence=svg.querySelectorAll('[data-evidence-flight]'),label=svg.querySelector('[data-stage-label]');
  COMPONENTS.push(function(t){
@@ -969,7 +969,7 @@ function ESRoot(e, meta, title, subtitle, detail, steps, footer){
  steps.forEach(function(a,i){s+=small(28+i*122,164,a[0],C.shade(a[1]))});s+=mono(956,164,'12s / SCRIPTED LOOP',9,C.dim,' text-anchor="end"');
  s+='<g data-panel="hero">'+rect(28,194,928,383,C.line,C.shade('#171511'),4,' data-panel-border="hero" data-neon-border="'+e.type+'-hero" data-neon-color="'+C.amber+'" data-neon-role="hero"')+small(42,219,'THE SYSTEM IN MOTION',C.amber)+rule(43,531,897);
  var edition={agentEditorial:'COLLABORATION / 02',requestEditorial:'REQUEST / 03',incidentEditorial:'REPLAY / 04'};
- var tail=rule(28,1212,928)+txt(28,1237,footer,12,C.fg)+txt(28,1259,'原创中文视觉示例 / 所有文本、指标与事件均为预设演示',10,C.dim)+mono(956,1259,'LIVE PANEL / '+edition[e.type],9,C.amber,' text-anchor="end"');
+ var tail=rule(28,1212,928)+txt(28,1237,footer,12,C.fg)+txt(28,1259,'原创中文视觉示例 / 所有文本、指标与事件均为预设演示',10,C.dim)+mono(956,1259,'MOTION DIAGRAM STUDIO / '+edition[e.type],9,C.amber,' text-anchor="end"');
  return {svg:svg,id:id,C:C,txt:txt,mono:mono,small:small,rule:rule,rect:rect,panel:panel,end:end,circle:circle,icon:icon,node:node,route:route,particles:particles,s:s,tail:tail};
 }
 function ESValue(name){var v=V[name];return v==null?'':typeof v==='object'?v.text:String(v)}
@@ -977,7 +977,7 @@ function ESFlights(svg){var paths={};svg.querySelectorAll('[data-es-route]').for
 function ESAnimateFlights(f,t,active){Object.keys(f.paths).forEach(function(key){f.paths[key].p.setAttribute('opacity',active(key)? .8:.18)});f.dots.forEach(function(n){var a=n.getAttribute('data-es-flight').split(':'),key=a[0],j=Number(a[1]),u=phase(t,2.2,-j*.14),p=f.paths[key].p.getPointAtLength(f.paths[key].len*u);n.setAttribute('cx',p.x);n.setAttribute('cy',p.y);n.setAttribute('opacity',active(key)?Math.sin(u*Math.PI)*(.94-j*.14):0)})}
 
 B.agentEditorial=function(e){
- var a=ESRoot(e,'LIVE PANEL / COLLABORATION / FOUR ROLES','一次任务，如何交到下一双手','多 Agent · 让状态、建议与验收依据一起交接','四种角色轮流工作；交付时，成果应当带着可以复现的证据。',[['01 / PLAN','#dfb96d'],['02 / RESEARCH','#64bed0'],['03 / BUILD','#e776af'],['04 / REVIEW','#88c4a2']], '角色划分职责 · 交接携带依据 · 时间线同步状态 · 结果需要验收'),s=a.s,C=a.C,T=a.txt,M=a.mono,R=a.rect,S=a.small;
+ var a=ESRoot(e,'MOTION DIAGRAM STUDIO / COLLABORATION / FOUR ROLES','一次任务，如何交到下一双手','多 Agent · 让状态、建议与验收依据一起交接','四种角色轮流工作；交付时，成果应当带着可以复现的证据。',[['01 / PLAN','#dfb96d'],['02 / RESEARCH','#64bed0'],['03 / BUILD','#e776af'],['04 / REVIEW','#88c4a2']], '角色划分职责 · 交接携带依据 · 时间线同步状态 · 结果需要验收'),s=a.s,C=a.C,T=a.txt,M=a.mono,R=a.rect,S=a.small;
  var xs=[145,376,607,838],colors=[C.amber,C.cyan,C.pink,C.mint],names=['规划','检索','实现','审核'],desc=['定义可验收的目标','补齐接口与来源','按约束编写补丁','核对边界与结果'];
  s+=T(42,253,'把分工变成一条可追踪的交付链。',20,C.fg,'LP Serif')+M(942,219,'GOAL → CONTEXT → PATCH → CHECK',9,C.dim,' text-anchor="end"');
  for(var i=0;i<3;i++){s+=a.route(String(i),'M'+(xs[i]+43)+' 339C'+(xs[i]+85)+' 294 '+(xs[i+1]-85)+' 294 '+(xs[i+1]-43)+' 339',colors[i])+a.particles(String(i),colors[i])}
@@ -1009,7 +1009,7 @@ B.agentEditorial=function(e){
 };
 
 B.requestEditorial=function(e){
- var a=ESRoot(e,'LIVE PANEL / REQUEST ROUTING / TWO BRANCHES','一次请求，走捷径或回到源头','缓存 · 复用已有结果，也保留读取原始数据的路径','命中和未命中走不同分支，最终汇成同一种响应格式。', [['01 / HIT','#88c4a2'],['02 / MISS','#e776af'],['03 / RETURN','#64bed0']], '命中复用结果 · 未命中读取源头 · 两路统一响应 · 指标标明来源'),s=a.s,C=a.C,T=a.txt,M=a.mono,R=a.rect,S=a.small;
+ var a=ESRoot(e,'MOTION DIAGRAM STUDIO / REQUEST ROUTING / TWO BRANCHES','一次请求，走捷径或回到源头','缓存 · 复用已有结果，也保留读取原始数据的路径','命中和未命中走不同分支，最终汇成同一种响应格式。', [['01 / HIT','#88c4a2'],['02 / MISS','#e776af'],['03 / RETURN','#64bed0']], '命中复用结果 · 未命中读取源头 · 两路统一响应 · 指标标明来源'),s=a.s,C=a.C,T=a.txt,M=a.mono,R=a.rect,S=a.small;
  s+=T(42,253,'分支不同，返回结果的约定一致。',20,C.fg,'LP Serif')+M(942,219,'REQUEST → CACHE / DATABASE → RESPONSE',9,C.dim,' text-anchor="end"');
  var routes=[['in','M167 353H302',C.amber],['lookup','M383 339C445 298 488 298 544 298',C.cyan],['hit','M586 340V386',C.mint],['miss','M628 304C708 292 750 313 797 341',C.pink],['read','M807 383C748 421 690 426 628 426',C.pink],['return','M544 430C410 491 217 488 139 393',C.mint]];
  routes.forEach(function(q){s+=a.route(q[0],q[1],q[2])+a.particles(q[0],q[2])});
@@ -1041,7 +1041,7 @@ B.requestEditorial=function(e){
 };
 
 B.incidentEditorial=function(e){
- var a=ESRoot(e,'LIVE PANEL / INCIDENT REPLAY / DEPENDENCY CHAIN','一次异常，如何沿着依赖显形','回放 · 从服务稳定，到拥塞，再到恢复检查','用余量驱动状态，让异常路径与恢复证据出现在同一条时间线上。',[['01 / HEALTHY','#88c4a2'],['02 / DEGRADED','#d77768'],['03 / RECOVER','#64bed0']], '阈值驱动告警 · 依赖呈现传播 · 回放复现过程 · 恢复后仍需验收'),s=a.s,C=a.C,T=a.txt,M=a.mono,R=a.rect,S=a.small;
+ var a=ESRoot(e,'MOTION DIAGRAM STUDIO / INCIDENT REPLAY / DEPENDENCY CHAIN','一次异常，如何沿着依赖显形','回放 · 从服务稳定，到拥塞，再到恢复检查','用余量驱动状态，让异常路径与恢复证据出现在同一条时间线上。',[['01 / HEALTHY','#88c4a2'],['02 / DEGRADED','#d77768'],['03 / RECOVER','#64bed0']], '阈值驱动告警 · 依赖呈现传播 · 回放复现过程 · 恢复后仍需验收'),s=a.s,C=a.C,T=a.txt,M=a.mono,R=a.rect,S=a.small;
  var machines=cfg.machines,poolMachine=machines.pool,storageMachine=machines.storage,duration=cfg.canvas.duration||12;
  var thresholds={pool:Number(poolMachine.threshold),storage:Number(storageMachine.threshold)},phasePeriod=machines.phase.period;
  s+=T(42,253,'让指标变成可定位的状态。',20,C.fg,'LP Serif')+M(942,219,'ENTRY → WORK POOL → STORAGE',9,C.dim,' text-anchor="end"');
@@ -1097,10 +1097,10 @@ B.incidentEditorial=function(e){
  function section(x,y,w,h,n,title,tag,c){return '<g transform="translate('+x+' '+y+')" data-panel="'+n+'">'+box(0,0,w,h,C.line,C.panel,5,' data-section-border="'+n+'" data-panel-border="'+n+'" data-neon-border="story-'+tag.toLowerCase()+'" data-neon-color="'+c+'"')+mono(16,26,'0'+(n+1)+' / '+tag,c)+text(16,59,title,19,C.fg,'LP Serif')+line('M16 77H'+(w-16));}
  function defs(id){return '<defs><pattern id="'+id+'grain" width="24" height="24" patternUnits="userSpaceOnUse"><circle cx="1" cy="1" r=".45" fill="'+C.shade('#75664d')+'" opacity=".17"/></pattern><filter id="'+id+'halo" x="-180%" y="-180%" width="460%" height="460%"><feGaussianBlur stdDeviation="'+(C.light?1.7:3)+'" result="blur"/><feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge></filter><linearGradient id="'+id+'paper" x1="0" x2="1"><stop stop-color="'+C.shade('#28231b')+'"/><stop offset=".5" stop-color="'+C.shade('#30271d')+'"/><stop offset="1" stop-color="'+C.shade('#1b1813')+'"/></linearGradient></defs>';}
  function header(id,title,sub,note,tags,colors){var s=defs(id)+'<rect width="984" height="1280" fill="'+C.bg+'"/><rect x="18" y="16" width="948" height="1248" fill="url(#'+id+'grain)"/>';
-  s+=mono(28,29,'LIVE PANEL / '+note)+text(28,76,title,31,C.fg,'LP Serif')+text(28,107,sub,14,C.amber)+text(28,134,'用图形展示关键关系；再用例子，检查自己是否真的理解。',12,C.dim);
+  s+=mono(28,29,'MOTION DIAGRAM STUDIO / '+note)+text(28,76,title,31,C.fg,'LP Serif')+text(28,107,sub,14,C.amber)+text(28,134,'用图形展示关键关系；再用例子，检查自己是否真的理解。',12,C.dim);
   tags.forEach(function(a,i){s+=badge(28+i*102,151,92,a,colors[i])});s+=text(956,165,'12 秒循环 / 原创场景',10,C.dim,'LP Sans',' text-anchor="end"');return s;
  }
- function footer(slogan,tag){return line('M28 1212H956')+text(28,1237,slogan,12,C.fg)+text(28,1259,'原创中文演示 / 所有文本、指标与事件均为预设模拟',9,C.dim)+mono(956,1259,'LIVE PANEL · '+tag,C.amber,' text-anchor="end"');}
+ function footer(slogan,tag){return line('M28 1212H956')+text(28,1237,slogan,12,C.fg)+text(28,1259,'原创中文演示 / 所有文本、指标与事件均为预设模拟',9,C.dim)+mono(956,1259,'MOTION DIAGRAM STUDIO · '+tag,C.amber,' text-anchor="end"');}
  function flight(s,id,key,c,count){for(var i=0;i<count;i++)s+='<circle data-'+key+'="'+i+'" r="'+(i?1.8:3)+'" fill="'+c+'" filter="url(#'+id+'halo)"/>';return s;}
  function clamp(x){return Math.max(0,Math.min(1,x))}
  function machine(id){return cfg.machines&&cfg.machines[id]||{}}
@@ -1228,7 +1228,7 @@ function ecAuthor(root,C){
 B.labEditorial=function(e){
  var root=vroot(e),svg=root.svg,C=ecPalette(e),A=ecAuthor(root,C),id=root.id;
  var s='<defs><pattern id="'+id+'dots" width="23" height="23" patternUnits="userSpaceOnUse"><circle cx="1" cy="1" r=".45" fill="'+C.dim+'" opacity=".12"/></pattern></defs>';
- s+=A.page('六种组件，把过程变成可见的故事','角色 · 汇聚 · 比例 · 分支 · 虚实 · 任务状态','同一份配置，可以组织成网页，也可以导出成一段动画。','LIVE PANEL / THE VECTOR FIELD GUIDE / 06 COMPONENTS');
+ s+=A.page('六种组件，把过程变成可见的故事','角色 · 汇聚 · 比例 · 分支 · 虚实 · 任务状态','同一份配置，可以组织成网页，也可以导出成一段动画。','MOTION DIAGRAM STUDIO / THE VECTOR FIELD GUIDE / 06 COMPONENTS');
  s+=A.rect(28,201,928,247,C.surface,C.line,4,' data-neon-border="lab-hero" data-neon-color="'+C.amber+'" data-neon-role="hero"')+'<rect x="29" y="202" width="926" height="245" fill="url(#'+id+'dots)"/>';
  s+=A.meta(42,224,'01 / THE GLOWING GUIDE',C.cyan)+A.txt(334,261,'先让读者知道，应该看哪里。',21,C.fg,'serif',true);
  s+=A.txt(334,289,'角色的浮动、渐变与光环，把注意力聚在起点。',13,C.dim);
@@ -1264,7 +1264,7 @@ B.avatarEditorial=function(e){
  var guide=cfg.machines&&cfg.machines.guide||{},guidePeriod=Number(guide.period)||4,guideCount=guide.order?guide.order.length:guide.values?guide.values.length:3,timelineDuration=guidePeriod*guideCount,guideStart=Number(guide.t0)||0;
  (cfg.elements||[]).forEach(function(actor){if(actor.type==='drone'){actor.period=timelineDuration;actor.focusPeriod=guidePeriod}});
  var s='<defs><filter id="'+id+'halo" x="-160%" y="-160%" width="420%" height="420%"><feGaussianBlur stdDeviation="'+(C.light?1.7:3)+'" result="blur"/><feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge></filter></defs>';
- s+=A.page('一个游走的角色，带着读者走完过程','导航 · 聚焦 · 关键词 · 角色样式 · 深浅阅读环境','角色可以换，路径可以改；读者始终知道，当前正在讲哪一步。','LIVE PANEL / THE TRAVELING GUIDE / AVATAR & THEME');
+ s+=A.page('一个游走的角色，带着读者走完过程','导航 · 聚焦 · 关键词 · 角色样式 · 深浅阅读环境','角色可以换，路径可以改；读者始终知道，当前正在讲哪一步。','MOTION DIAGRAM STUDIO / THE TRAVELING GUIDE / AVATAR & THEME');
  s+=A.rect(28,201,928,351,C.surface,C.line,4,' data-neon-border="avatar-hero" data-neon-color="'+C.amber+'" data-neon-role="hero"')+A.meta(42,224,'THE GUIDED JOURNEY',C.amber)+A.txt(42,258,'让视线跟随过程，而不只是在画布上移动。',20,C.fg,'serif',true);
  var centers=[178,492,807],colors=[C.cyan,C.amber,C.mint],titles=['检索依据','核对上下文','解释结果'];
  centers.forEach(function(x,i){

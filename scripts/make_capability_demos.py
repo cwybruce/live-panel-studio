@@ -157,7 +157,7 @@ def generate():
     template = template.replace('</head>', font_style() + '</head>')
     (OUT / 'index.html').write_text(template.replace('/*DEMO_MANIFEST*/', blob), encoding='utf-8')
     rows = '\n'.join(f"| {i+1} | [{d['title']}]({d['id']}/live.html) | {', '.join(d['capabilities'])} |" for i, d in enumerate(manifest))
-    (OUT / 'README.md').write_text('''# Live Panel 能力体验馆
+    (OUT / 'README.md').write_text('''# Motion Diagram Studio 能力体验馆
 
 8 个原创中文 Demo，展示当前引擎能做的流程动画、状态切换、数据组件、角色、主题与导出。
 所有演示使用模拟数据与预设时间线，没有连接真实 Agent、数据库、工单或日志服务。

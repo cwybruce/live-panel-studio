@@ -62,6 +62,6 @@ def base(title, subtitle, preset='terminal-dark', duration=12):
                       'boxMode': 'solid', 'radius': 12, 'glow': True,
                       'colors': dict(PALETTES[preset])},
             'clock': {'start': '00:00:00', 'rate': 1}, 'machines': {},
-            'elements': [text(36, 40, 'LIVE PANEL / CAPABILITY DEMO', 12, 'cy'),
+            'elements': [text(36, 40, 'MOTION DIAGRAM STUDIO / CAPABILITY DEMO', 12, 'cy'),
                          text(36, 80, title, 30, 'fg', b=True),
                          text(36, 117, subtitle, 14, 'dim'), footnote()]}

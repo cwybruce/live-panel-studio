@@ -66,7 +66,7 @@ class ExportQueue:
                 self._update(identity, status='complete', progress=100, stage='导出完成',
                              url='/exports/' + identity + '.mp4', **info)
             except Exception as error:
-                logging.exception('Live Panel export %s failed', identity)
+                logging.exception('Motion Diagram Studio export %s failed', identity)
                 message = '视频生成失败，请重试；详细原因已记录到本地服务日志。'
                 if isinstance(error, ExportError) and 'not found' in str(error):
                     message = '未找到导出所需的浏览器或 FFmpeg，请检查本地环境。'
@@ -186,7 +186,7 @@ class PreviewHandler(SimpleHTTPRequestHandler):
             self._json(400, {'error': str(error)[:1000]})
             return
         except Exception:
-            logging.exception('Unable to prepare Live Panel export')
+            logging.exception('Unable to prepare Motion Diagram Studio export')
             self._json(500, {'error': '无法读取本地示例配置，请检查预览服务日志。'})
             return
         self._json(202, job)
@@ -284,7 +284,7 @@ def main():
     args = parser.parse_args()
     try:
         with make_server(args.port, args.directory) as server:
-            print(f'Live Panel preview: http://127.0.0.1:{server.server_port}/index.html', flush=True)
+            print(f'Motion Diagram Studio preview: http://127.0.0.1:{server.server_port}/index.html', flush=True)
             server.serve_forever()
     except KeyboardInterrupt:
         return 0

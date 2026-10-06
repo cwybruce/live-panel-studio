@@ -11,7 +11,7 @@ B.ragEditorial=function(e){
  var s='<defs><pattern id="'+id+'grid" width="24" height="24" patternUnits="userSpaceOnUse"><circle cx="1" cy="1" r=".45" fill="'+C.shade('#625643')+'" opacity=".17"/></pattern><filter id="'+id+'halo" x="-180%" y="-180%" width="460%" height="460%"><feGaussianBlur stdDeviation="'+(C.light?1.7:4)+'" result="blur"/><feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge></filter>';
  [C.amber,C.cyan,C.pink,C.mint].forEach(function(c,i){s+='<radialGradient id="'+id+'orb'+i+'" cx="30%" cy="25%"><stop stop-color="'+C.shade('#fff5df')+'" stop-opacity=".85"/><stop offset=".35" stop-color="'+(C.light?C.tint(c,.72):c)+'"/><stop offset="1" stop-color="'+C.shade('#211b1a')+'"/></radialGradient>'});s+='</defs>';
  s+='<rect width="984" height="1280" fill="'+C.bg+'"/><rect x="18" y="16" width="948" height="1248" fill="url(#'+id+'grid)"/>';
- s+=small(28,29,'LIVE PANEL / A QUESTION’S JOURNEY / 4 STAGES',C.dim);
+ s+=small(28,29,'MOTION DIAGRAM STUDIO / A QUESTION’S JOURNEY / 4 STAGES',C.dim);
  s+=txt(28,76,'一个问题，如何找到它的依据',31,C.fg,true)+txt(28,106,'RAG · 从候选知识，到可以核对的回答',14,C.amber);
  s+=txt(28,133,'先检索，再筛选；让每一句回答，沿着引用回到原文。',12,C.dim);
  ['01 提问','02 检索','03 重排','04 回答'].forEach(function(t,i){s+=badge(28+i*87,150,77,t,[C.amber,C.cyan,C.pink,C.mint][i])});
@@ -58,7 +58,7 @@ B.ragEditorial=function(e){
  s+=small(18,97,'WHEN EVIDENCE IS MISSING',C.dim)+card(20,116,184,57,'问题 / 管理员口令？','提供的文档没有这项信息',C.amber);
  s+='<path d="M205 144H262" stroke="'+C.red+'" stroke-width=".8" stroke-dasharray="3 5"/><circle cx="335" cy="155" r="42" fill="none" stroke="'+C.red+'" stroke-width=".8" opacity=".7"/><circle cx="335" cy="155" r="51" fill="none" stroke="'+C.red+'" stroke-dasharray="2 7" opacity=".25"/>'+txt(335,159,'0',31,C.red,true,' text-anchor="middle"')+txt(335,180,'条可用证据',9,C.dim,false,' text-anchor="middle"');
  s+=rect(20,220,414,42,C.shade('#70473d'),C.shade('#271b16'),4)+txt(32,247,'无法根据现有资料确认，请补充来源。',13,C.red,true)+txt(18,284,'缺失、矛盾和越界信息，都应当明确说明。',10,C.dim)+'</g>';
- s+='<path d="M28 1212H956" stroke="'+C.line+'" stroke-width=".7"/>'+txt(28,1237,'检索提供候选 · 重排筛选证据 · 引用连接原文 · 无依据时说明',12,C.fg)+txt(28,1259,'原创中文视觉样板 / 所有文本、分数与事件均为预设演示',9,C.dim)+txt(956,1259,'LIVE PANEL · RAG / 01',9,C.amber,false,' text-anchor="end"');
+ s+='<path d="M28 1212H956" stroke="'+C.line+'" stroke-width=".7"/>'+txt(28,1237,'检索提供候选 · 重排筛选证据 · 引用连接原文 · 无依据时说明',12,C.fg)+txt(28,1259,'原创中文视觉样板 / 所有文本、分数与事件均为预设演示',9,C.dim)+txt(956,1259,'MOTION DIAGRAM STUDIO · RAG / 01',9,C.amber,false,' text-anchor="end"');
  svg.innerHTML=s;
  var rings=svg.querySelectorAll('[data-ring]'),steps=svg.querySelectorAll('[data-step]'),routes=svg.querySelectorAll('[data-route]'),dots=svg.querySelectorAll('[data-flight]'),panels=svg.querySelectorAll('[data-panel-border]'),docs=svg.querySelectorAll('[data-document]'),scores=svg.querySelectorAll('[data-score]'),evidence=svg.querySelectorAll('[data-evidence-flight]'),label=svg.querySelector('[data-stage-label]');
  COMPONENTS.push(function(t){
