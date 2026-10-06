@@ -10,9 +10,14 @@
 
 网页可直接播放 8 个 Demo 的深浅主题成片、初期复刻与蜘蛛更新视频，并浏览 39 个功能块成片及 3 个浅色机器人导出案例。支持播放、拖动进度和 MP4 下载；生成新方案请运行下方本地服务。
 
-| 暖黑主题 | 暖纸主题 |
+## 动态 Demo
+
+下方动画直接取自已经导出的 MP4，节选前 **6 秒**并自动循环。**点击动画观看完整成片**；完整视频保留原画质与帧率。更多场景、角色和功能块见 [在线视频库](https://cwybruce.github.io/live-panel-studio/)。
+
+| RAG 证据讲解 · 暖黑 | RAG 证据讲解 · 暖纸 |
 | --- | --- |
-| ![RAG 证据讲解：暖黑主题](examples/capability-demos/rag-explainer/poster.png) | ![RAG 证据讲解：暖纸主题](examples/capability-demos/rag-explainer/poster-light.png) |
+| [![RAG 证据讲解：暖黑动态预览](assets/readme/rag-explainer-dark.gif)](https://cwybruce.github.io/live-panel-studio/examples/capability-demos/rag-explainer/demo.mp4) | [![RAG 证据讲解：暖纸动态预览](assets/readme/rag-explainer-light.gif)](https://cwybruce.github.io/live-panel-studio/examples/capability-demos/rag-explainer/demo-light.mp4) |
+| [▶ 完整 MP4 · 12 秒](https://cwybruce.github.io/live-panel-studio/examples/capability-demos/rag-explainer/demo.mp4) | [▶ 完整 MP4 · 12 秒](https://cwybruce.github.io/live-panel-studio/examples/capability-demos/rag-explainer/demo-light.mp4) |
 
 ## 能做什么
 
@@ -51,16 +56,83 @@ python scripts/preview_server.py --port 8779
 
 ## 示例与导出
 
-| Demo | 场景 |
+| Demo | 场景 | 完整视频 |
+| --- | --- | --- |
+| [RAG 证据讲解](examples/capability-demos/rag-explainer/README.md) | 检索、评分、重排、引用与回答流向 | [暖黑](https://cwybruce.github.io/live-panel-studio/examples/capability-demos/rag-explainer/demo.mp4) · [暖纸](https://cwybruce.github.io/live-panel-studio/examples/capability-demos/rag-explainer/demo-light.mp4) |
+| [多 Agent 任务交接](examples/capability-demos/agent-team/README.md) | 任务树、时间泳道、交接包与状态切换 | [暖黑](https://cwybruce.github.io/live-panel-studio/examples/capability-demos/agent-team/demo.mp4) · [暖纸](https://cwybruce.github.io/live-panel-studio/examples/capability-demos/agent-team/demo-light.mp4) |
+| [请求与缓存分支](examples/capability-demos/product-request/README.md) | 请求路径、缓存命中、回源与合流 | [暖黑](https://cwybruce.github.io/live-panel-studio/examples/capability-demos/product-request/demo.mp4) · [暖纸](https://cwybruce.github.io/live-panel-studio/examples/capability-demos/product-request/demo-light.mp4) |
+| [短视频知识卡](examples/capability-demos/knowledge-card/README.md) | 章节轮播、出处核对与回顾图谱 | [暖黑](https://cwybruce.github.io/live-panel-studio/examples/capability-demos/knowledge-card/demo.mp4) · [暖纸](https://cwybruce.github.io/live-panel-studio/examples/capability-demos/knowledge-card/demo-light.mp4) |
+| [业务工单流转](examples/capability-demos/business-workflow/README.md) | 四站看板、问题分流、复核与重试 | [暖黑](https://cwybruce.github.io/live-panel-studio/examples/capability-demos/business-workflow/demo.mp4) · [暖纸](https://cwybruce.github.io/live-panel-studio/examples/capability-demos/business-workflow/demo-light.mp4) |
+| [故障与恢复回放](examples/capability-demos/incident-replay/README.md) | 余量曲线、阈值、异常路径与恢复检查 | [暖黑](https://cwybruce.github.io/live-panel-studio/examples/capability-demos/incident-replay/demo.mp4) · [暖纸](https://cwybruce.github.io/live-panel-studio/examples/capability-demos/incident-replay/demo-light.mp4) |
+| [矢量组件实验室](examples/capability-demos/component-lab/README.md) | 光球、座位、圆环、流带、看板与人物组件 | [暖黑](https://cwybruce.github.io/live-panel-studio/examples/capability-demos/component-lab/demo.mp4) · [暖纸](https://cwybruce.github.io/live-panel-studio/examples/capability-demos/component-lab/demo-light.mp4) |
+| [角色导航与主题](examples/capability-demos/avatar-themes/README.md) | 蜘蛛 / 机器人、路径移动、目标框与关键词提示 | [暖黑](https://cwybruce.github.io/live-panel-studio/examples/capability-demos/avatar-themes/demo.mp4) · [暖纸](https://cwybruce.github.io/live-panel-studio/examples/capability-demos/avatar-themes/demo-light.mp4) |
+
+<details>
+<summary>展开其余 7 个 Demo 的动态预览</summary>
+
+### 多 Agent 任务交接
+
+[![多 Agent 任务交接动态预览](assets/readme/agent-team-dark.gif)](https://cwybruce.github.io/live-panel-studio/examples/capability-demos/agent-team/demo.mp4)
+
+[▶ 完整 MP4](https://cwybruce.github.io/live-panel-studio/examples/capability-demos/agent-team/demo.mp4) · [交互体验](https://cwybruce.github.io/live-panel-studio/examples/capability-demos/index.html#agent-team)
+
+### 请求与缓存分支
+
+[![请求与缓存分支动态预览](assets/readme/product-request-dark.gif)](https://cwybruce.github.io/live-panel-studio/examples/capability-demos/product-request/demo.mp4)
+
+[▶ 完整 MP4](https://cwybruce.github.io/live-panel-studio/examples/capability-demos/product-request/demo.mp4) · [交互体验](https://cwybruce.github.io/live-panel-studio/examples/capability-demos/index.html#product-request)
+
+### 短视频知识卡
+
+[![短视频知识卡动态预览](assets/readme/knowledge-card-dark.gif)](https://cwybruce.github.io/live-panel-studio/examples/capability-demos/knowledge-card/demo.mp4)
+
+[▶ 完整 MP4](https://cwybruce.github.io/live-panel-studio/examples/capability-demos/knowledge-card/demo.mp4) · [交互体验](https://cwybruce.github.io/live-panel-studio/examples/capability-demos/index.html#knowledge-card)
+
+### 业务工单流转
+
+[![业务工单流转动态预览](assets/readme/business-workflow-dark.gif)](https://cwybruce.github.io/live-panel-studio/examples/capability-demos/business-workflow/demo.mp4)
+
+[▶ 完整 MP4](https://cwybruce.github.io/live-panel-studio/examples/capability-demos/business-workflow/demo.mp4) · [交互体验](https://cwybruce.github.io/live-panel-studio/examples/capability-demos/index.html#business-workflow)
+
+### 故障与恢复回放
+
+[![故障与恢复回放动态预览](assets/readme/incident-replay-dark.gif)](https://cwybruce.github.io/live-panel-studio/examples/capability-demos/incident-replay/demo.mp4)
+
+[▶ 完整 MP4](https://cwybruce.github.io/live-panel-studio/examples/capability-demos/incident-replay/demo.mp4) · [交互体验](https://cwybruce.github.io/live-panel-studio/examples/capability-demos/index.html#incident-replay)
+
+### 矢量组件实验室
+
+[![矢量组件实验室动态预览](assets/readme/component-lab-dark.gif)](https://cwybruce.github.io/live-panel-studio/examples/capability-demos/component-lab/demo.mp4)
+
+[▶ 完整 MP4](https://cwybruce.github.io/live-panel-studio/examples/capability-demos/component-lab/demo.mp4) · [交互体验](https://cwybruce.github.io/live-panel-studio/examples/capability-demos/index.html#component-lab)
+
+### 角色导航与主题
+
+[![角色导航与主题动态预览](assets/readme/avatar-themes-dark.gif)](https://cwybruce.github.io/live-panel-studio/examples/capability-demos/avatar-themes/demo.mp4)
+
+[▶ 完整 MP4](https://cwybruce.github.io/live-panel-studio/examples/capability-demos/avatar-themes/demo.mp4) · [交互体验](https://cwybruce.github.io/live-panel-studio/examples/capability-demos/index.html#avatar-themes)
+
+</details>
+
+<details>
+<summary>参考画面复刻：初期完整成片与蜘蛛更新</summary>
+
+这些动画来自本项目重新实现和渲染的成片。参考设计、布局与措辞的权利归原作者，业务数字仅用于视觉演示；来源与范围见 [第三方说明](THIRD_PARTY_NOTICES.md)。
+
+| 初期完整成片 · 71 秒 | 蜘蛛更新 · 12 秒 |
 | --- | --- |
-| [RAG 证据讲解](examples/capability-demos/rag-explainer/README.md) | 检索、评分、重排、引用与回答流向 |
-| [多 Agent 任务交接](examples/capability-demos/agent-team/README.md) | 任务树、时间泳道、交接包与状态切换 |
-| [请求与缓存分支](examples/capability-demos/product-request/README.md) | 请求路径、缓存命中、回源与合流 |
-| [短视频知识卡](examples/capability-demos/knowledge-card/README.md) | 章节轮播、出处核对与回顾图谱 |
-| [业务工单流转](examples/capability-demos/business-workflow/README.md) | 四站看板、问题分流、复核与重试 |
-| [故障与恢复回放](examples/capability-demos/incident-replay/README.md) | 余量曲线、阈值、异常路径与恢复检查 |
-| [矢量组件实验室](examples/capability-demos/component-lab/README.md) | 光球、座位、圆环、流带、看板与人物组件 |
-| [角色导航与主题](examples/capability-demos/avatar-themes/README.md) | 蜘蛛 / 机器人、路径移动、目标框与关键词提示 |
+| [![初期复刻动态预览](assets/readme/first-recreation.gif)](https://cwybruce.github.io/live-panel-studio/media/recreations/first-recreation.mp4) | [![蜘蛛更新动态预览](assets/readme/spider-recreation.gif)](https://cwybruce.github.io/live-panel-studio/media/recreations/spider-recreation.mp4) |
+| [▶ 完整 MP4](https://cwybruce.github.io/live-panel-studio/media/recreations/first-recreation.mp4) | [▶ 完整 MP4](https://cwybruce.github.io/live-panel-studio/media/recreations/spider-recreation.mp4) |
+
+</details>
+
+### 功能块独立成片
+
+RAG 重排证据区域，暖纸主题、机器人配置。点击预览观看完整的 **478 × 324、12 秒 MP4**。
+
+[![RAG 重排证据：暖纸机器人分区动态预览](assets/readme/rag-rerank-light-drone.gif)](https://cwybruce.github.io/live-panel-studio/media/exports/robot/rag-rerank-light-drone.mp4)
+
+[▶ 完整分区 MP4](https://cwybruce.github.io/live-panel-studio/media/exports/robot/rag-rerank-light-drone.mp4) · [浏览全部 39 个功能块与导出案例](https://cwybruce.github.io/live-panel-studio/#exports)
 
 每个目录包含配置 JSON、独立 HTML、深浅主题 MP4、预览图和说明。完整体验说明见 [能力体验馆](examples/capability-demos/README.md)。
 
@@ -129,6 +201,8 @@ MIT 许可覆盖代码，不将上述第三方视觉设计、文字、数据或�
 仓库根目录的 `index.html`、`assets/showcase.css` 和 `assets/showcase.js` 构成静态首页。八个 Demo 读取 `examples/capability-demos/manifest.json`，复刻与导出案例读取 [`media/catalog.json`](media/catalog.json)。视频均为仓库内真实 MP4，不依赖外部播放器；默认不预加载整段视频，播放一个视频时会暂停其他视频。
 
 本站使用 GitHub Pages 的 `main` 分支根目录发布，并以 `.nojekyll` 保留静态文件。设置步骤见 [GitHub 官方文档](https://docs.github.com/en/pages/getting-started-with-github-pages/configuring-a-publishing-source-for-your-github-pages-site)。更新首页、案例清单或媒体后推送到 `main` 即可重新部署。
+
+README 使用从实际成片生成的 GIF 节选展示动画，并链接到完整 MP4。GIF 与视频源文件随仓库保存，便于维护。更新成片后运行 `python scripts/make_readme_previews.py`，即可重新生成 `assets/readme/` 中的预览；需要 FFmpeg。
 
 `media/exports/` 中 39 个浅色蜘蛛功能块由对应完整成片裁剪，另有 3 个通过渲染器按浅色机器人配置逐帧生成的全段 / 主流程 / 重排区域案例。两种生成方式在视频库明确标注。网站播放和下载已有成片，交互体验馆可调主题、角色与时间线；静态 Pages 不运行 Python 渲染器，生成新 MP4 需本地服务。
 
