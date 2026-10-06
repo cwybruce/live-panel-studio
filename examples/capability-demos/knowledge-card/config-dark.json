@@ -1,0 +1,153 @@
+{
+  "meta": {
+    "title": "知识卡 · 把一个知识点翻成看得懂的页",
+    "lang": "zh-CN",
+    "visualStyle": "editorial"
+  },
+  "canvas": {
+    "width": 984,
+    "height": 1280,
+    "duration": 12,
+    "fps": 30
+  },
+  "theme": {
+    "preset": "terminal-dark",
+    "colors": {
+      "bg": "#12110f",
+      "panel": "#191713",
+      "line": "#3c352c",
+      "fg": "#eee9df",
+      "dim": "#9f9587",
+      "amber": "#dfb96d",
+      "cyan": "#64bed0",
+      "pink": "#e776af",
+      "mint": "#88c4a2",
+      "red": "#d77768",
+      "ye": "#dfb96d",
+      "cy": "#64bed0",
+      "pu": "#e776af",
+      "gr": "#88c4a2",
+      "rd": "#d77768",
+      "surface": "#171511",
+      "wh": "#eee9df",
+      "bar": "#191713",
+      "hl": "#29241c",
+      "dots": "#52483c",
+      "line2": "#3c352c",
+      "bl": "#64bed0",
+      "pi": "#e776af"
+    },
+    "font": "\"LP Sans\",sans-serif"
+  },
+  "machines": {
+    "chapter": {
+      "type": "cycle",
+      "period": 3,
+      "values": [
+        {
+          "t": "01 / 明确输入",
+          "note": "先说明问题与已有材料。"
+        },
+        {
+          "t": "02 / 展示过程",
+          "note": "让信息沿连线经过处理节点。"
+        },
+        {
+          "t": "03 / 检查输出",
+          "note": "结果应当有依据，并且可以核对。"
+        },
+        {
+          "t": "04 / 回顾要点",
+          "note": "看清输入、过程、输出，再迁移到自己的场景。"
+        }
+      ]
+    },
+    "views": {
+      "type": "counter",
+      "start": 120,
+      "rate": 8,
+      "suffix": " 次演示播放"
+    }
+  },
+  "elements": [
+    {
+      "type": "knowledgeEditorial",
+      "x": 0,
+      "y": 0,
+      "w": 984,
+      "h": 1280
+    },
+    {
+      "type": "drone",
+      "avatar": "spider",
+      "avatarScale": 0.48,
+      "avatarColors": {
+        "leg": "#d68865",
+        "joint": "#88c4a2",
+        "shell": "#9d9acc",
+        "core": "#e776af"
+      },
+      "x": 0,
+      "y": 0,
+      "w": 984,
+      "h": 1280,
+      "period": 12,
+      "focusPeriod": 3,
+      "path": [
+        [
+          309,
+          481
+        ],
+        [
+          414,
+          481
+        ],
+        [
+          569,
+          481
+        ],
+        [
+          675,
+          481
+        ]
+      ],
+      "targets": [
+        {
+          "x": 531,
+          "y": 387,
+          "w": 43,
+          "h": 43
+        },
+        {
+          "x": 609,
+          "y": 387,
+          "w": 43,
+          "h": 43
+        },
+        {
+          "x": 687,
+          "y": 387,
+          "w": 43,
+          "h": 43
+        },
+        {
+          "x": 238,
+          "y": 285,
+          "w": 508,
+          "h": 204
+        }
+      ],
+      "words": [],
+      "timelineMachine": "chapter"
+    }
+  ],
+  "effects": {
+    "neon": {
+      "enabled": true,
+      "intensity": 0.8,
+      "period": 6,
+      "heroPeriod": 12,
+      "tail": 144
+    }
+  }
+}

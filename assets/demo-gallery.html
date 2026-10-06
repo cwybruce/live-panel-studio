@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Live Panel · 能力体验馆</title>
+<style>
+:root{color-scheme:dark;--bg:#100f0d;--panel:#191713;--border:#343128;--fg:#eee9de;--muted:#a49e90;--accent:#b7c89f}
+:root[data-theme="light-pastel"]{color-scheme:light;--bg:#f1eee5;--panel:#faf6ed;--border:#c9beab;--fg:#302d27;--muted:#746b5e;--accent:#617747}
+*{box-sizing:border-box}[hidden]{display:none!important}
+body{margin:0;background:var(--bg);color:var(--fg);font:14px "LP Sans","Microsoft YaHei",sans-serif;font-synthesis:none}
+button,a,select,input{font:inherit}
+button,a,select{border:1px solid var(--border);border-radius:5px;background:#1b1915;color:var(--fg);padding:7px 10px;text-decoration:none}
+button,select{cursor:pointer}button:hover,a:hover{border-color:#827b66;background:#24211b}button:disabled{opacity:.5;cursor:wait}
+button:focus-visible,a:focus-visible,select:focus-visible,input:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+header{max-width:1480px;margin:auto;padding:21px 28px 17px;display:flex;justify-content:space-between;align-items:center;gap:20px;border-bottom:1px solid #29271f}
+h1{font-family:"LP Serif",serif;font-size:22px;font-weight:600;letter-spacing:.3px;margin:0 0 7px}header p{margin:0;color:var(--muted);font-size:12px}
+.brand{color:#c3b99f;font-size:10px;letter-spacing:2px;margin-bottom:8px}.badge{border:1px solid var(--border);border-radius:20px;padding:5px 10px;color:var(--muted);font-size:11px;white-space:nowrap}
+.layout{max-width:1480px;margin:auto;padding:22px 28px;display:grid;grid-template-columns:232px minmax(0,1fr);gap:32px}
+nav{display:flex;flex-direction:column;gap:5px}.nav-label{color:#8d877a;font-size:11px;letter-spacing:.5px;padding:0 10px 9px}
+.demo-card{text-align:left;padding:10px 9px;background:transparent;border-color:transparent;display:flex;align-items:center;gap:11px;width:100%;min-height:66px}
+.demo-card:hover{background:#1c1a15;border-color:#353126}.demo-card[aria-current=true]{border-color:#4a4435;background:#211e18;box-shadow:inset 2px 0 #b4c29b}
+.demo-card img{width:60px;height:42px;object-fit:contain;border-radius:3px;background:#151410}.demo-card .name{font-weight:600;font-size:12px;display:block;margin-bottom:6px}.demo-card .category{color:#8e887a;font-size:10px}
+.workspace{min-width:0;--scene-aspect:1.5}.scene-head{display:flex;justify-content:space-between;gap:18px;align-items:flex-start;margin-bottom:16px}h2{font-size:23px;font-weight:600;letter-spacing:-.3px;margin:0 0 7px}.summary{color:var(--muted);font-size:12px;line-height:1.8;margin:0;max-width:690px}
+.selectors{display:flex;gap:8px;flex-wrap:wrap;justify-content:flex-end;align-items:center}.selectors label{font-size:10px;color:var(--muted);display:flex;align-items:center;gap:5px}.selectors select{font-size:11px;padding:6px 7px}.scene-link{font-size:11px;white-space:nowrap;background:transparent;color:#c4cfb1;border-color:#4c5141}
+.stage{position:relative;width:100%;max-width:1040px;margin:auto;aspect-ratio:var(--scene-aspect);background:var(--bg);border:1px solid #29271f;border-radius:4px;overflow:hidden;min-height:0}
+.workspace[data-shape=portrait] .stage{width:min(100%,600px,calc((100vh - 250px)*var(--scene-aspect)))}
+iframe{display:block;width:100%;height:100%;border:0}
+.loading{position:absolute;inset:0;display:grid;place-content:center;background:#100f0ded;color:var(--accent);padding:30px;text-align:center;line-height:1.8}
+.controls{display:flex;align-items:center;gap:8px;padding:11px 0;margin:0 auto;max-width:1040px}#scrub{flex:1;min-width:40px;accent-color:var(--accent)}output{font:11px Consolas,monospace;color:var(--muted);white-space:nowrap}.controls button{min-width:49px;font-size:12px}.controls select{font-size:11px;padding:6px 7px}
+.checkpoints{display:flex;flex-wrap:wrap;gap:6px;margin:0 auto 20px;max-width:1040px}.checkpoints button{font-size:11px;padding:5px 8px;color:#c8c3b6;background:transparent}.checkpoints span{color:#8d877a;font-size:11px;padding:6px 0;margin-right:3px}
+.workspace[data-shape=portrait] .controls,.workspace[data-shape=portrait] .checkpoints{width:min(100%,600px,calc((100vh - 250px)*var(--scene-aspect)))}
+.details{display:grid;grid-template-columns:minmax(0,1fr) minmax(240px,.85fr);gap:25px;margin:auto;max-width:1040px}.workspace[data-shape=portrait] .details{max-width:860px}
+.detail{background:transparent;border-top:1px solid var(--border);padding:15px 0 0}h3{margin:0 0 12px;font-size:12px;font-weight:600;color:#d0c9b9}.chips{display:flex;flex-wrap:wrap;gap:6px}.chip{background:#252219;color:#c6bfaa;font-size:11px;border-radius:3px;padding:4px 7px}
+ul{padding-left:17px;margin:10px 0 0;color:var(--muted);font-size:11px;line-height:1.9}.downloads{display:flex;flex-wrap:wrap;gap:7px}.downloads a{font-size:11px;display:inline-flex;background:transparent}.note{font-size:11px;color:#8f897c;line-height:1.8;margin:12px 0 0}
+.bottom{max-width:1480px;margin:0 auto;padding:0 28px 24px;color:#817b6e;font-size:10px;line-height:1.8}.bottom a{padding:0;border:0;background:none;color:#a9b799}kbd{border:1px solid #4f493b;padding:1px 4px;border-radius:3px}.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0)}
+.export-panel{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:14px 0 0}.export-panel label{font-size:11px;color:var(--muted)}.export-panel select{max-width:230px;font-size:11px}.export-status{font-size:11px;line-height:1.8;color:var(--muted);margin-top:8px;min-height:20px}.export-download{font-size:11px;display:inline-flex;margin-top:8px}
+:root[data-theme="light-pastel"] button,:root[data-theme="light-pastel"] a,:root[data-theme="light-pastel"] select{background:#faf6ed;border-color:var(--border)}
+:root[data-theme="light-pastel"] button:hover,:root[data-theme="light-pastel"] a:hover{background:#e8e0d1;border-color:#9d8d74}
+:root[data-theme="light-pastel"] header,:root[data-theme="light-pastel"] .stage{border-color:#d8cebb}
+:root[data-theme="light-pastel"] .brand,:root[data-theme="light-pastel"] .nav-label,:root[data-theme="light-pastel"] .category,:root[data-theme="light-pastel"] .note,:root[data-theme="light-pastel"] .bottom,:root[data-theme="light-pastel"] .checkpoints span{color:#746b5e}
+:root[data-theme="light-pastel"] .demo-card{background:transparent;border-color:transparent}
+:root[data-theme="light-pastel"] .demo-card[aria-current=true]{background:#e5dfd1;border-color:#b6a78e;box-shadow:inset 2px 0 #617747}
+:root[data-theme="light-pastel"] .demo-card img{background:#e9e4d9}
+:root[data-theme="light-pastel"] .scene-link,:root[data-theme="light-pastel"] .bottom a{color:#526638}
+:root[data-theme="light-pastel"] .loading{background:#f1eee5ed}
+:root[data-theme="light-pastel"] h3,:root[data-theme="light-pastel"] .checkpoints button{color:#494238}
+:root[data-theme="light-pastel"] .chip{background:#e2dbc9;color:#584c38}
+:root[data-theme="light-pastel"] .bottom a{background:none;border:0}
+@media(max-width:1050px){.layout{grid-template-columns:195px minmax(0,1fr);padding:20px;gap:22px}.demo-card img{width:45px;height:33px}.demo-card{gap:8px}.scene-head{flex-direction:column}.selectors{justify-content:flex-start}.details{grid-template-columns:1fr;gap:19px}.workspace[data-shape=portrait] .stage,.workspace[data-shape=portrait] .controls,.workspace[data-shape=portrait] .checkpoints{width:min(100%,600px)}}
+@media(max-width:700px){header{padding:18px 16px;align-items:flex-start}.badge{display:none}h1{font-size:18px}.layout{display:block;padding:17px 16px}nav{display:grid;grid-template-columns:1fr 1fr;gap:4px;margin-bottom:23px}.nav-label{grid-column:1/-1;padding-left:7px}.demo-card{padding:8px;min-height:55px;gap:7px}.demo-card img{display:none}.demo-card .name{font-size:11px}.demo-card .category{font-size:9px}.controls{gap:5px}.controls button{min-width:41px;padding:6px}.controls select{max-width:60px;padding:6px}output{font-size:10px}.bottom{padding:0 16px 20px}h2{font-size:21px}.scene-head{gap:11px}}
+h2{font-family:"LP Serif",serif}.brand,output{font-family:"LP Mono",monospace}
+@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto}}
+</style></head><body>
+<header><div><div class="brand">LIVE PANEL · DEMO COLLECTION</div><h1>把流程，变成看得懂的动画</h1><p>选择一个场景，观看过程，带走网页与视频。</p></div><div class="badge">场景演示 · 模拟数据</div></header>
+<main class="layout"><nav id="demos" aria-label="能力示例"><div class="nav-label">选择一个 Demo</div></nav><section class="workspace" aria-label="示例播放器">
+<div class="scene-head"><div><h2 id="title"></h2><p class="summary" id="summary"></p></div><div class="selectors"><label id="viewLabel" hidden>组件视图<select id="view" aria-label="组件视图"></select></label><label id="themeLabel">主题<select id="theme" aria-label="主题"><option value="terminal-dark">暖黑 · 霓虹</option><option value="light-pastel">暖纸 · 浅色</option></select></label><label id="avatarLabel">角色<select id="avatar" aria-label="角色"><option value="spider">机械蜘蛛</option><option value="drone">机器人</option></select></label><a id="htmlLink" class="scene-link" target="_blank">沉浸预览 ↗</a></div></div>
+<div class="stage"><iframe id="scene" title="能力示例动画"></iframe><div id="loading" class="loading" role="status">正在加载示例…</div></div>
+<div class="controls"><button id="play" disabled>加载中</button><button id="replay" disabled>重播</button><label class="sr" for="scrub">动画进度</label><input id="scrub" type="range" min="0" max="12" step="0.01" value="0" disabled><output id="clock">00.00 / 12.00 s</output><select id="speed" aria-label="播放速度"><option value="0.5">0.5×</option><option value="1" selected>1×</option><option value="2">2×</option></select></div>
+<div id="checkpoints" class="checkpoints"></div>
+<div class="details"><div class="detail"><h3>这个示例展示了什么</h3><div class="chips" id="capabilities"></div><ul id="learn"></ul></div><div class="detail"><h3>保留、修改与分享</h3><div class="downloads"><a id="beforeLink" target="_blank" hidden>旧版对照 ↗</a><a id="videoLink" download>下载本主题成片</a><a id="configLink" download>下载 JSON 配置</a><a id="docLink" target="_blank">示例说明</a></div><div class="export-panel"><label for="exportView">导出范围</label><select id="exportView" aria-label="导出范围"><option value="full">整个 Demo</option></select><button id="exportButton" disabled>导出当前方案</button></div><div id="exportStatus" class="export-status" role="status" aria-live="polite">选择整段或一个功能块，按当前主题与角色生成视频。</div><a id="exportDownload" class="export-download" download hidden>下载导出的视频</a><p class="note">本主题成片使用默认角色。导出当前方案会按所选角色生成 12 秒视频，功能块保留完整过程。</p></div></div>
+</section></main><div class="bottom">操作：<kbd>空格</kbd> 播放 / 暂停，<kbd>←</kbd> <kbd>→</kbd> 前后跳转 1 秒；也可以点击关键时刻按钮。<br>基于 <a href="https://github.com/ythx-101/live-panel-skill" target="_blank" rel="noreferrer">live-panel-skill</a>，保留原项目 MIT 许可与致谢。此集合采用原创场景与模拟数字。</div>
+<script>
+const DEMOS=/*DEMO_MANIFEST*/;
+const $=id=>document.getElementById(id),frame=$('scene'),slider=$('scrub');
+let selected=null,t=0,playing=true,ready=false,last=0,loadSerial=0;
+let exportBusy=false,exportJob=null;
+window.__ready=false;window.__galleryError='';
+function safeLink(id,url){$(id).href=url}
+function enable(on){['play','replay','scrub'].forEach(id=>$(id).disabled=!on);$('exportButton').disabled=!on||exportBusy}
+function paint(){if(ready){frame.contentWindow.seek(t);window.__galleryError=frame.contentWindow.__error||''}slider.value=t;$('clock').textContent=t.toFixed(2).padStart(5,'0')+' / '+selected.duration.toFixed(2)+' s';$('play').textContent=ready?(playing?'暂停':'播放'):'加载中'}
+function jump(value){if(!ready)return;t=Math.max(0,Math.min(selected.duration,Number(value)));playing=false;paint()}
+window.jumpDemo=jump;
+function sceneUrl(){return selected.id+'/'+(selected.themeSwitch===false?'live.html':$('theme').value==='light-pastel'?'live-light.html':'live-dark.html')}
+function paintTheme(){
+ const theme=$('theme').value;document.documentElement.dataset.theme=theme;
+ document.querySelectorAll('.demo-card img').forEach(img=>{img.hidden=false;img.src=img.parentElement.dataset.id+'/'+(theme==='light-pastel'?'poster-light.png':'poster.png')});
+ const file=selected.videos&&selected.videos[theme]||'demo.mp4';safeLink('videoLink',selected.id+'/'+file);
+ $('videoLink').hidden=!(selected.videoReady&&theme==='terminal-dark'||selected.lightVideoReady&&theme==='light-pastel');
+}
+function loadScene(){
+ paintTheme();
+ ready=false;window.__ready=false;enable(false);$('loading').hidden=false;$('loading').textContent='正在加载示例…';const serial=++loadSerial;
+ const url=sceneUrl();safeLink('htmlLink',url);safeLink('configLink',url.replace(/live[^/]*\.html$/,'config'+(url.endsWith('live-light.html')?'-light':url.endsWith('live-dark.html')?'-dark':'')+'.json'));
+ frame.onload=()=>{let attempts=0;function waitReady(){if(serial!==loadSerial)return;try{
+  const win=frame.contentWindow;if(win.__error)throw new Error(win.__error);
+  if(win.__ready&&win.document.title===selected.sceneTitle){ready=true;window.__ready=true;const avatars=win.document.querySelectorAll('[data-avatar=spider]').length;$('avatarLabel').hidden=!avatars;if(avatars)win.setAvatar($('avatar').value);$('loading').hidden=true;enable(true);paint();return}
+ }catch(e){window.__galleryError=String(e);$('loading').textContent='示例加载失败：'+e.message;return}
+ if(++attempts<150)setTimeout(waitReady,100);else{window.__galleryError='scene readiness timeout';$('loading').textContent='加载超时，请使用启动预览脚本打开本地网页。'}}waitReady()};
+ frame.src=url+'?manual';
+}
+window.selectDemo=function(id){
+ const next=DEMOS.find(d=>d.id===id);if(!next)throw new Error('Unknown demo: '+id);selected=next;t=0;playing=true;window.__galleryError='';
+ document.querySelectorAll('.demo-card').forEach(n=>n.setAttribute('aria-current',String(n.dataset.id===id)));
+ $('title').textContent=next.title;$('summary').textContent=next.summary;slider.max=next.duration;
+ $('themeLabel').hidden=next.themeSwitch===false;frame.style.transform='';$('viewLabel').hidden=!next.focusViews;
+ const aspect=Number(next.width)>0&&Number(next.height)>0?Number(next.width)/Number(next.height):1.5;
+ const workspace=document.querySelector('.workspace');workspace.style.setProperty('--scene-aspect',String(aspect));workspace.dataset.shape=aspect<1?'portrait':'landscape';workspace.dataset.visualStyle=next.visualStyle||'';
+ $('beforeLink').hidden=!next.beforePage;if(next.beforePage)safeLink('beforeLink',next.beforePage.includes('/')?next.beforePage:id+'/'+next.beforePage);
+ $('view').replaceChildren(...[{label:'场景总览'},...(next.focusViews||[])].map((v,i)=>{const n=document.createElement('option');n.value=i;n.textContent=v.label;return n}));
+ $('exportView').replaceChildren(...[{id:'full',label:'整个 Demo'},...(next.exportViews||[])].map(v=>{const n=document.createElement('option');n.value=v.id;n.textContent=v.label;return n}));
+ $('capabilities').replaceChildren(...next.capabilities.map(s=>{const n=document.createElement('span');n.className='chip';n.textContent=s;return n}));
+ $('learn').replaceChildren(...next.learn.map(s=>{const n=document.createElement('li');n.textContent=s;return n}));
+ const label=document.createElement('span');label.textContent='关键时刻';$('checkpoints').replaceChildren(label,...next.checkpoints.map(c=>{const n=document.createElement('button');n.textContent=c.time.toFixed(1)+'s · '+c.label;n.onclick=()=>jump(c.time);return n}));
+ safeLink('videoLink',id+'/demo.mp4');safeLink('docLink',id+'/README.md');$('videoLink').hidden=!next.videoReady;
+ loadScene();return id;
+};
+DEMOS.forEach((d,i)=>{const b=document.createElement('button');b.className='demo-card';b.dataset.id=d.id;const img=document.createElement('img');img.src=d.id+'/poster.png';img.alt='';img.onerror=()=>img.hidden=true;const info=document.createElement('span'),name=document.createElement('span'),category=document.createElement('span');name.className='name';name.textContent=String(i+1).padStart(2,'0')+' '+d.title;category.className='category';category.textContent=d.category;info.append(name,category);b.append(img,info);b.onclick=()=>{window.selectDemo(d.id);history.replaceState(null,'','#'+d.id)};$('demos').append(b)});
+$('play').onclick=()=>{if(ready){playing=!playing;paint()}};$('replay').onclick=()=>{if(ready){t=0;playing=true;paint()}};slider.oninput=()=>jump(slider.value);
+$('theme').onchange=loadScene;$('avatar').onchange=()=>{if(ready)frame.contentWindow.setAvatar($('avatar').value)};
+$('view').onchange=()=>{const v=selected.focusViews[Number($('view').value)-1],w=selected.width,h=selected.height;frame.style.transform=v?'scale('+(v.zoom||2.8)+') translate('+((w/2-v.x)/w*100)+'%, '+((h/2-v.y)/h*100)+'%)':''};
+document.addEventListener('keydown',e=>{if(!ready||(e.target instanceof Element&&e.target.matches('input,select,button,a,textarea')))return;if(e.code==='Space'){e.preventDefault();playing=!playing;paint()}else if(e.code==='ArrowLeft'||e.code==='ArrowRight'){e.preventDefault();jump(t+(e.code==='ArrowLeft'?-1:1))}});
+window.galleryState=()=>({id:selected.id,time:t,playing,ready,theme:$('theme').value,avatar:$('avatar').value});
+window.exportState=()=>({busy:exportBusy,job:exportJob});
+function finishExport(){exportBusy=false;$('exportButton').textContent='导出当前方案';$('exportButton').disabled=!ready}
+$('exportButton').onclick=async()=>{
+ if(!ready||exportBusy)return;
+ const choice={scene:selected.id,theme:$('theme').value,avatar:$('avatar').value,view:$('exportView').value};
+ const label=selected.title+' · '+$('theme').selectedOptions[0].textContent+' · '+$('exportView').selectedOptions[0].textContent;
+ exportBusy=true;exportJob=null;$('exportButton').disabled=true;$('exportButton').textContent='正在导出…';$('exportDownload').hidden=true;
+ $('exportStatus').textContent='准备导出：'+label;
+ try{
+  const response=await fetch('/api/exports',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(choice)});
+  if(!response.ok){let detail='';try{detail=(await response.json()).error||''}catch(e){}throw new Error(response.status===404||response.status===501?'导出需要本地预览服务，请双击“启动预览.ps1”后重试。':detail||'无法创建导出任务。')}
+  exportJob=await response.json();
+  async function poll(){try{
+   const statusResponse=await fetch('/api/exports/'+encodeURIComponent(exportJob.id),{cache:'no-store'});
+   if(!statusResponse.ok)throw new Error('无法读取导出进度，请稍后重试。');
+   exportJob=await statusResponse.json();
+   if(exportJob.status==='complete'){safeLink('exportDownload',exportJob.url);$('exportDownload').download=exportJob.filename||'live-panel.mp4';$('exportDownload').hidden=false;$('exportStatus').textContent='已完成：'+label;finishExport();return}
+   if(exportJob.status==='failed')throw new Error(exportJob.error||'导出失败，请重试。');
+   $('exportStatus').textContent=(exportJob.status==='queued'?'等待导出：':'正在生成：')+label+(Number.isFinite(exportJob.progress)?' · '+Math.round(exportJob.progress)+'%':'');setTimeout(poll,1000);
+  }catch(e){$('exportStatus').textContent=e.message;finishExport()}}
+  poll();
+ }catch(e){$('exportStatus').textContent=e.message;finishExport()}
+};
+function loop(now){if(ready&&playing&&last)t=(t+(now-last)/1000*Number($('speed').value))%selected.duration;last=now;if(selected)paint();requestAnimationFrame(loop)}
+window.selectDemo(DEMOS.some(d=>d.id===location.hash.slice(1))?location.hash.slice(1):DEMOS[0].id);requestAnimationFrame(loop);
+</script></body></html>

@@ -1,0 +1,873 @@
+[
+  {
+    "id": "rag-explainer",
+    "title": "RAG 证据讲解",
+    "category": "AI 技术教学",
+    "summary": "全幅流程、候选文档、评分筛选、引用与拒答；蜘蛛沿时间线引导当前步骤。",
+    "capabilities": [
+      "图形叙事",
+      "路径光点",
+      "文档阵列",
+      "评分条",
+      "引用流向",
+      "蜘蛛导览",
+      "确定性回放"
+    ],
+    "learn": [
+      "先检索候选，再筛选和核对依据；不能只看相关性分数。",
+      "引用应当定位到原文；缺少依据时明确说明。",
+      "细边界、局部光效和分区微图，支持暖黑与暖纸两种阅读环境。"
+    ],
+    "checkpoints": [
+      {
+        "time": 1.5,
+        "label": "明确问题"
+      },
+      {
+        "time": 4.5,
+        "label": "检索片段"
+      },
+      {
+        "time": 7.5,
+        "label": "重排证据"
+      },
+      {
+        "time": 10.5,
+        "label": "依据生成"
+      }
+    ],
+    "themeSwitch": true,
+    "visualStyle": "editorial",
+    "exportViews": [
+      {
+        "id": "rag-hero",
+        "label": "主流程 · 问题到回答",
+        "crop": [
+          16,
+          180,
+          952,
+          380
+        ]
+      },
+      {
+        "id": "rag-retrieve",
+        "label": "检索候选",
+        "crop": [
+          16,
+          554,
+          478,
+          324
+        ]
+      },
+      {
+        "id": "rag-rerank",
+        "label": "重排证据",
+        "crop": [
+          490,
+          554,
+          478,
+          324
+        ]
+      },
+      {
+        "id": "rag-ground",
+        "label": "引用与依据",
+        "crop": [
+          16,
+          874,
+          478,
+          330
+        ]
+      },
+      {
+        "id": "rag-abstain",
+        "label": "无依据时说明",
+        "crop": [
+          490,
+          874,
+          478,
+          330
+        ]
+      }
+    ],
+    "width": 984,
+    "height": 1280,
+    "duration": 12,
+    "sceneTitle": "RAG · 一个问题如何找到它的依据",
+    "videoReady": true,
+    "lightVideoReady": true,
+    "videos": {
+      "terminal-dark": "demo.mp4",
+      "light-pastel": "demo-light.mp4"
+    }
+  },
+  {
+    "id": "agent-team",
+    "title": "多 Agent 任务交接",
+    "category": "协作过程展示",
+    "summary": "四角色交接、任务树、时间泳道与验收包，展示建议、状态与事件的同步回放。",
+    "capabilities": [
+      "triggers",
+      "lane",
+      "cycle",
+      "日志",
+      "打字文本",
+      "蜘蛛导览",
+      "任务树",
+      "时间泳道",
+      "交接包",
+      "LP 字体",
+      "竖屏图形叙事"
+    ],
+    "learn": [
+      "任务交接需要携带验收依据",
+      "状态、建议和日志可以保持同步",
+      "本例尚未接入真实 Agent"
+    ],
+    "checkpoints": [
+      {
+        "time": 1.5,
+        "label": "规划与建议"
+      },
+      {
+        "time": 4.5,
+        "label": "检索交接"
+      },
+      {
+        "time": 7.5,
+        "label": "实现交接"
+      },
+      {
+        "time": 11.3,
+        "label": "审核与交付"
+      }
+    ],
+    "visualStyle": "editorial",
+    "themeSwitch": true,
+    "exportViews": [
+      {
+        "id": "agentEditorial-hero",
+        "label": "主流程 · 四角色交接",
+        "crop": [
+          16,
+          182,
+          952,
+          408
+        ]
+      },
+      {
+        "id": "agentEditorial-decompose",
+        "label": "任务拆解",
+        "crop": [
+          16,
+          584,
+          478,
+          308
+        ]
+      },
+      {
+        "id": "agentEditorial-time-lanes",
+        "label": "时间泳道",
+        "crop": [
+          490,
+          584,
+          478,
+          308
+        ]
+      },
+      {
+        "id": "agentEditorial-handoff-package",
+        "label": "交接包",
+        "crop": [
+          16,
+          888,
+          478,
+          310
+        ]
+      },
+      {
+        "id": "agentEditorial-event-replay",
+        "label": "事件回放",
+        "crop": [
+          490,
+          888,
+          478,
+          310
+        ]
+      }
+    ],
+    "width": 984,
+    "height": 1280,
+    "duration": 12,
+    "sceneTitle": "协作 · 一次任务，四种角色",
+    "videoReady": true,
+    "lightVideoReady": true,
+    "videos": {
+      "terminal-dark": "demo.mp4",
+      "light-pastel": "demo-light.mp4"
+    }
+  },
+  {
+    "id": "product-request",
+    "title": "请求与缓存分支",
+    "category": "产品与架构演示",
+    "summary": "缓存键值阵列、双路合流与独立模拟计数，共同解释命中、未命中和返回。",
+    "capabilities": [
+      "浅色主题",
+      "cycle",
+      "counter",
+      "条件分支",
+      "路径光点",
+      "架构布局",
+      "缓存键值阵列",
+      "两路合流",
+      "模拟计数轨迹",
+      "LP 字体",
+      "竖屏图形叙事"
+    ],
+    "learn": [
+      "缓存命中可以省去数据库读取",
+      "不同分支汇合到统一响应",
+      "计数器可展示明确标注的模拟指标"
+    ],
+    "checkpoints": [
+      {
+        "time": 2,
+        "label": "命中缓存"
+      },
+      {
+        "time": 6,
+        "label": "读取数据库"
+      },
+      {
+        "time": 10,
+        "label": "返回客户端"
+      }
+    ],
+    "visualStyle": "editorial",
+    "themeSwitch": true,
+    "exportViews": [
+      {
+        "id": "requestEditorial-hero",
+        "label": "主流程 · 请求与返回",
+        "crop": [
+          16,
+          182,
+          952,
+          408
+        ]
+      },
+      {
+        "id": "requestEditorial-key-value",
+        "label": "缓存命中",
+        "crop": [
+          16,
+          584,
+          478,
+          308
+        ]
+      },
+      {
+        "id": "requestEditorial-source-of-truth",
+        "label": "读取原始记录",
+        "crop": [
+          490,
+          584,
+          478,
+          308
+        ]
+      },
+      {
+        "id": "requestEditorial-merge-the-branches",
+        "label": "分支合流",
+        "crop": [
+          16,
+          888,
+          478,
+          310
+        ]
+      },
+      {
+        "id": "requestEditorial-illustrative-counter",
+        "label": "请求计数",
+        "crop": [
+          490,
+          888,
+          478,
+          310
+        ]
+      }
+    ],
+    "width": 984,
+    "height": 1280,
+    "duration": 12,
+    "sceneTitle": "请求 · 走捷径，或回到源头",
+    "videoReady": true,
+    "lightVideoReady": true,
+    "videos": {
+      "terminal-dark": "demo.mp4",
+      "light-pastel": "demo-light.mp4"
+    }
+  },
+  {
+    "id": "knowledge-card",
+    "title": "短视频知识卡",
+    "category": "内容创作",
+    "summary": "展开书页，把输入、过程、输出与回顾做成有图形关系的四章讲解。",
+    "capabilities": [
+      "展开书页",
+      "章节轮播",
+      "信息流向",
+      "出处核对",
+      "回顾图谱",
+      "蜘蛛导览",
+      "MP4 导出"
+    ],
+    "learn": [
+      "先说明问题和已有材料，再展示处理关系，最后核对输出。",
+      "四章讲解每 3 秒推进一次；计数器展示模拟播放次数。",
+      "动画、光点、引用与强调状态都可以暂停、跳转和确定性回放。"
+    ],
+    "checkpoints": [
+      {
+        "time": 0.8,
+        "label": "明确输入"
+      },
+      {
+        "time": 3.8,
+        "label": "展示过程"
+      },
+      {
+        "time": 6.8,
+        "label": "检查输出"
+      },
+      {
+        "time": 9.8,
+        "label": "回顾要点"
+      }
+    ],
+    "width": 984,
+    "height": 1280,
+    "themeSwitch": true,
+    "visualStyle": "editorial",
+    "exportViews": [
+      {
+        "id": "knowledge-hero",
+        "label": "主流程 · 展开书页",
+        "crop": [
+          16,
+          180,
+          952,
+          384
+        ]
+      },
+      {
+        "id": "story-input",
+        "label": "明确输入",
+        "crop": [
+          16,
+          559,
+          478,
+          318
+        ]
+      },
+      {
+        "id": "story-process",
+        "label": "展示过程",
+        "crop": [
+          490,
+          559,
+          478,
+          318
+        ]
+      },
+      {
+        "id": "story-check",
+        "label": "核对输出",
+        "crop": [
+          16,
+          873,
+          478,
+          330
+        ]
+      },
+      {
+        "id": "story-recap",
+        "label": "回顾要点",
+        "crop": [
+          490,
+          873,
+          478,
+          330
+        ]
+      }
+    ],
+    "duration": 12,
+    "sceneTitle": "知识卡 · 把一个知识点翻成看得懂的页",
+    "videoReady": true,
+    "lightVideoReady": true,
+    "videos": {
+      "terminal-dark": "demo.mp4",
+      "light-pastel": "demo-light.mp4"
+    }
+  },
+  {
+    "id": "business-workflow",
+    "title": "业务工单流转",
+    "category": "业务培训",
+    "summary": "六张工单在四站看板流转，配合分配拓扑、完成环、复核轨迹与补充资料的重试支路。",
+    "capabilities": [
+      "旅行工单",
+      "四站看板",
+      "问题分流",
+      "完成比例",
+      "复核状态",
+      "重试支路",
+      "模拟计数器"
+    ],
+    "learn": [
+      "工单依次经历受理、处理、复核、完成；转交应当附带处理依据。",
+      "6 秒复核周期包含 4 秒处理与 2 秒完成状态。",
+      "5–9 秒演示资料缺失与返回补充，随后重新进入复核。"
+    ],
+    "checkpoints": [
+      {
+        "time": 1,
+        "label": "受理与分流"
+      },
+      {
+        "time": 5,
+        "label": "处理与复核"
+      },
+      {
+        "time": 7,
+        "label": "补齐资料"
+      },
+      {
+        "time": 10,
+        "label": "重新复核"
+      }
+    ],
+    "width": 984,
+    "height": 1280,
+    "themeSwitch": true,
+    "visualStyle": "editorial",
+    "exportViews": [
+      {
+        "id": "workflow-hero",
+        "label": "主流程 · 工单看板",
+        "crop": [
+          16,
+          180,
+          952,
+          446
+        ]
+      },
+      {
+        "id": "story-assign",
+        "label": "问题分配",
+        "crop": [
+          16,
+          622,
+          478,
+          290
+        ]
+      },
+      {
+        "id": "story-complete",
+        "label": "完成与验收",
+        "crop": [
+          490,
+          622,
+          478,
+          290
+        ]
+      },
+      {
+        "id": "story-review",
+        "label": "复核状态",
+        "crop": [
+          16,
+          908,
+          478,
+          296
+        ]
+      },
+      {
+        "id": "story-retry",
+        "label": "补充资料与重试",
+        "crop": [
+          490,
+          908,
+          478,
+          296
+        ]
+      }
+    ],
+    "duration": 12,
+    "sceneTitle": "工单 · 一张工单走过四个处理站",
+    "videoReady": true,
+    "lightVideoReady": true,
+    "videos": {
+      "terminal-dark": "demo.mp4",
+      "light-pastel": "demo-light.mp4"
+    }
+  },
+  {
+    "id": "incident-replay",
+    "title": "故障与恢复回放",
+    "category": "运维机制演示",
+    "summary": "依赖节点、余量曲线、阈值圆环与恢复检查，明确区分服务恢复和业务验收。",
+    "capabilities": [
+      "gauge",
+      "any_low",
+      "cycle",
+      "指标条",
+      "异常路径",
+      "模拟日志",
+      "余量曲线",
+      "阈值圆环",
+      "恢复检查",
+      "LP 字体",
+      "竖屏图形叙事"
+    ],
+    "learn": [
+      "指标阈值可以驱动节点和连线样式",
+      "回放同一时刻能复现同一画面",
+      "真实运维需要额外的事件数据接口"
+    ],
+    "checkpoints": [
+      {
+        "time": 2,
+        "label": "健康：0.94 / 0.91"
+      },
+      {
+        "time": 6,
+        "label": "拥塞：0.36 / 0.24"
+      },
+      {
+        "time": 10,
+        "label": "恢复：0.88 / 0.83"
+      }
+    ],
+    "visualStyle": "editorial",
+    "themeSwitch": true,
+    "exportViews": [
+      {
+        "id": "incidentEditorial-hero",
+        "label": "主流程 · 依赖与告警",
+        "crop": [
+          16,
+          182,
+          952,
+          408
+        ]
+      },
+      {
+        "id": "incidentEditorial-metric-replay",
+        "label": "余量曲线",
+        "crop": [
+          16,
+          584,
+          952,
+          308
+        ]
+      },
+      {
+        "id": "incidentEditorial-threshold-relation",
+        "label": "阈值关系",
+        "crop": [
+          16,
+          888,
+          478,
+          310
+        ]
+      },
+      {
+        "id": "incidentEditorial-recovery-checks",
+        "label": "恢复检查",
+        "crop": [
+          490,
+          888,
+          478,
+          310
+        ]
+      }
+    ],
+    "width": 984,
+    "height": 1280,
+    "duration": 12,
+    "sceneTitle": "回放 · 让异常沿依赖显形",
+    "videoReady": true,
+    "lightVideoReady": true,
+    "videos": {
+      "terminal-dark": "demo.mp4",
+      "light-pastel": "demo-light.mp4"
+    }
+  },
+  {
+    "id": "component-lab",
+    "title": "矢量组件实验室",
+    "category": "组件与角色",
+    "summary": "六种真实可复用 SVG 组件，用深浅两套图形场景展示各自的动画与用途。",
+    "capabilities": [
+      "orb",
+      "seats",
+      "donut",
+      "ribbons",
+      "ghostSeats",
+      "kanban",
+      "统一缩放"
+    ],
+    "learn": [
+      "组件保留真实几何和动画，可通过 JSON 组合与复用。",
+      "标签、示例数值和显现时间都可以配置。",
+      "流带宽度是示意；看板计数独立于卡片位置，不是实时统计。"
+    ],
+    "checkpoints": [
+      {
+        "time": 1.5,
+        "label": "角色与初始比例"
+      },
+      {
+        "time": 4.5,
+        "label": "候选对象显现"
+      },
+      {
+        "time": 7.5,
+        "label": "节点汇聚与任务推进"
+      },
+      {
+        "time": 10.5,
+        "label": "后段计数与流带"
+      }
+    ],
+    "focusViews": [
+      {
+        "label": "发光角色",
+        "x": 190,
+        "y": 323,
+        "zoom": 2.5
+      },
+      {
+        "label": "节点汇聚",
+        "x": 492,
+        "y": 584,
+        "zoom": 1.8
+      },
+      {
+        "label": "比例环",
+        "x": 255,
+        "y": 839,
+        "zoom": 2.1
+      },
+      {
+        "label": "虚实对比",
+        "x": 729,
+        "y": 839,
+        "zoom": 2.1
+      },
+      {
+        "label": "分支流带",
+        "x": 255,
+        "y": 1090,
+        "zoom": 2.1
+      },
+      {
+        "label": "任务看板",
+        "x": 729,
+        "y": 1090,
+        "zoom": 2.1
+      }
+    ],
+    "themeSwitch": true,
+    "visualStyle": "editorial",
+    "exportViews": [
+      {
+        "id": "lab-hero",
+        "label": "发光角色",
+        "crop": [
+          16,
+          189,
+          952,
+          272
+        ]
+      },
+      {
+        "id": "component-02-converge",
+        "label": "节点汇聚",
+        "crop": [
+          16,
+          454,
+          952,
+          260
+        ]
+      },
+      {
+        "id": "component-03-proportion",
+        "label": "比例环",
+        "crop": [
+          16,
+          695,
+          478,
+          264
+        ]
+      },
+      {
+        "id": "component-04-reveal",
+        "label": "虚实对比",
+        "crop": [
+          490,
+          695,
+          478,
+          264
+        ]
+      },
+      {
+        "id": "component-05-distribute",
+        "label": "分支流带",
+        "crop": [
+          16,
+          953,
+          478,
+          252
+        ]
+      },
+      {
+        "id": "component-06-progress",
+        "label": "任务看板",
+        "crop": [
+          490,
+          953,
+          478,
+          252
+        ]
+      }
+    ],
+    "width": 984,
+    "height": 1280,
+    "duration": 12,
+    "sceneTitle": "矢量组件实验室 · 六种组件的视觉讲解",
+    "videoReady": true,
+    "lightVideoReady": true,
+    "videos": {
+      "terminal-dark": "demo.mp4",
+      "light-pastel": "demo-light.mp4"
+    }
+  },
+  {
+    "id": "avatar-themes",
+    "title": "角色导航与主题",
+    "category": "组件与角色",
+    "summary": "八足蜘蛛游走、热区脉冲、目标聚焦与时间线；支持角色切换和深浅主题。",
+    "capabilities": [
+      "spider / drone",
+      "路径移动",
+      "目标框",
+      "虚线指向",
+      "关键词闪烁",
+      "配色 / 大小 / 步频",
+      "深浅主题",
+      "确定性回放"
+    ],
+    "learn": [
+      "角色与聚焦框一起引导读者关注当前步骤。",
+      "切换角色不会改变时间线；角色样式和主题分别配置。",
+      "浅色页读取主题颜色，不依赖固定的深色 SVG 背景。"
+    ],
+    "checkpoints": [
+      {
+        "time": 1.5,
+        "label": "聚焦检索依据"
+      },
+      {
+        "time": 5.5,
+        "label": "聚焦核对上下文"
+      },
+      {
+        "time": 9.5,
+        "label": "聚焦解释结果"
+      }
+    ],
+    "focusViews": [
+      {
+        "label": "游走角色",
+        "x": 492,
+        "y": 355,
+        "zoom": 2
+      },
+      {
+        "label": "外观细节",
+        "x": 255,
+        "y": 714,
+        "zoom": 2
+      },
+      {
+        "label": "导览状态",
+        "x": 729,
+        "y": 714,
+        "zoom": 2
+      },
+      {
+        "label": "回放时间线",
+        "x": 492,
+        "y": 1040,
+        "zoom": 1.8
+      }
+    ],
+    "themeSwitch": true,
+    "visualStyle": "editorial",
+    "exportViews": [
+      {
+        "id": "avatar-hero",
+        "label": "游走导览",
+        "crop": [
+          16,
+          189,
+          952,
+          376
+        ]
+      },
+      {
+        "id": "component-01-appearance",
+        "label": "角色外观",
+        "crop": [
+          16,
+          559,
+          478,
+          312
+        ]
+      },
+      {
+        "id": "component-02-attention",
+        "label": "导览焦点",
+        "crop": [
+          490,
+          559,
+          478,
+          312
+        ]
+      },
+      {
+        "id": "component-03-timeline",
+        "label": "回放时间线",
+        "crop": [
+          16,
+          865,
+          952,
+          340
+        ]
+      }
+    ],
+    "width": 984,
+    "height": 1280,
+    "duration": 12,
+    "sceneTitle": "角色导航与主题 · 同一时间线上的游走讲解",
+    "videoReady": true,
+    "lightVideoReady": true,
+    "videos": {
+      "terminal-dark": "demo.mp4",
+      "light-pastel": "demo-light.mp4"
+    }
+  }
+]

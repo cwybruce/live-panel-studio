@@ -1,0 +1,2 @@
+# Optional: only for rebuilding bundled OFL font subsets.
+fonttools>=4.40,<5

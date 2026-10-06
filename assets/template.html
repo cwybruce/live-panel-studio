@@ -306,6 +306,8 @@ function stylePaths(){ PATHS.forEach(function(P){ var e=P.e, on=e.when&&cond(e.w
   P.pa.setAttribute('stroke',col); P.pa.setAttribute('stroke-width',w); P.pa.style.opacity=th.opacity!=null?th.opacity:(e.opacity!=null?e.opacity:1);
   if(P.hd){ P.hd.setAttribute('fill',col); P.hd.setAttribute('points',P.headPts); P.hd.style.opacity=P.pa.style.opacity; } }); }
 
+var COMPONENTS=[];
+<!--LIVE_EXTENSIONS-->
 // ---------- the one entry point ----------
 window.seek=function(t){
   if(!window.__ready){ window.__pending=t; return; }
@@ -322,6 +324,7 @@ window.seek=function(t){
       if(on){ var ph=Number(V[A.m+'.phase']), u=ph/0.9, d=(u-Math.floor(u))*(A.P.len+10); putPk(A.P.el[0],A.P,d); putPk(A.P.el[1],A.P,d-12); }
       else { A.P.el[0].style.display='none'; A.P.el[1].style.display='none'; } });
     styleBoxes(); stylePaths(); applyDyn(); renderLog(t);
+    COMPONENTS.forEach(function(draw){draw(t)});
     window.__t=t;
   }catch(e){fail(e)}
 };

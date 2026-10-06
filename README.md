@@ -1,99 +1,123 @@
-# live-panel
+# Live Panel Studio
 
-**English** | [中文说明](#中文说明)
+把架构、流程与知识讲解做成可交互、可导出的视频面板。
 
-Turn a system description (one JSON file) into a **terminal-style, always-running architecture diagram**, or a soft light-theme infographic that moves: fixed layout, packets flowing along the wires, a scrolling log, counters, bars that flip state, side triggers that light up in turn. Output is an H.264 mp4 (X / Xiaohongshu ready) or a live web page. It is also a Claude Code style *skill* (`SKILL.md`).
+**Live Panel Studio turns JSON configurations into animated diagrams, interactive web pages and MP4 videos.** Built on [live-panel-skill](https://github.com/ythx-101/live-panel-skill), with eight Chinese demos, dark/light themes, animated avatars and individual block exports.
 
-> ## Credits - please read
-> - **The idea, the look and the motion grammar come from an architecture-diagram clip by [@thedelost](https://x.com/thedelost)** (a Codex agent-tree panel, generated with GPT, screen-recorded as a web page): <https://x.com/thedelost/status/2105398038026195279>. It spread via a quote-post by **[@slashui](https://x.com/slashui)**: <https://x.com/slashui/status/2105850132365443528>.
-> - `examples/codex-agents/` is a **recreation of that original picture** (layout, content and the three-tempo motion, redrawn from frame captures of the clip). The design belongs to @thedelost. The method (motion grammar, config-driven template) is re-implemented here and is not their code.
-> - `examples/agent-architecture/` re-animates the static Xiaohongshu infographic **《AI Agent 的完整架构》 by 小红书 @林纾** (posted Sep 4). Layout, wording and colours follow the original; the design belongs to the original author. The footer of the video says so.
-> - `examples/airbnb/` visualises figures Airbnb leaders stated in the **Latent.Space interview** <https://www.latent.space/p/airbnb>. The numbers are Airbnb's own account; the animation counters are illustrative.
+维护与交流：**[@sycbruce · X](https://x.com/sycbruce)** · [提交问题](https://github.com/cwybruce/live-panel-studio/issues)
 
-## What it looks like
-
-| terminal-dark, 4:5 - recreation of @thedelost's Codex agent tree | light-pastel, 3:4 - 林纾's AI Agent architecture |
+| 暖黑主题 | 暖纸主题 |
 | --- | --- |
-| ![codex](examples/codex-agents/screenshots/frame_1.png) | ![agent](examples/agent-architecture/screenshots/frame_1.png) |
+| ![RAG 证据讲解：暖黑主题](examples/capability-demos/rag-explainer/poster.png) | ![RAG 证据讲解：暖纸主题](examples/capability-demos/rag-explainer/poster-light.png) |
 
-Airbnb example (terminal-dark, Chinese content, figures from the interview):
+## 能做什么
 
-![airbnb](examples/airbnb/screenshots/frame_2.png)
+- **8 个原创中文 Demo**：RAG 证据讲解、多 Agent 交接、请求与缓存、知识卡、工单流转、故障恢复、矢量组件、角色导航。
+- **深浅两套主题**：984 × 1280 竖屏排版，内嵌中文字体，每个功能块有流动的霓虹边缘、拖尾与局部泛光。
+- **交互播放**：暂停、重播、时间轴拖动、关键时刻跳转、0.5 / 1 / 2 倍速；含角色的场景支持蜘蛛与机器人切换。
+- **独立 MP4 导出**：每个 Demo 可整段导出，也可单独导出内部功能块，共 **39 个命名区域**。导出按当前主题、角色与范围生成新文件。
+- **确定性回放**：动画由 `window.seek(t)` 驱动，浏览器预览和逐帧渲染使用同一时间线。
+- **可修改的 JSON 和 SVG**：配置文本、数据、配色与时间线，扩展组件或重新设计场景。
 
-Videos: `examples/codex-agents/codex-agents.mp4`, `examples/agent-architecture/agent-architecture.mp4`, `examples/airbnb/airbnb.mp4` (about 28-30 s each, 30 fps, silent AAC track so chat apps do not treat them as GIFs).
+Demo 中的事件、指标、日志和数据均为**预设模拟**，没有连接真实 Agent、数据库或业务服务。默认成片为 **12 秒、30 fps、H.264 MP4，附带静音 AAC 音轨**。
 
-## Install and use
+## 快速开始
 
-Requirements: Python 3.8+ (standard library only), Chrome or Chromium, ffmpeg. No pip packages.
+当前实测环境为 **Windows、Python 3.11、系统 Chrome 与 FFmpeg**，渲染器也支持检测已安装的 Edge。推荐 Python 3.11 或更新版本。原上游保留 Linux / macOS 渲染路径；本项目新增的完整导出流程尚未在这些平台实测。
 
-```bash
-python3 scripts/render.py --config examples/codex-agents/config.json --out out.mp4
-python3 scripts/check_frames.py --config examples/codex-agents/config.json --out-dir frames --repeat
+先安装：
+
+1. [Python](https://www.python.org/downloads/) 3.11+。
+2. [Chrome](https://www.google.com/chrome/) 或 [Edge](https://www.microsoft.com/edge)。使用系统浏览器，无需下载 Playwright Chromium。
+3. [FFmpeg](https://ffmpeg.org/download.html)，将包含 `ffmpeg` 与 `ffprobe` 的目录加入 `PATH`。
+
+在终端运行：
+
+```powershell
+git clone https://github.com/cwybruce/live-panel-studio.git
+cd live-panel-studio
+python -m pip install -r requirements-windows.txt
+python scripts/make_capability_demos.py
+python scripts/preview_server.py --port 8779
 ```
 
-- `render.py` options: `--width --height --duration --fps` (default from the config), `--chrome --ffmpeg` (default: found on PATH), `--html-out page.html` (keep the self-contained live page), `--keep-frames DIR`, `--audio none`, `--crf`.
-- `check_frames.py` samples ~120 time points, measures text overflow / overlap from the DOM, writes a few PNGs and (with `--repeat`) re-renders each exported frame after seeking away to prove it is identical. Exit status 1 on any problem.
-- To use as a skill, put this folder where your agent loads skills (for Claude Code: `~/.claude/skills/live-panel/`).
+打开 **[http://127.0.0.1:8779/index.html](http://127.0.0.1:8779/index.html)**，选择 Demo、主题、角色和导出范围，再点击“导出当前方案”。服务只监听本机，生成的文件保存在 `examples/capability-demos/exports/`。
 
-### Make your own
+已生成的独立 HTML 可离线打开，也可部署到静态网站。**从 HTML 文件或静态托管网站浏览时，交互动画可用；生成新的 MP4 需要运行上面的本地 Python 预览服务。** 预生成的视频可直接下载。
 
-1. Copy an example config. 2. Edit text, numbers, colours, positions. 3. Render, run `check_frames.py`, look at the PNGs. Nothing in `assets/template.html` has to change.
+## 示例与导出
 
-## Themes and canvas
+| Demo | 场景 |
+| --- | --- |
+| [RAG 证据讲解](examples/capability-demos/rag-explainer/README.md) | 检索、评分、重排、引用与回答流向 |
+| [多 Agent 任务交接](examples/capability-demos/agent-team/README.md) | 任务树、时间泳道、交接包与状态切换 |
+| [请求与缓存分支](examples/capability-demos/product-request/README.md) | 请求路径、缓存命中、回源与合流 |
+| [短视频知识卡](examples/capability-demos/knowledge-card/README.md) | 章节轮播、出处核对与回顾图谱 |
+| [业务工单流转](examples/capability-demos/business-workflow/README.md) | 四站看板、问题分流、复核与重试 |
+| [故障与恢复回放](examples/capability-demos/incident-replay/README.md) | 余量曲线、阈值、异常路径与恢复检查 |
+| [矢量组件实验室](examples/capability-demos/component-lab/README.md) | 光球、座位、圆环、流带、看板与人物组件 |
+| [角色导航与主题](examples/capability-demos/avatar-themes/README.md) | 蜘蛛 / 机器人、路径移动、目标框与关键词提示 |
 
-```jsonc
-"canvas": { "preset": "3:4", "duration": 28, "fps": 30, "preroll": 0 },   // or width/height explicitly
-"theme":  { "preset": "light-pastel", "colors": { "pk": "#f0575f" } }      // preset + your overrides
+每个目录包含配置 JSON、独立 HTML、深浅主题 MP4、预览图和说明。完整体验说明见 [能力体验馆](examples/capability-demos/README.md)。
+
+重新生成全部深浅主题视频：
+
+```powershell
+python scripts/make_capability_demos.py --render --themes both --jobs 2
 ```
 
-| `canvas.preset` | size | typical use |
-| --- | --- | --- |
-| `4:5` | 1200x1500 | X (the original clip's format) |
-| `3:4` | 1080x1440 | Xiaohongshu |
-| `1:1` | 1080x1080 | square |
+命令行也可独立导出一个 Demo 或其中一个功能块：
 
-Positions in a config are absolute canvas pixels, so a config is authored for one canvas; `render.py --width/--height` only rescales (letterboxes) it. For another ratio, copy the config and re-place the boxes.
+```powershell
+# 整段：RAG、浅色主题、机器人
+python scripts/export_demo.py --scene rag-explainer --theme light-pastel --avatar drone --view full --out examples/capability-demos/exports/rag-light.mp4
 
-| `theme.preset` | look |
-| --- | --- |
-| `terminal-dark` | dark window, monospace, segmented text-mode boxes (the original clip's style) |
-| `light-pastel` | white background, rounded pastel boxes, SVG arrows with rounded corners, soft glow on active items |
+# 功能块：只导出 RAG 的重排区域
+python scripts/export_demo.py --scene rag-explainer --theme light-pastel --avatar drone --view rag-rerank --out examples/capability-demos/exports/rag-rerank-light.mp4
+```
 
-A theme controls: font and size, line height, the colour table (`colors`, any names you like), box mode (`segmented` or `solid`), corner radius, border width, wire width, packet size and glow, background. Add your own preset by editing `THEME_PRESETS` at the top of the boot code in the template, or override per config.
+功能块按实际画布裁剪，保留内部动画、文字和边缘泛光；可用的场景及区域 ID 记录在 [`manifest.json`](examples/capability-demos/manifest.json) 中。原有配置与成片不会被当前方案导出覆盖。
 
-## Config reference (short)
+## 做自己的场景
 
-Full tables are in [`references/config-schema.md`](references/config-schema.md).
+复制一份示例配置，修改文本、数据、颜色与布局，再导出：
 
-- `elements`: `text`, `box` (fill, border colour, radius, dash, `container`, per-line `items`/`bar`/`runs`), `line`, `path` (polyline with rounded corners, arrow head, dash, `when/then` colour change, embedded packets), `glyph`, `rule`, `flow` (packets along a polyline, optional `when`), `tarrow` (trigger arrows), `log`.
-- `machines` (everything that changes, all pure functions of time): `counter`, `cycle`, `gauge`, `any_low`, `lane`, `triggers`.
-- `when` / `then` on boxes, paths, flows, lines and runs: highlight things from machine variables (`{"var":"seq.i","in":[0,1,2]}`; a list of conditions means AND).
-- Motion rules: [`references/motion-grammar.md`](references/motion-grammar.md).
+```powershell
+python scripts/render.py --config my-config.json --out my-video.mp4 --html-out my-page.html
+python scripts/check_frames.py --config my-config.json --out-dir my-frames --repeat
+```
 
-## How replay works (determinism)
+- [`references/config-schema.md`](references/config-schema.md)：元素、状态机、主题、角色与 `effects.neon` 参数。
+- [`references/motion-grammar.md`](references/motion-grammar.md)：路径光点、状态变化和时间线动法。
+- `scripts/rag_editorial.py`、`editorial_systems.py`、`editorial_stories.py`、`editorial_components.py`：八个 Demo 的配置与叙事数据。
+- `assets/*editorial*.js`、`components.js`、`neon-flow.js`：SVG 绘制、组件、角色与流光。
+- [`SKILL.md`](SKILL.md)：供编码 Agent 使用的原上游工作流。
 
-The page exposes `window.seek(t)`. Every visual is a pure function of `t`; the few "random" picks use a fixed-seed integer hash; no wall clock, no `Math.random`, no CSS animation. The renderer calls `seek(i/fps)` and screenshots. In a normal browser (no `?manual`) the same function is driven by `requestAnimationFrame`.
+如果直接编辑生成后的 JSON，用 `render.py` 导出；再次运行 `make_capability_demos.py` 会按生成器内容重建配置。坐标以画布像素计，改比例需要重新排版；`render.py --width / --height` 只缩放输出。
 
-## Fonts
+中文字体子集已内嵌，现有场景无需联网或安装字体。新增汉字后如需保持跨设备一致的排版，应重新构建子集，方法与原始字体来源见 [`assets/fonts/README.md`](assets/fonts/README.md)。
 
-No font files are bundled. The stacks fall back through installed fonts: terminal themes use JetBrains Mono (OFL) -> IBM Plex Mono (OFL) -> DejaVu Sans Mono -> Noto Sans Mono CJK SC (OFL) -> any monospace; light-pastel uses Noto Sans CJK SC (OFL) / PingFang SC / Microsoft YaHei -> Helvetica/Arial, and Noto Serif CJK SC for the big title. Install JetBrains Mono and Noto CJK for the exact look in the examples; emoji icons need a colour emoji font (e.g. Noto Color Emoji). Different fonts change glyph widths slightly, so re-run `check_frames.py` after changing fonts.
+## 验证
 
-## Self-test results (this repo, Chrome 154, ffmpeg 7.1)
+```powershell
+python -m unittest discover -s tests -v
+python scripts/verify_capability_demos.py
+python scripts/verify_demo_exports.py
+```
 
-- All three examples rendered with `scripts/render.py`; `check_frames.py` reports 0 problems on ~120 sampled time points each. (It does catch real faults: the first Airbnb layout had a log time column overlapping the next column and was flagged.)
-- Determinism: the Codex example rendered twice gives byte-identical decoded frames for all 900 frames (`ffmpeg -f framemd5` hashes equal); same for the agent-architecture example; `check_frames.py --repeat` re-screenshots after seeking away and compares bytes.
-- Fidelity of the Codex recreation against frame captures of the original (side by side at the same moment): box positions and sizes within a few pixels; same four-colour code, same three-tempo behaviour (packets on every wire, trigger rotation with typed advice and `calls`/`tokens` accumulation, gauges flipping `sharp`/`split` with the legend swapping, spinners and done states, 4-row log with newest row bright, forks counter ~16/s, prompt cursor). Differences: the original's font is a slab-like monospace and ours is JetBrains Mono; the original's trigger arrows are thin solid, ours dashed; bar texture, packet glow and trails are close but not identical; the original's gauge values, log wording and timing were read by eye from 2 fps frames, so the sequences differ; the third advice text (`before done`) was not legible in the frames and is a placeholder written for this repo; log time runs at an assumed 3x.
+浏览器和导出检查需要系统浏览器、FFmpeg 与 `ffprobe`；完整检查会渲染 / 解码视频，在体验馆目录生成 `verification.json` 和 `export-verification.json`。这些本机报告不随源码发布；请以自己环境里的运行结果为准。
 
-## License
+## 来源、许可与致谢
 
-MIT for the code (see `LICENSE`). The visual design that `examples/codex-agents/` recreates belongs to @thedelost, and the infographic re-animated in `examples/agent-architecture/` belongs to 小红书 @林纾; those examples are credit-bearing recreations and are not covered by the MIT grant. Airbnb figures are Airbnb's own statements from a public interview.
+本项目基于 [ythx-101/live-panel-skill](https://github.com/ythx-101/live-panel-skill)，扩展起点为 [`8a70aa2`](https://github.com/ythx-101/live-panel-skill/commit/8a70aa2c4e3fac68b40e2472407e32e2637a7a36)。保留上游代码的 **MIT License** 和版权声明；在此基础上新增能力体验馆、原创中文场景、SVG 组件、角色、深浅主题和本地功能块导出。
 
----
+上游的灵感及保留示例各有来源：
 
-## 中文说明
+- [@thedelost](https://x.com/thedelost) 的 [Codex Agent 架构动态图](https://x.com/thedelost/status/2105398038026195279)，由 [@slashui](https://x.com/slashui/status/2105850132365443528) 引用传播；`examples/codex-agents/` 是其画面复刻，设计归原作者。
+- `examples/agent-architecture/` 重现小红书 **@林纾** 的《AI Agent 的完整架构》静态信息图，设计、措辞和配色归原作者。
+- `examples/airbnb/` 使用 [Latent.Space 访谈](https://www.latent.space/p/airbnb) 中 Airbnb 管理者自述的数据；跳动的计数用于演示。
+- Noto Serif SC、Noto Sans SC 与 IBM Plex Mono 字体采用 **SIL OFL 1.1**，随仓库保留许可与更名子集说明。
 
-把一份系统描述（一个 JSON）变成**终端风格、一直在运行的动态架构图**，或者一张会动的浅色粉彩信息图：版面不动，连线上有光点流动，日志滚动，计数跳动，进度条过阈值翻状态，侧栏触发点依次点亮。产出 H.264 mp4（适合发 X 和小红书）或可直接打开的网页。
+MIT 许可覆盖代码，不将上述第三方视觉设计、文字、数据或字体重新授权为 MIT。来源及许可边界详见 [`THIRD_PARTY_NOTICES.md`](THIRD_PARTY_NOTICES.md) 与 [`LICENSE`](LICENSE)。用户提供的参考原视频及本地商业信息图复刻不作为新增公开示例打包。
 
-**出处**：动法和样式学自 [@thedelost](https://x.com/thedelost) 的 Codex agent 分工动态图（<https://x.com/thedelost/status/2105398038026195279>），经 [@slashui](https://x.com/slashui) 引用转发（<https://x.com/slashui/status/2105850132365443528>）。`examples/codex-agents/` 是对原图的复刻，设计归原作者；`examples/agent-architecture/` 把小红书 @林纾 的《AI Agent 的完整架构》静态图做成动态版，原图设计归林纾，画面底部有出处；`examples/airbnb/` 的数字出自 [Latent.Space 访谈](https://www.latent.space/p/airbnb)，为 Airbnb 自述，画面里跳动的计数为示意。
-
-用法：`python3 scripts/render.py --config <配置> --out out.mp4`；自查：`python3 scripts/check_frames.py --config <配置> --out-dir frames --repeat`。主题用 `theme.preset`（`terminal-dark` / `light-pastel`），画幅用 `canvas.preset`（`4:5` 1200x1500、`3:4` 1080x1440、`1:1` 1080x1080）。坐标是画布像素，换画幅需要另存一份配置重排。
+欢迎提交 Issue、改进场景或贡献组件。项目交流与联系方式：**[X / @sycbruce](https://x.com/sycbruce)**。

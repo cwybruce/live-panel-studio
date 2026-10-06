@@ -38,28 +38,46 @@ def main():
     fps = a.fps or cfps; dur = a.duration or cdur
     n = int(round(fps * dur))
     w -= w % 2; h -= h % 2   # yuv420p needs even sizes
+    if min(w, h, fps, dur, n) <= 0:
+        ap.error('width, height, fps and duration must be positive')
+    output = Path(a.out).resolve()
+    output.parent.mkdir(parents=True, exist_ok=True)
+    pending = output.with_name(output.stem + '.pending.mp4')
     cmd = [ffmpeg, "-y", "-loglevel", "error", "-f", "image2pipe", "-framerate", str(fps), "-c:v", "png", "-i", "-"]
     if a.audio == "silent":
         cmd += ["-f", "lavfi", "-i", "anullsrc=r=44100:cl=stereo", "-shortest", "-c:a", "aac", "-b:a", "32k"]
-    cmd += ["-c:v", "libx264", "-preset", "medium", "-crf", str(a.crf), "-pix_fmt", "yuv420p", "-r", str(fps), "-movflags", "+faststart", a.out]
+    cmd += ["-c:v", "libx264", "-preset", "medium", "-crf", str(a.crf), "-pix_fmt", "yuv420p", "-r", str(fps), "-movflags", "+faststart", str(pending)]
     os.makedirs(os.path.dirname(os.path.abspath(a.out)), exist_ok=True)
     if a.keep_frames:
         os.makedirs(a.keep_frames, exist_ok=True)
     ff = subprocess.Popen(cmd, stdin=subprocess.PIPE)
-    with lp.Chrome(chrome, w, h, True if a.no_sandbox else None) as br:
-        br.open("file://" + os.path.abspath(page) + "?manual")
-        for i in range(n):
-            br.seek(i / fps)
-            png = br.shot()
-            if a.keep_frames:
-                Path(a.keep_frames, f"f_{i:04d}.png").write_bytes(png)
-            ff.stdin.write(png)
-            if i % fps == 0:
-                print(f"\r{i}/{n} frames", end="", file=sys.stderr, flush=True)
-        err = br.eval("window.__error||''")
-        if err:
-            print("\npage errors:", err, file=sys.stderr)
-    ff.stdin.close(); rc = ff.wait()
+    try:
+        with lp.Chrome(chrome, w, h, True if a.no_sandbox else None) as br:
+            br.open(Path(page).resolve().as_uri() + "?manual")
+            for i in range(n):
+                br.seek(i / fps)
+                err = br.eval("window.__error||''")
+                if err:
+                    raise RuntimeError('page error: ' + err)
+                png = br.shot()
+                if a.keep_frames:
+                    Path(a.keep_frames, f"f_{i:04d}.png").write_bytes(png)
+                ff.stdin.write(png)
+                if i % fps == 0:
+                    print(f"\r{i}/{n} frames", end="", file=sys.stderr, flush=True)
+        ff.stdin.close()
+        rc = ff.wait()
+        if rc:
+            raise RuntimeError(f'ffmpeg exited with code {rc}')
+        os.replace(pending, output)
+    except BaseException:
+        if ff.poll() is None:
+            ff.terminate()
+        ff.wait()
+        if not ff.stdin.closed:
+            ff.stdin.close()
+        pending.unlink(missing_ok=True)
+        raise
     print(f"\nwrote {a.out} ({n} frames, {w}x{h}@{fps})", file=sys.stderr)
     sys.exit(rc)
 

@@ -14,6 +14,45 @@ One JSON object. All coordinates are canvas pixels (default 1200x1500, y grows d
 | `credit` | text element for the source/credit line: `{text, y, size?, c?}` (default 12 px, centred, dim) |
 | `machines` | named state machines, see below |
 | `elements` | drawn in order (later = on top) |
+| `effects` | optional `{neon:{enabled, intensity, period, heroPeriod, tail}}`; flowing light on authored editorial function-block borders, see below |
+
+## Flowing neon borders
+
+All eight editorial demos offer `terminal-dark` (warm black) and `light-pastel`
+(warm paper). The palette applies to panels, text, graph surfaces, gradients,
+actors and reusable component colors. The gallery theme selector also changes
+the surrounding controls without resetting playback time, pause or actor choice.
+
+Use the local `scripts/preview_server.py` to export the current scheme. The
+gallery's `exportViews` manifest lists named, whitelisted block crops; `full`
+exports the entire Demo. Blocks retain a 12px glow margin, even dimensions and
+the entire 12-second timeline. Theme and actor are applied to a copied config;
+the source files are retained. `scripts/export_demo.py` provides the same export
+as a CLI, e.g. `--scene rag-explainer --theme light-pastel --avatar drone
+--view rag-rerank --out rerank.mp4`.
+
+The eight editorial demos opt into `effects.neon`. Each function block keeps its
+original thin border and adds a moving bright tip, tapered tail and local bloom.
+The active block is brighter. Light themes reduce the bloom; text is never blurred.
+
+```json
+"effects": {
+  "neon": {"enabled": true, "intensity": 0.8, "period": 6, "heroPeriod": 12, "tail": 144}
+}
+```
+
+`intensity` is clamped to 0–1 (0 hides the light), periods are in seconds, and
+`tail` is in canvas pixels (the hero tail is 1.35 times longer). Set `enabled`
+to `false` to omit the effect. Omitting `effects.neon` preserves older scenes.
+For a seamless exported loop, choose periods that divide the canvas duration.
+All light positions are pure functions of `seek(t)` and follow pause, replay,
+scrubbing and export. There is no independent CSS animation or random clock.
+
+New authored SVG blocks can opt in by marking their outer `rect` with
+`data-neon-border="unique-label"` and `data-neon-color="#rrggbb"`; add
+`data-neon-role="hero"` for the slower hero period. These are authoring attributes,
+not new JSON elements. The fixed semantic color remains even while the existing
+state controller changes the base border stroke.
 
 ## Elements
 
@@ -49,6 +88,91 @@ A line is a string, or an object:
 
 Built-in variables: `{packets}` (deliveries so far), `{clock}`. Log templates may use item/gauge fields, e.g. `{name}`, `{value}`, `{label}`, `{dest}`.
 
-## Replay hook
+## Added vector components
+
+These components are loaded from `assets/components.js` and embedded into the
+generated HTML, so the page has no external JS dependency. Existing configs
+still use the same elements, machines and `seek(t)` interface.
+
+Every component accepts `{type, x, y, w, h, scale?:1}`. Coordinates refer to its
+local SVG; `scale` scales the rendered component uniformly about the top left.
+
+| type | additional fields | motion |
+| --- | --- | --- |
+| `vector` | `markup`: trusted, authored SVG children | static panel, text and decoration |
+| `orb` | `kind:"pixel"` or round, `r`, `cy`, `color`, `light`, `dark`, `eyeColor`, `phase`, `label`, `subtitle`, `detail` | glowing body floats, outer rings pulse |
+| `seats` | `period` (12.5 seconds), `phase` (seconds), optional `labels` and `data.metrics` | 25 nodes disappear into a hub; four metric labels follow the selected count |
+| `kanban` | `period` (9 seconds), `tickets:[strings]`, optional `labels` and `data` | tickets dwell in four columns, move between them, turn green, illustrative progress count advances |
+| `donut` | optional `labels`, `data.parts`, `data.pulseAmount` | six sectors, expanding first slice and orbiting sparks |
+| `ribbons` | optional `labels` | five fixed-width illustrative paths with continuous particles |
+| `ghostSeats` | optional `labels` and `data` | dashed candidate nodes, three green people and one amber person fade in |
+| `drone` | `period`, `path:[[x,y],...]`, `focusPeriod`, `targets:[{x,y,w,h}]`, `words:[{x,y,w,t}]` | smooth looping robot path, fan of wires and lights, target outline and dotted pointer, word highlights |
+
+`drone` also accepts `avatar:"spider"|"drone"` (default `drone`),
+`avatarScale` (default 1), `avatarColors:{leg,joint,shell,core}`,
+`gaitSpeed` (default 7.2 radians/second), and optional `avatarHeading` (degrees).
+The spider has eight independently articulated legs with alternating gait groups.
+Its heading follows the path smoothly unless fixed, and its center is kept inside
+the canvas to avoid cutting off legs. `window.setAvatar(kind)` switches all
+traveling actors while retaining their paths and timeline position.
+
+Business-specific labels and illustrative arithmetic remain the defaults for
+compatibility with `scripts/make_business_example.py`. New configs can replace
+them without changing JavaScript using the optional fields below. Omitting those
+fields preserves the previous demo. Do not run a generator after manually editing
+its `config.json` unless you intend to regenerate that file.
+
+### Optional component labels and illustrative data
+
+`labels` values are strings; arrays must contain every entry noted below.
+Coordinates and component geometry remain fixed. The authored labels must fit the
+local SVG dimensions; use the frame checker after replacing them. These fields
+do not connect to a service, model, or live measurement.
+
+| component | `labels` fields | `data` fields |
+| --- | --- | --- |
+| `seats` | `title`, `leader`, `teams:[4 strings]`, `hub:[2 strings]`, `count`, `captions:[4 strings]` | `metrics:[4 objects]`, each `{value?:number, perSeat?:number, prefix?:string, suffix?:string, decimals?:integer}`. `value` is fixed; otherwise the selected node count is multiplied by `perSeat` (default 1). The 25-node geometry stays fixed. |
+| `donut` | `total`, `period`, `items:[6 strings]`, `values:[6 strings]`, `notes:[3 strings]` | `parts:[6 fractions]` (default `[.41,.19,.15,.09,.08,.08]`, nonnegative, sum 1); `pulseAmount` (default `.035`) is added to sector 1 and subtracted from sector 6. Keep each sector larger than its 2 px visual gap and `pulseAmount` smaller than sector 6. Legend values are authored captions, independent of the decorative pulse. |
+| `kanban` | `columns:[4 strings]`, `countCaption`, `footer` | `countStart` (61), `countMax` (312, must be positive), `countRate` (360), `countPeriod` (35 seconds, must be positive). Progress is `min(countMax, countStart + floor(phase(t,countPeriod) * countRate))`. Keep `0 <= countStart <= countMax` and `countRate >= 0`. This preauthored counter is independent of the six moving cards. |
+| `ribbons` | `source`, `branches:[5 strings]`, `values:[5 strings]`, `footer` | none; widths illustrate flow and do not derive quantitatively from captions |
+| `ghostSeats` | `topValue`, `topCaption`, `middleValue`, `middleLines:[2 strings]`, `bottomValues:[2 strings]`, `bottomLines:[4 strings]` | `revealPeriod` (35 seconds), `revealStart` (8 seconds), `revealDuration` (4 seconds). Period and duration must be positive; reveal time uses the repeating local period. Geometry stays 25 dashed nodes, three green figures and one amber figure. |
+
+`scripts/editorial_components.py` supplies the current portrait Chinese examples
+of these fields and avatar navigation. The component showcase retains a fixed
+warm-black palette; avatar navigation supports warm-black and paper-light themes.
+
+For cycle-driven guides, optional `drone.timelineMachine` names a `cycle`
+machine. Its `period`, `t0` and `order` then drive route traversal and the focus
+target together. Path points and targets correspond to that machine's value
+indices. Without this field the original independent timing is preserved.
+
+All animated state is a pure function of `t`. The vector text validator includes
+SVG group transforms and uniform component scaling. Drone overlays are excluded
+from text bounds checking because they intentionally highlight other elements.
+
+## Original editorial scenes
+
+`ragEditorial` is an authored scene component with `{x,y,w:984,h:1280}`.
+It draws the original RAG composition in `assets/rag-editorial.js`: one main
+journey and four detailed panels for retrieval, ranking, citations and abstention.
+The default four 3-second stages and traveling particles remain pure functions of `t`.
+Text, scores and document examples are authored data, not connected measurements.
+`scripts/rag_editorial.py` configures the scene and the separate selectable spider.
+`livepanel.build_page` embeds this optional asset alongside the standard components.
+The older RAG page remains available as `examples/capability-demos/rag-explainer/live-before.html`.
+
+The collection also registers `agentEditorial`, `requestEditorial`,
+`incidentEditorial`, `knowledgeEditorial`, `workflowEditorial`, `labEditorial`
+and `avatarEditorial` through `assets/editorial-*.js`. These are original,
+authored 984×1280 compositions. Machines provide live state inside the simulated
+timeline; labels, document fragments and geometry remain authored scene data.
+Edit the Python scene builders for machine settings and the JS for composition.
+Every example retains its original web page, configuration, poster and video.
+
+`meta.visualStyle: "editorial"` asks `build_page` to embed the bundled LP font
+subsets. Fonts and their original OFL notices remain self-contained in the HTML;
+see `assets/fonts/README.md`. The gallery uses the same embedded typography.
+
+## Replay hook (unchanged)
 
 `window.seek(t)` draws the frame at second `t`. `window.__ready` becomes true when the config is loaded and fonts are ready; `window.__check()` returns a list of layout problems (used by `check_frames.py`). `?manual` in the URL disables the live loop.

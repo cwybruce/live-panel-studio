@@ -1,0 +1,2 @@
+# Uses already-installed Chrome/Edge; no browser download required.
+playwright>=1.40,<2

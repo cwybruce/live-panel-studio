@@ -45,7 +45,7 @@ def main():
     shots = [dur * (i + 0.5) / a.png for i in range(a.png)]
     problems = {}
     with lp.Chrome(chrome, w, h, True if a.no_sandbox else None) as br:
-        br.open("file://" + os.path.abspath(page) + "?manual")
+        br.open(Path(page).resolve().as_uri() + "?manual")
         for t in times + shots:
             br.seek(t)
             for p in br.eval("window.__check()"):
