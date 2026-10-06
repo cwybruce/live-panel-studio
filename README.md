@@ -14,6 +14,8 @@
 
 网页可直接播放 8 个 Demo 的四套配色成片、初期复刻与蜘蛛更新视频，并浏览 39 个功能块成片及 3 个浅色机器人导出案例。支持播放、拖动进度和 MP4 下载；生成新方案请运行下方本地服务。
 
+默认源码检出包含配置、HTML、GIF 和海报，**不含预制 MP4**；视频通过固定版本 [media-v1 Release](https://github.com/cwybruce/motion-diagram-studio/releases/tag/media-v1) 下载。在线网站在部署时恢复媒体，现有播放与下载链接保持不变；本地使用可按下方命令恢复成片。详见 [媒体分发与迁移说明](docs/media-distribution.md)。
+
 ## 动态 Demo
 
 下方动画直接取自已经导出的 MP4，节选前 **6 秒**并自动循环。**点击动画观看完整成片**；完整视频保留原画质与帧率。更多场景、角色和功能块见 [在线视频库](https://cwybruce.github.io/motion-diagram-studio/)。
@@ -65,14 +67,17 @@ Demo 中的事件、指标、日志和数据均为**预设模拟**，没有连�
 在终端运行：
 
 ```powershell
-git clone https://github.com/cwybruce/motion-diagram-studio.git
+git clone --depth 1 https://github.com/cwybruce/motion-diagram-studio.git
 cd motion-diagram-studio
 python -m pip install -r requirements-windows.txt
+python scripts/media_assets.py download --set all
 python scripts/make_capability_demos.py
 python scripts/preview_server.py --port 8779
 ```
 
 打开 **[http://127.0.0.1:8779/index.html](http://127.0.0.1:8779/index.html)**，选择 Demo、主题、角色和导出范围，再点击“导出当前方案”。服务只监听本机，生成的文件保存在 `examples/capability-demos/exports/`。
+
+`download --set all` 恢复全部预制视频，包括 32 段四配色 Demo、旧示例、复刻与功能块案例；只需要 Demo 时用 `--set demos`。现有本地媒体会保留。仅编辑动画或逐帧渲染新 MP4 时，可以跳过媒体下载。迁移保留 Git 历史，普通完整克隆仍会下载旧提交中的视频，所以推荐上面的浅克隆。
 
 已生成的独立 HTML 可离线打开，也可部署到静态网站。**从 HTML 文件或静态托管网站浏览时，交互动画可用；生成新的 MP4 需要运行上面的本地 Python 预览服务。** 预生成的视频可直接下载。
 
@@ -156,7 +161,7 @@ RAG 重排证据区域，暖纸主题、机器人配置。点击预览观看完�
 
 [▶ 完整分区 MP4](https://cwybruce.github.io/motion-diagram-studio/media/exports/robot/rag-rerank-light-drone.mp4) · [浏览全部 39 个功能块与导出案例](https://cwybruce.github.io/motion-diagram-studio/#exports)
 
-每个目录包含四套配色的配置 JSON、独立 HTML、MP4、PNG 预览图和说明。暖黑提供 `config-dark.json` / `live-dark.html`，以及默认入口 `config.json` / `live.html`，成片和预览图为 `demo.mp4` / `poster.png`；暖纸使用 `-light` 后缀，经典终端使用 `-terminal` 后缀，经典粉彩使用 `-pastel` 后缀。完整体验说明见 [能力体验馆](examples/capability-demos/README.md)。
+每个目录的源码包含四套配色的配置 JSON、独立 HTML、PNG 预览图和说明；下载媒体后，MP4 恢复到相同目录。暖黑提供 `config-dark.json` / `live-dark.html`，以及默认入口 `config.json` / `live.html`，成片和预览图为 `demo.mp4` / `poster.png`；暖纸使用 `-light` 后缀，经典终端使用 `-terminal` 后缀，经典粉彩使用 `-pastel` 后缀。完整体验说明见 [能力体验馆](examples/capability-demos/README.md)。
 
 重新生成全部四套配色视频：
 
@@ -206,12 +211,13 @@ python scripts/check_frames.py --config my-config.json --out-dir my-frames --rep
 ## 验证
 
 ```powershell
+python scripts/media_assets.py check --set all
 python -m unittest discover -s tests -v
 python scripts/verify_capability_demos.py
 python scripts/verify_demo_exports.py
 ```
 
-浏览器和导出检查需要系统浏览器、FFmpeg 与 `ffprobe`；完整检查会渲染 / 解码视频，在体验馆目录生成 `verification.json` 和 `export-verification.json`。这些本机报告不随源码发布；请以自己环境里的运行结果为准。
+先下载媒体再执行完整媒体验收。`media_assets.py check --set all` 根据清单检查全部预制文件的大小和 SHA-256，不需要浏览器或 FFmpeg；浏览器和导出检查还需要系统浏览器、FFmpeg 与 `ffprobe`。完整检查会渲染 / 解码视频，在体验馆目录生成 `verification.json` 和 `export-verification.json`。这些本机报告不随源码发布；请以自己环境里的运行结果为准。
 
 ## 来源、许可与致谢
 
@@ -228,11 +234,13 @@ MIT 许可覆盖代码，不将上述第三方视觉设计、文字、数据或�
 
 ## 静态网站与视频库维护
 
-仓库根目录的 `index.html`、`assets/showcase.css` 和 `assets/showcase.js` 构成静态首页。八个 Demo 读取 `examples/capability-demos/manifest.json`，复刻与导出案例读取 [`media/catalog.json`](media/catalog.json)。视频均为仓库内真实 MP4，不依赖外部播放器；默认不预加载整段视频，播放一个视频时会暂停其他视频。
+仓库根目录的 `index.html`、`assets/showcase.css` 和 `assets/showcase.js` 构成静态首页。八个 Demo 读取 `examples/capability-demos/manifest.json`，复刻与导出案例读取 [`media/catalog.json`](media/catalog.json)。视频是部署产物中的真实 MP4，恢复原相对路径后与网页同源播放，使用浏览器原生播放器；默认不预加载整段视频，播放一个视频时会暂停其他视频。
 
-本站使用 GitHub Pages 的 `main` 分支根目录发布，并以 `.nojekyll` 保留静态文件。设置步骤见 [GitHub 官方文档](https://docs.github.com/en/pages/getting-started-with-github-pages/configuring-a-publishing-source-for-your-github-pages-site)。更新首页、案例清单或媒体后推送到 `main` 即可重新部署。
+GitHub Pages 使用 **GitHub Actions 构建产物部署**：工作流检出源码，从固定 `media-v1` Release 下载 ZIP，校验并恢复 MP4，再上传完整静态网站。Pages 发布来源应选择 **GitHub Actions**。首页或清单更新推送到 `main` 后由工作流部署；不能直接把不含 MP4 的源码目录作为完整视频站点发布。[媒体分发说明](docs/media-distribution.md)列出本地恢复、离线使用与发布顺序。
 
-README 使用从实际成片生成的 GIF 节选展示动画，并链接到完整 MP4。GIF 与视频源文件随仓库保存，便于维护。更新成片后运行 `python scripts/make_readme_previews.py`，即可重新生成 `assets/readme/` 中的预览；需要 FFmpeg。
+README 使用从实际成片生成的 GIF 节选展示动画，并链接到完整 MP4。GIF 和海报继续随 Git 保存，MP4 在 Release 分发。重新生成 GIF 前先运行 `python scripts/media_assets.py download --set all` 恢复视频，再运行 `python scripts/make_readme_previews.py`；需要 FFmpeg。更新预制媒体应发布新的不可变 tag / 附件 URL，并更新清单中的 SHA-256；不覆盖 `media-v1` 已发布附件。
+
+维护者恢复现有媒体后可用 `python scripts/media_assets.py pack --tag media-v2` 打包新版本；新片通过 `--include examples/my-demo/demo.mp4` 显式加入，该路径需已存在。打包合并旧清单、仍由 Git 管理的 MP4 和显式加入的文件，不自动扫描用户导出目录；公开版本的 tag 禁止重用。完整发布顺序见 [媒体分发说明](docs/media-distribution.md)。
 
 `media/exports/` 中 39 个浅色蜘蛛功能块由对应完整成片裁剪，另有 3 个通过渲染器按浅色机器人配置逐帧生成的全段 / 主流程 / 重排区域案例。两种生成方式在视频库明确标注。网站播放和下载已有成片，交互体验馆可调主题、角色与时间线；静态 Pages 不运行 Python 渲染器，生成新 MP4 需本地服务。
 

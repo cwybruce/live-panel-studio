@@ -14,6 +14,7 @@ from editorial_components import scenes as component_scenes
 from rag_editorial import scene as editorial_rag
 from editorial_fonts import font_style
 from demo_export_views import export_views
+from media_assets import published_paths
 
 OUT = lp.ROOT / 'examples/capability-demos'
 EDITORIAL_PALETTES = {
@@ -104,10 +105,15 @@ def collection():
 def generate():
     OUT.mkdir(parents=True, exist_ok=True)
     demos = collection()
+    released_videos = published_paths()
     manifest = []
     for demo in demos:
         dest = OUT / demo['id']
         dest.mkdir(exist_ok=True)
+        def video_ready(filename):
+            path = dest / filename
+            return path.is_file() or path.relative_to(lp.ROOT).as_posix() in released_videos
+
         config = demo['config']
         demo['themeSwitch'] = True
         demo['exportViews'] = export_views(demo['id'])
@@ -129,11 +135,11 @@ def generate():
             metadata.pop('beforePage')
         metadata.update(width=lp.canvas(config)[0], height=lp.canvas(config)[1],
                         duration=lp.canvas(config)[2], sceneTitle=config['meta']['title'],
-                        videoReady=(dest / 'demo.mp4').is_file(),
-                        lightVideoReady=(dest / 'demo-light.mp4').is_file(),
+                        videoReady=video_ready('demo.mp4'),
+                        lightVideoReady=video_ready('demo-light.mp4'),
                         videos={theme: files['video'] for theme, files in THEME_VARIANTS.items()},
                         themeVariants={theme: {**{k: v for k, v in files.items() if k != 'preset'},
-                                               'videoReady': (dest / files['video']).is_file()}
+                                               'videoReady': video_ready(files['video'])}
                                        for theme, files in THEME_VARIANTS.items()})
         manifest.append(metadata)
         readme = [f"# {demo['title']}", '', demo['summary'], '',
@@ -142,6 +148,7 @@ def generate():
                   '## 观察与修改', '', *['- ' + s for s in demo['learn']], '',
                   '关键时刻：' + '；'.join(f"{c['time']}s {c['label']}" for c in demo['checkpoints']), '',
                   '文件：`config.json`（默认配置）、`live.html`（独立动画）、`demo.mp4`（暖黑）、`demo-light.mp4`（暖纸）、`demo-terminal.mp4`（经典终端）、`demo-pastel.mp4`（经典粉彩）；四套成片均使用默认角色。', '',
+                  '预制 MP4 由 Releases 分发。需要本地观看成片时，从仓库根目录运行 `python scripts/media_assets.py download --set demos`；交互 HTML 和生成新视频不依赖这些预制成片。', '',
                   '每个示例提供 `config-dark.json` / `config-light.json` / `config-terminal.json` / `config-pastel.json` 与对应 HTML。播放器主题同时切换场景与界面，导出跟随当前主题。', '',
                   '每个功能块带沿边缘流动的霓虹扫光与渐隐拖尾；在 `effects.neon` 中调整强度、周期与拖尾长度，或将 `enabled` 设为 `false` 关闭。', '',
                   '从仓库根目录重新导出：', '', '```powershell',
@@ -160,6 +167,7 @@ def generate():
     (OUT / 'README.md').write_text('''# Motion Diagram Studio 能力体验馆
 
 8 个原创中文 Demo，展示当前引擎能做的流程动画、状态切换、数据组件、角色、主题与导出。
+预制成片由 Releases 分发，本地运行 `python scripts/media_assets.py download --set demos` 恢复到原路径。
 所有演示使用模拟数据与预设时间线，没有连接真实 Agent、数据库、工单或日志服务。
 全部 8 个场景均有暖黑、暖纸、经典终端、经典粉彩四套竖屏配色：984×1280、细线、局部光感、各自的图形叙事。
 经典终端与经典粉彩源于上游 skill 原有两套配色；布局、文案和动画沿用当前示例。

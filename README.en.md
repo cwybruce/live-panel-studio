@@ -14,6 +14,8 @@ Maintainer and contact: **[@sycbruce on X](https://x.com/sycbruce)** · [Report 
 
 The website plays all eight demos in four color schemes, the initial recreation and the spider update. It also presents 39 block videos and three light-theme robot export examples. Playback, seeking and MP4 downloads work online; run the local service below to render a new configuration. The demos and gallery currently use Chinese; this README is available in both languages.
 
+The default source checkout includes configurations, HTML, GIFs and posters, **without pre-rendered MP4s**. Videos are distributed through the fixed [media-v1 Release](https://github.com/cwybruce/motion-diagram-studio/releases/tag/media-v1). The website restores media during deployment, preserving existing playback and download links. Restore local videos with the commands below; see the [media distribution and migration guide](docs/media-distribution.md).
+
 ## Animated demos
 
 These looping previews show the first **six seconds** of the actual exported MP4s. **Click a preview to watch the full video** at its original quality and frame rate. More scenes, avatars and blocks are available in the [online video library](https://cwybruce.github.io/motion-diagram-studio/).
@@ -65,14 +67,17 @@ Install these prerequisites:
 Run in a terminal:
 
 ```powershell
-git clone https://github.com/cwybruce/motion-diagram-studio.git
+git clone --depth 1 https://github.com/cwybruce/motion-diagram-studio.git
 cd motion-diagram-studio
 python -m pip install -r requirements-windows.txt
+python scripts/media_assets.py download --set all
 python scripts/make_capability_demos.py
 python scripts/preview_server.py --port 8779
 ```
 
 Open **[http://127.0.0.1:8779/index.html](http://127.0.0.1:8779/index.html)**. Select a demo, theme, avatar and export scope, then click “导出当前方案” (Export current configuration). The service listens only on localhost and saves generated files in `examples/capability-demos/exports/`.
+
+`download --set all` restores every pre-rendered video, including the 32 four-palette demo videos, retained examples, recreations and block examples. Use `--set demos` for only the 32 demo videos. Existing local media is retained. Media downloads can be skipped when editing animation or rendering a new MP4 frame by frame. Git history is preserved, so a complete clone still downloads videos in historical commits; a shallow clone is recommended above.
 
 Generated standalone HTML files can be opened offline or deployed to a static website. **Interactive animation works when viewing an HTML file or a statically hosted website; rendering a new MP4 requires the local Python preview service above.** Existing videos can be downloaded directly.
 
@@ -156,7 +161,7 @@ The RAG reranking evidence region, using Warm Paper and the robot configuration.
 
 [▶ Full block MP4](https://cwybruce.github.io/motion-diagram-studio/media/exports/robot/rag-rerank-light-drone.mp4) · [Browse all 39 blocks and export examples](https://cwybruce.github.io/motion-diagram-studio/#exports)
 
-Each demo directory contains JSON configurations, standalone HTML, MP4s, PNG posters and documentation for all four color schemes. Warm Ink provides `config-dark.json` / `live-dark.html`, plus the default `config.json` / `live.html` entry points; its video and poster are `demo.mp4` / `poster.png`. Warm Paper uses the `-light` suffix, Classic Terminal uses `-terminal`, and Classic Pastel uses `-pastel`. See the [demo gallery guide](examples/capability-demos/README.md) for details.
+Each demo's source directory contains JSON configurations, standalone HTML, PNG posters and documentation for all four color schemes. Downloading media restores the MP4s to the same directories. Warm Ink provides `config-dark.json` / `live-dark.html`, plus the default `config.json` / `live.html` entry points; its video and poster are `demo.mp4` / `poster.png`. Warm Paper uses the `-light` suffix, Classic Terminal uses `-terminal`, and Classic Pastel uses `-pastel`. See the [demo gallery guide](examples/capability-demos/README.md) for details.
 
 Regenerate videos in all four color schemes:
 
@@ -206,12 +211,13 @@ Chinese font subsets are embedded, so the existing scenes work without internet 
 ## Verification
 
 ```powershell
+python scripts/media_assets.py check --set all
 python -m unittest discover -s tests -v
 python scripts/verify_capability_demos.py
 python scripts/verify_demo_exports.py
 ```
 
-Browser and export checks require a system browser, FFmpeg and `ffprobe`. Full checks render and decode videos, producing `verification.json` and `export-verification.json` in the demo gallery directory. These local reports are not published with the source. Use the results from your own environment.
+Download media before running complete media acceptance. `media_assets.py check --set all` checks every pre-rendered file's size and SHA-256 against the manifest without requiring a browser or FFmpeg. Browser and export checks additionally require a system browser, FFmpeg and `ffprobe`. Full checks render and decode videos, producing `verification.json` and `export-verification.json` in the demo gallery directory. These local reports are not published with the source. Use the results from your own environment.
 
 ## Sources, licenses and acknowledgments
 
@@ -228,11 +234,13 @@ The MIT License covers the code; it does not relicense these third-party visual 
 
 ## Static website and video library maintenance
 
-The repository's root `index.html`, `assets/showcase.css` and `assets/showcase.js` form the static homepage. The eight demos use `examples/capability-demos/manifest.json`; recreations and export examples use [`media/catalog.json`](media/catalog.json). Videos are actual MP4s stored in the repository and use the browser's native player. Full videos are not preloaded by default, and starting one pauses other videos.
+The repository's root `index.html`, `assets/showcase.css` and `assets/showcase.js` form the static homepage. The eight demos use `examples/capability-demos/manifest.json`; recreations and export examples use [`media/catalog.json`](media/catalog.json). Actual MP4s live in the deployment artifact, restored to their original relative paths and played from the same origin with the browser's native player. Full videos are not preloaded by default, and starting one pauses other videos.
 
-The site publishes the root directory of `main` through GitHub Pages and uses `.nojekyll` to preserve static files. See [GitHub's official documentation](https://docs.github.com/en/pages/getting-started-with-github-pages/configuring-a-publishing-source-for-your-github-pages-site) for publishing-source configuration. Push homepage, catalog or media updates to `main` to redeploy.
+GitHub Pages uses a **GitHub Actions deployment artifact**: the workflow checks out source, downloads ZIPs from the fixed `media-v1` Release, verifies and restores MP4s, then uploads the complete static site. Set the Pages publishing source to **GitHub Actions**. Homepage or catalog changes pushed to `main` are deployed by the workflow. A source directory without restored MP4s is insufficient for the complete video site. The [media distribution guide](docs/media-distribution.md) documents local restoration, offline use and publication order.
 
-The README shows GIF excerpts generated from the rendered videos and links to the complete MP4s. GIFs and source videos are saved in the repository for maintenance. After updating videos, run `python scripts/make_readme_previews.py` to regenerate the previews in `assets/readme/`; FFmpeg is required.
+The README shows GIF excerpts generated from rendered videos and links to complete MP4s. GIFs and posters stay in Git; MP4s are distributed through Releases. Before regenerating GIFs, restore videos with `python scripts/media_assets.py download --set all`, then run `python scripts/make_readme_previews.py`; FFmpeg is required. Updated pre-rendered media requires a new immutable tag / attachment URL and manifest SHA-256 values. Do not overwrite published `media-v1` attachments.
+
+After restoring existing media, maintainers can package a new version with `python scripts/media_assets.py pack --tag media-v2`. Add a new video explicitly with `--include examples/my-demo/demo.mp4`; that file must exist. Packaging combines the previous manifest, still-tracked MP4s and explicit additions without scanning user export directories. Published tags must not be reused. See the [media distribution guide](docs/media-distribution.md) for publication order.
 
 The 39 light-theme spider block videos in `media/exports/` are cropped from their corresponding complete videos. Three additional examples—complete demo, main flow and reranking region—are rendered frame by frame with the light-theme robot configuration. The video library labels both methods. The website plays and downloads existing videos; the interactive gallery lets you adjust themes, avatars and the timeline. Static Pages does not run the Python renderer, so new MP4s require the local service.
 

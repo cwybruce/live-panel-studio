@@ -1,0 +1,113 @@
+# 媒体分发与迁移 / Media distribution and migration
+
+源码中的配置、SVG / JavaScript、独立 HTML、GIF 和海报继续由 Git 管理；预制 MP4 使用固定版本 [media-v1 Release](https://github.com/cwybruce/motion-diagram-studio/releases/tag/media-v1) 的 `motion-diagram-studio-media-v1.zip` 分发。默认源码检出不包含 MP4。迁移保留现有本地视频文件，不重写 Git 历史，因此完整克隆仍可能下载历史提交中的视频；新用户推荐 `git clone --depth 1`。
+
+Git continues to track configurations, SVG / JavaScript, standalone HTML, GIFs and posters. Pre-rendered MP4s are distributed in `motion-diagram-studio-media-v1.zip` from the fixed [media-v1 Release](https://github.com/cwybruce/motion-diagram-studio/releases/tag/media-v1). The default source checkout excludes MP4s. Migration preserves existing local videos and Git history; a complete clone can still download historical video blobs. New users should use `git clone --depth 1`.
+
+## 清单与范围 / Manifest and scope
+
+[`media/assets-manifest.json`](../media/assets-manifest.json) 固定 Release tag、附件 URL、ZIP 大小和 SHA-256，并逐项记录恢复路径、文件大小和 SHA-256。下载使用这份清单，不自动选择最新 Release。各 MP4 恢复到原相对路径，现有 HTML、README 和网站视频链接保持不变。
+
+[`media/assets-manifest.json`](../media/assets-manifest.json) pins the release tag, attachment URL, ZIP size and SHA-256, plus each restored path, file size and SHA-256. Downloads follow this manifest rather than selecting the latest release. Each MP4 returns to its original relative path, preserving HTML, README and website video links.
+
+| 集合 / Set | 恢复视频 / Restored videos |
+| --- | --- |
+| `demos` | 八个 Demo × 四套配色，共 32 段完整视频。 / Eight demos × four palettes: 32 complete videos. |
+| `all` | 全部 80 段：32 段 Demo、4 段保留示例、2 段复刻、39 段功能块与3段机器人导出。 / All 80 videos: 32 demo videos, four retained examples, two recreations, 39 block videos and three robot exports. |
+
+两个集合都恢复随包的许可与来源说明快照到 `media/release-notices/media-v1/`。当前只有一个完整 ZIP；`demos` 控制本地恢复范围，首次网络下载仍获取整个 ZIP。视频原有的参考设计权利边界不因迁移而改变，详见 [`THIRD_PARTY_NOTICES.md`](../THIRD_PARTY_NOTICES.md)。
+
+Both sets restore bundled license and provenance snapshots to `media/release-notices/media-v1/`. There is one complete ZIP: `demos` controls local restoration scope, while the initial network transfer still retrieves the full ZIP. Migration does not change rights to referenced visual designs; see [`THIRD_PARTY_NOTICES.md`](../THIRD_PARTY_NOTICES.md).
+
+## 本地使用 / Local use
+
+在仓库根目录执行。媒体恢复仅需要 Python 标准库，无需安装浏览器或 FFmpeg；逐帧渲染新视频另需 README 中的渲染依赖。 / Run from the repository root. Restoration uses Python's standard library and requires neither a browser nor FFmpeg. Rendering new videos requires the separate dependencies documented in the README.
+
+```powershell
+git clone --depth 1 https://github.com/cwybruce/motion-diagram-studio.git
+cd motion-diagram-studio
+python scripts/media_assets.py download --set all
+python scripts/media_assets.py check --set all
+```
+
+只需 32 段 Demo 时： / To restore only the 32 demo videos:
+
+```powershell
+python scripts/media_assets.py download --set demos
+python scripts/media_assets.py check --set demos
+```
+
+恢复过程先校验 ZIP 与各成员的大小和 SHA-256，并拒绝不符合清单的路径。已有文件哈希一致时复用；本地修改后的文件不会被静默覆盖，而会报错。遇到冲突可用另一个 `--dest` 比较原版；确认后自行处理自己的修改。`check` 报告缺失或修改的文件并返回非零退出码，其字节完整性检查不能代替浏览器播放和视频解码验收。
+
+Restoration verifies the ZIP and members against their sizes and SHA-256 hashes and rejects paths outside the registered inventory. Existing matching files are reused; locally modified files cause an error instead of being silently overwritten. Restore to another `--dest` to compare originals before deciding how to handle your changes. `check` reports missing or modified files and exits nonzero. Byte-integrity checks do not replace browser playback and video-decoding acceptance.
+
+## 其他目录与离线恢复 / Other directories and offline restoration
+
+将媒体恢复到单独目录，保留其内部相对路径： / Restore to a separate directory while retaining internal relative paths:
+
+```powershell
+python scripts/media_assets.py download --set all --dest ./out/restored-media
+python scripts/media_assets.py check --set all --dest ./out/restored-media
+```
+
+离线使用时，先在有网络的机器下载对应的 Release ZIP，并带上匹配的源码与清单；之后指定本地附件： / For offline use, first download the matching Release ZIP on an online machine and transfer it with the matching source checkout and manifest. Then supply the local attachment:
+
+```powershell
+python scripts/media_assets.py download --set all --bundle ./downloads/motion-diagram-studio-media-v1.zip --dest ./out/offline-media
+python scripts/media_assets.py check --set all --dest ./out/offline-media
+```
+
+`--dest` 不会复制源码。若要运行单独的完整网站，先把对应源码复制到目标目录，再恢复媒体；上述两个输出目录仅用于媒体恢复与比较。`--bundle` 同样执行清单校验，不绕过哈希检查。
+
+`--dest` does not copy source files. To run a separate complete website, copy the matching source into the destination before restoring media; the example destinations above contain restored media only. `--bundle` performs the same manifest verification and does not bypass hash checks.
+
+仅修改配置、浏览交互动画或用 `render.py` / `export_demo.py` 生成新 MP4 时，不需要下载预制成片。重新生成 README GIF 则先恢复它们的来源视频： / Editing configurations, viewing interactive animation or producing new MP4s with `render.py` / `export_demo.py` does not require downloading pre-rendered videos. Restore source videos before regenerating README GIFs:
+
+```powershell
+python scripts/media_assets.py download --set all
+python scripts/make_readme_previews.py
+```
+
+媒体恢复脚本的可移植实现不代表 Linux / macOS 渲染已通过验收；当前实测渲染环境仍为 Windows。参见 [平台支持与验收路线图](platform-support.md)。
+
+Portable media-restoration code does not establish Linux / macOS rendering acceptance. The currently tested rendering environment remains Windows. See the [platform support and acceptance roadmap](platform-support.md).
+
+## GitHub Pages 构建 / GitHub Pages build
+
+Pages 发布来源使用 **GitHub Actions**。[工作流](../.github/workflows/pages.yml) 从 `main` 检出源码，将 Git 管理的文件放入 `_site/`，然后在这个目录下载并校验 `all` 媒体，最后上传部署产物。MP4 在已部署的网站中恢复原路径并同源播放；用户访问页面时无需连接 Release 播放器，网站也不在浏览器端运行 Python。
+
+Set the Pages publishing source to **GitHub Actions**. The [workflow](../.github/workflows/pages.yml) checks out `main`, assembles Git-tracked source files in `_site/`, downloads and verifies the `all` media set there, then uploads the deployment artifact. Deployed MP4s retain their original paths and play from the same website origin. Visitors do not use a Release video player, and the browser does not run Python.
+
+恢复或校验失败时构建应停止，不发布缺少媒体的网站。Pages 工作流恢复已有成片，不能证明 Ubuntu 中实际渲染新 MP4 已验收。 / A failed restore or integrity check stops the build instead of publishing a site with missing media. Restoring existing videos in the Pages workflow does not establish new-video rendering acceptance on Ubuntu.
+
+## 媒体更新顺序 / Publishing updated media
+
+先恢复旧清单登记的视频，再以新的 tag 打包： / Restore the videos registered in the previous manifest before packaging under a new tag:
+
+```powershell
+python scripts/media_assets.py download --set all
+python scripts/media_assets.py pack --tag media-v2
+```
+
+需要另加新片时，使用显式路径；文件需已存在，`--include` 可重复： / Add new videos with explicit existing paths; `--include` can be repeated:
+
+```powershell
+python scripts/media_assets.py pack --tag media-v2 --include examples/my-demo/demo.mp4
+```
+
+打包器合并旧清单中的视频路径、仍由 Git 管理的 MP4 和显式 `--include`，不递归扫描用户导出目录。旧片缺失时先恢复，不将缺片的新 ZIP 当作完整版本；已经公开的 tag 不可重用。新版本 ZIP 命名为 `motion-diagram-studio-media-v2.zip`，许可快照随新 tag 保存到对应目录。
+
+Packaging combines video paths from the previous manifest, still-tracked MP4s and explicit `--include` additions, without recursively scanning user export directories. Restore missing previous videos first; a ZIP with missing originals is not a complete new version. Published tags cannot be reused. The new archive is named `motion-diagram-studio-media-v2.zip`, with license snapshots under the corresponding new-tag directory.
+
+1. 在新的不可变 tag 与 ZIP 附件名称下打包更新后的媒体，并保留许可和来源说明；**不覆盖已发布的 `media-v1` 附件**。 / Package updated media under a new immutable tag and ZIP attachment name, preserving license and provenance notices. **Do not overwrite published `media-v1` attachments.**
+2. 核查打包生成的清单，使 tag、附件 URL、ZIP 哈希和每个文件的哈希一致；上传并发布 Release。 / Review the generated manifest so the tag, attachment URL, ZIP hash and per-file hashes agree; upload and publish the Release.
+3. 生成的新清单初始为 `published: false`，网络恢复会拒绝下载。先通过公开 Release 页在浏览器中下载刚上传的 ZIP，再用下方 `--bundle` 命令在空目录恢复并校验；通过后才将主清单标记为 `published: true`。 / A newly generated manifest starts with `published: false`, which blocks network restoration. Download the uploaded ZIP in a browser from the public Release page, then restore and verify it in an empty directory using `--bundle` below. Mark the main manifest `published: true` only after verification passes.
+4. 最后提交源码 / 清单 / 工作流并部署 Pages，核查既有视频 URL、README 动态预览链接与本地恢复命令。 / Commit the source / manifest / workflow and deploy Pages last, then verify existing video URLs, animated README links and local restoration commands.
+
+```powershell
+# Use the ZIP downloaded from the public media-v2 Release, not the local pack output.
+python scripts/media_assets.py download --set all --bundle ./downloads/motion-diagram-studio-media-v2.zip --dest ./out/verify-media-v2
+python scripts/media_assets.py check --set all --dest ./out/verify-media-v2
+```
+
+首次迁移也遵循“先发布并验证附件、再部署引用它的站点”的顺序。固定附件与匹配清单需一同保留，后续版本不修改旧 URL 的字节内容。 / The initial migration follows the same order: publish and verify the attachment before deploying the site that references it. Preserve pinned attachments with their matching manifests; later versions must not change bytes served by earlier URLs.

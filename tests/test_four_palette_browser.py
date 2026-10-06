@@ -11,6 +11,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1] / 'scripts'))
 import livepanel as lp
 from check_frames import pixel_diff
 from verify_capability_demos import editorial_layout, wait_gallery
+from media_assets import published_paths
 
 OUT = lp.ROOT / 'examples/capability-demos'
 BACKGROUNDS = {'terminal-dark': 'rgb(18, 17, 15)',
@@ -105,7 +106,8 @@ class FourPaletteBrowserTests(unittest.TestCase):
                 self.assertTrue(actual['poster'].endswith('/' + demo['id'] + '/' + variant['poster']))
                 self.assertEqual(actual['download'], actual['video'])
                 self.assertIn('?theme=' + theme + '#' + demo['id'], actual['interactive'])
-                self.assertTrue((OUT / demo['id'] / variant['video']).is_file())
+                video = OUT / demo['id'] / variant['video']
+                self.assertTrue(video.is_file() or video.relative_to(lp.ROOT).as_posix() in published_paths())
                 self.assertTrue((OUT / demo['id'] / variant['poster']).is_file())
         for width in (390, 768, 1280):
             br.cmd('Emulation.setDeviceMetricsOverride', {'width': width, 'height': 900, 'deviceScaleFactor': 1, 'mobile': False})

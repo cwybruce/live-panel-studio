@@ -57,6 +57,8 @@ python scripts/preview_server.py --port 8779
 
 Open `http://127.0.0.1:8779/index.html`. Select a scene, one of four palettes, a supported avatar and an export scope. Playback offers pause, replay, timeline scrubbing, 0.5/1/2× speed and key moments. The component lab also offers six close-up views.
 
+Pre-rendered MP4s are distributed through versioned Releases. To restore local demo videos, run `python scripts/media_assets.py download --set demos`; use `--set all` for retained examples, recreations and block exports too. Interactive HTML and rendering new videos do not require those pre-rendered files. See [media distribution](docs/media-distribution.md).
+
 The eight demos have **39 named export blocks**. “导出当前方案” exports the full scene or selected block on its complete 12-second timeline, at 30 fps, as H.264 MP4. Blocks are actual canvas crops retaining text, internal animation and a glow margin. The service binds only to `127.0.0.1` and writes new files to `examples/capability-demos/exports/`, preserving source configs and videos.
 
 The same export is available from the CLI:
